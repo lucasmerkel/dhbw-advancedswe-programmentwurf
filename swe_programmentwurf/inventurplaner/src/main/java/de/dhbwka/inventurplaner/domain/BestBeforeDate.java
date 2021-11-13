@@ -29,4 +29,9 @@ public class BestBeforeDate {
 	public String getYear() {
 		return year;
 	}
+	
+	//TODO
+	public void setDate() {
+		DateValidator.validate();
+	}
 }

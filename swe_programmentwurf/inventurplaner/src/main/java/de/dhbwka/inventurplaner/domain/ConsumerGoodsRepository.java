@@ -1,5 +1,8 @@
 package de.dhbwka.inventurplaner.domain;
 
-public class ConsumerGoodsRepository {
+public interface ConsumerGoodsRepository {
 
+	public Iterable<ConsumerGoods> getAllConsumerGoods();
+	
+	public ConsumerGoods save(ConsumerGoods goods);
 }

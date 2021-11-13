@@ -1,5 +1,7 @@
 package de.dhbwka.inventurplaner.domain;
 
+import de.dhbwka.inventurplaner.abstractioncode.DateValidator;
+
 public class Food {
 
 	private String description;
@@ -11,10 +13,19 @@ public class Food {
 	}
 	
 	public BestBeforeDate getBbd() {
-		return bbd;
+		return this.bbd;
 	}
 	
 	public String getDescription() {
-		return description;
+		return this.description;
+	}
+	
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	//Classes instead of String
+	public void setBbd(String day, String month, String year) {
+		this.bbd.setDate();
 	}
 }
