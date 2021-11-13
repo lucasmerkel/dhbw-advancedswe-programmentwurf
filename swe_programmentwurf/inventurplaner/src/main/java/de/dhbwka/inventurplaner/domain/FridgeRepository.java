@@ -1,5 +1,8 @@
 package de.dhbwka.inventurplaner.domain;
 
-public class FridgeRepository {
-
+public interface FridgeRepository {
+	
+	public Iterable<Fridge> getAllConsumerGoods();
+	
+	public Fridge save(Fridge goods);
 }
