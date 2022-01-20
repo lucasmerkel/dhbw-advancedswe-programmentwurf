@@ -16,7 +16,7 @@ public class FoodShelfToFoodShelfRessourceMapper implements Function<FoodShelfRe
 
     private FoodShelfRessource mapToRessource(FoodShelf foodShelf) {
     	//TODO no new object, instead update Ressource object
-    	return new FoodShelfRessource();
+    	return new FoodShelfRessource(foodShelf.getDescription());
     }
     
     //both methods for mapping ressource class to domain class
@@ -25,6 +25,11 @@ public class FoodShelfToFoodShelfRessourceMapper implements Function<FoodShelfRe
     }
 
     private FoodShelf mapToDomain(FoodShelfRessource foodShelfRessource) {
-        return new FoodShelf();
+        return new FoodShelf(foodShelfRessource.getDescription());
     }
+
+	public FoodShelf apply(FoodShelfRessource foodShelfRessource) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

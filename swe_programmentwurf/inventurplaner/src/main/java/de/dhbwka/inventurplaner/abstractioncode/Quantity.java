@@ -19,8 +19,8 @@ public class Quantity extends UnitOfMeasure {
 	}
 
 	@Override
-	public void setValue(double wertNeu) {
-		this.value = wertNeu;
+	public void setValue(double newValue) {
+		this.value = newValue;
 	}
 
 	@Override

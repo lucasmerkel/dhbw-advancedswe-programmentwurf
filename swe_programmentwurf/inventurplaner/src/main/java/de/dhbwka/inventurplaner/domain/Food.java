@@ -25,7 +25,7 @@ public class Food {
 	}
 	
 	//Classes instead of String
-	public void setBbd(String day, String month, String year) {
-		this.bbd.setDate();
+	public void setBbd(int day, int month, int year) {
+		this.bbd.setDate(day, month, year);
 	}
 }

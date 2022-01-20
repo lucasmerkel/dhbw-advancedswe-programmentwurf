@@ -17,15 +17,20 @@ public class FridgeToFridgeRessourceMapper implements Function<FridgeRessource, 
 
     private FridgeRessource mapToRessource(Fridge fridge) {
     	//TODO no new object, instead update Ressource object
-    	return new FridgeRessource();
+    	return new FridgeRessource(fridge.getDescription());
     }
     
     //both methods for mapping ressource class to domain class
-	public Fridge applyToDomain(BestBeforeDateRessource fridgeRessource) {
+	public Fridge applyToDomain(FridgeRessource fridgeRessource) {
         return mapToDomain(fridgeRessource);
     }
 
-    private Fridge mapToDomain(BestBeforeDateRessource fridgeRessource) {
-        return new Fridge();
+    private Fridge mapToDomain(FridgeRessource fridgeRessource) {
+        return new Fridge(fridgeRessource.getDescription());
     }
+
+	public Fridge apply(FridgeRessource t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

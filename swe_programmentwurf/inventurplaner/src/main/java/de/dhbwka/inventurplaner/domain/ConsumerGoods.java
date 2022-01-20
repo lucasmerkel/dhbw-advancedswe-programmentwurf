@@ -22,6 +22,10 @@ public class ConsumerGoods {
 		return this.food;
 	}
 	
+	public Storage getStorage() {
+		return this.storagePlace;
+	}
+	
 	public void changeFoodDescription(String description) {
 		this.food.setDescription(description);
 	}

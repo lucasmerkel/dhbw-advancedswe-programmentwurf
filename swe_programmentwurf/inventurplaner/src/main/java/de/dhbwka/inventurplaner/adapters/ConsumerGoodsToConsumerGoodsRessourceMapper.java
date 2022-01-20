@@ -16,7 +16,7 @@ public class ConsumerGoodsToConsumerGoodsRessourceMapper implements Function<Con
 
     private ConsumerGoodsRessource mapToRessource(ConsumerGoods goods) {
     	//TODO no new object, instead update Ressource object
-    	return new ConsumerGoodsRessource();
+    	return new ConsumerGoodsRessource(goods.getFood(), goods.getQuantity(), goods.getStorage());
     }
     
     //both methods for mapping ressource class to domain class
@@ -25,7 +25,12 @@ public class ConsumerGoodsToConsumerGoodsRessourceMapper implements Function<Con
     }
 
     private ConsumerGoods mapToDomain(ConsumerGoodsRessource goodsRessource) {
-        return new ConsumerGoods();
+        return new ConsumerGoods(goodsRessource.getFood(), goodsRessource.getQuantity(), goodsRessource.getStorage());
     }
+
+	public ConsumerGoods apply(ConsumerGoodsRessource t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
     
 }

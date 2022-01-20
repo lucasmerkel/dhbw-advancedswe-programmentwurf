@@ -16,7 +16,7 @@ public class BestBeforeDateToBestBeforeDateRessourceMapper implements Function<B
 
     private BestBeforeDateRessource mapToRessource(BestBeforeDate bbd) {
     	//TODO no new object, instead update Ressource object
-    	return new BestBeforeDateRessource();
+    	return new BestBeforeDateRessource(bbd.getDay(), bbd.getMonth(), bbd.getYear());
     }
     
     //both methods for mapping ressource class to domain class
@@ -25,6 +25,11 @@ public class BestBeforeDateToBestBeforeDateRessourceMapper implements Function<B
     }
 
     private BestBeforeDate mapToDomain(BestBeforeDateRessource bbdRessource) {
-        return new BestBeforeDate();
+        return new BestBeforeDate(bbdRessource.getDay(), bbdRessource.getMonth(), bbdRessource.getYear());
     }
+
+	public BestBeforeDate apply(BestBeforeDateRessource t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
