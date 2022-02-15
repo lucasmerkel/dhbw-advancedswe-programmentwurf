@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import de.dhbwka.inventurplaner.domain.ConsumerGoods;
 
 @Component
-public class ConsumerGoodsToConsumerGoodsRessourceMapper implements Function<ConsumerGoodsRessource, ConsumerGoods> {
+public class ConsumerGoodsToConsumerGoodsRessourceMapper implements Function<ConsumerGoods, ConsumerGoodsRessource> {
 
 	//both methods for mapping domain class to ressource class
 	public ConsumerGoodsRessource applyToRessource(ConsumerGoods goods) {
@@ -28,7 +28,7 @@ public class ConsumerGoodsToConsumerGoodsRessourceMapper implements Function<Con
         return new ConsumerGoods(goodsRessource.getFood(), goodsRessource.getQuantity(), goodsRessource.getStorage());
     }
 
-	public ConsumerGoods apply(ConsumerGoodsRessource t) {
+	public ConsumerGoodsRessource apply(ConsumerGoods t) {
 		// TODO Auto-generated method stub
 		return null;
 	}

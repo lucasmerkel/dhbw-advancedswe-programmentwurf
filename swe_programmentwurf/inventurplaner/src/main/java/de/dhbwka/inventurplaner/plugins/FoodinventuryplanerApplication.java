@@ -14,8 +14,8 @@ import org.springframework.web.filter.CorsFilter;
 public class FoodinventuryplanerApplication {
 
 	public static void main(String[] args) {
-		 SpringApplication app = new SpringApplication(FoodinventuryplanerApplication.class);
-	        //app.setDefaultProperties(Collections.singletonMap("server.port", "8083"));
+		  SpringApplication app = new SpringApplication(FoodinventuryplanerApplication.class);
+	        app.setDefaultProperties(Collections.singletonMap("server.port", "8083"));
 	        app.run(args);
 	}
 
