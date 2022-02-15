@@ -15,6 +15,7 @@ public class ConsumerGoodsToConsumerGoodsResourceMapper implements Function<Cons
     }
 
     private ConsumerGoodsResource map(ConsumerGoods consumerGoods) {
-        return new ConsumerGoodsResource(consumerGoods.getTitle());
+        //return new ConsumerGoodsResource(consumerGoods.getTitle());
+    	return new ConsumerGoodsResource(consumerGoods.getFood(), consumerGoods.getQuantity(), consumerGoods.getStorage());
     }
 }

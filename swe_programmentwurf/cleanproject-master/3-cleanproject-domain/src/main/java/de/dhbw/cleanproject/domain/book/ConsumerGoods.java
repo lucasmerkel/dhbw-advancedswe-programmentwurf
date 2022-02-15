@@ -2,6 +2,8 @@ package de.dhbw.cleanproject.domain.book;
 
 import org.apache.commons.lang3.Validate;
 
+import de.dhbw.cleanproject.abstractioncode.consumergoods.UnitOfMeasure;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -9,31 +11,72 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "ConsumerGoods")
 public class ConsumerGoods {
-
+	
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "title")
-    private String title;
-
+    //@Column(name = "title")
+    //private String title;
+    
+    @OneToOne(cascade = CascadeType.ALL)
+    private Food food;
+	
+    @OneToOne(cascade=CascadeType.ALL)
+    private UnitOfMeasure quantity;
+    
+    @OneToOne(cascade=CascadeType.ALL)
+	private Storage storagePlace;
+	
     private ConsumerGoods() {
         //default constructor for JPA
     }
 
-    public ConsumerGoods(String title) {
+    public ConsumerGoods(Food food, UnitOfMeasure quantityValue, Storage storage) {
+    	//Validate.notBlank(title);
+        //this.title = title;
         
-    	Validate.notBlank(title);
-        
-        this.title = title;
+        this.food = food;
+		this.quantity = quantityValue;
+		this.storagePlace = storage;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
+    //public String getTitle() {
+    //    return title;
+    //}
+    
     public Long getId() {
         return id;
     }
+   
+	public UnitOfMeasure getQuantity() {
+		return this.quantity;
+	}
+	
+	public Food getFood() {
+		return this.food;
+	}
+	
+	public Storage getStorage() {
+		return this.storagePlace;
+	}
+	
+	public void changeFoodDescription(String description) {
+		this.food.setDescription(description);
+	}
+	
+	//TODO
+	public void changeFoodBestBeforedate() {
+		
+	}
+	
+	public void changeValue(double value) {
+		this.quantity.setValue(value);
+	}
+	
+	public void changeStoragePlace(Storage storagePlace) {
+		this.storagePlace = storagePlace;
+	}
+
 }

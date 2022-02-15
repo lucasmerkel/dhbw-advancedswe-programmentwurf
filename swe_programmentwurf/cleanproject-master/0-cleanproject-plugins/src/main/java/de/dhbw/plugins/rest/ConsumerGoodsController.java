@@ -33,4 +33,17 @@ public class ConsumerGoodsController {
                 .map(consumerGoodsToConsumerGoodsResourceMapper)
                 .collect(Collectors.toList());
     }
+    
+    //GET
+    //Fridge and FoodShelf, ApplicationServices needed for each
+    
+    //POST
+    //Update Repository and ApplicationService
+    
+    //DELETE
+    //Update Repository and ApplicationService
+
+    //UPDATE
+    //Update Repository and ApplicationService
+    //Alternative is DELETE and POST
 }

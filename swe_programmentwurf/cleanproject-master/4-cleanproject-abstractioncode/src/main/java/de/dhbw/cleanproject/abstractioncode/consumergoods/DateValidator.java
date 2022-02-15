@@ -1,4 +1,4 @@
-package de.dhbwka.inventurplaner.abstractioncode;
+package de.dhbw.cleanproject.abstractioncode.consumergoods;
 
 public class DateValidator {
 	
