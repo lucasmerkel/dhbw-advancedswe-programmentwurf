@@ -21,4 +21,31 @@ public class ConsumerGoodsApplicationService {
     public List<ConsumerGoods> findAllConsumerGoods() {
         return this.consumerGoodsRepository.findAllConsumerGoods();
     }
+    
+    public boolean deleteConsumerGoods(long id) {
+    	try {
+			
+    		return true;
+		} catch (Exception e) {
+			return false;
+		}
+    }
+    
+    public boolean updateConsumerGoods(long id, ConsumerGoods consumerGoods) {
+    	try {
+			
+    		return true;
+		} catch (Exception e) {
+			return false;
+		}
+    }
+    
+    public boolean addConsumerGoods(ConsumerGoods consumerGoods) {
+    	try {
+			
+    		return true;
+		} catch (Exception e) {
+			return false;
+		}
+    }
 }
