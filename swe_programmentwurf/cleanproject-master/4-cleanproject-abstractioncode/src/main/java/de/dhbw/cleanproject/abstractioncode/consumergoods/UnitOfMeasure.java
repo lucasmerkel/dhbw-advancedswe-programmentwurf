@@ -24,6 +24,10 @@ public abstract class UnitOfMeasure {
 	@Column(name = "value")
 	protected double value;
 	
+	public UnitOfMeasure(double value) {
+		this.value = value;
+	}
+	
 	public abstract String getDescription();
 	public abstract String getShortcut();
 	public abstract double getValue();

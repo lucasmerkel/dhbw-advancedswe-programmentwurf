@@ -8,6 +8,7 @@ import de.dhbw.cleanproject.domain.book.ConsumerGoods;
 import de.dhbw.cleanproject.domain.book.ConsumerGoodsRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class ConsumerGoodsRepositoryBridge implements ConsumerGoodsRepository {
@@ -27,6 +28,22 @@ public class ConsumerGoodsRepositoryBridge implements ConsumerGoodsRepository {
 	@Override
 	public ConsumerGoods save(ConsumerGoods consumerGood) {
 		return this.springDataConsumerGoodsRepository.save(consumerGood);
+	}
+
+	@Override
+	public Optional<ConsumerGoods> findConsumerGoods(long id) {
+		return this.springDataConsumerGoodsRepository.findById(id);
+	}
+
+	@Override
+	public boolean deleteConsumerGoods(long id) {
+		try {
+			this.springDataConsumerGoodsRepository.deleteById(id);
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return false;
+		}
 	}
 
 }

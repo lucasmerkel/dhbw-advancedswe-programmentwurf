@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ConsumerGoodsApplicationService {
@@ -24,7 +25,7 @@ public class ConsumerGoodsApplicationService {
     
     public boolean deleteConsumerGoods(long id) {
     	try {
-			
+			consumerGoodsRepository.deleteConsumerGoods(id);
     		return true;
 		} catch (Exception e) {
 			return false;
@@ -32,9 +33,15 @@ public class ConsumerGoodsApplicationService {
     }
     
     public boolean updateConsumerGoods(long id, ConsumerGoods consumerGoods) {
+    	if(consumerGoodsRepository.findConsumerGoods(id).isEmpty()) return false;
     	try {
-			
-    		return true;
+    		ConsumerGoods newConsumerGoods = consumerGoodsRepository.findConsumerGoods(id).get();
+    		newConsumerGoods.changeFoodDescription(consumerGoods.getFood().getDescription());
+    		newConsumerGoods.changeFoodBestBeforedate(consumerGoods.getFood().getBbd());
+    		newConsumerGoods.changeQuantity(consumerGoods.getQuantity());
+    		newConsumerGoods.changeStoragePlace(consumerGoods.getStorage());
+    		this.addConsumerGoods(newConsumerGoods);
+			return true;
 		} catch (Exception e) {
 			return false;
 		}
@@ -42,7 +49,7 @@ public class ConsumerGoodsApplicationService {
     
     public boolean addConsumerGoods(ConsumerGoods consumerGoods) {
     	try {
-			
+    		consumerGoodsRepository.save(consumerGoods);
     		return true;
 		} catch (Exception e) {
 			return false;

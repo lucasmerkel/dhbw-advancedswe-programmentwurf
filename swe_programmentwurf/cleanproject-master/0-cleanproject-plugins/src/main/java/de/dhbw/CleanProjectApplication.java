@@ -34,8 +34,8 @@ public class CleanProjectApplication {
     @Bean
     public CommandLineRunner demo(ConsumerGoodsRepository repository) {
         return (args) -> {
-        	repository.save(new ConsumerGoods(new Food("Tomatoe", new BestBeforeDate(1, 1, 2022)), new Quantity(), new Fridge("fridge")));
-        	repository.save(new ConsumerGoods(new Food("Banana", new BestBeforeDate(1, 1, 2022)), new Quantity(), new FoodShelf("foodshelf")));
+        	repository.save(new ConsumerGoods(new Food("Tomatoe", new BestBeforeDate(1, 1, 2022)), new Quantity(3), new Fridge("fridge")));
+        	repository.save(new ConsumerGoods(new Food("Banana", new BestBeforeDate(1, 1, 2022)), new Quantity(5), new FoodShelf("foodshelf")));
         	//repository.save(new ConsumerGoods("Banane"));
         	//repository.save(new ConsumerGood("Tomate", 1, "Bernard Cornwell", LocalDate.of(1996, 01, 01)));
         };

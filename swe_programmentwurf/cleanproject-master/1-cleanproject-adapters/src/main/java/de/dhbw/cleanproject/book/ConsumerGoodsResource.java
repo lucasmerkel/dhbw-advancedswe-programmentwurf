@@ -11,6 +11,7 @@ import de.dhbw.cleanproject.domain.book.Storage;
 
 public class ConsumerGoodsResource {
 
+	 private long id;
 	 private Food food;
 	 private UnitOfMeasure quantity;
 	 
@@ -19,9 +20,10 @@ public class ConsumerGoodsResource {
 		 //default constructor for JPA
 	 }
 
-	 public ConsumerGoodsResource(Food food, UnitOfMeasure quantityValue, Storage storage) {
+	 public ConsumerGoodsResource(long id, Food food, UnitOfMeasure quantityValue, Storage storage) {
 	    //Validate.notBlank(title);
-	    //this.title = title;        
+	    //this.title = title;
+		this.id = id;
 	    this.food = food;
 	    this.quantity = quantityValue;
 		this.storagePlace = storage.getDescription();
@@ -31,6 +33,10 @@ public class ConsumerGoodsResource {
 	    //    return title;
 	    //}
 	   
+	public long getId() {
+		return id;
+	}
+	
 	public UnitOfMeasure getQuantity() {
 		return this.quantity;
 	}

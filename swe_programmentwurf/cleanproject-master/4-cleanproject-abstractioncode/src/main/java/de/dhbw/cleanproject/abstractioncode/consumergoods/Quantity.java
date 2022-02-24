@@ -5,10 +5,14 @@ import javax.persistence.Entity;
 @Entity
 public class Quantity extends UnitOfMeasure {
 
-	public Quantity() {
+	private Quantity() {
+		super(0);
+	}
+	
+	public Quantity(double value) {
+		super(value);
 		this.description = "Stueck";
 		this.shortcut = "Stk.";
-		this.value = 0;
 	}
 	
 	@Override

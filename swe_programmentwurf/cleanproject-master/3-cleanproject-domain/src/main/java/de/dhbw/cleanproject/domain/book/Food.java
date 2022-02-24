@@ -46,7 +46,7 @@ public class Food {
 	}
 	
 	//Classes instead of String
-	public void setBbd(int day, int month, int year) {
-		this.bbd.setDate(day, month, year);
+	public void setBbd(BestBeforeDate bbd) {
+		this.bbd = bbd;
 	}
 }

@@ -35,7 +35,7 @@ public class StorageController {
     
     //GET
     //Fridge
-    @RequestMapping(value="fridge", method = RequestMethod.GET)
+    @RequestMapping(value="/fridge", method = RequestMethod.GET)
     public List<FridgeResource> getFridges() {
         return this.storageApplicationService.findAllFridges().stream()
                 .map(fridgeToFridgeResourceMapper)
@@ -44,7 +44,7 @@ public class StorageController {
     
     //GET
     //FoodShelf
-    @RequestMapping(value="foodshelf", method = RequestMethod.GET)
+    @RequestMapping(value="/foodshelf", method = RequestMethod.GET)
     public List<FoodShelfResource> getFoodShelfs() {
         return this.storageApplicationService.findAllFoodShelfs().stream()
                 .map(foodShelfToFoodShelfResourceMapper)

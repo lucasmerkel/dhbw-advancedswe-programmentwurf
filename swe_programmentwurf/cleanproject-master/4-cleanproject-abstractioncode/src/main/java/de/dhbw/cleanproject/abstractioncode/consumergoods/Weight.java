@@ -5,10 +5,14 @@ import javax.persistence.Entity;
 @Entity
 public class Weight extends UnitOfMeasure{
 	
-	public Weight() {
+	private Weight() {
+		super(0);
+	}
+	
+	public Weight(double value) {
+		super(value);
 		this.description = "Gramm";
 		this.shortcut = "g";
-		this.value = 0;
 	}
 
 	@Override

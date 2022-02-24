@@ -66,13 +66,12 @@ public class ConsumerGoods {
 		this.food.setDescription(description);
 	}
 	
-	//TODO
-	public void changeFoodBestBeforedate() {
-		
+	public void changeFoodBestBeforedate(BestBeforeDate bbd) {
+		this.food.setBbd(bbd);
 	}
 	
-	public void changeValue(double value) {
-		this.quantity.setValue(value);
+	public void changeQuantity(UnitOfMeasure quantity) {
+		this.quantity = quantity;
 	}
 	
 	public void changeStoragePlace(Storage storagePlace) {
