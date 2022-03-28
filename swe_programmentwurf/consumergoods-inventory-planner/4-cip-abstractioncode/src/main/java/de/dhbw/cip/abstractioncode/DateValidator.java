@@ -10,7 +10,7 @@ public class DateValidator {
 	
 	private static boolean checkDate(DayOfYear dayOfYear, Year year) {
 		if(dayOfYear.getMonth() == 2) return checkFebruary(dayOfYear, year);
-		return checkNotFebruary(dayOfYear, year);
+		return checkNotFebruary(dayOfYear);
 	}
 	
 	private static boolean checkFebruary(DayOfYear dayOfYear, Year year) {
@@ -18,7 +18,7 @@ public class DateValidator {
 		return checkTwentyEightDays(dayOfYear);
 	}
 	
-	private static boolean checkNotFebruary(DayOfYear dayOfYear, Year year) {
+	private static boolean checkNotFebruary(DayOfYear dayOfYear) {
 		if(dayOfYear.getMonth() < 8 && dayOfYear.getMonth() % 2 != 0) return checkThirdyOneDays(dayOfYear);
 		if(dayOfYear.getMonth() > 8 && dayOfYear.getMonth() % 2 == 0) return checkThirdyOneDays(dayOfYear);
 		return checkThirdyDays(dayOfYear);
