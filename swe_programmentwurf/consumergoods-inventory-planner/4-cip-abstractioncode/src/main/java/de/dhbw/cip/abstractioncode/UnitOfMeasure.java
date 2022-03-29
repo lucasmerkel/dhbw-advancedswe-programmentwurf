@@ -1,5 +1,6 @@
 package de.dhbw.cip.abstractioncode;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToOne;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -21,15 +23,15 @@ public abstract class UnitOfMeasure {
 	protected String description;
 	@Column(name = "shortcut")
 	protected String shortcut;
-	@Column(name = "value")
-	protected double value;
+	//@Column(name = "value")
+	@OneToOne(cascade=CascadeType.ALL)
+	protected Value value;
 	
-	public UnitOfMeasure(double value) {
+	public UnitOfMeasure(Value value) {
 		this.value = value;
 	}
 	
 	public abstract String getDescription();
 	public abstract String getShortcut();
-	public abstract double getValue();
-	public abstract void setValue(double newValue);
+	public abstract Value getValue();
 }

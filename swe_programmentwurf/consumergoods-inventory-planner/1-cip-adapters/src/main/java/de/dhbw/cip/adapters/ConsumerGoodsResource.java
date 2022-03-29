@@ -58,10 +58,6 @@ public class ConsumerGoodsResource {
 		
 	}
 		
-	public void changeValue(double value) {
-		this.quantity.setValue(value);
-	}
-		
 	public void changeStoragePlace(StorageResource storagePlace) {
 		this.storagePlace = storagePlace.getDescription();
 	}

@@ -6,10 +6,10 @@ import javax.persistence.Entity;
 public class Volume extends UnitOfMeasure {
 
 	private Volume() {
-		super(0);
+		super(new Value(0));
 	}
 	
-	public Volume(double value) {
+	public Volume(Value value) {
 		super(value);
 		this.description = "Milliliter";
 		this.shortcut = "ml";
@@ -21,13 +21,8 @@ public class Volume extends UnitOfMeasure {
 	}
 
 	@Override
-	public double getValue() {
+	public Value getValue() {
 		return this.value;
-	}
-
-	@Override
-	public void setValue(double newValue) {
-		this.value = newValue;
 	}
 
 	@Override

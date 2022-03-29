@@ -6,10 +6,10 @@ import javax.persistence.Entity;
 public class Quantity extends UnitOfMeasure {
 
 	private Quantity() {
-		super(0);
+		super(new Value(0));
 	}
 	
-	public Quantity(double value) {
+	public Quantity(Value value) {
 		super(value);
 		this.description = "Stueck";
 		this.shortcut = "Stk.";
@@ -21,13 +21,8 @@ public class Quantity extends UnitOfMeasure {
 	}
 
 	@Override
-	public double getValue() {
+	public Value getValue() {
 		return this.value;
-	}
-
-	@Override
-	public void setValue(double newValue) {
-		this.value = newValue;
 	}
 
 	@Override

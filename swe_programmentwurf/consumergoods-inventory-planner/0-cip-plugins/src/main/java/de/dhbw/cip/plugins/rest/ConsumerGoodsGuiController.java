@@ -10,13 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 import de.dhbw.cip.abstractioncode.Day;
 import de.dhbw.cip.abstractioncode.DayOfYear;
 import de.dhbw.cip.abstractioncode.Month;
+import de.dhbw.cip.abstractioncode.Value;
 import de.dhbw.cip.abstractioncode.Volume;
 import de.dhbw.cip.abstractioncode.Year;
 import de.dhbw.cip.adapters.ConsumerGoodsResource;
 import de.dhbw.cip.adapters.ConsumerGoodsToConsumerGoodsResourceMapper;
 import de.dhbw.cip.application.ConsumerGoodsManager;
+import de.dhbw.cip.application.StorageManager;
 import de.dhbw.cip.domain.BestBeforeDate;
 import de.dhbw.cip.domain.ConsumerGoods;
+import de.dhbw.cip.domain.ConsumerGoods.ConsumerGoodsBuilder;
 import de.dhbw.cip.domain.Food;
 import de.dhbw.cip.domain.Fridge;
 
@@ -33,7 +36,8 @@ public class ConsumerGoodsGuiController {
 
     @Autowired
     public ConsumerGoodsGuiController(ConsumerGoodsManager consumerGoodsApplicationService, 
-    		ConsumerGoodsToConsumerGoodsResourceMapper consumerGoodsToConsumerGoodsResourceMapper) {
+    		ConsumerGoodsToConsumerGoodsResourceMapper consumerGoodsToConsumerGoodsResourceMapper,
+    		StorageManager storageManager) {
         this.consumerGoodsApplicationService = consumerGoodsApplicationService;
         this.consumerGoodsToConsumerGoodsResourceMapper = consumerGoodsToConsumerGoodsResourceMapper;
     }
@@ -46,23 +50,14 @@ public class ConsumerGoodsGuiController {
     }
 
     //POST
-    //Update Repository and ApplicationService
-    //@RequestMapping(value="/{description}%{bestbeforedateday}%{bestbeforedatemonth}%{bestbeforedateyear}%{quantityvalue}%{quantity}%{storage}", method = RequestMethod.POST)
     @RequestMapping(value="/add" ,method = RequestMethod.POST)
     @ResponseBody
     public String postConsumerGood(@RequestParam("description") String description, @RequestParam("bestbeforedateday") int bestBeforeDateDay,
     		@RequestParam("bestbeforedatemonth") int bestBeforeDateMonth, @RequestParam("bestbeforedateyear") int bestBeforeDateYear, 
-    		@RequestParam("quantityvalue") double quantityValue, @RequestParam("quantity") String quantity, @RequestParam("storage") String storage) {
-    		//@PathVariable("bestbeforedateday") int bestBeforeDateDay, @PathVariable("bestbeforedatemonth") int bestBeforeDateMonth,
-    		//@PathVariable("bestbeforedateyear") int bestBeforeDateYear, @PathVariable("quantityvalue") double quantityValue, 
-    		//@PathVariable("quantity") String quantity, @PathVariable("storage") String storage) {
-        		//return "Result: "+description+", "+bestBeforeDateDay+"."+bestBeforeDateMonth+"."+bestBeforeDateYear+"; "
-        			//	+quantityValue+quantity+"; "+storage;
+    		@RequestParam("quantityvalue") int quantityValue, @RequestParam("quantity") String quantity, @RequestParam("storage") String storage) {
     	
-    	//classes or values as parameters
-    	//send error if something goes wrong
-    	//Builder for Fridge or Foodshelf
-    	consumerGoodsApplicationService.addConsumerGoods(new ConsumerGoods(new Food(description, new BestBeforeDate( new DayOfYear(new Day(bestBeforeDateDay), new Month(bestBeforeDateMonth)), new Year(bestBeforeDateYear))), new Volume(quantityValue), new Fridge("fridge")));
+    	consumerGoodsApplicationService.addConsumerGoods(new ConsumerGoodsBuilder(description, bestBeforeDateDay, bestBeforeDateMonth, bestBeforeDateYear, quantity, quantityValue, storage, storage).build());
+    	//consumerGoodsApplicationService.addConsumerGoods(new ConsumerGoods(new Food(description, new BestBeforeDate( new DayOfYear(new Day(bestBeforeDateDay), new Month(bestBeforeDateMonth)), new Year(bestBeforeDateYear))), new Volume(new Value(quantityValue)), new Fridge("fridge")));
     	
     	System.out.println("Result: "+description+", "+bestBeforeDateDay+"."+bestBeforeDateMonth+"."+bestBeforeDateYear+"; "
     				+quantityValue+quantity+"; "+storage);	
@@ -88,11 +83,12 @@ public class ConsumerGoodsGuiController {
     @ResponseBody
     public String updateConsumerGood(@RequestParam("id") long id, @RequestParam("description") String description, @RequestParam("bestbeforedateday") int bestBeforeDateDay,
     		@RequestParam("bestbeforedatemonth") int bestBeforeDateMonth, @RequestParam("bestbeforedateyear") int bestBeforeDateYear, 
-    		@RequestParam("quantityvalue") double quantityValue, @RequestParam("quantity") String quantity, @RequestParam("storage") String storage) {
+    		@RequestParam("quantityvalue") int quantityValue, @RequestParam("quantity") String quantity, @RequestParam("storage") String storage) {
     	
     	//new class for values or direct values
     	//send error if something goes wrong
-    	boolean test = consumerGoodsApplicationService.updateConsumerGoods(id, new ConsumerGoods(new Food(description, new BestBeforeDate( new DayOfYear(new Day(bestBeforeDateDay), new Month(bestBeforeDateMonth)), new Year(bestBeforeDateYear))), new Volume(quantityValue), new Fridge("fridge")));
+    	boolean test = consumerGoodsApplicationService.updateConsumerGoods(id, new ConsumerGoodsBuilder(description, bestBeforeDateDay, bestBeforeDateMonth, bestBeforeDateYear, quantity, quantityValue, storage, storage).build());
+    	//boolean test = consumerGoodsApplicationService.updateConsumerGoods(id, new ConsumerGoods(new Food(description, new BestBeforeDate( new DayOfYear(new Day(bestBeforeDateDay), new Month(bestBeforeDateMonth)), new Year(bestBeforeDateYear))), new Volume(new Value(quantityValue)), new Fridge("fridge")));
     	System.out.println(test);
     	
     	System.out.println("Result: "+id+","+description+", "+bestBeforeDateDay+"."+bestBeforeDateMonth+"."+bestBeforeDateYear+"; "

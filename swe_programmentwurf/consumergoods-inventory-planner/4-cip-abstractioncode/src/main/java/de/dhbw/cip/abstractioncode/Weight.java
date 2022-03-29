@@ -6,10 +6,10 @@ import javax.persistence.Entity;
 public class Weight extends UnitOfMeasure{
 	
 	private Weight() {
-		super(0);
+		super(new Value(0));
 	}
 	
-	public Weight(double value) {
+	public Weight(Value value) {
 		super(value);
 		this.description = "Gramm";
 		this.shortcut = "g";
@@ -21,13 +21,8 @@ public class Weight extends UnitOfMeasure{
 	}
 
 	@Override
-	public double getValue() {
+	public Value getValue() {
 		return this.value;
-	}
-
-	@Override
-	public void setValue(double newValue) {
-		this.value = newValue;
 	}
 
 	@Override
