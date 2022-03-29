@@ -20,10 +20,13 @@ public abstract class Storage {
 	@Column(name = "description")
 	protected String description;
 	
-	public abstract Object getClassType();
+	//public abstract Object getClassType();
 	
-	public void setDescription(String description) {
+	/*public void setDescription(String description) {
 		this.description = description;
+	}*/
+	public long getId() {
+		return id;
 	}
 	
 	public String getDescription() {

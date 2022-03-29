@@ -24,10 +24,10 @@ public class StorageManager {
     }
 
     public List<Fridge> findAllFridges() {
-        return this.fridgeRepository.getAllFridges();
+        return this.fridgeRepository.getAllOccupiedFridgeStorageBins();
     }
     
     public List<FoodShelf> findAllFoodShelfs() {
-        return this.foodshelfRepository.getAllFoodShelfs();
+        return this.foodshelfRepository.getAllOccupiedFoodShelfStorageBins();
     }
 }

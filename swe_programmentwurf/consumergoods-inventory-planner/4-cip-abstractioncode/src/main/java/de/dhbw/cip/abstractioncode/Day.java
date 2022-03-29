@@ -14,10 +14,11 @@ public class Day {
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	private int day;
+	private final int day;
 	
 	private Day() {
 		super();
+		this.day = 0;
 	}
 	
 	public Day(int day) {

@@ -17,8 +17,9 @@ public class Fridge extends Storage {
 		this.description = description;
 	}
 
+	/*
 	@Override
 	public Object getClassType() {
 		return this.getClassType();
-	}
+	}*/
 }

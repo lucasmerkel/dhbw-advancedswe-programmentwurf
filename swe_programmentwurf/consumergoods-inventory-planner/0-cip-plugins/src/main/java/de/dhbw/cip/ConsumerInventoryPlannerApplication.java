@@ -41,8 +41,8 @@ public class ConsumerInventoryPlannerApplication {
     @Bean
     public CommandLineRunner demo(ConsumerGoodsRepository repository) {
         return (args) -> {
-        	repository.save(new ConsumerGoodsBuilder("Tomatoe", 1, 1, 2022, "Stk.", 3, "Fridge", "fridge in the kitchen").build());
-        	repository.save(new ConsumerGoodsBuilder("Banana", 2, 3, 2022, "Stk.", 5, "Fridge", "foodshelf in the basement").build());
+        	repository.storeNewConsumerGoods(new ConsumerGoodsBuilder("Tomatoe", 1, 1, 2022, "Stk.", 3, "Fridge", "fridge in the kitchen").build());
+        	repository.storeNewConsumerGoods(new ConsumerGoodsBuilder("Banana", 2, 3, 2022, "Stk.", 5, "FoodShelf", "foodshelf in the basement").build());
         	//repository.save(new ConsumerGoods(new Food("Tomatoe", new BestBeforeDate( new DayOfYear(new Day(1), new Month(1)), new Year(2022))), new Quantity(new Value(3)), new Fridge("fridge")));
         	//repository.save(new ConsumerGoods(new Food("Banana", new BestBeforeDate( new DayOfYear(new Day(1), new Month(1)), new Year(2022))), new Quantity(new Value(5)), new FoodShelf("foodshelf")));
         	//repository.save(new ConsumerGoods("Banane"));

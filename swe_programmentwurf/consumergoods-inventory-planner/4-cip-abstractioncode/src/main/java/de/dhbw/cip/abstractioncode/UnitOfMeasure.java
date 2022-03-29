@@ -25,10 +25,11 @@ public abstract class UnitOfMeasure {
 	protected String shortcut;
 	//@Column(name = "value")
 	@OneToOne(cascade=CascadeType.ALL)
-	protected Value value;
+	protected final Value value;
 	
 	public UnitOfMeasure(Value value) {
 		this.value = value;
+
 	}
 	
 	public abstract String getDescription();

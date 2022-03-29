@@ -4,9 +4,10 @@ public class FridgeResource extends StorageResource{
 	
 	private FridgeResource() {
 		 //default constructor for JPA
-	 }
+	}
 	
-	public FridgeResource(String description) {
+	public FridgeResource(long id, String description) {
+		this.id = id;
 		this.description = description;
 	}
 	

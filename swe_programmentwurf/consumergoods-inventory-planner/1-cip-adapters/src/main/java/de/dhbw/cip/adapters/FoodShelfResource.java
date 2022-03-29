@@ -6,7 +6,8 @@ public class FoodShelfResource extends StorageResource {
 		 //default constructor for JPA
 	 }
 	
-	public FoodShelfResource(String description) {
+	public FoodShelfResource(long id, String description) {
+		this.id = id;
 		this.description = description;
 	}
 

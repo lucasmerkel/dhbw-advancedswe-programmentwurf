@@ -16,7 +16,7 @@ public class FridgeToFridgeResourceMapper implements Function<Fridge, FridgeReso
 
     private FridgeResource map(Fridge fridge) {
         //return new ConsumerGoodsResource(consumerGoods.getTitle());
-    	return new FridgeResource(fridge.getDescription());
+    	return new FridgeResource(fridge.getId(), fridge.getDescription());
     }
 
 }

@@ -14,10 +14,11 @@ public class Year {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 	
-	private int year;
+	private final int year;
 	
 	private Year() {
 		super();
+		this.year = 0;
 	}
 	
 	public Year(int year) {

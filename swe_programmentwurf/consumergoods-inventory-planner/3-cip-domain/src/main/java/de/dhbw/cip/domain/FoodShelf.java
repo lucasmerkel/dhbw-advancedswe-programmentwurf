@@ -16,8 +16,9 @@ public class FoodShelf extends Storage {
 		this.description = description;
 	}
 	
+	/*
 	@Override
 	public Object getClassType() {
 		return this.getClassType();
-	}
+	}*/
 }

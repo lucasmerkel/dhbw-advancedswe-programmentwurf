@@ -21,18 +21,18 @@ public class ConsumerGoodsToConsumerGoodsResourceMapper implements Function<Cons
 
     private ConsumerGoodsResource map(ConsumerGoods consumerGoods) {
         //return new ConsumerGoodsResource(consumerGoods.getTitle());
-    	if(consumerGoods.getStorage() instanceof Fridge) return new ConsumerGoodsResource(consumerGoods.getId(), new FoodResource(consumerGoods.getFood().getDescription(), 
+    	if(consumerGoods.getStorage() instanceof Fridge) return new ConsumerGoodsResource(consumerGoods.getEANCode(), new FoodResource(consumerGoods.getFood().getDescription(), 
     			new BestBeforeDateResource(new DayOfYear(new Day(consumerGoods.getFood().getBbd().getDay()), 
     														new Month(consumerGoods.getFood().getBbd().getMonth())),
     										new Year(consumerGoods.getFood().getBbd().getYear()))),
     			consumerGoods.getQuantity(), 
-    			new FridgeResource(consumerGoods.getStorage().getDescription()));
+    			new FridgeResource(consumerGoods.getStorage().getId() ,consumerGoods.getStorage().getDescription()));
     	
-    	return new ConsumerGoodsResource(consumerGoods.getId(), new FoodResource(consumerGoods.getFood().getDescription(), 
+    	return new ConsumerGoodsResource(consumerGoods.getEANCode(), new FoodResource(consumerGoods.getFood().getDescription(), 
     			new BestBeforeDateResource(new DayOfYear(new Day(consumerGoods.getFood().getBbd().getDay()), 
     														new Month(consumerGoods.getFood().getBbd().getMonth())),
     										new Year(consumerGoods.getFood().getBbd().getYear()))),
     			consumerGoods.getQuantity(), 
-    			new FoodShelfResource(consumerGoods.getStorage().getDescription()));
+    			new FoodShelfResource(consumerGoods.getStorage().getId(), consumerGoods.getStorage().getDescription()));
     }
 }

@@ -14,10 +14,11 @@ public class Month {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 	
-	private int month;
+	private final int month;
 	
 	private Month() {
 		super();
+		this.month = 0;
 	}
 	
 	public Month(int month) {

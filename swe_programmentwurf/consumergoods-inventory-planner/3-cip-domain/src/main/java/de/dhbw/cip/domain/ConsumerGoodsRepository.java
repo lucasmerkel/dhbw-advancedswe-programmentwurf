@@ -5,11 +5,11 @@ import java.util.Optional;
 
 public interface ConsumerGoodsRepository {
 
-    List<ConsumerGoods> findAllConsumerGoods();
+    List<ConsumerGoods> findAllStoredConsumerGoods();
     
-    Optional<ConsumerGoods> findConsumerGoods(long id);
+    Optional<ConsumerGoods> findStoredConsumerGoods(long id);
     
-    boolean deleteConsumerGoods(long id);
+    boolean outsourceConsumerGoods(long id);
     
-    ConsumerGoods save(ConsumerGoods consumerGood);
+    ConsumerGoods storeNewConsumerGoods(ConsumerGoods consumerGood);
 }

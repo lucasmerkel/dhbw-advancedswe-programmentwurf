@@ -21,9 +21,9 @@ import java.time.LocalDateTime;
 public class ConsumerGoods {
 	
     @Id
-    @Column(name = "id")
+    @Column(name = "eanCode")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long eanCode;
 
     //@Column(name = "title")
     //private String title;
@@ -53,7 +53,7 @@ public class ConsumerGoods {
     public ConsumerGoods(ConsumerGoodsBuilder consumerGoodsBuilder) {
     	//Validate.notBlank(title);
         //this.title = title;
-        
+
         this.food = consumerGoodsBuilder.food;
 		this.quantity = consumerGoodsBuilder.quantity;
 		this.storagePlace = consumerGoodsBuilder.storage;
@@ -63,8 +63,8 @@ public class ConsumerGoods {
     //    return title;
     //}
     
-    public Long getId() {
-        return id;
+    public Long getEANCode() {
+        return eanCode;
     }
    
 	public UnitOfMeasure getQuantity() {
@@ -79,6 +79,10 @@ public class ConsumerGoods {
 		return this.storagePlace;
 	}
 	
+	public void changeFood(Food food) {
+		this.food = food;
+	}
+	/*
 	public void changeFoodDescription(String description) {
 		this.food.setDescription(description);
 	}
@@ -90,22 +94,22 @@ public class ConsumerGoods {
 	public void changeQuantity(UnitOfMeasure quantity) {
 		this.quantity = quantity;
 	}
-	
+	*/
 	public void changeStoragePlace(Storage storagePlace) {
 		this.storagePlace = storagePlace;
 	}
 
 	
 	public static class ConsumerGoodsBuilder {
-		
+
         private final Food food;
 		private final UnitOfMeasure quantity;
 		private final Storage storage;
 
 		public ConsumerGoodsBuilder(String description, int day, int month, int year, String measureShortcut, int measureValue, String storageTitle, String storageDescription) {
-			food = new Food(description, new BestBeforeDate(new DayOfYear(new Day(day), new Month(month)), new Year(year)));
-			quantity = findMeasureWith(measureShortcut, measureValue);
-		    storage = findStorageWith(storageTitle, storageDescription);
+			this.food = new Food(description, new BestBeforeDate(new DayOfYear(new Day(day), new Month(month)), new Year(year)));
+			this.quantity = findMeasureWith(measureShortcut, measureValue);
+			this.storage = findStorageWith(storageTitle, storageDescription);
 		}
 		
 		private UnitOfMeasure findMeasureWith(String measureShortcut, int measureValue) {

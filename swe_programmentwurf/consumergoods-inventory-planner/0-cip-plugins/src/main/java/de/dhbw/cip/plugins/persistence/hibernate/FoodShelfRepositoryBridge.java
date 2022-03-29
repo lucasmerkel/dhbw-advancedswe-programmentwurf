@@ -18,14 +18,14 @@ public class FoodShelfRepositoryBridge implements FoodShelfRepository {
     public FoodShelfRepositoryBridge(PersistenceFoodShelfRepository springDataFoodShelfRepository) {
         this.springDataFoodShelfRepository = springDataFoodShelfRepository;
     }
-	
+
 	@Override
-	public List<FoodShelf> getAllFoodShelfs() {
+	public List<FoodShelf> getAllOccupiedFoodShelfStorageBins() {
 		return this.springDataFoodShelfRepository.findAll();
 	}
 
 	@Override
-	public FoodShelf save(FoodShelf foodShelf) {
+	public FoodShelf occupyFoodShelfStorageBin(FoodShelf foodShelf) {
 		return this.springDataFoodShelfRepository.save(foodShelf);
 	}
 

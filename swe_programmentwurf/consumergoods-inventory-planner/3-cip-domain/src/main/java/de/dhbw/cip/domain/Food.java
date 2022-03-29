@@ -9,6 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import de.dhbw.cip.abstractioncode.Day;
+import de.dhbw.cip.abstractioncode.DayOfYear;
+import de.dhbw.cip.abstractioncode.Month;
+import de.dhbw.cip.abstractioncode.Year;
+
 @Entity
 @Table(name = "Food")
 public class Food {
@@ -19,13 +24,15 @@ public class Food {
     private Long id;
 	
 	@Column(name = "description")
-	private String description;
+	private final String description;
 	
 	@OneToOne(cascade=CascadeType.ALL)
-	private BestBeforeDate bbd;
+	private final BestBeforeDate bbd;
 	
 	private Food() {
         //default constructor for JPA
+		this.description = "";
+		this.bbd = new BestBeforeDate(new DayOfYear(new Day(0), new Month(0)), new Year(0));
     }
 	
 	public Food(String description, BestBeforeDate bbd) {
@@ -41,6 +48,7 @@ public class Food {
 		return this.description;
 	}
 	
+	/*
 	public void setDescription(String description) {
 		this.description = description;
 	}
@@ -49,4 +57,5 @@ public class Food {
 	public void setBbd(BestBeforeDate bbd) {
 		this.bbd = bbd;
 	}
+	*/
 }

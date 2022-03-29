@@ -20,12 +20,12 @@ public class FridgeRepositoryBridge implements FridgeRepository {
     }
 
 	@Override
-	public List<Fridge> getAllFridges() {
+	public List<Fridge> getAllOccupiedFridgeStorageBins() {
 		return this.springDataFridgeRepository.findAll();
 	}
 
 	@Override
-	public Fridge save(Fridge fridge) {
+	public Fridge occupyFridgeStorageBin(Fridge fridge) {
 		return this.springDataFridgeRepository.save(fridge);
 	}
 

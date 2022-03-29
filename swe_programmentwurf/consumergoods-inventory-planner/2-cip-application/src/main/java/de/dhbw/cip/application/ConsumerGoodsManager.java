@@ -20,12 +20,12 @@ public class ConsumerGoodsManager {
     }
 
     public List<ConsumerGoods> findAllConsumerGoods() {
-        return this.consumerGoodsRepository.findAllConsumerGoods();
+        return this.consumerGoodsRepository.findAllStoredConsumerGoods();
     }
     
     public boolean deleteConsumerGoods(long id) {
     	try {
-			consumerGoodsRepository.deleteConsumerGoods(id);
+			consumerGoodsRepository.outsourceConsumerGoods(id);
     		return true;
 		} catch (Exception e) {
 			return false;
@@ -33,12 +33,10 @@ public class ConsumerGoodsManager {
     }
     
     public boolean updateConsumerGoods(long id, ConsumerGoods consumerGoods) {
-    	if(consumerGoodsRepository.findConsumerGoods(id).isEmpty()) return false;
+    	if(consumerGoodsRepository.findStoredConsumerGoods(id).isEmpty()) return false;
     	try {
-    		ConsumerGoods newConsumerGoods = consumerGoodsRepository.findConsumerGoods(id).get();
-    		newConsumerGoods.changeFoodDescription(consumerGoods.getFood().getDescription());
-    		newConsumerGoods.changeFoodBestBeforedate(consumerGoods.getFood().getBbd());
-    		newConsumerGoods.changeQuantity(consumerGoods.getQuantity());
+    		ConsumerGoods newConsumerGoods = consumerGoodsRepository.findStoredConsumerGoods(id).get();
+    		newConsumerGoods.changeFood(consumerGoods.getFood());
     		newConsumerGoods.changeStoragePlace(consumerGoods.getStorage());
     		this.addConsumerGoods(newConsumerGoods);
 			return true;
@@ -49,7 +47,7 @@ public class ConsumerGoodsManager {
     
     public boolean addConsumerGoods(ConsumerGoods consumerGoods) {
     	try {
-    		consumerGoodsRepository.save(consumerGoods);
+    		consumerGoodsRepository.storeNewConsumerGoods(consumerGoods);
     		return true;
 		} catch (Exception e) {
 			return false;

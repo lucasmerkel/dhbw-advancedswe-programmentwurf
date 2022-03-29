@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface FoodShelfRepository {
 
-	public List<FoodShelf> getAllFoodShelfs();
+	public List<FoodShelf> getAllOccupiedFoodShelfStorageBins();
 	
-	public FoodShelf save(FoodShelf goods);
+	public FoodShelf occupyFoodShelfStorageBin(FoodShelf goods);
 }

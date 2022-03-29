@@ -17,13 +17,15 @@ public class DayOfYear {
     	private Long id;
 	
 		@OneToOne(cascade = CascadeType.ALL)
-		private Day day;
+		private final Day day;
 		
 		@OneToOne(cascade = CascadeType.ALL)
-		private Month month;
+		private final Month month;
 		
 		private DayOfYear() {
 			super();
+			this.day = new Day(0);
+			this.month = new Month(0);
 		}
 		
 		public DayOfYear(Day day, Month month) {

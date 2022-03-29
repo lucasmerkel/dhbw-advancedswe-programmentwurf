@@ -13,7 +13,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import de.dhbw.cip.abstractioncode.DateValidator;
+import de.dhbw.cip.abstractioncode.Day;
 import de.dhbw.cip.abstractioncode.DayOfYear;
+import de.dhbw.cip.abstractioncode.Month;
 import de.dhbw.cip.abstractioncode.Year;
 
 @Entity
@@ -26,13 +28,14 @@ public class BestBeforeDate {
     private Long id;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	private DayOfYear dayOfYear;
+	private final DayOfYear dayOfYear;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	private Year year;
+	private final Year year;
 	
 	private BestBeforeDate() {
-		
+		this.dayOfYear = new DayOfYear(new Day(0), new Month(0));
+		this.year = new Year(0);
 	}
 	
 	public BestBeforeDate(DayOfYear dayOfYear, Year year) {
@@ -57,14 +60,4 @@ public class BestBeforeDate {
 	public int getYear() {
 		return year.getYear();
 	}
-	/*
-	//TODO
-	public void setDate(int day, int month, int year) {
-		if(!DateValidator.validate(day, month, year)) return;
-		
-		this.day = day;
-		this.month = month;
-		this.year = year;
-	}
-	*/
 }
