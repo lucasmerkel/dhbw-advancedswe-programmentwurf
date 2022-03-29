@@ -12,10 +12,10 @@ import java.util.Optional;
 @Repository
 public class ConsumerGoodsRepositoryBridge implements ConsumerGoodsRepository {
 
-    private SpringDataConsumerGoodsRepository springDataConsumerGoodsRepository;
+    private PersistenceConsumerGoodsRepository springDataConsumerGoodsRepository;
 
     @Autowired
-    public ConsumerGoodsRepositoryBridge(SpringDataConsumerGoodsRepository springDataConsumerGoodsRepository) {
+    public ConsumerGoodsRepositoryBridge(PersistenceConsumerGoodsRepository springDataConsumerGoodsRepository) {
         this.springDataConsumerGoodsRepository = springDataConsumerGoodsRepository;
     }
 

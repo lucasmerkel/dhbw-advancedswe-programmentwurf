@@ -12,13 +12,13 @@ import de.dhbw.cip.domain.Fridge;
 import de.dhbw.cip.domain.FridgeRepository;
 
 @Service
-public class StorageApplicationService {
+public class StorageManager {
 
     private FridgeRepository fridgeRepository;
     private FoodShelfRepository foodshelfRepository;
 
     @Autowired
-    public StorageApplicationService(FridgeRepository fridgeRepository, FoodShelfRepository foodshelfRepository) {
+    public StorageManager(FridgeRepository fridgeRepository, FoodShelfRepository foodshelfRepository) {
         this.fridgeRepository = fridgeRepository;
         this.foodshelfRepository = foodshelfRepository;
     }

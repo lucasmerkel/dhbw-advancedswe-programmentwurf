@@ -13,19 +13,19 @@ import de.dhbw.cip.adapters.FoodShelfToFoodShelfRessourceMapper;
 import de.dhbw.cip.adapters.FridgeResource;
 import de.dhbw.cip.adapters.FridgeToFridgeResourceMapper;
 import de.dhbw.cip.adapters.StorageResource;
-import de.dhbw.cip.application.StorageApplicationService;
+import de.dhbw.cip.application.StorageManager;
 
 @RestController
 @RequestMapping(value="/api")
-public class StorageController {
+public class StorageGuiController {
 
-    private StorageApplicationService storageApplicationService;
+    private StorageManager storageApplicationService;
 
     private FridgeToFridgeResourceMapper fridgeToFridgeResourceMapper;
     private FoodShelfToFoodShelfRessourceMapper foodShelfToFoodShelfResourceMapper;
 
     @Autowired
-    public StorageController(StorageApplicationService storageApplicationService, 
+    public StorageGuiController(StorageManager storageApplicationService, 
     		FridgeToFridgeResourceMapper fridgeToFridgeResourceMapper,
     		FoodShelfToFoodShelfRessourceMapper foodShelfRessourceMapper) {
         this.storageApplicationService = storageApplicationService;

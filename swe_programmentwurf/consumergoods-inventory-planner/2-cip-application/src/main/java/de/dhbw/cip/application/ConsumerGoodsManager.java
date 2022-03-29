@@ -10,12 +10,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ConsumerGoodsApplicationService {
+public class ConsumerGoodsManager {
 
     private ConsumerGoodsRepository consumerGoodsRepository;
 
     @Autowired
-    public ConsumerGoodsApplicationService(ConsumerGoodsRepository consumerGoodsRepository) {
+    public ConsumerGoodsManager(ConsumerGoodsRepository consumerGoodsRepository) {
         this.consumerGoodsRepository = consumerGoodsRepository;
     }
 

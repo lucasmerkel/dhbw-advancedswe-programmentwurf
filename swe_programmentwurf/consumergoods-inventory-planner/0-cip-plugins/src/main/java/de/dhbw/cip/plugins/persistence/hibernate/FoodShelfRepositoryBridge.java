@@ -12,10 +12,10 @@ import de.dhbw.cip.domain.Fridge;
 @Repository
 public class FoodShelfRepositoryBridge implements FoodShelfRepository {
 	
-	private SpringDataFoodShelfRepository springDataFoodShelfRepository;
+	private PersistenceFoodShelfRepository springDataFoodShelfRepository;
 
 	@Autowired
-    public FoodShelfRepositoryBridge(SpringDataFoodShelfRepository springDataFoodShelfRepository) {
+    public FoodShelfRepositoryBridge(PersistenceFoodShelfRepository springDataFoodShelfRepository) {
         this.springDataFoodShelfRepository = springDataFoodShelfRepository;
     }
 	

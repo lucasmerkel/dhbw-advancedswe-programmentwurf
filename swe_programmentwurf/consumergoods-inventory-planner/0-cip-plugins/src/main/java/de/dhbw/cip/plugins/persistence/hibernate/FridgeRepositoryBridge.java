@@ -12,10 +12,10 @@ import de.dhbw.cip.domain.Storage;
 @Repository
 public class FridgeRepositoryBridge implements FridgeRepository {
 	
-	private SpringDataFridgeRepository springDataFridgeRepository;
+	private PersistenceFridgeRepository springDataFridgeRepository;
 
 	@Autowired
-    public FridgeRepositoryBridge(SpringDataFridgeRepository springDataFridgeRepository) {
+    public FridgeRepositoryBridge(PersistenceFridgeRepository springDataFridgeRepository) {
         this.springDataFridgeRepository = springDataFridgeRepository;
     }
 

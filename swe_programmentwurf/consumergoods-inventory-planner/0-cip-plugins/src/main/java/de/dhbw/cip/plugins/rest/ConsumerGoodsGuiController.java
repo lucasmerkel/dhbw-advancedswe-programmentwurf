@@ -14,7 +14,7 @@ import de.dhbw.cip.abstractioncode.Volume;
 import de.dhbw.cip.abstractioncode.Year;
 import de.dhbw.cip.adapters.ConsumerGoodsResource;
 import de.dhbw.cip.adapters.ConsumerGoodsToConsumerGoodsResourceMapper;
-import de.dhbw.cip.application.ConsumerGoodsApplicationService;
+import de.dhbw.cip.application.ConsumerGoodsManager;
 import de.dhbw.cip.domain.BestBeforeDate;
 import de.dhbw.cip.domain.ConsumerGoods;
 import de.dhbw.cip.domain.Food;
@@ -25,14 +25,14 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/api/consumergoods")
-public class ConsumerGoodsController {
+public class ConsumerGoodsGuiController {
 
-    private ConsumerGoodsApplicationService consumerGoodsApplicationService;
+    private ConsumerGoodsManager consumerGoodsApplicationService;
 
     private ConsumerGoodsToConsumerGoodsResourceMapper consumerGoodsToConsumerGoodsResourceMapper;
 
     @Autowired
-    public ConsumerGoodsController(ConsumerGoodsApplicationService consumerGoodsApplicationService, 
+    public ConsumerGoodsGuiController(ConsumerGoodsManager consumerGoodsApplicationService, 
     		ConsumerGoodsToConsumerGoodsResourceMapper consumerGoodsToConsumerGoodsResourceMapper) {
         this.consumerGoodsApplicationService = consumerGoodsApplicationService;
         this.consumerGoodsToConsumerGoodsResourceMapper = consumerGoodsToConsumerGoodsResourceMapper;
