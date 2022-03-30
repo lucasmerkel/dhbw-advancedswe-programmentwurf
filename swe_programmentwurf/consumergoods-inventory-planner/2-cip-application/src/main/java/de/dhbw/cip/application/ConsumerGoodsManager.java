@@ -37,7 +37,9 @@ public class ConsumerGoodsManager {
     	try {
     		ConsumerGoods newConsumerGoods = consumerGoodsRepository.findStoredConsumerGoods(id).get();
     		newConsumerGoods.changeFood(consumerGoods.getFood());
+    		//newConsumerGoods.changeUnitOfMeasure();
     		newConsumerGoods.changeStoragePlace(consumerGoods.getStorage());
+    		//this.deleteConsumerGoods(id);
     		this.addConsumerGoods(newConsumerGoods);
 			return true;
 		} catch (Exception e) {

@@ -118,9 +118,9 @@ public class ConsumerGoods {
 		}
 		
 		private UnitOfMeasure findMeasureWith(String measureShortcut, int measureValue) {
-			if(measureShortcut.equals("g") && measureValue != (Integer) null ) return new Weight(new Value(measureValue));
-			if(measureShortcut.equals("ml") && measureValue != (Integer) null ) return new Volume(new Value(measureValue));
-			if(measureShortcut.equals("Stk.") && measureValue != (Integer) null ) return new Quantity(new Value(measureValue));
+			if(measureShortcut.equals("g") ) return new Weight(new Value(measureValue));
+			if(measureShortcut.equals("ml") ) return new Volume(new Value(measureValue));
+			if(measureShortcut.equals("Stk.") ) return new Quantity(new Value(measureValue));
 			return null;
 		}
 		
