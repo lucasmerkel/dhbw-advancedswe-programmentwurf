@@ -56,9 +56,11 @@ public class ConsumerGoodsGuiController {
     		@RequestParam("bestbeforedatemonth") int bestBeforeDateMonth, @RequestParam("bestbeforedateyear") int bestBeforeDateYear, 
     		@RequestParam("quantityvalue") int quantityValue, @RequestParam("quantity") String quantity, @RequestParam("storage") String storage) {
     	
-    	consumerGoodsApplicationService.addConsumerGoods(new ConsumerGoodsBuilder(description, bestBeforeDateDay, bestBeforeDateMonth, bestBeforeDateYear, quantity, quantityValue, storage, storage).build());
-    	//consumerGoodsApplicationService.addConsumerGoods(new ConsumerGoods(new Food(description, new BestBeforeDate( new DayOfYear(new Day(bestBeforeDateDay), new Month(bestBeforeDateMonth)), new Year(bestBeforeDateYear))), new Volume(new Value(quantityValue)), new Fridge("fridge")));
+    	ConsumerGoodsBuilder consumerGoodsBuilder = new ConsumerGoodsBuilder(description, bestBeforeDateDay, bestBeforeDateMonth, bestBeforeDateYear, quantity, quantityValue, storage, storage);
+    	if(consumerGoodsBuilder.validate()) consumerGoodsApplicationService.addConsumerGoods(consumerGoodsBuilder.build());
     	
+    	
+    	//consumerGoodsApplicationService.addConsumerGoods(new ConsumerGoods(new Food(description, new BestBeforeDate( new DayOfYear(new Day(bestBeforeDateDay), new Month(bestBeforeDateMonth)), new Year(bestBeforeDateYear))), new Volume(new Value(quantityValue)), new Fridge("fridge")));
     	System.out.println("Result: "+description+", "+bestBeforeDateDay+"."+bestBeforeDateMonth+"."+bestBeforeDateYear+"; "
     				+quantityValue+quantity+"; "+storage);	
     	return "Result: "+description+", "+bestBeforeDateDay+"."+bestBeforeDateMonth+"."+bestBeforeDateYear+"; "
@@ -70,12 +72,13 @@ public class ConsumerGoodsGuiController {
     @RequestMapping(value="/delete", method = RequestMethod.DELETE)
     @ResponseBody
     public String deleteConsumerGood(@RequestParam(name = "id") long id) {
-    	
     	//send error if something goes wrong
     	consumerGoodsApplicationService.deleteConsumerGoods(id);
+    	
     	System.out.println("Delete item with id:"+String.valueOf(id));
         return "Delete item with id:"+String.valueOf(id);
     }
+    
     //PATCH
     //Update Repository and ApplicationService
     //Alternative is DELETE and POST    
@@ -85,12 +88,11 @@ public class ConsumerGoodsGuiController {
     		@RequestParam("bestbeforedatemonth") int bestBeforeDateMonth, @RequestParam("bestbeforedateyear") int bestBeforeDateYear, 
     		@RequestParam("quantityvalue") int quantityValue, @RequestParam("quantity") String quantity, @RequestParam("storage") String storage) {
     	
-    	//new class for values or direct values
-    	//send error if something goes wrong
-    	boolean test = consumerGoodsApplicationService.updateConsumerGoods(eanCode, new ConsumerGoodsBuilder(description, bestBeforeDateDay, bestBeforeDateMonth, bestBeforeDateYear, quantity, quantityValue, storage, storage).build());
-    	//boolean test = consumerGoodsApplicationService.updateConsumerGoods(id, new ConsumerGoods(new Food(description, new BestBeforeDate( new DayOfYear(new Day(bestBeforeDateDay), new Month(bestBeforeDateMonth)), new Year(bestBeforeDateYear))), new Volume(new Value(quantityValue)), new Fridge("fridge")));
-    	System.out.println(test);
+    	ConsumerGoodsBuilder consumerGoodsBuilder = new ConsumerGoodsBuilder(description, bestBeforeDateDay, bestBeforeDateMonth, bestBeforeDateYear, quantity, quantityValue, storage, storage);
+    	if(consumerGoodsBuilder.validate()) consumerGoodsApplicationService.updateConsumerGoods(eanCode, consumerGoodsBuilder.build());
     	
+    	//boolean test = consumerGoodsApplicationService.updateConsumerGoods(id, new ConsumerGoods(new Food(description, new BestBeforeDate( new DayOfYear(new Day(bestBeforeDateDay), new Month(bestBeforeDateMonth)), new Year(bestBeforeDateYear))), new Volume(new Value(quantityValue)), new Fridge("fridge")));
+    	//System.out.println(test);
     	System.out.println("Result: "+eanCode+","+description+", "+bestBeforeDateDay+"."+bestBeforeDateMonth+"."+bestBeforeDateYear+"; "
     				+quantityValue+quantity+"; "+storage);
     	return "Result: "+description+", "+bestBeforeDateDay+"."+bestBeforeDateMonth+"."+bestBeforeDateYear+"; "

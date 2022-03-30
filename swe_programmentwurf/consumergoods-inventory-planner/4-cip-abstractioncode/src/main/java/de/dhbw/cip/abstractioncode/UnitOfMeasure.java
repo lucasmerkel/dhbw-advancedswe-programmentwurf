@@ -1,5 +1,7 @@
 package de.dhbw.cip.abstractioncode;
 
+import java.time.format.DateTimeParseException;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,8 +30,7 @@ public abstract class UnitOfMeasure {
 	protected final Value value;
 	
 	public UnitOfMeasure(Value value) {
-		this.value = value;
-
+			this.value = value;
 	}
 	
 	public abstract String getDescription();

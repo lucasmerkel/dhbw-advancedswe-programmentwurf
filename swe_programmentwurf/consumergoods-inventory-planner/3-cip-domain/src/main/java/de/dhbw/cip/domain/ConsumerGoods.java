@@ -4,17 +4,22 @@ import org.apache.commons.lang3.Validate;
 
 import de.dhbw.cip.abstractioncode.Day;
 import de.dhbw.cip.abstractioncode.DayOfYear;
+import de.dhbw.cip.abstractioncode.DayValidator;
 import de.dhbw.cip.abstractioncode.Month;
+import de.dhbw.cip.abstractioncode.MonthValidator;
 import de.dhbw.cip.abstractioncode.Quantity;
 import de.dhbw.cip.abstractioncode.UnitOfMeasure;
 import de.dhbw.cip.abstractioncode.Value;
+import de.dhbw.cip.abstractioncode.ValueValidator;
 import de.dhbw.cip.abstractioncode.Volume;
 import de.dhbw.cip.abstractioncode.Weight;
 import de.dhbw.cip.abstractioncode.Year;
+import de.dhbw.cip.abstractioncode.YearValidator;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 @Table(name = "ConsumerGoods")
@@ -106,23 +111,23 @@ public class ConsumerGoods {
 		private final UnitOfMeasure quantity;
 		private final Storage storage;
 
-		public ConsumerGoodsBuilder(String description, int day, int month, int year, String measureShortcut, int measureValue, String storageTitle, String storageDescription) {
-			this.food = new Food(description, new BestBeforeDate(new DayOfYear(new Day(day), new Month(month)), new Year(year)));
+		public ConsumerGoodsBuilder(String foodDescription, int day, int month, int year, String measureShortcut, int measureValue, String storageTitle, String storageDescription) {
+			this.food = new Food(foodDescription, new BestBeforeDate(new DayOfYear(new Day(day), new Month(month)), new Year(year)));
 			this.quantity = findMeasureWith(measureShortcut, measureValue);
 			this.storage = findStorageWith(storageTitle, storageDescription);
 		}
 		
 		private UnitOfMeasure findMeasureWith(String measureShortcut, int measureValue) {
-			if(measureShortcut.equals("g") ) return new Weight(new Value(measureValue));
-			if(measureShortcut.equals("ml") ) return new Volume(new Value(measureValue));
-			//default is quantity
-			return new Quantity(new Value(measureValue));
+			if(measureShortcut.equals("g") && measureValue != (Integer) null ) return new Weight(new Value(measureValue));
+			if(measureShortcut.equals("ml") && measureValue != (Integer) null ) return new Volume(new Value(measureValue));
+			if(measureShortcut.equals("Stk.") && measureValue != (Integer) null ) return new Quantity(new Value(measureValue));
+			return null;
 		}
 		
 		private Storage findStorageWith(String storageTitle, String storageDescription) {
-			if (Fridge.class.getSimpleName().equals(storageTitle)) return new Fridge(storageDescription);
-			//default is FoodShelf
-			return new FoodShelf(storageDescription);
+			if (Fridge.class.getSimpleName().equals(storageTitle) && storageDescription != null ) return new Fridge(storageDescription);
+			if (Fridge.class.getSimpleName().equals(storageTitle) && storageDescription != null ) return new FoodShelf(storageDescription);
+			return null;
 		}
 		
 		public Food getFood() {
@@ -136,7 +141,27 @@ public class ConsumerGoods {
 		public Storage getStorage() {
 			return this.getStorage();
 		}
-		//Return the finally consrcuted User object
+		public boolean validate() {
+			//TODO instead check in DateValidator
+			try {
+				checkNonNull();
+				if(DayValidator.checkValidyOf(food.getBbd().getDay()) && MonthValidator.checkValidyOf(food.getBbd().getMonth())
+						&& YearValidator.checkValidyOf(food.getBbd().getYear()) && ValueValidator.checkValidyOf(quantity.getValue().getValue())) return true;
+				return false;
+			}catch (Exception e) {
+				return false;
+			}
+			
+		}
+		private void checkNonNull() {
+			Objects.requireNonNull(food.getDescription(), "Food description must not be null");
+			Objects.requireNonNull(food.getBbd().getDay(), "Best before date day must not be null");
+			Objects.requireNonNull(food.getBbd().getMonth(), "Best before date month must not be null");
+			Objects.requireNonNull(food.getBbd().getYear(), "Best before date year must not be null");
+			Objects.requireNonNull(quantity, "quantity must not be null");
+			Objects.requireNonNull(storage, "storage must not be null");
+		}
+		//Return the finally constructed User object
 		public ConsumerGoods build() {
 			ConsumerGoods consumerGoods =  new ConsumerGoods(this);
 			return consumerGoods;

@@ -4,8 +4,12 @@ import java.time.format.DateTimeParseException;
 
 public class DateValidator {
 	
-	public static void validate(DayOfYear dayOfYear, Year year) {
-		if(!checkDate(dayOfYear, year)) throw new DateTimeParseException("Input is an invalid date!", String.valueOf(dayOfYear.getDay()), 0);
+	public static boolean validate(DayOfYear dayOfYear, Year year) {
+		if(!checkDate(dayOfYear, year)) {
+			return false;
+			//throw new DateTimeParseException("Input is an invalid date!", String.valueOf(dayOfYear.getDay()), 0);
+		}
+		return true;
 	}
 	
 	private static boolean checkDate(DayOfYear dayOfYear, Year year) {
