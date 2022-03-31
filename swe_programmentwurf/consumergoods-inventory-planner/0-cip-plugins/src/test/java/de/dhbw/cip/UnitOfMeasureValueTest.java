@@ -1,5 +1,6 @@
 package de.dhbw.cip;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -19,9 +20,8 @@ public class UnitOfMeasureValueTest {
 		
 		//Act
 		boolean wrongValueValidation = ValueValidator.checkValidyOf(negativeValue);
-		
 		//Assert
-		assertTrue(wrongValueValidation);		
+		assertFalse(wrongValueValidation);		
 	}
 	
 	@Test

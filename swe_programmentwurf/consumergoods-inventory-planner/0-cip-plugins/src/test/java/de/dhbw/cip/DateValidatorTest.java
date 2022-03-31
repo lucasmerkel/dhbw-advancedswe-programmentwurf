@@ -25,10 +25,10 @@ public class DateValidatorTest {
 		DayOfYear dayOfYear = new DayOfYear(day, month);
 		
 		//Act
-		boolean execption = DateValidator.validate(dayOfYear, year);
+		boolean validFlag = DateValidator.validate(dayOfYear, year);
 		
 		//Assert
-		assertTrue(execption);
+		assertTrue(validFlag);
 	}
 	
 	@Test
@@ -40,10 +40,10 @@ public class DateValidatorTest {
 		DayOfYear dayOfYear = new DayOfYear(day, month);
 		
 		//Act
-		boolean execption = DateValidator.validate(dayOfYear, year);
+		boolean validFlag = DateValidator.validate(dayOfYear, year);
 		
 		//Assert
-		assertTrue(execption);
+		assertFalse(validFlag);
 	}
 	
 	@Test
@@ -55,10 +55,10 @@ public class DateValidatorTest {
 		DayOfYear dayOfYear = new DayOfYear(day, month);
 		
 		//Act
-		boolean execption = DateValidator.validate(dayOfYear, year);
+		boolean validFlag = DateValidator.validate(dayOfYear, year);
 		
 		//Assert
-		assertTrue(execption);
+		assertTrue(validFlag);
 	}
 	
 	@Test
@@ -73,7 +73,7 @@ public class DateValidatorTest {
 		boolean execption = DateValidator.validate(dayOfYear, year);
 		
 		//Assert
-		assertTrue(execption);
+		assertFalse(execption);
 	}
 	
 	@Test

@@ -6,6 +6,7 @@ public class DayValidator {
 		if(date > 0 && date <= 31) {
 			return true;
 		}
-		throw new IllegalArgumentException(String.valueOf(date)+" as value is not valid for day date");
+		//throw new IllegalArgumentException(String.valueOf(date)+" as value is not valid for day date");
+		return false;
 	}
 }

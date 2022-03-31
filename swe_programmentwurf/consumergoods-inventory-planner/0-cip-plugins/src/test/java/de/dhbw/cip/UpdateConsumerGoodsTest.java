@@ -39,7 +39,7 @@ public class UpdateConsumerGoodsTest {
 	
 	//Act
 	newConsumerGoods.changeFood(consumerGoodsMock.getFood());
-	//newConsumerGoods.changeFood(consumerGoodsMock.getQuantity());
+	//newConsumerGoods.changeQuantity(consumerGoodsMock.getQuantity());
 	newConsumerGoods.changeStoragePlace(consumerGoodsMock.getStorage());
 	
 	//Assert

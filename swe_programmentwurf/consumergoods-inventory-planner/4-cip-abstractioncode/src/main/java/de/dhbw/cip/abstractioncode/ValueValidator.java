@@ -6,6 +6,7 @@ public class ValueValidator {
 		if(value > 0 ) {
 			return true;
 		}
-		throw new IllegalArgumentException(String.valueOf(value)+" as value is not valid");
+		//throw new IllegalArgumentException(String.valueOf(value)+" as value is not valid");
+		return false;
 	}
 }

@@ -118,6 +118,7 @@ public class ConsumerGoods {
 		}
 		
 		private UnitOfMeasure findMeasureWith(String measureShortcut, int measureValue) {
+			if(measureShortcut == null) return null;
 			if(measureShortcut.equals("g") ) return new Weight(new Value(measureValue));
 			if(measureShortcut.equals("ml") ) return new Volume(new Value(measureValue));
 			if(measureShortcut.equals("Stk.") ) return new Quantity(new Value(measureValue));
@@ -125,6 +126,7 @@ public class ConsumerGoods {
 		}
 		
 		private Storage findStorageWith(String storageTitle, String storageDescription) {
+			if(storageTitle == null) return null;
 			if (Fridge.class.getSimpleName().equals(storageTitle) && storageDescription != null ) return new Fridge(storageDescription);
 			if (Fridge.class.getSimpleName().equals(storageTitle) && storageDescription != null ) return new FoodShelf(storageDescription);
 			return null;

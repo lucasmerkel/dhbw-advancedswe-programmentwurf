@@ -6,6 +6,7 @@ public class YearValidator {
 		if(date >= 0) {
 			return true;
 		}
-		throw new IllegalArgumentException(String.valueOf(date)+" as value is not valid for year date");
+		//throw new IllegalArgumentException(String.valueOf(date)+" as value is not valid for year date");
+		return false;
 	}
 }

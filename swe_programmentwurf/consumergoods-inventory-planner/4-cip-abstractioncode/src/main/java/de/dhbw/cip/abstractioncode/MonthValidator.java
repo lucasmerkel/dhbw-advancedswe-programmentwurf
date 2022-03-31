@@ -6,6 +6,7 @@ public class MonthValidator {
 		if(date > 0 && date <= 12) {
 			return true;
 		}
-		throw new IllegalArgumentException(String.valueOf(date)+" as value is not valid for month date");
+		//throw new IllegalArgumentException(String.valueOf(date)+" as value is not valid for month date");
+		return false;
 	}
 }
