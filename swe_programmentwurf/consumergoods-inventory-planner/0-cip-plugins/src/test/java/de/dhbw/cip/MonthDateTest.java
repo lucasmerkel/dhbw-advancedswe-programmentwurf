@@ -9,7 +9,7 @@ import de.dhbw.cip.abstractioncode.DayValidator;
 import de.dhbw.cip.abstractioncode.Month;
 import de.dhbw.cip.abstractioncode.MonthValidator;
 
-public class MonthTest {
+public class MonthDateTest {
 	
 	@Test
 	public void checkNotNegativeOrZeroMonthDate() {

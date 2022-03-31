@@ -8,7 +8,7 @@ import org.junit.Test;
 import de.dhbw.cip.abstractioncode.Day;
 import de.dhbw.cip.abstractioncode.DayValidator;
 
-public class DayTest {
+public class DayDateTest {
 
 	@Test
 	public void checkNotNegativeOrZeroDayDate() {

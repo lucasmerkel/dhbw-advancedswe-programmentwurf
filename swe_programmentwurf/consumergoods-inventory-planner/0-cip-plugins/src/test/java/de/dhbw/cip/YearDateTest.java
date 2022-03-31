@@ -8,7 +8,7 @@ import org.junit.Test;
 import de.dhbw.cip.abstractioncode.MonthValidator;
 import de.dhbw.cip.abstractioncode.YearValidator;
 
-public class YearTest {
+public class YearDateTest {
 
 	@Test
 	public void checkNotNegativeYearDate() {
