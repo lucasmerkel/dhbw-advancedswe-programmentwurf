@@ -26,13 +26,13 @@ public class ConsumerGoodsToConsumerGoodsResourceMapper implements Function<Cons
     														new Month(consumerGoods.getFood().getBbd().getMonth())),
     										new Year(consumerGoods.getFood().getBbd().getYear()))),
     			consumerGoods.getQuantity(), 
-    			new FridgeResource(consumerGoods.getStorage().getId() ,consumerGoods.getStorage().getDescription()));
+    			new FridgeResource(consumerGoods.getStorage().getId() ,consumerGoods.getStorage().getDescription(), consumerGoods.getStorage().getClass().getSimpleName()));
     	
     	return new ConsumerGoodsResource(consumerGoods.getEANCode(), new FoodResource(consumerGoods.getFood().getDescription(), 
     			new BestBeforeDateResource(new DayOfYear(new Day(consumerGoods.getFood().getBbd().getDay()), 
     														new Month(consumerGoods.getFood().getBbd().getMonth())),
     										new Year(consumerGoods.getFood().getBbd().getYear()))),
     			consumerGoods.getQuantity(), 
-    			new FoodShelfResource(consumerGoods.getStorage().getId(), consumerGoods.getStorage().getDescription()));
+    			new FoodShelfResource(consumerGoods.getStorage().getId(), consumerGoods.getStorage().getDescription(), consumerGoods.getStorage().getClass().getSimpleName()));
     }
 }

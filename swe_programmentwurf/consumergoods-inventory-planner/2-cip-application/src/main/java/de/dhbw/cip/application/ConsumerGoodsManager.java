@@ -25,7 +25,8 @@ public class ConsumerGoodsManager {
     
     public boolean deleteConsumerGoods(long id) {
     	try {
-			consumerGoodsRepository.outsourceConsumerGoods(id);
+    		if(this.consumerGoodsRepository.findStoredConsumerGoods(id).isEmpty()) return false;
+			this.consumerGoodsRepository.outsourceConsumerGoods(id);
     		return true;
 		} catch (Exception e) {
 			return false;
@@ -33,9 +34,9 @@ public class ConsumerGoodsManager {
     }
     
     public boolean updateConsumerGoods(long id, ConsumerGoods consumerGoods) {
-    	if(consumerGoodsRepository.findStoredConsumerGoods(id).isEmpty()) return false;
+    	if(this.consumerGoodsRepository.findStoredConsumerGoods(id).isEmpty()) return false;
     	try {
-    		ConsumerGoods newConsumerGoods = consumerGoodsRepository.findStoredConsumerGoods(id).get();
+    		ConsumerGoods newConsumerGoods = this.consumerGoodsRepository.findStoredConsumerGoods(id).get();
     		newConsumerGoods.changeFood(consumerGoods.getFood());
     		//newConsumerGoods.changeUnitOfMeasure();
     		newConsumerGoods.changeStoragePlace(consumerGoods.getStorage());

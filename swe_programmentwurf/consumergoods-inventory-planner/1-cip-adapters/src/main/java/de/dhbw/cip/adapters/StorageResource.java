@@ -8,14 +8,20 @@ public abstract class StorageResource {
 	
 	protected Long id;
 	protected String description;	
-	public abstract Object getClassType();
+	public String classType;
 	
-	public void setDescription(long id, String description) {
+	public StorageResource(long id, String description, String classType) {
+		this.id = id;
 		this.description = description;
+		this.classType = classType;
 	}
 	
 	public String getDescription() {
-		return description;
+		return this.description;
+	}
+	
+	public String getClassType() {
+		return this.classType;
 	}
 	
 	public long getId() {

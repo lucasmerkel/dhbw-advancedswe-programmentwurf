@@ -128,7 +128,7 @@ public class ConsumerGoods {
 		private Storage findStorageWith(String storageTitle, String storageDescription) {
 			if(storageTitle == null) return null;
 			if (Fridge.class.getSimpleName().equals(storageTitle) && storageDescription != null ) return new Fridge(storageDescription);
-			if (Fridge.class.getSimpleName().equals(storageTitle) && storageDescription != null ) return new FoodShelf(storageDescription);
+			if (FoodShelf.class.getSimpleName().equals(storageTitle) && storageDescription != null ) return new FoodShelf(storageDescription);
 			return null;
 		}
 		
@@ -147,6 +147,7 @@ public class ConsumerGoods {
 			//TODO instead check in DateValidator
 			try {
 				checkNonNull();
+				
 				if(DayValidator.checkValidyOf(food.getBbd().getDay()) && MonthValidator.checkValidyOf(food.getBbd().getMonth())
 						&& YearValidator.checkValidyOf(food.getBbd().getYear()) && ValueValidator.checkValidyOf(quantity.getValue().getValue())) return true;
 				return false;
@@ -163,7 +164,7 @@ public class ConsumerGoods {
 			Objects.requireNonNull(quantity, "quantity must not be null");
 			Objects.requireNonNull(storage, "storage must not be null");
 		}
-		//Return the finally constructed User object
+		
 		public ConsumerGoods build() {
 			ConsumerGoods consumerGoods =  new ConsumerGoods(this);
 			return consumerGoods;

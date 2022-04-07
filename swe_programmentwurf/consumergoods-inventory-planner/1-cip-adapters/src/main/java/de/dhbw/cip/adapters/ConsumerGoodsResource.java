@@ -15,7 +15,7 @@ public class ConsumerGoodsResource {
 	 private FoodResource food;
 	 private UnitOfMeasure quantity;
 	 
-	 private String storagePlace;
+	 private StorageResource storagePlace;
 	 private ConsumerGoodsResource() {
 		 //default constructor for JPA
 	 }
@@ -26,7 +26,7 @@ public class ConsumerGoodsResource {
 		this.id = id;
 	    this.food = food;
 	    this.quantity = quantityValue;
-		this.storagePlace = storage.getDescription();
+		this.storagePlace = storage;
 	 }
 
 	 //public String getTitle() {
@@ -46,7 +46,11 @@ public class ConsumerGoodsResource {
 	}
 		
 	public String getStorage() {
-		return this.storagePlace;
+		return this.storagePlace.getDescription();
+	}
+	
+	public String getStorageType() {
+		return this.storagePlace.getClassType();
 	}
 		
 	public void changeFoodDescription(String description) {
@@ -59,7 +63,7 @@ public class ConsumerGoodsResource {
 	}
 		
 	public void changeStoragePlace(StorageResource storagePlace) {
-		this.storagePlace = storagePlace.getDescription();
+		this.storagePlace = storagePlace;
 	}
 
 }
