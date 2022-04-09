@@ -39,12 +39,6 @@ public class BestBeforeDate {
 	}
 	
 	public BestBeforeDate(DayOfYear dayOfYear, Year year) {
-		try {
-		DateValidator.validate(dayOfYear, year);
-		} catch(DateTimeParseException e) {
-			e.printStackTrace();
-			System.out.println("Input is an invalid date!");
-		}
 		this.dayOfYear = dayOfYear;
 		this.year = year;
 	}

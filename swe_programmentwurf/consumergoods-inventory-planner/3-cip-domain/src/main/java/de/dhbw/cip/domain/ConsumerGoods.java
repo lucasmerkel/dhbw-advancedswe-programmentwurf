@@ -2,6 +2,7 @@ package de.dhbw.cip.domain;
 
 import org.apache.commons.lang3.Validate;
 
+import de.dhbw.cip.abstractioncode.DateValidator;
 import de.dhbw.cip.abstractioncode.Day;
 import de.dhbw.cip.abstractioncode.DayOfYear;
 import de.dhbw.cip.abstractioncode.DayValidator;
@@ -19,6 +20,7 @@ import de.dhbw.cip.abstractioncode.YearValidator;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.Objects;
 
 @Entity
@@ -147,14 +149,15 @@ public class ConsumerGoods {
 			//TODO instead check in DateValidator
 			try {
 				checkNonNull();
-				
+
+				boolean dateValidationResult = DateValidator.validate(new DayOfYear(new Day(food.getBbd().getDay()), new Month(food.getBbd().getMonth())), new Year(food.getBbd().getYear()));
+
 				if(DayValidator.checkValidyOf(food.getBbd().getDay()) && MonthValidator.checkValidyOf(food.getBbd().getMonth())
-						&& YearValidator.checkValidyOf(food.getBbd().getYear()) && ValueValidator.checkValidyOf(quantity.getValue().getValue())) return true;
+						&& YearValidator.checkValidyOf(food.getBbd().getYear()) && ValueValidator.checkValidyOf(quantity.getValue().getValue()) && dateValidationResult) return true;
 				return false;
 			}catch (Exception e) {
 				return false;
 			}
-			
 		}
 		private void checkNonNull() {
 			Objects.requireNonNull(food.getDescription(), "Food description must not be null");
