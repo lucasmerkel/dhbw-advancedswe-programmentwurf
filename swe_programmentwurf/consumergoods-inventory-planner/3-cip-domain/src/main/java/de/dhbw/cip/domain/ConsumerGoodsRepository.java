@@ -7,9 +7,9 @@ public interface ConsumerGoodsRepository {
 
     List<ConsumerGoods> findAllStoredConsumerGoods();
     
-    Optional<ConsumerGoods> findStoredConsumerGoods(long id);
+    Optional<ConsumerGoods> findStoredConsumerGoodsWith(long eanCode);
     
-    boolean outsourceConsumerGoods(long id);
+    boolean outsourceConsumerGoodsWith(long eanCode);
     
-    ConsumerGoods storeNewConsumerGoods(ConsumerGoods consumerGood);
+    ConsumerGoods storeNew(ConsumerGoods consumerGood);
 }

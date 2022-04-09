@@ -25,19 +25,19 @@ public class ConsumerGoodsRepositoryBridge implements ConsumerGoodsRepository {
     }
 
 	@Override
-	public ConsumerGoods storeNewConsumerGoods(ConsumerGoods consumerGood) {
-		return this.springDataConsumerGoodsRepository.save(consumerGood);
+	public ConsumerGoods storeNew(ConsumerGoods ConsumerGood) {
+		return this.springDataConsumerGoodsRepository.save(ConsumerGood);
 	}
 
 	@Override
-	public Optional<ConsumerGoods> findStoredConsumerGoods(long id) {
-		return this.springDataConsumerGoodsRepository.findById(id);
+	public Optional<ConsumerGoods> findStoredConsumerGoodsWith(long eanCode) {
+		return this.springDataConsumerGoodsRepository.findById(eanCode);
 	}
 
 	@Override
-	public boolean outsourceConsumerGoods(long id) {
+	public boolean outsourceConsumerGoodsWith(long eanCode) {
 		try {
-			this.springDataConsumerGoodsRepository.deleteById(id);
+			this.springDataConsumerGoodsRepository.deleteById(eanCode);
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception

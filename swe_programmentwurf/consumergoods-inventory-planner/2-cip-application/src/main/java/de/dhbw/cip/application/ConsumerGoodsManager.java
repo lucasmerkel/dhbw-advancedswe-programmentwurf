@@ -23,34 +23,34 @@ public class ConsumerGoodsManager {
         return this.consumerGoodsRepository.findAllStoredConsumerGoods();
     }
     
-    public boolean deleteConsumerGoods(long id) {
+    public boolean outsourceConsumerGoodsWith(long eanCode) {
     	try {
-    		if(this.consumerGoodsRepository.findStoredConsumerGoods(id).isEmpty()) return false;
-			this.consumerGoodsRepository.outsourceConsumerGoods(id);
+    		if(this.consumerGoodsRepository.findStoredConsumerGoodsWith(eanCode).isEmpty()) return false;
+			this.consumerGoodsRepository.outsourceConsumerGoodsWith(eanCode);
     		return true;
 		} catch (Exception e) {
 			return false;
 		}
     }
     
-    public boolean updateConsumerGoods(long id, ConsumerGoods consumerGoods) {
-    	if(this.consumerGoodsRepository.findStoredConsumerGoods(id).isEmpty()) return false;
+    public boolean updateConsumerGoodsWith(long eanCode, ConsumerGoods consumerGoods) {
+    	if(this.consumerGoodsRepository.findStoredConsumerGoodsWith(eanCode).isEmpty()) return false;
     	try {
-    		ConsumerGoods newConsumerGoods = this.consumerGoodsRepository.findStoredConsumerGoods(id).get();
+    		ConsumerGoods newConsumerGoods = this.consumerGoodsRepository.findStoredConsumerGoodsWith(eanCode).get();
     		newConsumerGoods.changeFood(consumerGoods.getFood());
     		//newConsumerGoods.changeUnitOfMeasure();
     		newConsumerGoods.changeStoragePlace(consumerGoods.getStorage());
     		//this.deleteConsumerGoods(id);
-    		this.addConsumerGoods(newConsumerGoods);
+    		this.storeNew(newConsumerGoods);
 			return true;
 		} catch (Exception e) {
 			return false;
 		}
     }
     
-    public boolean addConsumerGoods(ConsumerGoods consumerGoods) {
+    public boolean storeNew(ConsumerGoods consumerGoods) {
     	try {
-    		consumerGoodsRepository.storeNewConsumerGoods(consumerGoods);
+    		consumerGoodsRepository.storeNew(consumerGoods);
     		return true;
 		} catch (Exception e) {
 			return false;

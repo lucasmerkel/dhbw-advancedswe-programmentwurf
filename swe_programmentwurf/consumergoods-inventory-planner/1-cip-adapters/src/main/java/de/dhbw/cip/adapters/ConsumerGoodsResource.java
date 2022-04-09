@@ -11,7 +11,7 @@ import de.dhbw.cip.domain.Storage;
 
 public class ConsumerGoodsResource {
 
-	 private long id;
+	 private long eanCode;
 	 private FoodResource food;
 	 private UnitOfMeasure quantity;
 	 
@@ -20,10 +20,10 @@ public class ConsumerGoodsResource {
 		 //default constructor for JPA
 	 }
 
-	 public ConsumerGoodsResource(long id, FoodResource food, UnitOfMeasure quantityValue, StorageResource storage) {
+	 public ConsumerGoodsResource(long eanCode, FoodResource food, UnitOfMeasure quantityValue, StorageResource storage) {
 	    //Validate.notBlank(title);
 	    //this.title = title;
-		this.id = id;
+		this.eanCode = eanCode;
 	    this.food = food;
 	    this.quantity = quantityValue;
 		this.storagePlace = storage;
@@ -33,8 +33,8 @@ public class ConsumerGoodsResource {
 	    //    return title;
 	    //}
 	   
-	public long getId() {
-		return id;
+	public long getEANCode() {
+		return eanCode;
 	}
 	
 	public UnitOfMeasure getQuantity() {

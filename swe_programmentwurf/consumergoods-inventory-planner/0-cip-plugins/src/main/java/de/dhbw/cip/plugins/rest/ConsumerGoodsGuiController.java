@@ -61,7 +61,7 @@ public class ConsumerGoodsGuiController {
     		
     	ConsumerGoodsBuilder consumerGoodsBuilder = new ConsumerGoodsBuilder(description, bestBeforeDateDay, bestBeforeDateMonth, bestBeforeDateYear, quantity, quantityValue, storageType, storage);
     	System.out.println(consumerGoodsBuilder.validate());
-    	if(consumerGoodsBuilder.validate() && consumerGoodsApplicationService.addConsumerGoods(consumerGoodsBuilder.build())) return HttpStatus.OK;
+    	if(consumerGoodsBuilder.validate() && consumerGoodsApplicationService.storeNew(consumerGoodsBuilder.build())) return HttpStatus.OK;
     	//return HttpStatus.INTERNAL_SERVER_ERROR;
     	throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error while add new consumer goods");
     	
@@ -78,7 +78,7 @@ public class ConsumerGoodsGuiController {
     @ResponseBody
     public HttpStatus deleteConsumerGood(@RequestParam(name = "id") long id) {
     	//send error if something goes wrong
-    	if(consumerGoodsApplicationService.deleteConsumerGoods(id)) return HttpStatus.OK;
+    	if(consumerGoodsApplicationService.outsourceConsumerGoodsWith(id)) return HttpStatus.OK;
     	//return HttpStatus.NOT_FOUND;
     	throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Error while delete consumer goods");
     }
@@ -94,7 +94,7 @@ public class ConsumerGoodsGuiController {
 
     	ConsumerGoodsBuilder consumerGoodsBuilder = new ConsumerGoodsBuilder(description, bestBeforeDateDay, bestBeforeDateMonth, bestBeforeDateYear, quantity, quantityValue, storageType, storage);
     	System.out.println(consumerGoodsBuilder.validate());
-    	if(consumerGoodsBuilder.validate() && consumerGoodsApplicationService.updateConsumerGoods(eanCode, consumerGoodsBuilder.build())) return HttpStatus.OK;
+    	if(consumerGoodsBuilder.validate() && consumerGoodsApplicationService.updateConsumerGoodsWith(eanCode, consumerGoodsBuilder.build())) return HttpStatus.OK;
     	//return HttpStatus.INTERNAL_SERVER_ERROR;
     	throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error while update consumer goods");
     	
