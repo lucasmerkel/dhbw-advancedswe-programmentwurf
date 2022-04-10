@@ -23,11 +23,11 @@ public class StorageManager {
         this.foodshelfRepository = foodshelfRepository;
     }
 
-    public List<Fridge> findAllFridges() {
+    public Iterable<Fridge> findAllFridges() {
         return this.fridgeRepository.getAllOccupiedFridgeStorageBins();
     }
     
-    public List<FoodShelf> findAllFoodShelfs() {
+    public Iterable<FoodShelf> findAllFoodShelfs() {
         return this.foodshelfRepository.getAllOccupiedFoodShelfStorageBins();
     }
 }

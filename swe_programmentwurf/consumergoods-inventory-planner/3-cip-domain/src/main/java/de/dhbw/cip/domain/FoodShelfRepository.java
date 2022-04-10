@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface FoodShelfRepository {
 
-	public List<FoodShelf> getAllOccupiedFoodShelfStorageBins();
+	public Iterable<FoodShelf> getAllOccupiedFoodShelfStorageBins();
 	
 	public FoodShelf occupyFoodShelfStorageBin(FoodShelf goods);
 }

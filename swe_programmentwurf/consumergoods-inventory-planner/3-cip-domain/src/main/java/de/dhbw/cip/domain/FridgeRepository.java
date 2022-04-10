@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface FridgeRepository {
 	
-	public List<Fridge> getAllOccupiedFridgeStorageBins();
+	public Iterable<Fridge> getAllOccupiedFridgeStorageBins();
 	
 	public Fridge occupyFridgeStorageBin(Fridge goods);
 }

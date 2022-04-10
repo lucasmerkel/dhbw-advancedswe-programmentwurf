@@ -2,6 +2,7 @@ package de.dhbw.cip.plugins.rest;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,19 +37,27 @@ public class StorageGuiController {
     //GET
     //Fridge
     @RequestMapping(value="/fridge", method = RequestMethod.GET)
-    public List<FridgeResource> getFridges() {
-        return this.storageApplicationService.findAllFridges().stream()
+    public Iterable<FridgeResource> getFridges() {
+    	return StreamSupport.stream(this.storageApplicationService.findAllFridges().spliterator(), false)
+    			.map(fridgeToFridgeResourceMapper)
+    			.collect(Collectors.toList());
+    /*	return this.storageApplicationService.findAllFridges().stream()
                 .map(fridgeToFridgeResourceMapper)
                 .collect(Collectors.toList());
+    */
     }
     
     //GET
     //FoodShelf
     @RequestMapping(value="/foodshelf", method = RequestMethod.GET)
-    public List<FoodShelfResource> getFoodShelfs() {
-        return this.storageApplicationService.findAllFoodShelfs().stream()
+    public Iterable<FoodShelfResource> getFoodShelfs() {
+    	return StreamSupport.stream(this.storageApplicationService.findAllFoodShelfs().spliterator(), false)
+    			.map(foodShelfToFoodShelfResourceMapper)
+    			.collect(Collectors.toList());
+    /*	return this.storageApplicationService.findAllFoodShelfs().stream()
                 .map(foodShelfToFoodShelfResourceMapper)
                 .collect(Collectors.toList());
+    */
     }
 
 }
