@@ -1,0 +1,247 @@
+\chapter{Programming Principles}
+Im Folgenden Kapitel werden die \textit{Programming Principles} erläutert und in Bezug auf den Programmentwurf analysiert sowie Umsetzungen begründet.
+
+\section{Zu betrachtende Programming Principles}
+Programming Principles dienen als Prinzipien in der Softwareentwicklung.
+Dementsprechend sind Programming Principles als allgemein anerkannte Regeln zur Begründung und Argumentation von Umsetzungen zu verstehen.
+Sie entsprechen somit Grundlage für Entscheidungen und betrachten dabei das gesamte Softwareprojekt.
+Die Programming Principles sind dabei eine kontextlose Idealvorstellung und haben die Funktion als Leitlinien für zielgerichtetetes Handeln.
+Das hat zur Folge, dass kontextabhängig gewisse Abweichungen nötig sein können.
+Daher gilt es, neben dem Anwenden der Prinzipien auch mögliche Abweichungen zu begründen.
+Gleichzeitig können sich die jeweiligen Prinzipien gegeneinander widersprechen.
+Hierbei ist es nötig, kontextabhängig entsprechend abzuwirken und die Entscheidung ebenfalls zu begründen.
+
+Zu den betrachteten Programming Principles zählt SOLID.
+SOLID setzt sich aus den Prinzipien
+\begin{itemize}
+    \item \textit{Single Responsibility Principle} (SRP),
+    \item \textit{Open/Closed Principle} (OCP),
+    \item \textit{Liskov Substitution Principle} (LSP),
+    \item \textit{Interface Segregation Principle} (ISP),
+    \item \textit{Dependency Inversion Principle} (DIP)
+  \end{itemize}
+zusammen.
+Die SOLID-Regeln haben das Ziel, unter Anwendung der Regeln wartbare sowie erweiterbare Systeme sowie eine langlebige Codebasis zu schaffen.
+
+Um dies zu gewährleisten, beschreibt die erste Regel, das \textit{Single Responsibility Principle}, das Prinzip der einzigen Zuständigkeit.
+Die Regel besagt, dass eine Klasse nur einen zeinigen Grund haben sollte, sich zu ändern.
+Eine Klasse sollte somit nur eine Verantwortlichkeit haben.
+Ein Objekt der Klasse hat somit eine klar definierte Aufgabe und übergeordnetes Verhalten wird durch das Zusammenspiel mehrerer Klassen ermöglicht.
+Damit soll vermieden werden, dass es zu einer Überdeckung des Sourcecodes bezogen auf dessen Anwendung für die Zuständigkeit kommt.
+Dieses Problem bezeichnet man als Feature Drift.
+Eine Änderung an diesem Sourcecode, der für mehrere Zuständigkeiten genutzt wird, hätte zur Folge, dass ungewollt eine anderweitige Zuständigkeit der Klasse verändert wird.
+Das Problem kann auch visuell mittels eines Koordinatensystems dargestellt werden.
+Jede Achse beschreibt eine Zuständigkeit.
+Änderungen entlang der Achse führen zu Codeanpassungen.
+Im Optimalfall beeinflussen sich die Zuständigkeit nicht gegenseitig.
+Somit würde die Änderung des gemeinsamen Punktes auf der entsprechenden Zuständigkeitsachse zu keinen Änderungen auf den anderen Achsen und somit auch zu keiner Änderung des Codes der anderen Zuständigkeiten führen.
+Dieser Fall ist jedoch in der Realität selten anzutreffen.
+Unter Anwendung der Regel resultiert eine niedrigere Kopplung und Komplexität des Codes.
+Mehrere Verantwortlichkeiten beziehungsweise die Zuständigkeit einer Klasse sollte dabei zu erkennen sein.
+
+Eine weitere Regel ist das \textit{Open/Closed Principle}.
+Diese Regel besagt, dass Software-Entitäten, wie beispielsweise Klassen oder Methoden, offen für Erweiterungen aber zeitgleich geschlossen für Veränderungen sein sollen.
+Zu Veränderungen zählen hierbei Codemodifikationen aufgrund geänderter Anforderungen.
+Bestehender Code sollte dabei nicht geändert werden müssen und angepasste Anforderungen führen somit nur zu einer Erweiterung des Codes.
+Eine mögliche Erweiterung kann dabei eine Vererbung darstellen.
+Die Klasse wird somit durch die Unterklasse erweitert, zeitlgeich findet in der Klasse keine Veränderung statt.
+Dabei ist auch hier zu erkennen, dass kein Programm komplett immun gegen Modifikationen sein kann.
+Der Entwickler kann jedoch bestimmen, welche Änderungen durch Erweiterungen ermöglicht werden.
+Hierfür ist jedoch eine Erfahrung in der Domäne und der Umsetzung nötig.
+Das \textit{Open/Closed Principle} ist ein wichtiges Werkzeug, dass es zu kennen gilt, jedoch sollte es kein beherrschendes Designziel sein, da es sonst zu einer spekulativer Komplexität führen kann.
+
+Die dritte Regel ist das \textit{Liskov Substitution Principle}.
+Diese Regel legt fest, dass Objekte in einem Programm durch Instanzen ihrer Subtypen ersetzbar sein sollten, ohne die Korrektheit des Programms zu ändern.
+Die Regel gibt somit strikte Regeln für Vererbungshierachien vor und befasst sich daher mit den Varianzregeln.
+Varianzregeln beschreiben die Ersetzbarkeit eines Objekts durch ein Objekt der Ober- oder Unterklasse.
+Es gibt dabei drei Arten:
+Kovarianz besagt, dass die Typhierachie und die Vererbungshierachie die gleiche Richtung haben.
+In der Programmiersprache Java wird Kovarianz präferiert.
+Kontravarianz beschreibt, dass die Typhierachie entgegengesetzt zur Vererbungshierachie ist.
+Invarianz bedeutet, dass die Typhierachie unverändert bleibt.
+Zur Umsetzung des \textit{Liskov Substitution Principle} müssen sich daher Subtypen so verhalten wie ihr Basistyp.
+Ein Subtyp darf dabei die Funktionalität erweitern, jedoch nicht einschränken.
+Hierbei zeigen sich Parallelen zum \textit{Open/Closed Principle}.
+Somit ist das \textit{Liskov Substitution Principle} erfüllt, wenn man jede Spezialisierung einer Generalisierung überall dort einsetzen kann, an den Stellen die Generalisierung verwendet wird.
+
+Eine weitere Regel des SOLIP Prinzips ist das \textit{Interface Segregation Principle}.
+Diese Regel besagt, dass mehrere spezifische Interface besser sind als ein Allround-Interface.
+Interface sollen Klient-spezifisch sein.
+Daraus resultiert eine höhere Kohäsion und somit repräsentieren Klassen oder Interfaces eine Einheit sehr genau.
+Die Regel unterstützt somit die erste Regel, das \textit{Single Responsibility Principl}.
+Ein Klient soll dabei nicht von Details abhängig sein, die es gar nicht benötigt.
+Das würde im Fall eines Interfaces Methoden des Interfaces bezeichnen, die der Klient nicht benötigt.
+Stattdessen sollten Schnittstellen oder Interfaces möglichst passgenau für den Klienten sein.
+Daraus resultieren mehrere Schnittstellen für einen Klienten.
+Die Schnittstellen können dabei domänenspezifisch sowie technischspezifisch sein.
+Das Ziel ist somit, die Schnittstellen in Nutzergruppen aufzuteilen.
+
+Die letzte Regel des SOLID Prinzips ist das \textit{Dependency Inversion Principle}.
+Die Regel beschreibt das Prinzip der Entkopplung.
+Die Intuition des Prinzip ist es, dass Abstraktionen nicht von Details abhängen sollten sondern Details von Abstraktionen.
+Somit sollten Module höherer Ebenen nicht von Modulen niedriger Ebenen abhängen, stattdessen sollten beide von Abstraktionen abhängen.
+Die Lösung dieses Problems ist, dass ein höheres Modul eine Schnittstelle definiert und ein niedrigeres Modul diese implementiert.
+Konkret bedeutet dass, dass Klassen höherer Ebenen nicht von Klassen niedrigerer Ebenen abhängig sein sollen, sondern beide Klassen von Interfaces.
+Schließlich ist die Abhängigkeit auf eine konkrete Klasse eine starke Kopplung.
+Methoden zur Auflösung dieser Kopplung ist die \textit{Dependency Injection} sowie \textit{Dependency Inversion}.
+Aus der Anwendung des \textit{Dependency Inversion Principle} resultiert eine Entkopplung der Implementierung.
+Die einzelnen Module können somit flexibler miteinander zusammenarbeiten.
+Zudem erhält man eine bessere Wiederverwendbarkeit und Schnittstellen werden dadurch zudem klarer und somit wird die Anforderungen deutlicher.
+
+Ein weiteres Programming Principle ist \ac{GRASP}.
+\ac{GRASP} stellt Standardlösungen für typische Fragestellungen der Softwarekonzeption bereit.
+Innerhalb dieses Softwareentwurfs liegt der Fokus ausschließlich auf den Grundkonzepten \textit{Low Coupling} sowie \textit{High Cohesion}.
+Darüber hinaus gibt es sieben weitere Werkzeuge, die jedoch nicht Teil der Anforderungen dieses Software-Entwurfs sind.
+
+\textit{Low Coupling} zielt auf eine geringe Kopplung ab.
+Kopplung bezeichnet das Maß für die Abhängigkeit einer Klasse von ihrer Umgebung, wie zum Beispiel anderer Klassen.
+Eine geringe Kopplung unterstützt daher eine gute Testbarkeit, leichte Anpassbarkeit, eine bessere Verständlichkeit aufgrund geringeren Kontexts sowie eine erhöhte Wiederverwendbarkeit.
+Kopplung im Sourcecode kann
+
+Grundsätzlich bietet eine geringere Kopplung eine bessere Austauschbarkeit des nächsten Befehls.
+jedoch ist dabei wichtig, dass eine minimale Kopplung nicht immer die beste Umsetzung bedeutet.
+Vielmehr ist eine vernünftige Umsetzung einer geringen Kopplung sinnvoll.
+Darüber hinaus finden sich auch weitere Kopplungsarten, wie beispielsweise die Kopplung an Datentypen, Kopplung der Threads, Kopplung durch Formate oder Protokolle sowie Kopplung durch Resourcen.
+
+Ein weiteres Werkzeug ist \textit{High Cohesion}.
+\textit{High Cohesion} zielt auf eine hohe Kohäsion ab.
+Kohäsion ist das Maß für den inneren Zusammenhalt einer Klasse und beschreibt somit, wie eng Methoden und Attribute auf semantischer Nähe miteinander zusammenarbeiten.
+Idealer Code zeichnet sich durch \textit{Low Coupling} in Kombination mit \textit{High Cohesion} aus.
+Die Kohäsion kann unter anderem durch Kopplung erhöht werden.
+Dazu zählt beispielsweise das Erstellen von Klassen, die eine Eigenschaft der eigentlichen Klasse beinhalten.
+Kohäsion ist dabei ein semantisches Maß, somit ist die menschliche Einschätzung darüber entscheident.
+Kohäsiver Code bietet zudem den Vorteil zur Analyse.
+Durch die Aufteilung der Klassen in Eigenschaften tendiert der Code zur Kürze.
+Zudem kann er als Anfangsverdacht für sogenannte \textit{Code Smells} dienen.
+Eine ausführlichere Beschreibung zu \textit{Code Smells} ist Teil des Themas \textit{Refactoring}. 
+
+Zu guter Letzt wird das Programming Principle \ac{DRY} betrachtet.
+\ac{DRY} folgt dem Prinzip, dass jeder Wissensaspekt nur eine einzige, eindeutige und verbindliche Replikation in einem System besitzt.
+Dabei ist eine mechanische Duplikation erlaubt, soweit die Originalquelle klar definiert ist.
+\ac{DRY} versucht das Problem zu beheben, dass Quellcode durch mehrfache Wissensaspekte weniger eindeutig wird.
+Als Beispiel zählt die Größenangabe einer Oberfläche.
+Eine zentrale Angabe der Maße verhindert beim Anpassen der Größe das Missachten einer Stelle im Code, wodurch es bei einer Änderungen zu ungewollten Fehlern, in Form von unterschiedlich großen Oberflächen, kommen kann.
+Diese Regel lässt sich sowohl auf Quellcode als auch auf Dokumentationen oder sonstige technische Pläne umsetzen.
+
+Darüber hinaus gibt es mit \ac{KISS}, \ac{YAGNI} sowie dem Conway's Law weitere Programming Principles, die jedoch nicht innerhalb dieses Softwareentwurfs betrachtet werden.
+
+\section{Analyse und Begründung}
+In diesen Abschnitt werden die zu betrachtenen Programming Principles in Bezug auf den Softwareentwurf analysiert und Anwendungen entsprechend begründet.
+
+\todo[]{Zeigen anhand von klaren Beispiele, was gut ist und was nicht}
+\subsection{SOLID}
+Im Folgenden werden die einzelnen Prinzipien des SOLID-Prinzips in Bezug auf den Softwareentwurf betrachet.
+
+\subsubsection*{Single Responsibility Principle}
+Ein Beispiel in Bezug auf das \textit{Single Responsibility Principle} ist die Klasse \code{ConsumerGoodsToConsumerGoodsResourceMapper}.
+Die Klasse hat die einzige Aufgabe, Objekte der Klasse \textit{ConsumerGoods} zu Objekten der Klasse \code{ConsumerGoodsResource} zu mappen und somit für die Interaktion mit der \ac{GUI} zu verwenden.
+Das gleiche gilt für die Klasse \code{FridgeToFridgeResourceMapper} und \code{FoodShelfToFoodShelfResourceMapper}, deren Aufgabe das Mappen eines \code{Fridge}- oder \code{FoodShelf}-Objekt zu einer entsprechenden Resource ist.
+
+Das \textit{Single Responsibility Principle}-Prinzip wurde hingegen bei den Klassen \code{ConsumerGoodsManager} sowie \code{StorageManager} verletzt. Die Klassen haben neben dem Suchen eines Objekts auch die Aufgabe der Erstellung sowie das Löschen eines Objekts.
+In diesem Zusammenhang lässt sich ebenfalls eine Verletzung des \textit{Single Responsibility Principle}-Prinzip bei der Klasse \code{ConsumerGoodsInteraction} erkennen.
+Die Interaktion mit der \ac{GUI} umfasst sowohl das Erstellen, als auch das Ausgeben der verfügbaren Objekte der Klasse \code{ConsumerGoods}.
+Gleiches gilt für das Löschen eines Objektes.
+Hierzu findet die gesamte Interaktion, die verschiedene Aufgaben enthält, in der Klasse \code{ConsumerGoodsGuiInterface} statt.
+Gleiches gilt für die Klasse \code{StorageGuiInterface}.
+Auch hier findet die gesamte Interaktion mit der Schnittstelle, worunter das Ausgeben, Erstellen und Löschen von Objekten des implementierten Interfaces \code{Storage} zählt, in der einen Klasse statt.
+
+\subsubsection*{Open-Closed-Principle}
+Das \textit{Open-Closed-Principle} wurde bei den Klassen \code{ConsumerGoodsResource}, \textit{FridgeResource} und \textit{FoodShelfResource} sowie bei den weiteren Resourcen-Klassen eingehalten.
+Das Einfügen neuer Funktionen wie beispielsweise weitere abspeichbare Güter oder weitere Lagermöglichkeiten können umgesetzt werden, indem neue Resourcen-Klassen hinzugefügt werden.
+Ein Verändern des bestehenden Codes ist hierzu nicht möglich.
+
+Eine Verletzung des \textit{Open-Closed-Principle} stellen die Klassen \code{ConsumerGoodsGuiInterface} und \code{StorageGuiInterface} dar.
+Eine Erweiterung einer Anwendung um ein weiteres zu verwaltendes Gut hätte hierbei zur Folge, dass die Einbindung eines neuen Guts zu einer Veränderung der Schnittstelle für die \ac{GUI} führt, um das neue Gut in der \ac{GUI} zu repräsentieren.
+
+\subsubsection*{Liskov Substitution Principle}
+\todo[]{oder alte Version von UnitOfMeasure und Storage}
+\todo[]{aktuell keine Klassen, eventuell nur durch z.B. Exceptions}
+
+Die Analyse des Liskov Substitution Principles ist nur in einem älteren Stand des Softwareentwurfs zu analysieren, da zum aktuellen Stand keine Vererbung implementiert ist.
+Bei Betrachtung des Standes entsprechend \todo{Verlinkung} ist eine Vererbung der Superklasse \code{UnitOfMeasure} und den Subklassen \code{Volume}, \code{Weight} und \code{Quantity} implementiert.
+Bei \code{UnitOfMeasure} handelt es sich um eine abstrakte Klasse.
+Die Subklassen überschreiben jedoch keine Funktionalität der Superklasse, weshalb das \code{Liskov Substitution Principle} an dieser Stelle eingehalten wird.
+
+Das gleiche gilt für die Implementierung der Vererbung der Superklasse \code{Storage} und den Subklassen \code{Fridge} und \code{FoodShelf}.
+Auch in diesem Fall ist die Klasse \code{Storage} abstrakt und die Subklassen überschreiben keine Funktionalität der Superklasse, wodurch das \code{Liskov Substitution Principle} eingehalten wird.
+
+\subsubsection*{Interface Segregation Principle}
+
+Ein Positivbeispiel der Umsetzung des \textit{Interface Segregation Principle} findet sich \todo[]{ausführen}
+
+Als Negativbeispiel kann das Interface \code{} betrachtet werden. \todo[]{ausführen}
+
+\subsubsection*{Dependency Inversion Principle}
+
+Das \textit{Dependency Inversion Principle} wurde bei den Klassen \code{ConsumerGoods} sowie \code{Food} und dem Interface \code{StorableGood} umgesetzt.
+Die Klasse \code{ConsumerGoods} referenziert dabei auf ein Objekt des Typs \code{StorableGood}. 
+Das hat zur Folge, dass unter Anwendung der Dependency Injection eine Erweiterung weiterer lagerbarer Objekte neben Essen möglich ist, ohne die Klasse \code{ConsumerGoods} hierzu anpassen zu müssen.
+Gleiches gilt für die Interfaces \textit{Storage} und \textit{UnitOfMeasure} in Bezug auf die Klasse \code{ConsumerGoods}.
+Auch hierbei können neue Lagermöglichkeiten oder Maßeinheiten hinzugefügt werden, ohne dass die Klasse \code{ConsumerGoods} dafür angepasst werden muss.
+
+Darüber hinaus \todo[]{Weiteres Bsp vlt. in Bezug auf Repository-Klassen bzgl. Testbarkeit}
+
+Eine Verletzung des \textit{Dependency Inversion Principle} ist in den Mapper Klassen der Ressourcen-Mapper-Klassen zu finden. Die Verwendung der Klassen \code{ConsumerGoodsToConsumerGoodsResourceMapper}, \code{FridgeToFridgeResourceMapper} sowie \code{FoodShelfToFoodShelfResourceMapper} hängt direkt von den jeweiligen Instanzen der Mapper-Klassen ab.
+Eine Lösung zum Beheben der Verletzung wäre das nutzen eines Interfaces, das die Resourcen-Mapper-Klassen implementieren.
+Dadurch wäre eine stärkere Entkopplung möglich.
+
+\subsection{\ac{GRASP}}
+
+\subsubsection*{Geringe Kopplung}
+\todo[]{Low Coupling, lose Kopplung}
+Ein Beispiel zur Umsetzung einer losen Kopplung ist \todo[]{Persistierung}
+\todo[]{Interfaces statt Vererbung}
+\todo[]{Iterable statt List?}
+\todo[]{Optional?}
+Eine geringe Kopplung findet sich zwischen der \ac{GUI} und der Applikationsschicht der Anwendung.
+Die Interaktion findet über die Klasse \textit{ConsumerGoodsGuiInterface} und \textit{StorageGuiInterface} statt.
+Beide Klassen dienen als \ac{HTTP}-Interface.
+Durch die Kommunikation übe \ac{HTTP} kennen sich die Anwendung und die \ac{GUI} nicht und sind somit entkoppelt.
+
+Eine stärkere Kopplung ist in den Serviceklassen \textit{ConsumerGoodsManager} und \textit{StorageManager} zu finden.
+Zum Löschen, Persistieren oder der Rückgabe initialisierter Objekte der Klassen \textit{ConsumerGoods}, \textit{Fridge} oder \textit{FoodShelf} werden ausschließlich die in den entsprechenden Repository-Interfaces definierten Klassen verwendet.
+Zur Zugriff auf eine Referenz des jeweiligen implementierten Repository-Types wird durch eine Dependency Injection ermöglicht\todo[]{Ref}.
+Somit ist hierbei keine direkte Kopplung an eine konkrete Implementierung eines Repository-Objekts vorhanden.
+
+Ein Beispiel mit einer starken Kopplung ist der statische Methodenaufruf \code{validate()} der Klasse \code{DateValidator}.
+Auch in diesem Fall entsteht durch den statischen Methodenaufruf eine starke Kopplung an die Klasse \code{DateValidator}.
+
+\subsubsection*{Hohe Kohäsion}
+\todo[]{High Cohesion}
+\todo[]{Wie „eng“ arbeiten Methoden und Attribute einer Klasse zusammen (semantische Nähe!)}
+\todo[]{ConsumerGoods => Food, UnitOfMeasure, Storage}
+\todo[]{Weight, Volume, Quantity und Value}
+\todo[]{Gleiches bei mapped Resources}
+\todo[]{BBD und DayOfYear, Day, Month, Year}
+\todo[]{DateValidator}
+\todo[]{semantisches Maß, Überprüfung, welche Felder nie gelesen werden}
+
+Ein Beispiel für eine hohe Kohäsion ist in der Klasse \code{ConsumerGoods} zu sehen.
+Die Bestandteile eines Konsumguts sind das Lebensmittel und die dazugehörige Menge samt Maßeinheit.
+Das Lebensmittel wird dazu in der Klasse \code{Food} verwaltet, während die Menge in einem Objekt des implementierten Interface-Typs \code{UnitOfMeasure} verwaltet ist.
+Die Klasse \code{Food} hat als Attribut eine Instanz der Klasse \code{BestBeforeDate} zur Repräsentation des Mindesthaltbarkeitsdatums.
+In der Klasse \code{BestBeforeDate} werden auch datumsspezifische Operationen wie zum Beispiel die Datumsüberprüfung mithilfe des \code{DateValidators} übernommen.
+Das Objekt des implementierten Interfaces-Typs \code{UnitOfMeasure} repräsentiert die Menge in Form der Klassen \code{Weight}, \code{Volume} oder \code{Quantity}.
+Der Wert der Menge wird in den Klassen durch das Attribut vom Typ \code{Value} verwaltet.
+Das Ziel ist hierdurch, dass die jeweiligen Bestandteile des \code{ConsumerGoods} in einzelnen Klassen verwaltet werden, dadurch teilt sich der Code auf die entsprechenden Schwerpunkte auf und wird, gerade in Bezug auf Übergabe- und Rückgabeparameter, lesbarer.
+
+
+Ein weiteres Beispiel für hohe Kohäsion ist die Klasse \code{BestBeforeDate}.
+Das Mindesthaltbarkeitsdatum wird durch die Variablen des Typs \code{DateOfYear} und \code{Year} repräsentiert.
+\code{DateOfYear} verwaltet das Datum eines Jahres durch die Attribute vom Typ \code{Day} und \code{Month}.
+Der Vorteil ist auch hierbei, dass die Lesbarkeit bei geforderten Übergabe- und Rückgabeparametern über die genaue Typen-Bezeichnung deutlich lesbarer und verständlicher ist als ein primitiver Datentyp.
+Darüber hinaus ist nicht die Klasse \code{BestBeforeDate} für eine genaue Spezifizierung oder Anpassung der einzelnen Attribute verantwortlich sondern die jeweiligen spezifischen Klassen.
+
+
+\subsection{\ac{DRY}}
+\todo[]{Wissen sollte sich nur an einem Ort befinden, z.B. Window-Sizes}
+
+\todo[]{Positivbeispiel}
+
+Eine Nichteinhaltung des \ac{DRY}-Prinzip findet sich in der Resourcen-Klassen \code{ConsumerGoodsReource}, \code{FridgeResource}, \code{FoodShelfResource}, \code{FoodResource} und \code{BestBeforeDateResource} vor.
+Die Klassen dienen der Repräsentation der gleichnamigen Entitäten für die Kommunikation mit äußeren Anwendungen wie beispielsweise der \ac{GUI}.
+Dementsprechend sind sowohl Variablen als auch Methoden dupliziert.
+Dadurch ist das \ac{DRY}-Prinzip verletzt und hat den Nachteil, dass eine Anpassung der Domänen dazu führt, dass die entsprechende Ressourcen-Klasse ebenfalls angepasst werden müsste.
+Hierbei ist anzumerken, dass Domänen in der \textit{Domain}-Schicht entsprechend der \textit{Clean Architecture} eher seltener verändert werden sollten.
+Dennoch würde müsste die Änderung auch in den Ressourcen-Klassen berücksichtigt werden und kann somit zu einem Fehlerrisiko durch Nichtberücksichtigung führen.
+\todo[]{JPA?}

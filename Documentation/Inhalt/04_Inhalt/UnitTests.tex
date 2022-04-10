@@ -1,0 +1,211 @@
+\chapter{Unit Tests}
+Während eines Entwicklungsprozesses einer Software entstehen Fehler.
+Fehler kosten jedoch unterschiedliche Ressourcen und steigen mit der Zeit, seit der Fehler existiert.
+Daher sind Tests ein wichtiges Mittel in der Softwareentwicklung.
+\todo[]{Test first und TDD erwähnen?}
+Hierfür gibt es folgende Testklassifikationen:
+\begin{itemize}
+    \item \textit{Akzeptanztests},
+    \item \textit{Integrationstests},
+    \item \textit{Komponententests} sowie
+    \item \textit{Leistungstests}.
+\end{itemize}
+
+In diesem Softwareentwurf werden ausschließlich \textit{Unit Tests} betrachtet.
+\textit{Unit Tests} zählen zu den \textit{Komponententests} und starten nur den relevanten Teil des Systems.
+Weitere nötige Systemteile werden durch Stellvertreter, sogenannten \textit{Mock-Ups}, ersetzt.
+\textit{Mock-Ups} sind einfache Stellvertreter, in Form einer Minimalumsetzung der zum Testen nötigen Funktionalität, für in der späteren Laufzeit der Umgebung \glqq echte\grqq{} Objekte.
+Die Umsetzung der Funktionalitäten wird auch als \textit{Fakes} bezeichnet.
+Der Vorteil durch den Einsatz von \textit{Mock-Ups} ist, dass Abhängigkeiten während eines Tests ersetzt werden können und somit eine isolierte Betrachtung der Klassen möglich ist.
+Die Durchführung findet mittels Testframeworks, wie beispielsweise im Java-Umfeld JUnit, statt.
+\textit{Unit Tests} haben das Ziel, die korrekte Implementierung der Komponente sicherzustellen.
+
+Der Aufbau eines Unit-Tests orientiert sich an der AAA-Regel und steht für:
+\begin{itemize}
+    \item \textit{Arrange},
+    \item \textit{Act} und
+    \item \textit{Assert}.
+\end{itemize}
+
+\textit{Arrange} bezeichnet das Initialisieren der Test-Umgebung.
+\textit{Act} beschreibt den Teil, der für das Ausführen der zu testenden Applikation nötig ist.
+\textit{Assert} bezeichnet den Teil, der für das Prüfen der Test-Zusicherung nötig ist.
+
+Mögliche Testergebnisse können wie folgt sein:
+\begin{itemize}
+    \item \textit{Success},
+    \item \textit{Failure} und
+    \item \textit{Error}.
+\end{itemize}
+
+\textit{Success} bedeutet, dass die Testmethode durchläuft und alle Assertions erfüllt sind.
+\textit{Failure} bedeutet, dass der Test aufgrund einer oder mehrerer Assertions nicht bestanden wurde.
+\textit{Error} bedeutet, dass der Test aufgrund eines Fehlers nicht bestanden wurde.
+
+\todo[]{ATRIP}
+Bei \textit{Unit Tests} orientiert man sich zudem an den folgenden \textit{ATRIP-Regeln}:
+\begin{itemize}
+    \item \textit{Automatic},
+    \item \textit{Thorough},
+    \item \textit{Repeatable},
+    \item \textit{Independent} und
+    \item \textit{Professional}.
+\end{itemize}
+
+\textit{Automatic} bedeutet, dass die Tests selbstständig ablaufen und Ergebnisse selbst prüfen müssen.
+\textit{Thorough} besagt, dass gute Tests alle missionskritischen Funktionalitäten testet.
+\textit{Repeatable} legt fest, dass ein Test jederzeit durchführbar sein soll und immer das gleiche Ergebnis liefert.
+\textit{Independent} bedeutet, dass jeder Test genau ein Aspekt der Komponente testet.
+Somit müssen die Tests gewährleisten, dass sie in beliebiger Zusammenstellung und Reihenfolge funktionsfähig sind.
+\textit{Professional} besagt, dass Testcode auch produktionsrelevanter Code ist und somit leicht verständlich sein sollte.
+
+\todo[]{Testabdeckung}
+Eine Möglichkeit zur Messung der Testabdeckung ist die \textit{Code Coverage}.
+Eine Variante ist das Messen der \textit{Line Coverage}, indem die Anzahl der abgedeckten Code-Zeilen bestimmt wird.
+Eine weitere Variante ist das Messen der \textit{Branch Coverage}, indem die Anzahl der abgedeckten Pfade im Code bestimmt werden.
+
+\todo[]{Testen mit Mocks}
+Das Testen mit Mocks erweitert die AAA-Regel beim Durchführen von \textit{Unit Tests}.
+Der Test wird zu Beginn um \textit{Capture} und am Ende um \textit{Verify} erweitert.
+\todo{erläutern}
+Weitere Voraussetzungen für das Testen mit Mocks ist, dass ein Einsatz nur sinnvoll ist, wenn eine Dependency Injection möglich ist.
+Des Weiteren sind statische Methoden und vergleichbare Konstrukte schwierig zu ersetzen.
+Zudem sind tiefe Abhängigkeitsstrukturen nur aufwendig nachzubilden.
+Hierbei sollte sich bei der Entwicklung an das \textit{Law of Demeter} gehalten werden.
+
+\section{Anwendung im Softwareentwurf}
+Bei den Unit-Tests wurde ein besonderer Fokus auf die Validierungs-Klassen in der \code{Abstraktions}-Schicht sowie das Erzeugen und Ändern einzelner Attribute eines \code{ConsumerGoods} gelegt.
+Die Testklassen sind im Projekt im Verzeichnis \code{Test} gelistet.
+Bei der Erstellung der Tests wurde eine Einteilung \textit{Arrange}, \textit{Act} sowie \textit{Assert} vorgenommen.
+Die Testklasse \code{DayDateTest} überprüft die Funktionalität der Klasse \code{DayValidator}, indem eine Validierung eines gültigen als auch eines negativen oder eines über 31 liegenden Wertes gestestet wird.
+Die Testklasse \code{MonthDateTest} überprüft die Funktion der Klasse \code{MonthValidator}, indem eine Validierung eines gültigen als auch eines negativen oder eines über 12 liegenden Wertes gestestet wird.
+Die Testklasse \code{YearDateTest} überprüft die Funktion der Klasse \code{YearValidator}, indem eine Validierung eines gültigen als auch eines negativen Wertes gestestet wird.
+Die Testklasse \code{DateValidatorTest} überprüft die Funktion der Klasse \code{DateValidator}, indem eine Validierung eines gültigen als auch eines ungültigen Datums im Februar und an einem Monat mit 30 statt 31 Tagen gestestet wird.
+Die Test liegen sehr nahe beieinander, jedoch wurde eine Aufteilung aufgrund der Verständlichkeit (\textit{Professional}) vorgenommen.
+Die Testklasse \code{UnitOfMeasureValueTest} überprüft die Funktion der Klasse \code{ValueValidator}, indem eine Validierung eines gültigen als auch eines negativen Wertes gestestet wird.
+
+Die Testklasse \code{AddConsumerGoodsTest} überprüft die Klasse \code{ConsumerGoodsBuilder} sowie dessen Validierungsmethode, indem unterschiedliche Kombinationen mit invaliden Übergabeparametern getestet werden.
+
+Die Testklasse \code{ConsumerGoodsGuiControllerTest} dient der Überprüfung der \ac{HTTP}-Statuscodes für erfolgreiche als auch fehlerhafte Anfragen zum Erhalt, der Erzeugung dem Aktualisieren oder Löschen von ConsumerGoods.
+
+Der Schwerpunkt der genannten Klassen, mit Ausnahme von \code{ConsumerGoodsGuiControllerTest}, liegt auf der Wertevalidierung als Grundlage zur Vermeidung von auftretenden Fehlern, die zu einem Fehlverhalten der Software führen können, das unter Umständen nicht direkt bemerkt wird oder auch durch den Tausch verschiedener Peripherie auftreten könnte.
+Neben \textit{Professional} wurde auf die weiteren ATRIP-Regeln geachtet.
+\begin{itemize}
+    \item Die Tests laufen selbstständig und überprüfen ihr Ergebnis selbst (\textit{Automatic}),
+    \item als Aufgabe des Verwaltens von Konsumgüter testen Sie die Grundlage der ordnungsgemäßen Werteverwaltung der Konsumgüter(\textit{Thorough}),
+    \item die Tests sind jederzeit durchführbar und das Ergebnis reproduzierbar (\textit{Repeatable}),
+    \item die Tests sind unabhängig zueinander und testen jeweils eine Komponente \textit{Independent}.
+\end{itemize}
+
+\todo[]{Einsatz von Mocks}
+\todo[]{ConsumerGoods}
+Zuzüglich zu den erläuterten Unit Tests testet Die Testklasse \code{UpdateConsumerGoodsTest} das Ändern von Attributen einer Instanz der Klasse \code{ConsumerGoods} mit Hilfe eines Mocking-Werkzeugs.
+Der Test bildet den Ablauf der Methode \code{updateConsumerGoods()} in der Klasse \code{ConsumerGoodsManager} ab.
+Dabei wird eine im Test erzeugte Instanz der Klasse \code{ConsumerGoods} mit den Attributen eines neuen, im Test gemockten, Objekts der Klasse \code{ConsumerGoods} aktualisiert.
+
+\todo[]{REST?}
+
+\todo[]{ATRIP-Regeln}
+\todo[]{in Bezug auf den jeweiligen Unit-Test}
+
+\todo[]{Code Coverage (mindestens 1, mehr gibt Bonus) der gesammten Schichten}
+\todo[]{Über alle Unit-Tests, Line und Branch Coverage}
+Bei Betrachtung der Code Coverage-Ergebnisse in Tabelle \ref{tab:code-coverage-full} wird der Schwerpunkt auf das Testen der Validierungsklassen sowie dem \code{ConsumerGoodsBuilder} verdeutlicht.
+
+\begin{table}[ht]
+    \begin{tabular}{|l|c|}
+        \hline
+        \textbf{Paket-/Klassenname} & \textbf{Code Coverage} \\
+        \hline
+        \textbf{de.dhbw.cip} & 0.0\% \\
+        \hline
+        ConsumerInventoryPlannerApplication & 0.0\% \\
+        \hline
+        \textbf{de.dhbw.cip.plugin.rest} & 0.0\% \\
+        \hline
+        ConsumerInventoryPlannerApplication & 0.0\% \\
+        \hline
+        ConsumerInventoryPlannerApplication & 0.0\% \\
+        \hline
+        \textbf{de.dhbw.cip.plugins.persistence.hibernate} & 0.0\% \\
+        \hline
+        ConsumerInventoryPlannerApplication & 0.0\% \\
+        \hline
+        ConsumerInventoryPlannerApplication & 0.0\% \\
+        \hline
+        ConsumerInventoryPlannerApplication & 0.0\% \\
+        \hline
+        \textbf{de.dhbw.cip.adapters} & 0.0\% \\
+        \hline
+        ConsumerGoodsToConsumerGoodsResourceMapper.java & 0.0\% \\
+        \hline
+        ConsumerGoodsResource.java & 0.0\% \\
+        \hline
+        BestBeforeDateResource.java & 0.0\% \\
+        \hline
+        FoodResource.java & 0.0\% \\
+        \hline
+        FoodShelfToFoodShelfResourceMapper.java & 0.0\% \\
+        \hline
+        FridgeToFridgeResourceMapper.java & 0.0\% \\
+        \hline
+        StorageResource.java & 0.0\% \\
+        \hline
+        FoodShelfResource.java & 0.0\% \\
+        \hline
+        FridgeResource.java & 0.0\% \\
+        \hline
+        \textbf{de.dhbw.cip.application} & 0.0\% \\
+        \hline
+        ConsumerGoodsManager.java & 0.0\% \\
+        \hline
+        StorageManager.java & 0.0\% \\
+        \hline
+        \textbf{de.dhbw.cip.domain} & 64.9\% \\
+        \hline
+        ConsumerGoods.java & 75.4\% \\
+        \hline
+        BestBeforeDate.java & 48.1\% \\
+        \hline
+        Food.java & 36.6\% \\
+        \hline
+        Storage.java & 30.0\% \\
+        \hline
+        FoodShelf.java & 0.0\% \\
+        \hline
+        Fridge.java & 100.0\% \\
+        \hline
+        \textbf{de.dhbw.cip.abstractioncode} & 59.1\% \\
+        \hline
+        Volume.java & 0.0\% \\
+        \hline
+        Weight.java & 0.0\% \\
+        \hline
+        DateValidator.java & 85.3\% \\
+        \hline
+        DayOfYear.java & 53.1\% \\
+        \hline
+        Quantity.java & 50.0\% \\
+        \hline
+        Day.java & 60.0\% \\
+        \hline
+        Month.java & 60.0\% \\
+        \hline
+        Value.java & 60.0\% \\
+        \hline
+        Year.java & 60.0\% \\
+        \hline
+        DayValidator.java & 75.0\% \\
+        \hline
+        MonthValidator.java & 75.0\% \\
+        \hline
+        ValueValidator.java & 66.7\% \\
+        \hline
+        YearValidator.java & 66.7\% \\
+        \hline
+        UnitOfMeasure.java & 100.0\% \\
+        \hline
+    \end{tabular}
+    \caption{Code Coverage des gesamten Projekts.}
+    \label{tab:code-coverage-full}
+\end{table}

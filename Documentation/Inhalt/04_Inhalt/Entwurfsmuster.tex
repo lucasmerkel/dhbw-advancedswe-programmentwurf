@@ -1,0 +1,37 @@
+\chapter{Entwurfsmuster}
+\label{entwurfsmuster}
+Innerhalb dieses Kapitels werden die Umsetzung von \textit{Entwurfsmustern} innerhalb des Softwareentwurfs analysiert und deren Verwendung begründet.
+
+%\section{Betrachtete Entwurfsmuster}
+%\todo[]{Bridge}
+%\todo[]{Builder}
+%\todo[]{Singleton / IOC}
+%\todo[]{Observer - es muss kein neuer Observer programmiert werden, es reicht aus, wenn er verwendet wird und das entsprechend durch UML-Diagramm gezeigt wird}
+
+\section{Angewandte Entwurfsmuster}
+Bei Betrachtung der Ausschnitte UML-Diagramms entsprechend \todo[]{Perma-Link UML} ist der \textit{Builder} sowie \todo[]{Perma-Link UML} ist die \code{Bridge} als Entwurfsmuster zu erkennen, die in diesem Softwareentwurf angewandt wurden.
+
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[width=1.0\textwidth]{Bilder/entwurfsmuster-bridge.pdf}
+% 	\caption[Ausschnitt des UML-Diagramms zur Darstellung des \textit{Bridge}-Entwurfmusters.]{Der Ausschnitt des UML-Diagramms verdeutlicht die Verwendung des \textit{Bridge}-Entwurfmusters.}
+% 	\label{fig:uml-bridge-pattern}
+% \end{figure}
+
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[width=1.0\textwidth]{Bilder/entwurfsmuster-factory.pdf}
+% 	\caption[Ausschnitt des UML-Diagramms zur Darstellung des \textit{Builder}-Entwurfmusters.]{Der Ausschnitt des UML-Diagramms verdeutlicht die Verwendung des \textit{Builder}-Entwurfmusters.}
+% 	\label{fig:uml-builder-pattern}
+% \end{figure}
+
+Das \code{Builder}-Entwurfsmuster zählt zu den \textit{Erzeugungsmustern} und ist in der Klasse \code{ConsumerGoodsBuilder} umgesetzt.
+An dieser Stelle wurde ein \code{Builder}-Entwurfsmuster eingesetzt, da es die Möglichkeit gibt, nötige Attribute zu sammeln und, im Gegensatz zum direkten Erzeugen eines Objekts, die Möglichkeit der Überprüfung aufGültigkeit der Attribute vor dem Erzeugen des Objekts ermöglicht.
+Der Einsatz ist in diesem Fall sinnvoll, da neben dem Abfangen von Fehlern bei der fehlenden Übertragung von Attributen, Datumseingaben oder Werteeingaben auf Gültigkeit überprüfen zu sind.
+
+Das \code{Bridge}-Entwurfsmuster zählt zu den \textit{Strukturmustern} und ist in den Klassen \code{ConsumerGoodsRepositoryBridge}, \code{FridgeRepositoryBridge} sowie \code{FoodShelfRepositoryBridge} umgesetzt.
+Das \code{Bridge}-Entwurfsmuster wurde eingesetzt, da es die Trennung der Domänenlogik von der Pluginlogik ermöglicht.
+Während die Repository-Interfaces \code{ConsumerGoodsRepository}, \code{FridgeRepository} und \code{FoodShelfRepository} zur Domäne zählen, findet die Persistierung der Objekte über ein Plugin mit der Implementierung der Interfaces \code{PersistenceConsumerGoodsRepository}, \code{PersistenceFridgeRepository} sowie \code{PersistenceFoodShelfRepository} statt.
+Durch Anwenden des \code{Bridge}-Entwurfsmuster ist es nun möglich, auf einen implementierten Typ des entsprechenden Repository-Interfaces für die Interaktion mit der Entitätsverwaltung zuzugreifen.
+Das \code{Bridge}-Entwurfsmuster hat das entsprechende Repository-Interface implementiert und übernimmt die Kommunikation mit dem Persistierungs-Plugin.
+Somit ist die Aufteilung entsprechend der \textit{Clean Architecture} gewährleistet und bei einem Austausch des Persistierungs-Plugins bedarf nur Änderungen in der \textit{Plugin}-Schicht, während das Repository-Interface in der \textit{Domänen}-Schicht sowie alle darauf zugreifenden Instanzen davon unberührt sind.

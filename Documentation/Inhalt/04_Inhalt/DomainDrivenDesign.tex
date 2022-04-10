@@ -1,0 +1,202 @@
+\chapter{Domain Driven Design}
+\textit{Domain Driven Design} beschreibt eine Form der Herangehensweise an die Modellierung von Software.
+Dabei wird das Design der Software maßgeblich von der Fachlichkeit der Anwendungsdomäne bestimmt, indem das Domänenmodell die Grundlage für den Entwurf und die Umsetzung der Software ist.
+Ein Problem stellt dabei die Komplexität dar.
+Die zwei Formen der Komplexität sind die inhärente Komplexität (die Komplexität der Domäne) sowie die versehentliche Komplexität (die Komplexität durch Hardware, Framework, Infrastruktur...) und ergeben zusammen die Systemkomplexität.
+Dabei ist die Komplexität der Domäne fest gegeben.
+Das Ziel ist das Verhindern, dass durch die technische Umsetzung die Gesamtkomplexität negativ beeinflusst wird.
+
+Möglich wird dies durch die Reduktion des Überstzungsaufwands.
+Wichtig ist dabei, das Fachgebiet mit dem Sourcecode zu vereinheitlichen.
+Dazu zählt, im Sourcecode gleiche Begriffe wie in der Domäne zu verwenden und eine klare Modellierung der Fachlichkeit.
+
+Eine weitere Möglichkeit zur Vermeidung der negativen Beeinflussung der Gesamtkomplexität, ist die Beschreibung von nützlichen Methoden und Muster.
+Es gibt diesbezüglich zwei Richtungen: das strategische \ac{DDD}, dass auf die Analyse, die Dokumentation sowie die Abgrenzung der Domäne abzielt und das taktische \ac{DDD}, dass die Erkenntnisse in Sourcecode umsetzt.
+
+In Bezug auf den Softwareentwurf ist die Analyse der \todo{Ubiquitous Language} relevant.
+Ubiquitous Language bezeichnet die von Domänenexperten und Entwicklern gemeinsam verwendete Sprache.
+Schließlich ist die jeweilige Fachsprache des einen nur schwer für die andere Partei zu verstehen.
+Somit würde sich der Sourcecode von der Sprache der Domäne entfernen und daraus resultiert eine höhere Komplexität und ein schwereres Verständnis der Implementierung.
+Die entstehende Kluft soll reduziert werden, indem alle relevanten Konzepte, Prozesse und Regeln der Domäne erklärt sind.
+Zudem werden Zusammenhänge verdeutlicht.
+Mehrdeutigkeiten und Unklarheiten sollen durch die Definition der \textit{Ubiquitous Language} beseitigt werden und die Domänensprache sollte dabei im Softwaredesign, der Dokumentation und der Bedienungsoberfläche beibehalten werden.
+Zu beachten ist hierbei, dass sich allerdings auf den Kern des Projekts fokusiert wird.
+
+Darüber hinaus werden in \ac{DDD} die Grundbausteine eines Modells definiert.
+Innerhalb dieses Softwareentwurfs werden die Bausteine 
+\begin{itemize}
+    \item \textit{Repositories}, 
+    \item \textit{Aggregates},
+    \item \textit{Entities} und
+    \item \textit{Value Objects}
+\end{itemize}
+betrachtet.
+
+\textit{Repositories} dienen als sogenannte \glqq Voratsschränke\grqq{} des Systems und bieten den Zugriff auf den persistenten Speicher.
+Dadurch wird der Code der Domäne von den technischen Details der Speicherung getrennt.
+Ähnlichkeiten sind hierbei zur \textit{Clean Architecture} zu erkennen.
+
+\textit{Entities} bezeichnen Objekte, die entsprechend ihrer Identität modelliert werden.
+Identitäten gibt es in mindestens drei Formen: der Kombination von Eigenschaften, einem Surrogatschlüssel oder der natürliche Schlüssel.
+Die Werte der \textit{Entities} sind veränderlich.
+
+\textit{Value Objects} sind einfache Objekte ohne eigene Identität.
+Die Werte der \textit{Value Objects} sind unveränderlich und \textit{Value Objects} sind gleich, wenn deren Werte gleich sind.
+
+\textit{Aggregates} gruppieren \textit{Entities} sowie \textit{Value Objects} zu gemeinsam verwalteten Einheiten.
+Bei \textit{Aggregates} übernimmt ein \textit{Aggregate Root} die Zugriffe von außen.
+
+\section{Analyse und Begründung der \textit{Ubiquitous Language}}
+Zum Verständnis der Software wurde eine \text{Ubiquitous Language} festgelegt, indem sich an der Domäne der Anwendung orientiert wurde.
+Die Domäne bezieht sich auf das Verwalten von Konsumgütern.
+Die Konsumgütern können in einem Kühlschrank oder einem Regal aufbewahrt werden.
+Konsumgüter haben eine Gewichtseinheit.
+Eine Form der Konsumgüter, die derzeit verwaltet werden soll, sind Lebensmittel.
+Ein Lebensmittel hat ein Mindesthaltbarkeitsdatum.
+
+Diese Informationen über die Domäne wurden in die \textit{Ubiquitous Language} berücksichtigt.
+Die Abbildung \ref{fig:wordcloud} des geschriebenen Codes in einer Wordcloud verdeutlicht die Umsetzung der \textit{Ubiquitous Language}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\textwidth]{Bilder/wordcloud.PNG}
+	\caption[Wordcloud in Bezug zu Domain Driven Design.]{Die Wordcloud visualisiert die verwendeten Bezeichnungen im Programentwurf in Bezug auf die \textit{Ubiquitous Language}.}
+	\label{fig:wordcloud}
+\end{figure}
+
+Eine Umsetzung der \textit{Ubiquitous Language} ist die Benennung der Klassen.
+Die Klasse \textit{ConsumerGoods} repräsentiert gleichnamige Konsumgüter.
+Dazu zählt eine Assoziation auf die Klasse vom Typ \textit{StorableGoods}, wozu auch die Klasse \textit{Food} zählt, die Lebensmittel repräsentieren.
+Lebensmittel haben ein Mindesthaltbarkeitsdatum, dass in der assoziierten Klasse \textit{BestBeforeDate} verwaltet wird.
+Das Mindesthaltbarkeitsdatum wird durch die assoziierten Klassen \text{DateOfYear} und \textit{Year} repräsentiert.
+Ein \textit{DateOfYear} setzt sich aus den Klassen \textit{Day} und \textit{Month} zusammen, die entsprechend das Datum des Tages und das Datum des Monats repräsentieren.
+\todo[]{DateOfYear, da MHD oftmals innerhalb eines Jahres ist und bei Validierung nur im Februar das Jahr relevant ist}
+Die Klasse \textit{DateValidator} übernimmt die entsprechende Aufgabe der Datumsvalidierung.
+Daneben haben Konsumgüter eine Menge, die durch die Assoziation auf die Klasse vom Typ \textit{UnitOfMeasure} repräsentiert wird.
+Als konkrete Maßeinheit können Gewicht, Volumen oder Stückzahl gewählt werden und werden durch die gleichnamigen Klassen \textit{Weight}, \textit{Volume} und \textit{Quantity} repräsentiert.
+Neben der Maßeinheit dient die Klasse \textit{Value} zur Repräsentation der quantitaven Menge.
+Ein Konsumgut hat zudem einen Lagerort, der durch die Assoziation zu einer Klasse des Typs \textit{Storage} repräsentiert wird.
+Als mögliche Typen für Lagerorte kommen in der Domäne Kühlschränke oder Lebensmittelregale in Frage, die durch die gleichnamigen Klassen \textit{Fridge} und \textit{FoodShelf} dargestellt sind.
+
+Die Interfaces \textit{ConsumerGoodsRepository}, \textit{FridgeRepository} sowie \textit{FoodShelfRepository} dienen zur Implementierung von, ebenfalls in \ac{DDD} definierten, Repositories in Bezug auf die Klassen \textit{ConsumerGoods}, \textit{Fridge} und \textit{FoodShelf}.
+Repositories werden im Abschnitt \ref{domaindrivendesign>repositories} analyisiert.
+Die Bezeichnung \textit{-Repository} ist in diesem Fall möglich, da es sich hierbei um das \ac{DDD}-Modell \textit{Repository} handelt und dieses somit direkt ersichtlich wird.
+
+Die Klassen \textit{ConsumerGoodsManager} und \textit{StorageManager} repräsentieren die Umsetzung der Busines-Logik und diese entspricht dem Managen von Konsumgütern und Lagerorten. 
+
+\textit{ConsumerGoodsToConsumerGoodsResourceMapper}, \textit{StorageToStorageResourceMapper} und die Klassen \textit{ConsumerGoodsResource} und \textit{StorageResource} sind mit dem Zusatz -Resource, da es sich hierbei um Resourcen der Domänenklassen handelt, die zur Verarbeitung mit den äußeren Schnittstellen, wie zum Beispiel der \ac{GUI}, verwendet werden.
+
+Die Klassen \textit{ConsumerGoodsGuiInterface} sowie \textit{StorageInteractorGuiInterface} sind aufgrund ihrer Funktion als Schnittstelle für die Informationsübertragung an die GUI.
+
+\textit{ConsumerGoodsBridge}, \textit{FoodShelfRepositoryBridge} und \textit{FridgeRepositoryBridge} erfüllen die Funktion des \textit{Bridge}-Entwurfsmusters in Bezug auf die Repositories der Domänen \textit{ConsumerGoods}, \textit{Fridge} und \textit{FoodShelf} und haben dementsprechend die Bezeichnung.
+Bei den Interfaces \textit{PersistenceConsumerGoodsRepository}, \textit{PersistenceFridgeRepository} und \textit{PersistenceFoodShelfRepository} wurde die entsprechende Bezeichnung gewählt, da es sich hierbei um Klassen handelt, die entsprechend dem \ac{DDD} die Funktion des \textit{Repositories} umsetzen.
+Die Bezeichnung \textit{Persistence-} wurde gewählt, da die Interfaces zur Implementierung der Persistierung dienen.
+
+\todo[]{Stufe 2, Stufe 2+ und Stufe 3}
+\todo[]{Methoden, Variablen Stufe 1}
+
+\todo[]{Auch Bezug zur GUI}
+In der GUI wurde ebenfalls die \textit{Ubiquitos Language} angewandt.
+
+Grundsätzlich handelt es sich bei diesem Softwareentwurf um eine \ac{CRUD}-Anwendung.
+Die Anwendung dient dem Verwalten Konsumgütern an Lagerorten.
+Die Komplexität ist dabei relativ gering, weshalb man solche Anwendungen als \textit{Smart UI}-Anwendungen bezeichnet.
+Dementsprechend wurden nur eine geringe Anzahl an \ac{DDD}-Modelle angewandt, da das Einfügen zusätzlicher Modelle die Komplexität der Anwendung künstlich steigern würde.
+
+Im Folgenden werden die angewandten \ac{DDD}-Modelle \textit{Entities}, \textit{Value Objects}, \textit{Aggregates} und \textit{Repositories} aufgezeigt und in ihrer Funktion innerhalb des Softwareentwurfs analysiert.
+
+\todo[]{Value Objects}
+\label{domaindrivendesign>valueobjects}
+Innerhalb des Softwareentwurfs werden \textit{Value Objects} zur Repräsentation eines Wertes verwendet.
+Dazu zählen die Klassen \textit{Day}, \textit{Month}, \textit{Year} sowie \textit{Value}.
+Die Klassen \textit{Day}, \textit{Month} und \textit{Year} dienen dabei dem Speichern des gleichnamigen Teils des Datums.
+Die Klasse \textit{Value} speichert den Wert der dazugehörigen Einheit innerhalb der Klassen \textit{Volume}, \textit{Quantity} oder \textit{Weight}.
+Die Werte sind insofern immutable, dass eine Zuweisung des Werts, neben der Initialisierung durch den Konstruktor, nicht möglich ist.
+Die Variablen innerhalb der Klassen zum Speichern der Methoden sind daher als \textit{final} gekennzeichnet.
+Die Klassen enthalten zudem keine \textit{setter}-Methode.
+Darüber hinaus enthalten die Klassen ausschließlich Methoden zur Rückgabe des Werts.
+Der Wert wird dabei als unveränderliche Objekte zurückgegeben, um ein Verändern des Werts zu unterbinden.
+Die Klassen selbst sind ebenfalls \textit{final} deklariert, um eine Vererbung auszuschließen.
+Die Objekte der Klasse dienen schließlich ausschließlich der Werterepräsentation und ein Manipulieren des Wertes, auch durch Subklassen, ist auszuschließen.
+\todo{Bei allen Ref und Darstellung der Anpassung der hashCode()- und equals()-Methode}
+\todo[]{Ref zu Day, final und immutable (kein set außer Konstruktor) zeigen}
+\todo[]{Ref zu Month, final und immutable (kein set außer Konstruktor) zeigen}
+\todo[]{Ref zu Year, final und immutable (kein set außer Konstruktor) zeigen}
+\todo[]{Ref zu Value, final und immutable (kein set außer Konstruktor) zeigen}
+\todo[]{Felder sind blank final!}
+\todo[]{Klasse ist final definiert}
+\todo[]{equals und getHash anpassen}
+
+Darüber hinaus lassen sich in diesem Softwareentwurf weitere \textit{Value Objects} erkennen, die sich aus den grundlegenden \textit{Value Objects} zusammensetzen.
+Eines stellt die Klasse \textit{DayOfYear} dar.
+Die Klasse dient der Verwaltung der \textit{Value Objects} \textit{day} sowie \textit{month} und repräsentiert somit den Tag eines Jahres.
+Auch in diesem Fall zeichnet sich die Klasse \textit{DayOfYear} als \textit{Value Object} aus, da es den reinen und unveränderlichen Werten eine Semantik in der Domäne gibt und keine Identität oder Lebenszyklus aufweist.
+Ein weiteres \textit{Value Object} ist die Klasse \textit{BestBeforeDate}.
+Die Klasse dient lediglich der Repräsentation eines Datums, in Bezug zur Domäne dem Mindesthaltbarkeitsdatums eines Produkts, und ist somit eine Möglichkeit, dem reinen Datum als Wert eine Semantik in der Domäne zu geben.
+
+%Die Klasse \textit{Food} bildet als Zusammenfassung des \textit{Value Objects} \textit{BestBeforeDate} sowie der Implementierung des Interfaces \textit{UnitOfMeasure} ein weiteres \textit{Value Object}.
+%Gewicht ist theoretisch änderbar?
+
+\todo[]{Entities}
+\label{domaindrivendesign>entities}
+Bei Befassung der Domäne, in der sich der Softwareentwurf befindet, fallen die grundlegenden Elemente der Domäne \textit{ConsumerGoods}, \textit{Fridge} sowie \textit{FoodShelf} auf.
+Es handelt sich bei diesen Klassen entsprechend \ac{DDD} um Entitäten.
+Die Klasse \textit{ConsumerGoods} repräsentiert einen Gegenstand der Domäne, ein Konsumgut.
+Die Klassen \textit{Fridge} und \textit{FoodShelf} repräsentieren ebenfalls Gegenstände der Domäne, nämlich einen Kühlschrank und ein Lebensmittelregal.
+Eine Eigenschaft von Entitäten ist das Besitzen einer Identität in Form einer Kombination von Eigenschaften oder eines Surrogat- beziehungsweise natürlichen Schlüssels.
+\todo{ConsumerGoods = Natürlicher Schlüssel}
+das \textit{Entity} weist die Eigenschaft auf, dass es in der Domäne einen natürlichen Schlüssel hat.
+Jedes Produkt, das käuflich im Handel erwerblich ist, hat einen \ac{EAN}.
+Die \ac{EAN} bezeichnet die Nummer unter dem Barcode und dient als eindeutige Produktidentifizierungsnummer.
+\todo[]{Was ist mit Produkten, die keinen EAN haben?}
+Dabei ist zu beachten, dass die Codezuweisung fremdbestimmt ist und somit auch keine Garantie auf Duplikatfreiheit außerhalb des Kontextes gegeben werden kann.
+\todo[]{Fridge = Surrogatschlüssel}
+Bei der \textit{Entity} \textit{Fridge} ist jedoch kein eindeutiger Schlüssel in der Domäne enthalten, weshalb ein Surrogatschlüssel angewandt.
+Die Klasse \textit{Fridge} hat hierzu eine Variable \textit{id}, deren Wert automatisch systemseitig zur Laufzeit generiert wird.
+Der Vorteil ist, dass der Schlüssel jederzeit generierbar ist, jedoch keinen Bezug zur Domäne hat.
+\todo[]{FoodShelf = Surrogatschlüssel}
+Bei der \textit{Entity} \textit{FoodShelf} ist ebenfalls kein eindeutiger Schlüssel in der Domäne enthalten, weshalb auch ein Surrogatschlüssel angewandt wird.
+Die Generierung läuft entsprechend gleich zu der in der Klasse \textit{Fridge} ab.
+
+\todo[]{Aggregates}
+\label{domaindrivendesign>aggregates}
+In diesem Softwareentwurf dienen die Klassen \textit{ConsumerGoods}, \textit{Fridge} und \textit{FoodShelf} als \textit{Aggregates}-Modell.
+Bei Analyse des größten \textit{Aggregates} innerhalb des Softwareentwurfs ist zu erkennen, dass neben der \textit{Entity} \textit{ConsumerGoods} auch eine Implementierung des Interfaces \textit{StorableGoods}, was in dem aktuellen Stand nur auf die Klasse \textit{Food} zutrifft, zu diesem \textit{Aggregate} zählen. Zudem zählen die \textit{Value Objects} \textit{BestBeforeDate} als auch eine Implementierung des Interfaces \textit{UnitOfMeasure} hinzu.
+\todo[]{Visualisierung des Aggregates}
+Bei Betrachtung der Visualisierung des \textit{Aggregates} ist zu erkennen, dass ein Zugriff auf die Objekte innerhalb des \textit{Aggregates} über das Objekt der Klasse \textit{ConsumerGoods} erfolgen.
+Es handelt sich somit beim Objekt der Klasse \textit{ConsumerGoods} um ein \textit{Aggregate Root}.
+Direkte Referenzen auf Elemente innerhalb des \textit{Aggregates} sind dabei nicht erlaubt.
+Eine Betrachtung des UML-Diagramms im Kapitel \todo[]{ref zu UML} zeigt jedoch, dass solch eine direkte Referenz nicht vorliegt und der Zugriff ausschließlich über den \textit{Aggregate Root} funktioniert.
+\todo[]{Aktuell durch Resource verletzt, entweder ändern und erläutern oder Verletzung erläutern}
+\todo[]{gleiches bei Mapped Resources, sind das auch Aggregates?}
+
+Ein Objekt der Klasse \textit{ConsumerGoods} kann somit den gesammten Zugriff auf das \textit{Aggregate} kontrollieren und die Einhaltung der Domänenregeln gewährleisten.
+Ein Beispiel ist in diesem Fall die Validierung des eingegebenen Mindesthaltbarkeitsdatums durch die Klasse \textit{DateValidator}.
+\todo[]{Ref einfügen}
+Durch das \textit{Aggregate Root} kann die Einhaltung der Domänenregel, nämlich der Angabe eines gültigen Datums, validiert und gewährleistet werden.
+
+Das \textit{Aggregate Root} \textit{ConsumerGoods} ist über die ID \textit{eanCode} eindeutig identifizierbar.
+Ein Verlust dieser ID zur Laufzeit führt dazu, dass neben dem Objekt der Klasse \textit{ConsumerGoods} das gesammte \textit{Aggregate} und somit das dazugehörige Objekt der Klasse \textit{Food}, \textit{BestBeforeDate} als auch das Objekt der Implementierung des Interfaces \textit{UnitOfMeasure} nicht mehr erreichbar.
+Die Herausgabe von Referenzen auf innere Objekte werden zur Gewährleistung des den Domänenregeln entsprechenden Zustands Kopien oder Immutable-Dekorierer ausgegeben, wie in diesem Beispiel zu erkennen \todo{Ref einfügen}.
+
+\todo[]{Jedes Aggregat bildet eine eigene Einheit (auch für Create, Read, Update, Delete – CRUD) Wird immer vollständig geladen und gespeichert}
+Des Weiteren werden bei \ac{CRUD}-Anwendungen auf einzelne Objekte des \textit{Aggregates} das gesammte \textit{Aggregate} geladen und entsprechend gespeichert, wie in \todo[]{Ausschnitt aus ConsumerGoodsApplicationService} zu erkennen.
+Das Ziel ist die Minimierung des Risikos auftretender Bugs durch ungültige Zustände aufgrund teilweiser Änderungen sowie die Einhaltung der Domänenregeln durch das \textit{Aggregate Root}, über das die \ac{CRUD}-Anwendungen ausgeführt und an den entsprechenden internen Objekten angewandt werden.
+
+Der Vorteil bei der Bildung dieses \textit{Aggregates} ist, dass durch den zentralen Zugriff über das \textit{Aggregate Root} die Domänenregeln eingehalten werden können.
+Des Weiteren wird durch die Einteilung in einzelne \textit{Aggregates} Transaktionsgrenzen gebildet und übergreifende Objektbeziehungen ebenfalls durch den zentralen Zugriff entkoppelt.
+
+Bei den \textit{Aggregates} \textit{Fridge} und \textit{FoodShelf} handelt es sich um Implementierung des Interfaces \textit{Storage}.
+Die \textit{Aggregates} haben zum aktuellen Stand keine Referenzen auf weitere Klassen und sind somit zugleich \textit{Aggregate Root}, auch in Hinblick auf ihre Funktion mit möglichen Erweiterungen.
+
+\todo[]{Repositories}
+\label{domaindrivendesign>repositories}
+Innerhalb dieses Softwareentwurfs übernehmen die Interfaces \textit{ConsumerGoodsRepository}, \textit{FridgeRepository} sowie \todo[]{FoodShelfRepository} die Funktion des \textit{Repositories} als \ac{DDD}-Modell.
+Dabei ist laut \ac{DDD} vorgesehen, dass \textit{Repositories} direkt mit \textit{Aggregates} zusammenarbeiten und somit für jedes der im Softwareentwurf definierten \textit{Aggregates} \textit{ConsumerGoods}, \textit{Fridge} als auch \textit{FoodShelf} ein \textit{Repository}-Modell vorhanden ist.
+
+Die Bezeichnung der Methoden ist ebenfalls an die Domäne angepasst, wie anhand eines Beispiels an der Klasse \textit{ConsumerGoodsRepository} zu sehen ist.
+\todo[]{Methodennamen passen zur Domäne entsprechend den Beispielen in der Folie, gezielt darauf verweisen!}
+
+Die konkrete Implementierung der Persistierung findet in den jeweils entsprechenden Klassen \textit{ConsumerGoodsRepositoryBridge}, \textit{FridgeRepositoryBridge} sowie \textit{FoodShelfRepositoryBridge} statt.
+Dies ist sowohl für das \ac{DDD}-Modell \textit{Repository} als auch entsprechend der \textit{Clean Architecture} entsprechend vorgesehen, dass die Implementierung außerhalb stattfindet. 
+Schließlich zählt die Definition des \textit{Repository} zum \textit{Domain Code}, die konkrete Umsetzung ist jedoch domänenunabhängig oder auch \textit{Pure Fabrication} genannt.

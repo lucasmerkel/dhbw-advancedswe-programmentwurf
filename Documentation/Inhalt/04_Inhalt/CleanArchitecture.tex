@@ -1,0 +1,206 @@
+\chapter{Clean Architecture}
+Bei der Umsetzung des Softwareentwurfs wurde sich an der Theorie der Clean Architecture orientiert.
+Im folgenden Kapitel wird die Planung der einzelnen Schichten beschrieben sowie die Anwendung der Schichten auf den Programmentwurf.
+
+\section{Planung der Schichten}
+Das Ziel der Clean Architecture ist das Erstellen einer langfristigen Software-Architektur.
+Schließlich werden während eines Lebenszykluses einer Software unterschiedliche Technologien auf dem Markt angeboten.
+Diese Technologien können unterschiedliche Anwendungsfälle haben.
+Dazu zählt zum Beispiel die Datenbanktechnologie sowie die dazugehörige Anbindung an das Softwaresystem oder auch die Technologie der grafischen Oberfläche.
+Somit bedarf es der Möglichkeit, mit möglichst geringem Aufwand eingesetzte Technologien auszutauschen.
+Ist die Softwarearchitektur nun an die verwendeten Technologien gebunden, dann ist ein Austauschen der Technologie nur schwer möglich und bedarf großem Aufwand an mitunter vielen Stellen innerhalb der Software.
+
+Zur Minimierung dieses Aufwands durch einen Technologieaustausch, setzt die Clean Architecture grundsätzlich auf einen bestimmten Aufbau.
+Zunächst besitzt die Anwendung einen technologieabhängigen Kern, der die eigentlichen Geschäftsregeln enthält.
+Darauf folgt jede Abhängigkeit als temporäre Lösung, das heißt, dass eine Abhängigkeit von den Geschäftsregeln als temporäre Lösung realisiert ist.
+Ein Entfernen der Abhängigkeit führt somit nicht dazu, dass das Programm nicht mehr kompiliert werden kann.
+Man teilt daher auch in zentralen und somit langlebigen Code sowie peripherem, oder auch kurzfristigem, Sourcecode ein.
+Den innersten Kern bietet der \textit{Abstraction Code}. 
+Er enthält domänenübergreifendes Wissen. 
+Dazu zählen beispielsweise mathematische Konzepte oder phyisikalische Grundlagen.
+Eine Änderung dieses Wissens ist nahezu ausgeschlossen.
+Darauf folgt der \textit{Domain Code}.
+Er enthält die Entitäten der Anwendungen und somit die eigentliche organisationsweite Geschäftslogik.
+Der \textit{Domain Code} sollte sich am seltestenen ändern.
+Als nächste Schicht folgt der \textit{Application Code}.
+Darin ist die Applikationslogik beziehungsweise die anwendungsspezifische Geschäftslogik enthalten, welche mit den Entitäten aus dem \textit{Domain Code} angewandt wird.
+Eine Änderung dieses Codes ist möglich, wenn sich die Anforderungen der Software ändern.
+Auf den \textit{Application Code} folgt die \textit{Adapters}-Schicht.
+Diese Schicht dient als Interface für Adapter und enthält daher nötige Controller, Presenters oder Gateways.
+Die Schicht fungiert als Zwischenschicht und vermittelt Aufrufe sowie Daten an die innere Schichten.
+Das Ziel ist dabei die Entkopplung der inneren und äußeren Schichten, weshalb man auch von einem \textit{Anti Corruption Layer} spricht.
+Als letzte Schicht folgen die \textit{Plugins}.
+Darin enthalten sind eingesetzte Frameworks oder Treiber.
+Diese Schicht ist vor allem für die Anbindung an eine Datenbank, die grafische Oberfläche oder auch Drittsysteme nötig.
+\textit{Plugins}-Code greift eher nur auf die \textit{Adapters}-Schicht zu und ist leicht auszutauschen.
+
+Der Aufbau der Architektur entspricht somit einer Zwiebel und wird daher auch \textit{Onion Architecture} bezeichnet.
+
+Wichtig ist bei diesem Aufbau, dass jeweilige Abhängigkeiten nur in tieferliegende Schichten bestehen dürfen.
+Innere Schichten dürfen daher die äußeren Schichten nicht kennen.
+Man bezeichnet diese Regel auch als \textit{Dependency Rule}.
+Eine Anwendung der \textit{Dependency Injection} sowie \textit{Dependency Inversion} kann hierbei unterstützen.
+Das Ziel ist dadurch, dass ein Austausch einer Technologie somit nur die äußerste Schicht betrifft, der Kern der Software hiervon jedoch unberührt ist und somit die Geschäftslogik nicht davon beeinflusst.
+Somit wird es möglich, dass Code nur von langlebigerem Code als sich selbst abhängig ist.
+
+Die Grenzen der Clean Architecture ist allerdings, dass technische Grundlagen dennoch gegeben und stabil sein müssen.
+Dazu zählt die verwendete Programmiersprache, der Compiler und die Laufzeitumgebung sowie auch in gewissem Maße das Betriebssystem oder die eingesetzte Hardware.
+Frameworks können diese Grenzen ebenfalls einschränken, wenn eine zu starke Bindung stattfindet.
+Dieser Eingrenzung muss man sich bei der Planung der Software-Architektur im Klaren sein und daraus mögliche Folgen erkennen beziehungsweise abwägen.
+
+\section{Anwendung der Schichten}
+Im Folgenden wird die Umsetzung der \textit{Clean Architecture} innerhalb dieses Softwareentwurfs beschrieben.
+Zunächst ist die Projektstruktur entsprechend realisiert worden.
+
+Die Projektstruktur ist ebenfalls angepasst.
+Anstatt alle nötigen Klassen in einem Projekt zu erzeugen, ist zur Übersichtlichkeit eine Strukturierung entsprechend der Schichten vorgenommen worden.
+Dabei ist keine Strukturierung der einzelnen Schichten über Packages gemacht worden.
+Diese Variante ist grundsätzlich möglich, jedoch findet dabei keine Überprüfung durch den Compiler statt und es ist somit schwieriger möglich, einzelne Abhängigkeiten von innen nach außen zu erkennen.
+Stattdessen bietet sich die Form mehrerer Projekte an.
+Jedes Projekt bildet dabei eine Schicht ab.
+Der Compiler erkennt nun nur die im eigenen Projekt sowie in referenzierten Projekten vorhandene Klassen.
+Diese Möglichkeit unterstützt bei der Umsetzung der tiefergehenden Abhängigkeiten.
+Darüber hinaus dient ein Überprojekt als Abbild des gesammten Projekts und der Klammerung der einzelnen Schicht.
+Abbildung \ref{fig:projektstruktur} zeigt die umgesetzte Projektstruktur und Abbildung \ref{fig:umsetzung-pom} die pom.xml zur Umsetzung der einzelnen Projekte in einem Klammerprojekt.
+Die einzelnen Projekte, die jeweils eine Schicht der \textit{Clean Architecture} abbilden, sind in dieses globale Projekt als Module eingebunden.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\textwidth]{Bilder/projektstruktur.PNG}
+	\caption[Aufteilung der Projektstruktur entsprechend \textit{Clean Architecture}.]{Die Projektstruktur ist entsprechend der \textit{Clean Architecture} in einzelne Unterprojekte aufgeteilt.}
+	\label{fig:projektstruktur}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\textwidth]{Bilder/ausschnitt-pom.PNG}
+	\caption[Ausschnitt aus der pom.xml zur Projektstruktur.]{Der Ausschnitt zeigt die Umsetzung der Projektstruktur zwischen dem Klammerprojekt und den einzelnen Unterprojekten.}
+	\label{fig:umsetzung-pom}
+\end{figure}
+
+Die Realisierung der einzelnen Schichten bezieht sich auf den Anwendungsbezug und die Anforderungen der Anwendung.
+Das zum Programmentwurf dazugehörige UML-Diagramm in \todo[]{Perma-Link UML} verdeutlicht farblich die Zugehörigkeit der Klasen entsprechend der Clean-Architecture.
+Die farbliche Zuordnung ist wie folgt:
+\begin{itemize}
+    \item weiß entspricht der \textit{Abstraction Code}-Schicht,
+    \item dunkelblau der \textit{Domain Code}-Schicht,
+    \item hellblau der \textit{Application Code}-Schicht,
+    \item dunkelgrün der \textit{Adapter Code}-Schicht und
+    \item hellgrün der \textit{Plugin Code}-Schicht.
+\end{itemize}
+
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=1.0\textwidth]{Bilder/class diagram.pdf}
+%	\caption[UML-Diagramm des Software-Entwurfs.]{Das UML-Diagramm des Software-Entwurfs mit entsprechend der \textit{Clean Architecture} farblich kategorisierten Klassen.}
+%	\label{fig:uml-diagramm}
+%\end{figure}
+
+Die Software dient als \ac{REST}-Server zur Verwaltung der Lebensmittel Zuhause.
+Dabei können Lebensmittel sowohl im Kühlschrank, der Gefriertruhe oder in einem Regal gelagert werden.
+Neue Lebensmittel können angelegt werden.
+Dabei ist die Bezeichnung des Lebensmitttels sowie die entsprechende Menge und das Mindesthaltbarkeitsdatum relevant.
+Bei fehlerhafter Eingabe oder dem teilweisen Verbrauch können entsprechende Werte angepasst werden.
+Verbrauchte Lebensmittel können gelöscht werden.
+Dementsprechend sieht eine Umsetzung der einzelnen Schichten wie folgt aus:
+
+\subsection*{\textit{Abstraction Code}-Schicht}
+In der \textit{Abstraction Code}-Schicht befinden sich Klassen für die Verwaltung der Maßeinheit der Lebensmittel.
+Die Klasse \textit{UnitOfMeasure} ist die Superklasse der Subklassen \textit{Quantity}, \textit{Volume} sowie \textit{Weight}.
+Innerhalb dieser Klassen wird die zugehörige Maßeinheit sowie der entsprechende Wert gespeichert.
+In dieser Schicht befindet sich zudem die Klasse \textit{DateValidator}.
+Die Klasse dient der Prüfung der Gültigkeit des Mindesthaltbarkeitsdatums als ein grundsätzlich gültiges Format.
+Sowohl die Klassen für die Maßeinheit als auch die Klasse zur Gültigkeitsprüfung des Mindesthaltbarkeitsdatums sind in dieser Schicht festgelegt, da sowohl die Maßeinheiten als auch die Gültigkeit des Datums auf domänenübergreifendes Wissen zurückzuführen sind, dessen Änderung und somit auch das der Klassen ausgeschlossen.
+Die Klassen benötigen zudem keine Abhängigkeit zu Klassen der äußeren Schichten.
+
+\subsection*{\textit{Domain Code}-Schicht}
+Die \textit{Domain Code}-Schicht enthält die für den Anwendungsfall der Software relevanten Domänen.
+Dazu zählt zum einen die Klasse \textit{ConsumerGoods}.
+Diese Klasse dient der Repräsentation der Lebensmittel als einer der Domänen.
+Innerhalb der Klasse \textit{ConsumerGoods} werden dabei die weiteren Klassen \textit{Food} als eigentliches Lebensmittel, \textit{UnitOfMeasure} als Klasse für die Maßeinheit sowie \textit{Storage} als Klasse für den Lagerort verwaltet.
+Die Klasse \textit{UnitOfMeasure} ist wie bereits erläutert Teil der \textit{Abstraction Code}-Schicht und somit ist die Abhängigkeit möglich.
+Die Klasse \textit{Storage} ist die Superklasse für die Lagerortsklassen \textit{Fridge} sowie \textit{FoodShelf} und speichern lediglich die Beschreibung des Lagerorts.
+\todo[]{Gefrierschrank nicht vergessen}
+Eine weitere Klasse ist\textit{Food}. Diese repräsentiert die Bezeichnung des zu speichernden Lebensmittels sowie das dazugehörige Mindesthaltbarkeitsdatum.
+Das Mindesthaltbarkeitsdatum wird in der Klasse \textit{BestBeforeDate} verwaltet.
+
+Darüber hinaus befinden sich in der \textit{Domain Code}-Schicht die Interfaces \textit{ConsumerGoodsRepository}, \textit{FridgeRepository} und \textit{FoodShelfRepository}.
+Diese Interfaces dienen im folgenden Verlauf der Anwendung einer \textit{Dependency Inversion}.
+Die Interfaces beinhalten die abstrakten Methoden zum Finden gezielter oder aller jeweiligen Entitäten sowie dem Löschen und Hinzufügen.
+\todo{Codeausschnit eines Interfaces als Beispiel}
+
+\subsection*{\textit{Application Code}-Schicht}
+Eine weitere Schicht ist die \textit{Application Code}-Schicht.
+Darin befinden sich die Klassen \textit{ConsumerGoodsApplicationService} sowie \textit{StorageApplicationService}.
+In diesen Klassen findet die Applikationslogik statt.
+Innerhalb des \textit{ConsumerGoodsApplicationService} bedeutet das konkret, das Anlegen neuer \textit{ConsumerGoods}-Objekten, das Ausgeben aller aktuell gespeicherter \textit{ConsumerGoods}-Objekten, Verändern eines \textit{ConsumerGoods}-Objekts sowie das Löschen von \textit{ConsumerGoods}-Objekten.
+\todo[]{Code-Ausschnitt}
+Es findet hierbei eine \textit{Dependency Inversion} statt.
+Die Klasse \textit{ConsumerGoodsRepositoryBridge} fungiert als Repository-Klasse für die \textit{ConsumerGoods}-Objekte. Die beiden Klassen haben das Interface \textit{ConsumerGoodsRepository} implementiert.
+Zum Ausführen der Applikationslogik eine Abhängigkeit in eine äußere Schicht nötig. 
+Um dies zu umgehen, wird als Übergabeparameter des Konstruktors ein Objekt, welches das Interface \textit{ConsumerGoodsRepository} implementiert hat, übergeben.
+Somit ist zur Kompilierungszeit keine Abhängigkeit vorhanden und ein Verwenden der äußeren Klasse zur Laufzeit möglich.
+Sollte nun die Klasse \textit{ConsumerGoodsRepositoryBridge} in der \textit{Plugin}-Schicht aufgrund eines Technologiewechsel verändert werden, kann bei Implementierung des Interfaces \textit{ConsumerGoodsRepository} unberührt weiterverwendet werden.
+\todo[]{Code-Ausschnitt zu Dependency Inversion}
+
+Die Klasse \textit{StorageApplicationService} hat die gleiche Applikationslogik wie der \textit{ConsumerGoodsApplicationService}, jedoch mit dem Unterschied, dass es sich auf \textit{Fridge}-Objekte sowie \textit{FoodShelf}-Objekte bezieht.
+\todo[]{Gefriertruhe}
+Analog hier ist ebenfalls ein Anlegen, Ausgeben, Verändern und Löschen eines \textit{Fridge}-Objekte oder \textit{FoodShelf}-Objektes möglich.
+\todo[]{Code-Ausschnitt}
+Auch in der Klasse \textit{StorageApplicationService} findet eine \textit{Dependency Inversion} für die Klassen der Repositories für die einzelnen Storage-Ausprägungen statt.
+Die Klassen \textit{FridgeRepositoryBridge} und \textit{FoodShelfRepositoryBridge} dienen als Repository-Klassen für die jeweiligen \textit{Fridge}-Objekte und \textit{FoodShelf}-Objekte. Die beiden Klassen haben das Interface \textit{FridgeRepository} beziehungsweise \textit{FoodShelfRepository} implementiert.
+Auch hier wäre zum Ausführen der Applikationslogik eine Abhängigkeit in eine äußere Schicht nötig. Um dies zu umgehen, wird auch hierbei als Übergabeparameter des Konstruktors ein Objekt, welches das Interface \textit{FridgeRepository} beziehungsweise \textit{FoodShelfRepository} implementiert hat, übergeben.
+Somit ist zur Kompilierungszeit keine Abhängigkeit vorhanden und ein Verwenden der äußeren Klasse möglich.
+\todo[]{Code-Ausschnitt zu Dependency Inversion}
+
+\todo[]{eventuell RenderModell umsetzen, auch in Richtung des ApplicationCodes}
+
+\subsection*{\textit{Adapters}-Schicht}
+Eine weitere Schicht ist die \textit{Adapters}-Schicht.
+Diese Schicht dient als \textit{Anti Corruption Layer}, indem sie die inneren Schichten von den äußeren Schichten trennt.
+Dementsprechend sind die Domänen-Klassen aus der \textit{Domain}-Schicht, die zur Kommunikation mit den äußeren Schichten benötigt werden, in dieser Schicht repliziert.
+Dazu zählen die folgenden Klassen:
+\todo[]{Tabelle mit Gegenüberstellungen}
+
+Durchgeführt wird diese Trennung der inneren und äußeren Schichten durch die Klassen \textit{ConsumerGoodsToConsumerGoodsRessourceMapper}, \textit{FridgeToFridgeRessourceMapper} sowie \textit{FoodShelfToFoodShelfMapper}.
+Die Abläufe sind sehr identisch und werden beispielhaft durch einen Ausschnitt der Klasse \textit{ConsumerGoodsToConsumerGoodsRessourceMapper} dargestellt.
+\todo[]{Code-Ausschnitt}
+Der Code-Ausschnitt verdeutlicht die Trennung durch die Erstellung neuer Resource-Objekte entsprechend den Daten der Domänen-Objekte.
+Die dadurch erzeugten Resource-Objekte können nun von Objekten der Klassen in der \textit{Plugin}-Schicht verwendet werden.
+
+\subsection*{\textit{Plugin}-Schicht}
+Die äußerste Schicht bildet die \textit{Plugin}-Schicht.
+Zum einen enthält die Plugin-Schicht die Main-Methode zum Starten des Projekts.
+Aufgrund der Tatsache, dass die Main-Methode technisch bedingt und somit keinerlei Bezug zur Anwendung und deren Geschäftsprozesse hat, ist sie in der äußersten Schicht anzusetzen.
+Dementsprechend befindet sich die Main-Methode in der Klasse \textit{ConsumerInventoryPlannerApplication}, die sich im Package \textit{de.dhbw.cip.main} befindet.
+\todo[]{Code-Ausschnitt der Main-Methode}
+Daneben gibt es in der \textit{Plugin}-Schicht das Package \textit{de.dhbw.cip.plugins.persistence.hibernate}.
+Es enthält die Klassen \textit{ConsumerGoodsRepositoryBridge}, \textit{FridgeRepositoryBridge} sowie \textit{FoodShelfRepositoryBridge}.
+Diese Klassen dienen als Repository-Klassen für die Objekte der jeweiligen Klassen \textit{ConsumerGoods}, \textit{Fridge} sowie \textit{FoodShelf}.
+Die Klassen haben jeweils das aus der \textit{Domain}-Schicht dazugehörige Interface implementiert.
+Die Bridge dient dabei als Bindeglied zwischen dem internen Repository sowie dem durch das Spring Framework bereitgestellte \ac{JPA}-Repository, dass für die spätere Anbindung an eine Datenbank zur Persistierung benötigt wird.
+Dadurch kann eine Trennung zwischen der Geschäftslogik und der Persistierung durch das Spring Framework durchgeführt werden.
+Die Bridge entspricht zudem einem Entwurfsmuster und wird im Kapitel \ref{entwurfsmuster} ebenfalls analysiert.
+Des Weiteren sind in dem Package die Klassen \textit{SpringDataConsumerGoodsRepository}, \textit{SpringDataFridgeRepository} sowie \textit{SpringDataFoodShelfRepository} enthalten.
+Wie bereits erwähnt, erben diese Klassen von der Oberklasse \textit{JpaRepository}.
+Diese Klassen wird durch das Spring-Framework bereitgestellt und dient der Persistierung auf einer Datenbank.
+Diese Klassen stellen somit die Möglichkeit bereit, die Anbindung an eine Datenbank zu ermöglichen.
+Die Implementierung ist jedoch nicht in den Anforderungen festgelegt, weshalb ausschließlich die geforderten Grundlagen zur Umsetzung bereitgestellt sind.
+Zuletzt findet sich in der \textit{Plugin}-Schicht das Package \textit{de.dhbw.cip.plugins.rest}.
+Darin befinden sich die Klassen \textit{ConsumerGoodsController} sowie \textit{StorageController}.
+Bei diesen Klassen handelt es sich um den \ac{REST}-Controller zur Interaktion über das HTTP-Protokoll mit der \ac{GUI}.
+Die GUI ist mit der Technologie \textit{Angular} erstellt worden.
+Sie dient lediglich der Repräsentation der Funktionalität des \ac{REST}-Services und wird daher innerhalb des Softwareentwurfs nicht tiefer analysiert.
+Der \ac{REST}-Controller dient somit als Schnittstelle zur \ac{GUI} und befindet sich daher in der \textit{Plugin}-Schicht.
+Zum Erhalt der darzustellenden Daten werden Instanzen des jeweiligen Application Services sowie des Resource Mappers als Übergabeparemeter des Konstruktors übergeben.
+Dadurch können zum Senden der Entitäten die in der \textit{Adapter}-Schicht erzeugten Resource-Entitäten gestreamt und als Liste gesendet werden.
+Gleichzeitig können über eine Abhängkeit zum entsprechenden Application Service Entitäten entsprechend der über die \ac{GUI} übermittelnden Daten erzeugt, verändert oder gelöscht werden.
+Die Code-Ausschnitte verdeutlichen die Interaktionen des \ac{REST}-Controllers am Beispiel der Klasse \textit{ConsumerGoodsController}.
+\todo[]{Code-Ausschnitt Get-Stream}
+\todo[]{Code-Ausschnitt put, post, delete}
+
+\todo[]{Bezug zu RenderModel}
+
+\subsection*{Frameworks}
+\todo[]{Besonderheiten durch Verwendung von Spring in Bezug auf Clean Architecture?}
+\todo[]{Framework nach außen, wird jedoch aufgrund des erhelblichen Mehraufwands auf den Teller genommen}

@@ -1,0 +1,1076 @@
+  StorageGuiController 
+
+     StorageManager storageApplicationService
+
+     FridgeToFridgeResourceMapper fridgeToFridgeResourceMapper
+     FoodShelfToFoodShelfRessourceMapper foodShelfToFoodShelfResourceMapper
+
+     StorageGuiControllerStorageManager storageApplicationService, 
+    		FridgeToFridgeResourceMapper fridgeToFridgeResourceMapper,
+    		FoodShelfToFoodShelfRessourceMapper foodShelfRessourceMapper 
+        storageApplicationService = storageApplicationService
+        fridgeToFridgeResourceMapper = fridgeToFridgeResourceMapper
+        foodShelfToFoodShelfResourceMapper = foodShelfRessourceMapper
+     FridgeResource getFridges 
+         storageApplicationService findAllFridges stream
+                 mapfridgeToFridgeResourceMapper
+                 collectCollectors to
+     FoodShelfResource getFoodShelfs 
+         storageApplicationService findAllFoodShelfs stream
+                 mapfoodShelfToFoodShelfResourceMapper
+                 collectCollectors to
+    
+  ConsumerGoodsGuiController 
+
+     ConsumerGoodsManager consumerGoodsApplicationService
+
+     ConsumerGoodsToConsumerGoodsResourceMapper consumerGoodsToConsumerGoodsResourceMapper
+
+     ConsumerGoodsGuiControllerConsumerGoodsManager consumerGoodsApplicationService, 
+    		ConsumerGoodsToConsumerGoodsResourceMapper consumerGoodsToConsumerGoodsResourceMapper,
+    		StorageManager storageManager 
+        consumerGoodsApplicationService = consumerGoodsApplicationService
+        consumerGoodsToConsumerGoodsResourceMapper = consumerGoodsToConsumerGoodsResourceMapper
+     ConsumerGoodsResource getConsumerGoods 
+         consumerGoodsApplicationService findAllConsumerGoods stream
+                 mapconsumerGoodsToConsumerGoodsResourceMapper
+                 collectCollectors to
+    
+     HttpStatus postConsumerGood"description"  description, "bestbeforedateday"  bestBeforeDateDay,
+    		"bestbeforedatemonth"  bestBeforeDateMonth, "bestbeforedateyear"  bestBeforeDateYear, 
+    		"quantityvalue"  quantityValue, "quantity"  quantity, "storage"  storage 
+    	
+    	ConsumerGoodsBuilder consumerGoodsBuilder =  ConsumerGoodsBuilderdescription, bestBeforeDateDay, bestBeforeDateMonth, bestBeforeDateYear, quantity, quantityValue, storage, storage
+    	System out prlnconsumerGoodsBuilder validate
+    	 consumerGoodsBuilder validate && consumerGoodsApplicationService addConsumerGoodsconsumerGoodsBuilder build  HttpStatus OK
+    	 HttpStatus ERNAL_SERVER_ERROR
+    	throw  ResponseStatusExceptionHttpStatus BAD_REQUEST, "Error while add  consumer goods"
+    	
+    	consumerGoodsApplicationService addConsumerGoods ConsumerGoods Fooddescription,  BestBeforeDate  DayOfYear DaybestBeforeDateDay,  MonthbestBeforeDateMonth,  YearbestBeforeDateYear,  Volume ValuequantityValue,  Fridge"fridge"
+    	System out prln"Result: "+description+", "+bestBeforeDateDay+" "+bestBeforeDateMonth+" "+bestBeforeDateYear+" "
+    				+quantityValue+quantity+" "+storage	
+    	 "Result: "+description+", "+bestBeforeDateDay+" "+bestBeforeDateMonth+" "+bestBeforeDateYear+" "
+    				+quantityValue+quantity+" "+storage
+    
+     HttpStatus deleteConsumerGoodname = "id"  id 
+    	send error   something goes wrong
+    	 consumerGoodsApplicationService deleteConsumerGoodsid  HttpStatus OK
+    	 HttpStatus NOT_FOUND
+    	throw  ResponseStatusExceptionHttpStatus NOT_FOUND, "Error while delete consumer goods"
+    
+     HttpStatus updateConsumerGood"id"  eanCode, "description"  description, "bestbeforedateday"  bestBeforeDateDay,
+    		"bestbeforedatemonth"  bestBeforeDateMonth, "bestbeforedateyear"  bestBeforeDateYear, 
+    		"quantityvalue"  quantityValue, "quantity"  quantity, "storage"  storage 
+    	
+    	ConsumerGoodsBuilder consumerGoodsBuilder =  ConsumerGoodsBuilderdescription, bestBeforeDateDay, bestBeforeDateMonth, bestBeforeDateYear, quantity, quantityValue, storage, storage
+    	System out prlnconsumerGoodsBuilder validate
+    	 consumerGoodsBuilder validate && consumerGoodsApplicationService updateConsumerGoodseanCode, consumerGoodsBuilder build  HttpStatus OK
+    	 HttpStatus ERNAL_SERVER_ERROR
+    	throw  ResponseStatusExceptionHttpStatus BAD_REQUEST, "Error while update consumer goods"
+    	
+    	 test = consumerGoodsApplicationService updateConsumerGoodsid,  ConsumerGoods Fooddescription,  BestBeforeDate  DayOfYear DaybestBeforeDateDay,  MonthbestBeforeDateMonth,  YearbestBeforeDateYear,  Volume ValuequantityValue,  Fridge"fridge"
+    	System out prlntest
+    	System out prln"Result: "+eanCode+","+description+", "+bestBeforeDateDay+" "+bestBeforeDateMonth+" "+bestBeforeDateYear+" "
+    				+quantityValue+quantity+" "+storage
+    	 "Result: "+description+", "+bestBeforeDateDay+" "+bestBeforeDateMonth+" "+bestBeforeDateYear+" "
+    				+quantityValue+quantity+" "+storage
+    
+
+
+  PersistenceFridgeRepository  JpaRepositoryFridge,  
+
+  PersistenceFoodShelfRepository  JpaRepositoryFoodShelf,  
+
+  PersistenceConsumerGoodsRepository  JpaRepositoryConsumerGoods,  
+
+  FridgeRepositoryBridge  FridgeRepository 
+	
+	 PersistenceFridgeRepository springDataFridgeRepository
+
+     FridgeRepositoryBridgePersistenceFridgeRepository springDataFridgeRepository 
+        springDataFridgeRepository = springDataFridgeRepository
+   
+	 Fridge getAllOccupiedFridgeStorageBins 
+		 springDataFridgeRepository findAll
+
+	 Fridge occupyFridgeStorageBinFridge fridge 
+		 springDataFridgeRepository savefridge
+
+  FoodShelfRepositoryBridge  FoodShelfRepository 
+	
+	 PersistenceFoodShelfRepository springDataFoodShelfRepository
+
+     FoodShelfRepositoryBridgePersistenceFoodShelfRepository springDataFoodShelfRepository 
+        springDataFoodShelfRepository = springDataFoodShelfRepository
+    
+	 FoodShelf getAllOccupiedFoodShelfStorageBins 
+		 springDataFoodShelfRepository findAll
+	
+
+	
+	 FoodShelf occupyFoodShelfStorageBinFoodShelf foodShelf 
+		 springDataFoodShelfRepository savefoodShelf
+	
+  ConsumerGoodsRepositoryBridge  ConsumerGoodsRepository 
+
+     PersistenceConsumerGoodsRepository springDataConsumerGoodsRepository
+
+    
+     ConsumerGoodsRepositoryBridgePersistenceConsumerGoodsRepository springDataConsumerGoodsRepository 
+        springDataConsumerGoodsRepository = springDataConsumerGoodsRepository
+    
+
+    
+     ConsumerGoods findAllStoredConsumerGoods 
+         springDataConsumerGoodsRepository findAll
+    
+
+	
+	 ConsumerGoods storeConsumerGoodsConsumerGoods consumerGood 
+		 springDataConsumerGoodsRepository saveconsumerGood
+	
+
+	
+	 OptionalConsumerGoods findStoredConsumerGoods id 
+		 springDataConsumerGoodsRepository findByIdid
+	
+
+	
+	  outsourceConsumerGoods id 
+		 
+			springDataConsumerGoodsRepository deleteByIdid
+			 true
+		  Exception e 
+			 TODO: handle exception
+			 false
+
+  ConsumerInventoryPlannerApplication 
+
+       main[] args 
+        SpringApplication runCleanProjectApplication , args
+        SpringApplication app =  SpringApplicationConsumerInventoryPlannerApplication 
+        app setDefaultPropertiesCollections singletonMap"server port", "8083"
+        app runargs
+    
+
+    
+     CommandLineRunner demoConsumerGoodsRepository repository 
+         args - 
+        	repository storeConsumerGoods ConsumerGoodsBuilder"Tomatoe", 1, 1, 2022, "Stk ", 3, "Fridge", "fridge in the kitchen" build
+        	repository storeConsumerGoods ConsumerGoodsBuilder"Banana", 2, 3, 2022, "Stk ", 5, "FoodShelf", "foodshelf in the basement" build
+        	repository save ConsumerGoods Food"Tomatoe",  BestBeforeDate  DayOfYear Day1,  Month1,  Year2022,  Quantity Value3,  Fridge"fridge"
+        	repository save ConsumerGoods Food"Banana",  BestBeforeDate  DayOfYear Day1,  Month1,  Year2022,  Quantity Value5,  FoodShelf"foodshelf"
+        	repository save ConsumerGoods"Banane"
+        	repository save ConsumerGood"Tomate", 1, "Bernard Cornwell", LocalDate of1996, 01, 01
+        
+    
+    
+	
+	 CorsFilter corsFilter 
+		CorsConfiguration corsConfiguration =  CorsConfiguration
+		corsConfiguration setAllowCredentialstrue
+		corsConfiguration setAllowedOriginsArrays as"http:localhost:4200"
+		corsConfiguration setAllowedHeadersArrays as"Origin", "Access-Control-Allow-Origin", "Content-Type",
+				"Accept", "Authorization", "Origin, Accept", "X-Requested-With",
+				"Access-Control-Request-Method", "Access-Control-Request-Headers"
+		corsConfiguration setExposedHeadersArrays as"Origin", "Content-Type", "Accept", "Authorization",
+				"Access-Control-Allow-Origin", "Access-Control-Allow-Origin", "Access-Control-Allow-Credentials"
+		corsConfiguration setAllowedMethodsArrays as"GET", "POST", "PUT", "DELETE", "OPTIONS"
+		UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource =  UrlBasedCorsConfigurationSource
+		urlBasedCorsConfigurationSource registerCorsConfiguration"*", corsConfiguration
+		  CorsFilterurlBasedCorsConfigurationSource
+
+   StorageResource 
+	
+	protected  id
+	protected  description	
+	  Object getType
+	
+	  setDescription id,  description 
+		description = description
+	
+	
+	  getDescription 
+		 description
+	
+	
+	  getId 
+		 id
+
+
+  FridgeToFridgeResourceMapper  FunctionFridge, FridgeResource 
+
+    
+     FridgeResource applyFridge fridge 
+         mapfridge
+    
+
+     FridgeResource mapFridge fridge 
+          ConsumerGoodsResourceconsumerGoods getTitle
+    	  FridgeResourcefridge getId, fridge getDescription
+
+  FridgeResource  StorageResource
+	
+	 FridgeResource 
+		  for JPA
+	
+	
+	 FridgeResource id,  description 
+		id = id
+		description = description
+	
+	
+	
+	 Object getType 
+		 TODO Auto-generated method stub
+		 
+
+
+  FoodShelfToFoodShelfRessourceMapper  FunctionFoodShelf, FoodShelfResource 
+
+    
+     FoodShelfResource applyFoodShelf foodShelf 
+         mapfoodShelf
+    
+
+     FoodShelfResource mapFoodShelf foodShelf 
+          ConsumerGoodsResourceconsumerGoods getTitle
+    	  FoodShelfResourcefoodShelf getId, foodShelf getDescription
+
+  FoodShelfResource  StorageResource 
+	
+	 FoodShelfResource 
+		  for JPA
+	 
+	
+	 FoodShelfResource id,  description 
+		id = id
+		description = description
+	
+
+	
+	 Object getType 
+		 TODO Auto-generated method stub
+		 
+
+  FoodResource 
+	
+	  id
+	  description
+	 BestBeforeDateResource bbd
+	
+	 FoodResource description, BestBeforeDateResource bbd 
+		description = description
+		bbd = bbd
+	
+	
+	 BestBeforeDateResource getBbd 
+		 bbd
+	
+	
+	  getDescription 
+		 description
+	
+	
+	  setDescription description 
+		description = description
+	
+	
+	es instead of 
+	  setBbdBestBeforeDateResource bbd 
+		bbd = bbd
+
+
+  ConsumerGoodsToConsumerGoodsResourceMapper  FunctionConsumerGoods, ConsumerGoodsResource 
+
+    
+     ConsumerGoodsResource applyConsumerGoods consumerGoods 
+         mapconsumerGoods
+    
+
+     ConsumerGoodsResource mapConsumerGoods consumerGoods 
+          ConsumerGoodsResourceconsumerGoods getTitle
+    	 consumerGoods getStorage instanceof Fridge   ConsumerGoodsResourceconsumerGoods getEANCode,  FoodResourceconsumerGoods getFood getDescription, 
+    			 BestBeforeDateResource DayOfYear DayconsumerGoods getFood getBbd getDay, 
+    														 MonthconsumerGoods getFood getBbd getMonth,
+    										 YearconsumerGoods getFood getBbd getYear,
+    			consumerGoods getQuantity, 
+    			 FridgeResourceconsumerGoods getStorage getId ,consumerGoods getStorage getDescription
+    	
+    	  ConsumerGoodsResourceconsumerGoods getEANCode,  FoodResourceconsumerGoods getFood getDescription, 
+    			 BestBeforeDateResource DayOfYear DayconsumerGoods getFood getBbd getDay, 
+    														 MonthconsumerGoods getFood getBbd getMonth,
+    										 YearconsumerGoods getFood getBbd getYear,
+    			consumerGoods getQuantity, 
+    			 FoodShelfResourceconsumerGoods getStorage getId, consumerGoods getStorage getDescription
+
+  ConsumerGoodsResource 
+
+	   id
+	  FoodResource food
+	  UnitOfMeasure quantity
+	 
+	   storagePlace
+	  ConsumerGoodsResource 
+		  for JPA
+	 
+
+	  ConsumerGoodsResource id, FoodResource food, UnitOfMeasure quantityValue, StorageResource storage 
+	    Validate notBlanktitle
+	    title = title
+		id = id
+	    food = food
+	    quantity = quantityValue
+		storagePlace = storage getDescription
+	 
+
+	   getTitle 
+	         title
+	    
+	   
+	  getId 
+		 id
+	
+	
+	 UnitOfMeasure getQuantity 
+		 quantity
+	
+		
+	 FoodResource getFood 
+		 food
+	
+		
+	  getStorage 
+		 storagePlace
+	
+		
+	  changeFoodDescription description 
+		food setDescriptiondescription
+	
+		
+	TODO
+	  changeFoodBestBeforedate 
+		
+	
+		
+	  changeStoragePlaceStorageResource storagePlace 
+		storagePlace = storagePlace getDescription
+  BestBeforeDateResource 
+	
+	  id
+	 DayOfYear dayOfYear
+	 Year year
+
+	 BestBeforeDateResourceDayOfYear dayOfYear, Year year 
+		 
+		DateValidator validatedayOfYear, year
+		 DateTimeParseException e 
+			e prStackTrace
+			System out prln"Input is an invalid date!"
+		
+		dayOfYear = dayOfYear
+		year = year
+	
+	
+	  getDay 
+		 dayOfYear getDay
+	
+	
+	  getMonth 
+		 dayOfYear getMonth
+	
+	
+	  getYear 
+		 year getYear
+
+  StorageManager 
+
+     FridgeRepository fridgeRepository
+     FoodShelfRepository foodshelfRepository
+
+    
+     StorageManagerFridgeRepository fridgeRepository, FoodShelfRepository foodshelfRepository 
+        fridgeRepository = fridgeRepository
+        foodshelfRepository = foodshelfRepository
+    
+
+     Fridge findAllFridges 
+         fridgeRepository getAllOccupiedFridgeStorageBins
+    
+    
+     FoodShelf findAllFoodShelfs 
+         foodshelfRepository getAllOccupiedFoodShelfStorageBins
+
+
+  ConsumerGoodsManager 
+
+     ConsumerGoodsRepository consumerGoodsRepository
+
+    
+     ConsumerGoodsManagerConsumerGoodsRepository consumerGoodsRepository 
+        consumerGoodsRepository = consumerGoodsRepository
+    
+
+     ConsumerGoods findAllConsumerGoods 
+         consumerGoodsRepository findAllStoredConsumerGoods
+    
+    
+      deleteConsumerGoods id 
+    	 
+    		 consumerGoodsRepository findStoredConsumerGoodsid isEmpty  false
+			consumerGoodsRepository outsourceConsumerGoodsid
+    		 true
+		  Exception e 
+			 false
+		
+    
+    
+      updateConsumerGoods id, ConsumerGoods consumerGoods 
+    	 consumerGoodsRepository findStoredConsumerGoodsid isEmpty  false
+    	 
+    		ConsumerGoods ConsumerGoods = consumerGoodsRepository findStoredConsumerGoodsid get
+    		ConsumerGoods changeFoodconsumerGoods getFood
+    		ConsumerGoods changeUnitOfMeasure
+    		ConsumerGoods changeStoragePlaceconsumerGoods getStorage
+    		deleteConsumerGoodsid
+    		addConsumerGoodsConsumerGoods
+			 true
+		  Exception e 
+			 false
+		
+    
+    
+      addConsumerGoodsConsumerGoods consumerGoods 
+    	 
+    		consumerGoodsRepository storeConsumerGoodsconsumerGoods
+    		 true
+		  Exception e 
+			 false
+
+
+strategy = InheritanceType SINGLE_TABLE
+   Storage 
+
+	
+    "id"
+    
+      id
+	
+	"description"
+	protected  description
+	
+	  Object getType
+	
+	  setDescription description 
+		description = description
+	
+	  getId 
+		 id
+	
+	
+	  getDescription 
+		 description
+	
+
+
+  StorableGoods 
+
+	  getDescription
+
+	 StorableGoods getInstance
+	
+	  setDescription description
+	
+	  setBestBeforeDateBestBeforeDate bbd
+	
+	 BestBeforeDate getBestBeforeDate
+
+
+  FridgeRepository 
+	
+	 Fridge getAllOccupiedFridgeStorageBins
+	
+	 Fridge occupyFridgeStorageBinFridge goods
+
+
+  Fridge  Storage 
+
+	 Fridge 
+		
+	
+	
+	 Fridge description 
+		description = description
+	
+
+	
+	
+	 Object getType 
+		 getType
+
+  FoodShelfRepository 
+
+	 FoodShelf getAllOccupiedFoodShelfStorageBins
+	
+	 FoodShelf occupyFoodShelfStorageBinFoodShelf goods
+
+
+  FoodShelf  Storage 
+	
+	 FoodShelf 
+		
+	
+	
+	 FoodShelf description 
+		description = description
+	
+	
+	
+	
+	 Object getType 
+		 getType
+
+"Food"
+  Food 
+
+	
+    "id"
+    
+      id
+	
+	"description"
+	 final  description
+	
+	
+	 final BestBeforeDate bbd
+	
+	 Food 
+         for JPA
+		description = ""
+		bbd =  BestBeforeDate DayOfYear Day0,  Month0,  Year0
+    
+	
+	 Food description, BestBeforeDate bbd 
+		description = description
+		bbd = bbd
+	
+	
+	 BestBeforeDate getBbd 
+		 bbd
+	
+	
+	  getDescription 
+		 description
+	
+	
+	
+	  setDescription description 
+		description = description
+	
+	
+	es instead of 
+	  setBbdBestBeforeDate bbd 
+		bbd = bbd
+
+  ConsumerGoodsRepository 
+
+    ConsumerGoods findAllStoredConsumerGoods
+    
+    OptionalConsumerGoods findStoredConsumerGoods id
+    
+     outsourceConsumerGoods id
+    
+    ConsumerGoods storeConsumerGoodsConsumerGoods consumerGood
+
+
+"ConsumerGoods"
+  ConsumerGoods 
+	
+    
+    "eanCode"
+    
+      eanCode
+
+    "title"
+      title
+    
+    OneToOnecascade = CascadeType ALL
+     Food food
+	
+    
+     UnitOfMeasure quantity
+    
+    
+	 Storage storagePlace
+	
+     ConsumerGoods 
+         for JPA
+    
+
+     ConsumerGoodsFood food, UnitOfMeasure quantityValue, Storage storage 
+    	Validate notBlanktitle
+        title = title
+        
+        food = food
+		quantity = quantityValue
+		storagePlace = storage
+    
+    
+     ConsumerGoodsConsumerGoodsBuilder consumerGoodsBuilder 
+    	Validate notBlanktitle
+        title = title
+
+        food = consumerGoodsBuilder food
+		quantity = consumerGoodsBuilder quantity
+		storagePlace = consumerGoodsBuilder storage
+    
+
+      getTitle 
+         title
+    
+    
+      getEANCode 
+         eanCode
+    
+   
+	 UnitOfMeasure getQuantity 
+		 quantity
+	
+	
+	 Food getFood 
+		 food
+	
+	
+	 Storage getStorage 
+		 storagePlace
+	
+	
+	  changeFoodFood food 
+		food = food
+	
+	
+	  changeFoodDescription description 
+		food setDescriptiondescription
+	
+	
+	  changeFoodBestBeforedateBestBeforeDate bbd 
+		food setBbdbbd
+	
+	
+	  changeQuantityUnitOfMeasure quantity 
+		quantity = quantity
+	
+	
+	  changeStoragePlaceStorage storagePlace 
+		storagePlace = storagePlace
+	
+
+	
+	   ConsumerGoodsBuilder 
+
+         final Food food
+		 final UnitOfMeasure quantity
+		 final Storage storage
+
+		 ConsumerGoodsBuilder foodDescription,  day,  month,  year,  measureShortcut,  measureValue,  storageTitle,  storageDescription 
+			food =  FoodfoodDescription,  BestBeforeDate DayOfYear Dayday,  Monthmonth,  Yearyear
+			quantity = findMeasureWithmeasureShortcut, measureValue
+			storage = findStorageWithstorageTitle, storageDescription
+		
+		
+		 UnitOfMeasure findMeasureWith measureShortcut,  measureValue 
+			 measureShortcut ==   
+			 measureShortcut equals"g"    Weight ValuemeasureValue
+			 measureShortcut equals"ml"    Volume ValuemeasureValue
+			 measureShortcut equals"Stk "    Quantity ValuemeasureValue
+			 
+		
+		
+		 Storage findStorageWith storageTitle,  storageDescription 
+			 storageTitle ==   
+			  Fridge  getSimpleName equalsstorageTitle && storageDescription !=     FridgestorageDescription
+			  FoodShelf  getSimpleName equalsstorageTitle && storageDescription !=     FoodShelfstorageDescription
+			 
+		
+		
+		 Food getFood 
+			 food
+		
+		
+		 UnitOfMeasure getUnitOfMeasure 
+			 quantity
+		
+		
+		 Storage getStorage 
+			 getStorage
+		
+		  validate 
+			TODO instead check in DateValidator
+			 
+				checkNon
+				
+				 DayValidator checkValidyOffood getBbd getDay && MonthValidator checkValidyOffood getBbd getMonth
+						&& YearValidator checkValidyOffood getBbd getYear && ValueValidator checkValidyOfquantity getValue getValue  true
+				 false
+			 Exception e 
+				 false
+			
+			
+		
+		  checkNon 
+			Objects requireNonfood getDescription, "Food description must not be "
+			Objects requireNonfood getBbd getDay, "Best before date day must not be "
+			Objects requireNonfood getBbd getMonth, "Best before date month must not be "
+			Objects requireNonfood getBbd getYear, "Best before date year must not be "
+			Objects requireNonquantity, "quantity must not be "
+			Objects requireNonstorage, "storage must not be "
+		
+		
+		 ConsumerGoods build 
+			ConsumerGoods consumerGoods =   ConsumerGoodsthis
+			 consumerGoods
+
+"BestBeforeDate"
+  BestBeforeDate 
+	
+	
+    "id"
+    
+      id
+	
+	OneToOnecascade = CascadeType ALL
+	 final DayOfYear dayOfYear
+	
+	OneToOnecascade = CascadeType ALL
+	 final Year year
+	
+	 BestBeforeDate 
+		dayOfYear =  DayOfYear Day0,  Month0
+		year =  Year0
+	
+	
+	 BestBeforeDateDayOfYear dayOfYear, Year year 
+		 
+		DateValidator validatedayOfYear, year
+		 DateTimeParseException e 
+			e prStackTrace
+			System out prln"Input is an invalid date!"
+		
+		dayOfYear = dayOfYear
+		year = year
+	
+	
+	  getDay 
+		 dayOfYear getDay
+	
+	
+	  getMonth 
+		 dayOfYear getMonth
+	
+	
+	  getYear 
+		 year getYear
+  DayValidator 
+
+	   checkValidyOf date 
+		 date  0 && date = 31 
+			 true
+		
+		throw  IllegalArgumentException valueOfdate+" as value is not valid for day date"
+		 false
+  YearValidator 
+
+	   checkValidyOf date 
+		 date = 0 
+			 true
+		
+		throw  IllegalArgumentException valueOfdate+" as value is not valid for year date"
+		 false
+	
+
+  Year 
+
+	
+    "id"
+    
+      id
+	
+	 final  year
+	
+	 Year 
+		
+		year = 0
+	
+	
+	 Year year 
+		
+		year = year
+	
+	
+	  getYear 
+		 year
+	
+
+  Weight  UnitOfMeasure
+	
+	 Weight 
+		 Value0
+	
+	
+	 WeightValue value 
+		value
+		description = "Gramm"
+		shortcut = "g"
+	
+
+	
+	  getDescription 
+		 description
+	
+
+	
+	 Value getValue 
+		 value
+	
+
+	
+	  getShortcut 
+		 shortcut
+	
+
+  Volume  UnitOfMeasure 
+
+	 Volume 
+		 Value0
+	
+	
+	 VolumeValue value 
+		value
+		description = "Milliliter"
+		shortcut = "ml"
+	
+	
+	
+	  getDescription 
+		 description
+	
+
+	
+	 Value getValue 
+		 value
+	
+
+	
+	  getShortcut 
+		 shortcut
+  ValueValidator 
+	
+	   checkValidyOf value 
+		 value  0  
+			 true
+		
+		throw  IllegalArgumentException valueOfvalue+" as value is not valid"
+		 false
+	
+
+"Value"
+  Value 
+	
+	
+    "id"
+    
+      id
+	
+	 final  value
+	
+	 Value 
+         for JPA
+		value = 0
+    
+	
+	 Value value 
+		
+		value = value
+	
+	
+	  getValue 
+		 value
+
+
+strategy = InheritanceType SINGLE_TABLE
+   UnitOfMeasure 
+	
+	
+    "id"
+    
+      id
+	
+	"description"
+	protected  description
+	"shortcut"
+	protected  shortcut
+	"value"
+	
+	protected final Value value
+	
+	 UnitOfMeasureValue value 
+			value = value
+	
+	
+	   getDescription
+	   getShortcut
+	  Value getValue
+
+  Quantity  UnitOfMeasure 
+
+	 Quantity 
+		 Value0
+	
+	
+	 QuantityValue value 
+		value
+		description = "Stueck"
+		shortcut = "Stk "
+	
+	
+	
+	  getDescription 
+		 description
+	
+
+	
+	 Value getValue 
+		 value
+	
+
+	
+	  getShortcut 
+		 shortcut
+  MonthValidator 
+
+	   checkValidyOf date 
+		 date  0 && date = 12 
+			 true
+		
+		throw  IllegalArgumentException valueOfdate+" as value is not valid for month date"
+		 false
+
+  Month 
+
+	
+    "id"
+    
+      id
+	
+	 final  month
+	
+	 Month 
+		
+		month = 0
+	
+	
+	 Month month 
+		
+		month = month
+	
+	
+	  getMonth 
+		 month
+
+  DayOfYear 
+
+		
+    	"id"
+    	
+    	  id
+	
+		OneToOnecascade = CascadeType ALL
+		 final Day day
+		
+		OneToOnecascade = CascadeType ALL
+		 final Month month
+		
+		 DayOfYear 
+			
+			day =  Day0
+			month =  Month0
+		
+		
+		 DayOfYearDay day, Month month 
+			
+			day = day
+			month = month
+		
+		
+		  getDay 
+			 day getDay
+		
+		
+		  getMonth 
+			 month getMonth
+		
+
+  Day 
+	
+	
+    "id"
+    
+	  id
+	
+	 final  day
+	
+	 Day 
+		
+		day = 0
+	
+	
+	 Day day 
+		
+		day = day
+	
+	
+	  getDay 
+		 day
+	
+  DateValidator 
+	
+	   validateDayOfYear dayOfYear, Year year 
+		 !checkDatedayOfYear, year 
+			 false
+			throw  DateTimeParseException"Input is an invalid date!",  valueOfdayOfYear getDay, 0
+		
+		 true
+	
+	
+	   checkDateDayOfYear dayOfYear, Year year 
+		 dayOfYear getMonth == 2  checkFebruarydayOfYear, year
+		 checkNotFebruarydayOfYear
+	
+	
+	   checkFebruaryDayOfYear dayOfYear, Year year 
+		 year getYear % 4 == 0 && year getYear % 100 != 0 || dayOfYear getMonth % 400 == 0  checkTwentyNineDaysdayOfYear
+		 checkTwentyEightDaysdayOfYear
+	
+	
+	   checkNotFebruaryDayOfYear dayOfYear 
+		 dayOfYear getMonth  8 && dayOfYear getMonth % 2 != 0  checkThirdyOneDaysdayOfYear
+		 dayOfYear getMonth  8 && dayOfYear getMonth % 2 == 0  checkThirdyOneDaysdayOfYear
+		 checkThirdyDaysdayOfYear
+	
+	
+	   checkThirdyOneDaysDayOfYear dayOfYear 
+		 dayOfYear getDay = 31
+	
+	
+	   checkThirdyDaysDayOfYear dayOfYear 
+		 dayOfYear getDay = 30
+	
+	
+	   checkTwentyNineDaysDayOfYear dayOfYear 
+		 dayOfYear getDay = 29
+	
+	
+	   checkTwentyEightDaysDayOfYear dayOfYear 
+		 dayOfYear getDay = 28
+	
+

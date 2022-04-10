@@ -1,0 +1,68 @@
+\chapter{Einleitung}
+In diesem Kapitel werden die Anforderungen an den abzugebenden Softwareentwurf sowie die Anforderungen an die zu entwickelnde Software beschrieben.
+Dazu zählt ebenfalls die Protokolierung spezieller Vereinbarungen mit dem Dozenten, der zugleich Gutachter des Softwareentwurfs ist.
+
+\section{Anforderungen an den Softwareentwurf}
+Dieser Softwareentwurf dient der Lernzielkontrolle der innerhalb der im fünsten und sechsten Semester stattfindenden Vorlesung \textit{Advanced Softwareengineering} vermittelnden Theorien.
+Dozent dieser Vorlesung ist Daniel Lindner.
+Er ist zugleich der Gutachter des Softwareentwurfs.
+Die Bearbeitung des Entwurfs startet mit der ersten Vorlesung am 04.10.2021.
+Der Abgabetermin ist der 30.04.2022.
+Eine Verlängerung der Abgabefrist ist nur unter bestimmten Voraussetzungen und Gründen möglich und bedarf der Absprache mit dem Dozenten.
+Hierbei kann die Abgabe maximal um die zum Zeitpunkt der Anfrage restliche Bearbeitungszeit verdoppelt werden.
+Zu den generellen Anforderungen zählen der zu entwickelnde Code einer Software sowie die schriftliche Dokumentation.
+Der Code soll dabei auf einem GitHub-Repository verwaltet werden.
+Der Code des Softwareprojekts muss dabei in einer gebräuchlichen Programmiersprache geschrieben werden.
+Die Empfehlung liegt dabei auf Java.
+Die Größe des Softwareprojekts soll über 2000 Zeilen Code liegen und circa mehr als 20 Klassen haben.
+Die Software soll einen klar definierten und sinnvollen Nutzen haben und eine Desktop- oder Webanwendung sein.
+In Bezug auf die vermittelten Lehrinhalte der Vorlesung sollen die sechs Schwerpunkte \textit{Clean Architecture}, \textit{Programming Principles}, \textit{Domain Driven Design}, \textit{Unit Tests}, \textit{Entwurfsmuster} sowie \textit{Refactoring} betrachtet und angewandt werden.
+Die einzelnen Schwerpunkte in Bezug auf die vermittelten Lehrinhalte werden im Folgenden erläutert.
+\subsubsection*{Clean Architecture}
+Unter dem Schwerpunkt \textit{Clean Architecture} ist relevant, die Schichtarchitektur in Bezug auf den eigenen Softwareentwurf zu planen und zu begründen.
+Zudem müssen mindestens zwei Schichten umgesetzt und dokumentiert werden.
+
+\subsubsection*{Programming Principles}
+Bei der Anwendung der \textit{Programming Principles} gilt es, die Anwendung der Prinzipien \textit{SOLID}, \textit{GRASP} und \textit{DRY} auf die eigene Software zu analysieren und zu begründen. 
+
+\subsubsection*{Domain Driven Design}
+In Bezug auf \textit{Domain Driven Design} ist es relevant, die Ubiquitous Language zu analysieren. 
+Des Weiteren sollten die Aspekte \textit{Repositories}, \textit{Aggregates}, \textit{Entities} sowie \textit{Value Objects} innerhalb des Softwareentwurfs analysiert und begründet werden.
+
+\subsubsection*{Unit Tests}
+Im Softwareentwurf sollen mindestens 10 Unit Tests angewandt werden.
+Mindestens einer dieser Unit Tests soll durch den Einsatz von Mocks erweitert werden.
+Diese sollen dabei entsprechend der \textit{ATRIP}-Regeln begründet werden.
+Des Weiteren soll die \textit{Code Coverage} betrachtet und deren Aussagekraft beleuchtet werden.
+
+\subsubsection*{Entwurfsmuster}
+Mindestens eines der in der Vorlesung gezeigten Entwurfsmuster soll angewandt und entsprechend begründet werden.
+Dazu zählt die Erstellung eines UML-Diagramms des Musters mit klarer Benennung.
+
+\subsubsection*{Refactoring}
+Unter dem Themenbereich \textit{Refactoring} sollen mindestens drei Code Smells identifiziert werden.
+Darauf folgend soll mindestens zwei mal Refactoring unter Begründung angewandt werden.
+
+\subsection{Außerordentliche Vereinbarung mit Gutachter}
+Aufgrund der Tatsache, dass dieser Softwareentwurf in Einzelarbeit entsteht, sind mit dem Gutachter Absprachen zur Genehmigung und angepassten Anforderungen geführt worden.
+Die Anforderungen sind für die Erarbeitung des Softwareentwurfs in zweier-Teams vorgesehen.
+Dieser Entwurf darf jedoch in Einzelarbeit durchgeführt werden.
+Hierzu reicht es zum vollständigen Erreichen der Anforderungen aus, wenn nur fünf der insgesamt sechs Themenbereiche erfolgreich bearbeitet wird.
+Die Wahl der zu bearbeitenden Themen obliegt dabei dem Ersteller des Softwareentwurfs.
+Es ist dennoch möglich, für jedes der sechs Themenbereiche Punkte zu erhalten.
+
+\section{Anforderungen an die zu entwickelnde Software}
+Bei der entwickelten Software handelt es sich um einen Lebensmittel-Inventurplaner.
+Die Anwendung entspricht einer digitalen Auflistung aller im System gepflegten Lebensmittel. 
+Der Nutzer muss diese Angaben selbstständig anpassen. 
+Es soll die Grundlage gegeben sein, die Daten werden auf einer Datenbank zu speichern.
+Die Realisierung der Speicherung muss zum Zeitpunkt der Abgabe nicht vollständig funktionieren. 
+Die Erreichbarkeit der Anwendung soll als Webapplikation realisiert werden.
+Die Daten werden durch einen \ac{REST}-Service bereitgestellt und dient der Interaktion mit der Webapplikation.
+Der Nutzen für den Kunden bei dieser Anwendung ist, dass der Lebensmittel-Inventurplaner einen Überblick über alle derzeit verfügbaren beziehungsweise im System gepflegten Lebensmittel gibt, die der Kunde aktuell Zuhause hat. 
+Diese digitale Auflistung kann beim Einkaufen oder der Kochplanung unterstützen. 
+Des Weiteren kann als Attribut der einzelnen Lebensmittel-Objekte ein Mindesthaltbarkeitsdatum angegeben werden. 
+Hierdurch erhält der Kunde einen Überblick über demnächst ablaufende Lebensmittel und kann seine Kochplanung dementsprechend anpassen und letztendlich die Lebensmittelverschwendung reduzieren.
+Zur Softwarerealisierung verwendete Technologien sind Java sowie SpringBoot für die Realisierung der \ac{REST}-Schnittstelle. Hibernate für die Interaktionen zwischen Java Anwendung und der Datenbank und MariaDB als Datenbanktechnologie. 
+Angular wird für die Realisierung der Bedienungsoberfläche angewandt.
+\todo[]{Maven-Version, Java-Version, Betriebssystem usw.}
