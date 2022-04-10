@@ -8,11 +8,11 @@ import java.time.format.DateTimeParseException;
 
 import org.junit.jupiter.api.Test;
 
-import de.dhbw.cip.abstractioncode.DateValidator;
 import de.dhbw.cip.abstractioncode.Day;
 import de.dhbw.cip.abstractioncode.DayOfYear;
 import de.dhbw.cip.abstractioncode.Month;
 import de.dhbw.cip.abstractioncode.Year;
+import de.dhbw.cip.domain.DateValidator;
 
 public class DateValidatorTest {
 

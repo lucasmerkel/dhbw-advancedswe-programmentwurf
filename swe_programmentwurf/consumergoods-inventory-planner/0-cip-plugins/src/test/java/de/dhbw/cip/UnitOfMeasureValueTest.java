@@ -7,9 +7,9 @@ import org.junit.Test;
 
 import de.dhbw.cip.abstractioncode.Quantity;
 import de.dhbw.cip.abstractioncode.Value;
-import de.dhbw.cip.abstractioncode.ValueValidator;
 import de.dhbw.cip.abstractioncode.Volume;
 import de.dhbw.cip.abstractioncode.Weight;
+import de.dhbw.cip.domain.ValueValidator;
 
 public class UnitOfMeasureValueTest {
 

@@ -23,6 +23,7 @@ import de.dhbw.cip.application.StorageManager;
 import de.dhbw.cip.domain.BestBeforeDate;
 import de.dhbw.cip.domain.ConsumerGoods;
 import de.dhbw.cip.domain.ConsumerGoods.ConsumerGoodsBuilder;
+import de.dhbw.cip.domain.ConsumerGoodsRepository;
 import de.dhbw.cip.domain.Food;
 import de.dhbw.cip.domain.Fridge;
 
@@ -39,15 +40,16 @@ import javax.servlet.http.HttpServletRequest;
 public class ConsumerGoodsGuiController {
 
     private ConsumerGoodsManager consumerGoodsApplicationService;
-
     private ConsumerGoodsToConsumerGoodsResourceMapper consumerGoodsToConsumerGoodsResourceMapper;
-
+    private ConsumerGoodsRepository consumerGoodsRepository;
+    
     @Autowired
     public ConsumerGoodsGuiController(ConsumerGoodsManager consumerGoodsApplicationService, 
     		ConsumerGoodsToConsumerGoodsResourceMapper consumerGoodsToConsumerGoodsResourceMapper,
-    		StorageManager storageManager) {
+    		ConsumerGoodsRepository consumerGoodsRepository) {
         this.consumerGoodsApplicationService = consumerGoodsApplicationService;
         this.consumerGoodsToConsumerGoodsResourceMapper = consumerGoodsToConsumerGoodsResourceMapper;
+        this.consumerGoodsRepository = consumerGoodsRepository;
     }
 
     @RequestMapping(value="/getAll", method = RequestMethod.GET)
@@ -62,16 +64,16 @@ public class ConsumerGoodsGuiController {
 
     @RequestMapping(value="/add" ,method = RequestMethod.POST)
     //@ResponseBody
-    public HttpStatus postConsumerGood(@RequestParam("description") String description, @RequestParam("bestbeforedateday") int bestBeforeDateDay,
+    public HttpStatus postConsumerGood(@RequestParam("eancode") long eanCode, @RequestParam("description") String description, @RequestParam("bestbeforedateday") int bestBeforeDateDay,
     		@RequestParam("bestbeforedatemonth") int bestBeforeDateMonth, @RequestParam("bestbeforedateyear") int bestBeforeDateYear, 
-    		@RequestParam("quantityvalue") int quantityValue, @RequestParam("quantity") String quantity, @RequestParam("storage") String storage, @RequestParam("storageType") String storageType) {
+    		@RequestParam("quantityvalue") int quantityValue, @RequestParam("quantity") String quantity, @RequestParam("storage") String storage, @RequestParam("storagetype") String storageType) {
     	//Parameters for DTO
     	//HttpServletRequest request, @RequestBody ConsumerGoodsResource consumerGoodsResource
 
     	
-    	ConsumerGoodsBuilder consumerGoodsBuilder = new ConsumerGoodsBuilder(description, bestBeforeDateDay, bestBeforeDateMonth, bestBeforeDateYear, quantity, quantityValue, storageType, storage);
+    	ConsumerGoodsBuilder consumerGoodsBuilder = new ConsumerGoodsBuilder(this.consumerGoodsRepository, eanCode, description, bestBeforeDateDay, bestBeforeDateMonth, bestBeforeDateYear, quantity, quantityValue, storageType, storage);
     	System.out.println(consumerGoodsBuilder.validate());
-    	if(consumerGoodsBuilder.validate() && consumerGoodsApplicationService.storeNew(consumerGoodsBuilder.build())) return HttpStatus.OK;
+    	if(consumerGoodsBuilder.validate() && consumerGoodsApplicationService.storeNew(eanCode, consumerGoodsBuilder.build())) return HttpStatus.OK;
     	//return HttpStatus.INTERNAL_SERVER_ERROR;
     	throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error while add new consumer goods");
     	
@@ -84,20 +86,20 @@ public class ConsumerGoodsGuiController {
 
     @RequestMapping(value="/delete", method = RequestMethod.DELETE)
     @ResponseBody
-    public HttpStatus deleteConsumerGood(@RequestParam(name = "id") long id) {
+    public HttpStatus deleteConsumerGood(@RequestParam(name = "eancode") long eanCode) {
     	//send error if something goes wrong
-    	if(consumerGoodsApplicationService.outsourceConsumerGoodsWith(id)) return HttpStatus.OK;
+    	if(consumerGoodsApplicationService.outsourceConsumerGoodsWith(eanCode)) return HttpStatus.OK;
     	//return HttpStatus.NOT_FOUND;
     	throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Error while delete consumer goods");
     }
 
     @RequestMapping(value="/update", method = RequestMethod.PUT)
     @ResponseBody
-    public HttpStatus updateConsumerGood(@RequestParam("id") long eanCode, @RequestParam("description") String description, @RequestParam("bestbeforedateday") int bestBeforeDateDay,
+    public HttpStatus updateConsumerGood(@RequestParam("eancode") long eanCode, @RequestParam("description") String description, @RequestParam("bestbeforedateday") int bestBeforeDateDay,
     		@RequestParam("bestbeforedatemonth") int bestBeforeDateMonth, @RequestParam("bestbeforedateyear") int bestBeforeDateYear, 
-    		@RequestParam("quantityvalue") int quantityValue, @RequestParam("quantity") String quantity, @RequestParam("storage") String storage, @RequestParam("storageType") String storageType) {
+    		@RequestParam("quantityvalue") int quantityValue, @RequestParam("quantity") String quantity, @RequestParam("storage") String storage, @RequestParam("storagetype") String storageType) {
 
-    	ConsumerGoodsBuilder consumerGoodsBuilder = new ConsumerGoodsBuilder(description, bestBeforeDateDay, bestBeforeDateMonth, bestBeforeDateYear, quantity, quantityValue, storageType, storage);
+    	ConsumerGoodsBuilder consumerGoodsBuilder = new ConsumerGoodsBuilder(this.consumerGoodsRepository, eanCode, description, bestBeforeDateDay, bestBeforeDateMonth, bestBeforeDateYear, quantity, quantityValue, storageType, storage);
     	System.out.println(consumerGoodsBuilder.validate());
     	if(consumerGoodsBuilder.validate() && consumerGoodsApplicationService.updateConsumerGoodsWith(eanCode, consumerGoodsBuilder.build())) return HttpStatus.OK;
     	//return HttpStatus.INTERNAL_SERVER_ERROR;

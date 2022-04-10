@@ -4,6 +4,8 @@ package de.dhbw.cip;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Optional;
+
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +31,9 @@ public class UpdateConsumerGoodsTest {
 	@Test
 	public void checkUpdateOfConsumerGoods() {
 	//Arange
-	ConsumerGoods newConsumerGoods = new ConsumerGoodsBuilder("Tomatoes", 3, 3, 2022, "Stk.", 1, "Fridge", "Mockup Fridge").build();
+	final ConsumerGoodsRepository consumerGoodsRepositoryMock = Mockito.mock(ConsumerGoodsRepository.class);
+	Mockito.when(consumerGoodsRepositoryMock.findStoredConsumerGoodsWith(12345678901l)).thenReturn(Optional.empty());
+	ConsumerGoods newConsumerGoods = new ConsumerGoodsBuilder(consumerGoodsRepositoryMock, 12345678901l, "Tomatoes", 3, 3, 2022, "Stk.", 1, "Fridge", "Mockup Fridge").build();
 	long id = 1;
 	
 	final ConsumerGoods consumerGoodsMock = Mockito.mock(ConsumerGoods.class);

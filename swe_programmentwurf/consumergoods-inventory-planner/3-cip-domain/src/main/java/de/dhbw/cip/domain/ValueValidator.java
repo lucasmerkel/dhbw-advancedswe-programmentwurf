@@ -1,4 +1,4 @@
-package de.dhbw.cip.abstractioncode;
+package de.dhbw.cip.domain;
 
 public class ValueValidator {
 	

@@ -5,9 +5,9 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import de.dhbw.cip.abstractioncode.DayValidator;
 import de.dhbw.cip.abstractioncode.Month;
-import de.dhbw.cip.abstractioncode.MonthValidator;
+import de.dhbw.cip.domain.DayValidator;
+import de.dhbw.cip.domain.MonthValidator;
 
 public class MonthDateTest {
 	

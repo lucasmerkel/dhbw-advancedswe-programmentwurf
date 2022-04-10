@@ -40,16 +40,18 @@ public class ConsumerGoodsManager {
     		newConsumerGoods.changeFood(consumerGoods.getFood());
     		//newConsumerGoods.changeUnitOfMeasure();
     		newConsumerGoods.changeStoragePlace(consumerGoods.getStorage());
-    		//this.deleteConsumerGoods(id);
-    		this.storeNew(newConsumerGoods);
+    		
+    		this.outsourceConsumerGoodsWith(eanCode);
+    		this.storeNew(eanCode, newConsumerGoods);
 			return true;
 		} catch (Exception e) {
 			return false;
 		}
     }
     
-    public boolean storeNew(ConsumerGoods consumerGoods) {
+    public boolean storeNew(long eanCode, ConsumerGoods consumerGoods) {
     	try {
+    		if(!this.consumerGoodsRepository.findStoredConsumerGoodsWith(eanCode).isEmpty()) return false;
     		consumerGoodsRepository.storeNew(consumerGoods);
     		return true;
 		} catch (Exception e) {

@@ -2,20 +2,15 @@ package de.dhbw.cip.domain;
 
 import org.apache.commons.lang3.Validate;
 
-import de.dhbw.cip.abstractioncode.DateValidator;
 import de.dhbw.cip.abstractioncode.Day;
 import de.dhbw.cip.abstractioncode.DayOfYear;
-import de.dhbw.cip.abstractioncode.DayValidator;
 import de.dhbw.cip.abstractioncode.Month;
-import de.dhbw.cip.abstractioncode.MonthValidator;
 import de.dhbw.cip.abstractioncode.Quantity;
 import de.dhbw.cip.abstractioncode.UnitOfMeasure;
 import de.dhbw.cip.abstractioncode.Value;
-import de.dhbw.cip.abstractioncode.ValueValidator;
 import de.dhbw.cip.abstractioncode.Volume;
 import de.dhbw.cip.abstractioncode.Weight;
 import de.dhbw.cip.abstractioncode.Year;
-import de.dhbw.cip.abstractioncode.YearValidator;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -29,7 +24,7 @@ public class ConsumerGoods {
 	
     @Id
     @Column(name = "eanCode")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     private Long eanCode;
 
     //@Column(name = "title")
@@ -48,19 +43,19 @@ public class ConsumerGoods {
         //default constructor for JPA
     }
 
-    public ConsumerGoods(Food food, UnitOfMeasure quantityValue, Storage storage) {
+    /*public ConsumerGoods(Food food, UnitOfMeasure quantityValue, Storage storage) {
     	//Validate.notBlank(title);
         //this.title = title;
         
         this.food = food;
 		this.quantity = quantityValue;
 		this.storagePlace = storage;
-    }
+    }*/
     
     public ConsumerGoods(ConsumerGoodsBuilder consumerGoodsBuilder) {
     	//Validate.notBlank(title);
         //this.title = title;
-
+    	this.eanCode = consumerGoodsBuilder.eanCode;
         this.food = consumerGoodsBuilder.food;
 		this.quantity = consumerGoodsBuilder.quantity;
 		this.storagePlace = consumerGoodsBuilder.storage;
@@ -109,11 +104,15 @@ public class ConsumerGoods {
 	
 	public static class ConsumerGoodsBuilder {
 
+		private long eanCode;
         private final Food food;
 		private final UnitOfMeasure quantity;
 		private final Storage storage;
+		private ConsumerGoodsRepository consumerGoodsRepository;
 
-		public ConsumerGoodsBuilder(String foodDescription, int day, int month, int year, String measureShortcut, int measureValue, String storageTitle, String storageDescription) {
+		public ConsumerGoodsBuilder(ConsumerGoodsRepository consumerGoodsrepo, long eanCode, String foodDescription, int day, int month, int year, String measureShortcut, int measureValue, String storageTitle, String storageDescription) {
+			this.consumerGoodsRepository = consumerGoodsrepo;
+			this.eanCode = eanCode;
 			this.food = new Food(foodDescription, new BestBeforeDate(new DayOfYear(new Day(day), new Month(month)), new Year(year)));
 			this.quantity = findMeasureWith(measureShortcut, measureValue);
 			this.storage = findStorageWith(storageTitle, storageDescription);
@@ -134,6 +133,10 @@ public class ConsumerGoods {
 			return null;
 		}
 		
+		public long getEANCode() {
+			return this.eanCode;
+		}
+		
 		public Food getFood() {
 			return this.food;
 		}
@@ -152,14 +155,16 @@ public class ConsumerGoods {
 
 				boolean dateValidationResult = DateValidator.validate(new DayOfYear(new Day(food.getBbd().getDay()), new Month(food.getBbd().getMonth())), new Year(food.getBbd().getYear()));
 
-				if(DayValidator.checkValidyOf(food.getBbd().getDay()) && MonthValidator.checkValidyOf(food.getBbd().getMonth())
-						&& YearValidator.checkValidyOf(food.getBbd().getYear()) && ValueValidator.checkValidyOf(quantity.getValue().getValue()) && dateValidationResult) return true;
+				if(DayValidator.checkValidyOf( food.getBbd().getDay()) && MonthValidator.checkValidyOf(food.getBbd().getMonth())
+						&& YearValidator.checkValidyOf(food.getBbd().getYear()) && ValueValidator.checkValidyOf(quantity.getValue().getValue()) 
+						&& dateValidationResult ) return true;
 				return false;
 			}catch (Exception e) {
 				return false;
 			}
 		}
 		private void checkNonNull() {
+			Objects.requireNonNull(eanCode, "EANCode must not be null");
 			Objects.requireNonNull(food.getDescription(), "Food description must not be null");
 			Objects.requireNonNull(food.getBbd().getDay(), "Best before date day must not be null");
 			Objects.requireNonNull(food.getBbd().getMonth(), "Best before date month must not be null");

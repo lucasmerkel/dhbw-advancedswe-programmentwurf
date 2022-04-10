@@ -5,9 +5,9 @@ import java.time.format.DateTimeParseException;
 import javax.persistence.CascadeType;
 import javax.persistence.OneToOne;
 
-import de.dhbw.cip.abstractioncode.DateValidator;
 import de.dhbw.cip.abstractioncode.DayOfYear;
 import de.dhbw.cip.abstractioncode.Year;
+import de.dhbw.cip.domain.DateValidator;
 
 public class BestBeforeDateResource {
 	

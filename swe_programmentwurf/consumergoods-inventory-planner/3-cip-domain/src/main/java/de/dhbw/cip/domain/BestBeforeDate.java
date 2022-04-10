@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import de.dhbw.cip.abstractioncode.DateValidator;
 import de.dhbw.cip.abstractioncode.Day;
 import de.dhbw.cip.abstractioncode.DayOfYear;
 import de.dhbw.cip.abstractioncode.Month;

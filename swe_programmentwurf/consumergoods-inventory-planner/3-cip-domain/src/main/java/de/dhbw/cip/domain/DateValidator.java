@@ -1,6 +1,9 @@
-package de.dhbw.cip.abstractioncode;
+package de.dhbw.cip.domain;
 
 import java.time.format.DateTimeParseException;
+
+import de.dhbw.cip.abstractioncode.DayOfYear;
+import de.dhbw.cip.abstractioncode.Year;
 
 public class DateValidator {
 	
