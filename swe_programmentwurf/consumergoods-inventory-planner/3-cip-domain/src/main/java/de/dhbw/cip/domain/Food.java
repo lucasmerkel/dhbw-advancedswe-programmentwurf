@@ -30,7 +30,6 @@ public class Food {
 	private final BestBeforeDate bbd;
 	
 	private Food() {
-        //default constructor for JPA
 		this.description = "";
 		this.bbd = new BestBeforeDate(new DayOfYear(new Day(0), new Month(0)), new Year(0));
     }
@@ -47,15 +46,4 @@ public class Food {
 	public String getDescription() {
 		return this.description;
 	}
-	
-	/*
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	
-	//Classes instead of String
-	public void setBbd(BestBeforeDate bbd) {
-		this.bbd = bbd;
-	}
-	*/
 }

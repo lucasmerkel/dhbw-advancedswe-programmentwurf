@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 import de.dhbw.cip.domain.ConsumerGoods;
 import de.dhbw.cip.domain.ConsumerGoodsRepository;
 
-import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -20,7 +19,7 @@ public class ConsumerGoodsRepositoryBridge implements ConsumerGoodsRepository {
     }
 
     @Override
-    public List<ConsumerGoods> findAllStoredConsumerGoods() {
+    public Iterable<ConsumerGoods> findAllStoredConsumerGoods() {
         return this.springDataConsumerGoodsRepository.findAll();
     }
 
@@ -40,7 +39,6 @@ public class ConsumerGoodsRepositoryBridge implements ConsumerGoodsRepository {
 			this.springDataConsumerGoodsRepository.deleteById(eanCode);
 			return true;
 		} catch (Exception e) {
-			// TODO: handle exception
 			return false;
 		}
 	}

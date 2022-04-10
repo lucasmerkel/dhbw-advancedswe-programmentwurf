@@ -19,12 +19,10 @@ public class Value {
 	private final int value;
 	
 	private Value() {
-        //default constructor for JPA
 		value = 0;
     }
 	
 	public Value(int value) {
-		super();
 		this.value = value;
 	}
 	

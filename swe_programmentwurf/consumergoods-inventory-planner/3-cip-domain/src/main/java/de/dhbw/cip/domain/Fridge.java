@@ -1,8 +1,5 @@
 package de.dhbw.cip.domain;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.function.Consumer;
 
 import javax.persistence.Entity;
 
@@ -10,16 +7,10 @@ import javax.persistence.Entity;
 public class Fridge extends Storage {
 
 	private Fridge() {
-		
+		super("");
 	}
 	
 	public Fridge(String description) {
-		this.description = description;
+		super(description);
 	}
-
-	/*
-	@Override
-	public Object getClassType() {
-		return this.getClassType();
-	}*/
 }

@@ -1,24 +1,15 @@
 package de.dhbw.cip.domain;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import javax.persistence.Entity;
 
 @Entity
 public class FoodShelf extends Storage {
 	
 	private FoodShelf() {
-		
+		super("");
 	}
 	
 	public FoodShelf(String description) {
-		this.description = description;
+		super(description);
 	}
-	
-	/*
-	@Override
-	public Object getClassType() {
-		return this.getClassType();
-	}*/
 }

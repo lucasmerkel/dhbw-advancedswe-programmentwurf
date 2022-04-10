@@ -23,13 +23,11 @@ public class DayOfYear {
 		private final Month month;
 		
 		private DayOfYear() {
-			super();
 			this.day = new Day(0);
 			this.month = new Month(0);
 		}
 		
 		public DayOfYear(Day day, Month month) {
-			super();
 			this.day = day;
 			this.month = month;
 		}

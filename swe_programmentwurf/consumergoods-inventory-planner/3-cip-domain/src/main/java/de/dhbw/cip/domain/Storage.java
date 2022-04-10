@@ -18,13 +18,12 @@ public abstract class Storage {
     private Long id;
 	
 	@Column(name = "description")
-	protected String description;
+	protected final String description;
 	
-	//public abstract Object getClassType();
-	
-	/*public void setDescription(String description) {
+	public Storage(String description) {
 		this.description = description;
-	}*/
+	}
+
 	public long getId() {
 		return id;
 	}

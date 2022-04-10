@@ -6,5 +6,5 @@ public interface FridgeRepository {
 	
 	public Iterable<Fridge> getAllOccupiedFridgeStorageBins();
 	
-	public Fridge occupyFridgeStorageBin(Fridge goods);
+	public Fridge occupyPlaceAt(Fridge place);
 }

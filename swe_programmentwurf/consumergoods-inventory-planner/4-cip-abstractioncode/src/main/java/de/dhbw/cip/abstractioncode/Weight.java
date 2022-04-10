@@ -29,5 +29,4 @@ public class Weight extends UnitOfMeasure{
 	public String getShortcut() {
 		return this.shortcut;
 	}
-
 }

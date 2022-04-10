@@ -17,12 +17,10 @@ public class Day {
 	private final int day;
 	
 	private Day() {
-		super();
 		this.day = 0;
 	}
 	
 	public Day(int day) {
-		super();
 		this.day = day;
 	}
 	

@@ -8,11 +8,7 @@ import de.dhbw.cip.abstractioncode.Year;
 public class DateValidator {
 	
 	public static boolean validate(DayOfYear dayOfYear, Year year) {
-		if(!checkDate(dayOfYear, year)) {
-			return false;
-			//throw new DateTimeParseException("Input is an invalid date!", String.valueOf(dayOfYear.getDay()), 0);
-		}
-		return true;
+		return checkDate(dayOfYear, year);
 	}
 	
 	private static boolean checkDate(DayOfYear dayOfYear, Year year) {

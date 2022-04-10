@@ -1,9 +1,5 @@
 package de.dhbw.cip.adapters;
 
-import javax.persistence.Column;
-
-import de.dhbw.cip.abstractioncode.UnitOfMeasure;
-
 public abstract class StorageResource {
 	
 	protected Long id;

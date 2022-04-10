@@ -38,11 +38,12 @@ public class ConsumerGoodsManager {
     	try {
     		ConsumerGoods newConsumerGoods = this.consumerGoodsRepository.findStoredConsumerGoodsWith(eanCode).get();
     		newConsumerGoods.changeFood(consumerGoods.getFood());
-    		//newConsumerGoods.changeUnitOfMeasure();
+    		newConsumerGoods.changeUnitOfMeasure(consumerGoods.getQuantity());
     		newConsumerGoods.changeStoragePlace(consumerGoods.getStorage());
     		
     		this.outsourceConsumerGoodsWith(eanCode);
     		this.storeNew(eanCode, newConsumerGoods);
+    		
 			return true;
 		} catch (Exception e) {
 			return false;

@@ -17,12 +17,10 @@ public class Month {
 	private final int month;
 	
 	private Month() {
-		super();
 		this.month = 0;
 	}
 	
 	public Month(int month) {
-		super();
 		this.month = month;
 	}
 	

@@ -1,37 +1,24 @@
 package de.dhbw.cip.adapters;
 
-import javax.persistence.CascadeType;
-import javax.persistence.OneToOne;
-
-import org.apache.commons.lang3.Validate;
-
 import de.dhbw.cip.abstractioncode.UnitOfMeasure;
-import de.dhbw.cip.domain.Food;
-import de.dhbw.cip.domain.Storage;
+
 
 public class ConsumerGoodsResource {
 
 	 private long eanCode;
 	 private FoodResource food;
 	 private UnitOfMeasure quantity;
-	 
 	 private StorageResource storagePlace;
+	 
 	 private ConsumerGoodsResource() {
-		 //default constructor for JPA
 	 }
 
 	 public ConsumerGoodsResource(long eanCode, FoodResource food, UnitOfMeasure quantityValue, StorageResource storage) {
-	    //Validate.notBlank(title);
-	    //this.title = title;
 		this.eanCode = eanCode;
 	    this.food = food;
 	    this.quantity = quantityValue;
 		this.storagePlace = storage;
 	 }
-
-	 //public String getTitle() {
-	    //    return title;
-	    //}
 	   
 	public long getEANCode() {
 		return eanCode;
@@ -65,5 +52,4 @@ public class ConsumerGoodsResource {
 	public void changeStoragePlace(StorageResource storagePlace) {
 		this.storagePlace = storagePlace;
 	}
-
 }

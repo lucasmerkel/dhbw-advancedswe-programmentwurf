@@ -1,7 +1,5 @@
 package de.dhbw.cip.abstractioncode;
 
-import java.time.format.DateTimeParseException;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,9 +21,10 @@ public abstract class UnitOfMeasure {
 	
 	@Column(name = "description")
 	protected String description;
+	
 	@Column(name = "shortcut")
 	protected String shortcut;
-	//@Column(name = "value")
+	
 	@OneToOne(cascade=CascadeType.ALL)
 	protected final Value value;
 	

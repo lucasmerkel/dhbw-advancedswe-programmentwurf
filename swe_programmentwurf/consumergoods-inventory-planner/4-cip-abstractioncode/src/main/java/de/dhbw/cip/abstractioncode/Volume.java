@@ -29,5 +29,4 @@ public class Volume extends UnitOfMeasure {
 	public String getShortcut() {
 		return this.shortcut;
 	}
-
 }

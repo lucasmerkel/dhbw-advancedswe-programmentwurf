@@ -17,12 +17,10 @@ public class Year {
 	private final int year;
 	
 	private Year() {
-		super();
 		this.year = 0;
 	}
 	
 	public Year(int year) {
-		super();
 		this.year = year;
 	}
 	

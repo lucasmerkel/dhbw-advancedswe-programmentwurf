@@ -1,7 +1,5 @@
 package de.dhbw.cip.domain;
 
-import org.apache.commons.lang3.Validate;
-
 import de.dhbw.cip.abstractioncode.Day;
 import de.dhbw.cip.abstractioncode.DayOfYear;
 import de.dhbw.cip.abstractioncode.Month;
@@ -13,9 +11,6 @@ import de.dhbw.cip.abstractioncode.Weight;
 import de.dhbw.cip.abstractioncode.Year;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
 import java.util.Objects;
 
 @Entity
@@ -24,12 +19,8 @@ public class ConsumerGoods {
 	
     @Id
     @Column(name = "eanCode")
-    //@GeneratedValue(strategy = GenerationType.AUTO)
     private Long eanCode;
 
-    //@Column(name = "title")
-    //private String title;
-    
     @OneToOne(cascade = CascadeType.ALL)
     private Food food;
 	
@@ -40,30 +31,14 @@ public class ConsumerGoods {
 	private Storage storagePlace;
 	
     private ConsumerGoods() {
-        //default constructor for JPA
     }
-
-    /*public ConsumerGoods(Food food, UnitOfMeasure quantityValue, Storage storage) {
-    	//Validate.notBlank(title);
-        //this.title = title;
-        
-        this.food = food;
-		this.quantity = quantityValue;
-		this.storagePlace = storage;
-    }*/
     
     public ConsumerGoods(ConsumerGoodsBuilder consumerGoodsBuilder) {
-    	//Validate.notBlank(title);
-        //this.title = title;
     	this.eanCode = consumerGoodsBuilder.eanCode;
         this.food = consumerGoodsBuilder.food;
 		this.quantity = consumerGoodsBuilder.quantity;
 		this.storagePlace = consumerGoodsBuilder.storage;
     }
-
-    //public String getTitle() {
-    //    return title;
-    //}
     
     public Long getEANCode() {
         return eanCode;
@@ -84,19 +59,11 @@ public class ConsumerGoods {
 	public void changeFood(Food food) {
 		this.food = food;
 	}
-	/*
-	public void changeFoodDescription(String description) {
-		this.food.setDescription(description);
-	}
 	
-	public void changeFoodBestBeforedate(BestBeforeDate bbd) {
-		this.food.setBbd(bbd);
-	}
-	
-	public void changeQuantity(UnitOfMeasure quantity) {
+	public void changeUnitOfMeasure(UnitOfMeasure quantity) {
 		this.quantity = quantity;
 	}
-	*/
+	
 	public void changeStoragePlace(Storage storagePlace) {
 		this.storagePlace = storagePlace;
 	}
@@ -110,7 +77,10 @@ public class ConsumerGoods {
 		private final Storage storage;
 		private ConsumerGoodsRepository consumerGoodsRepository;
 
-		public ConsumerGoodsBuilder(ConsumerGoodsRepository consumerGoodsrepo, long eanCode, String foodDescription, int day, int month, int year, String measureShortcut, int measureValue, String storageTitle, String storageDescription) {
+		public ConsumerGoodsBuilder(ConsumerGoodsRepository consumerGoodsrepo, long eanCode, String foodDescription, 
+				int day, int month, int year, 
+				String measureShortcut, int measureValue, String storageTitle, String storageDescription) {
+			
 			this.consumerGoodsRepository = consumerGoodsrepo;
 			this.eanCode = eanCode;
 			this.food = new Food(foodDescription, new BestBeforeDate(new DayOfYear(new Day(day), new Month(month)), new Year(year)));
@@ -120,9 +90,9 @@ public class ConsumerGoods {
 		
 		private UnitOfMeasure findMeasureWith(String measureShortcut, int measureValue) {
 			if(measureShortcut == null) return null;
-			if(measureShortcut.equals("g") ) return new Weight(new Value(measureValue));
-			if(measureShortcut.equals("ml") ) return new Volume(new Value(measureValue));
-			if(measureShortcut.equals("Stk.") ) return new Quantity(new Value(measureValue));
+			if(measureShortcut.equals( new Weight(new Value(0)).getShortcut() ) ) return new Weight(new Value(measureValue));
+			if(measureShortcut.equals( new Volume(new Value(0)).getShortcut() ) ) return new Volume(new Value(measureValue));
+			if(measureShortcut.equals( new Quantity(new Value(0)).getShortcut() ) ) return new Quantity(new Value(measureValue));
 			return null;
 		}
 		
@@ -148,21 +118,26 @@ public class ConsumerGoods {
 		public Storage getStorage() {
 			return this.getStorage();
 		}
+		
 		public boolean validate() {
-			//TODO instead check in DateValidator
 			try {
 				checkNonNull();
+				boolean dateValidationResult = DateValidator.validate(new DayOfYear(new Day(food.getBbd().getDay()), 
+																						new Month(food.getBbd().getMonth())), 
+																							new Year(food.getBbd().getYear()));
 
-				boolean dateValidationResult = DateValidator.validate(new DayOfYear(new Day(food.getBbd().getDay()), new Month(food.getBbd().getMonth())), new Year(food.getBbd().getYear()));
-
-				if(DayValidator.checkValidyOf( food.getBbd().getDay()) && MonthValidator.checkValidyOf(food.getBbd().getMonth())
-						&& YearValidator.checkValidyOf(food.getBbd().getYear()) && ValueValidator.checkValidyOf(quantity.getValue().getValue()) 
+				if(DayValidator.checkValidyOf( food.getBbd().getDay()) 
+						&& MonthValidator.checkValidyOf(food.getBbd().getMonth())
+						&& YearValidator.checkValidyOf(food.getBbd().getYear()) 
+						&& ValueValidator.checkValidyOf(quantity.getValue().getValue()) 
 						&& dateValidationResult ) return true;
+				
 				return false;
 			}catch (Exception e) {
 				return false;
 			}
 		}
+		
 		private void checkNonNull() {
 			Objects.requireNonNull(eanCode, "EANCode must not be null");
 			Objects.requireNonNull(food.getDescription(), "Food description must not be null");

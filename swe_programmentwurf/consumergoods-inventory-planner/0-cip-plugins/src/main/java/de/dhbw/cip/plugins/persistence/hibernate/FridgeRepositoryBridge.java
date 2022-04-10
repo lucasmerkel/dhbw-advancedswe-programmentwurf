@@ -1,13 +1,10 @@
 package de.dhbw.cip.plugins.persistence.hibernate;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import de.dhbw.cip.domain.Fridge;
 import de.dhbw.cip.domain.FridgeRepository;
-import de.dhbw.cip.domain.Storage;
 
 @Repository
 public class FridgeRepositoryBridge implements FridgeRepository {
@@ -20,7 +17,7 @@ public class FridgeRepositoryBridge implements FridgeRepository {
     }
 
 	@Override
-	public List<Fridge> getAllOccupiedFridgeStorageBins() {
+	public Iterable<Fridge> getAllOccupiedFridgeStorageBins() {
 		return this.springDataFridgeRepository.findAll();
 	}
 

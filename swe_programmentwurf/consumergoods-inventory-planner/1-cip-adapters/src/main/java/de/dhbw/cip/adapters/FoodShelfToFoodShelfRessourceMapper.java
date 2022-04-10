@@ -15,7 +15,6 @@ public class FoodShelfToFoodShelfRessourceMapper implements Function<FoodShelf, 
     }
 
     private FoodShelfResource map(FoodShelf foodShelf) {
-        //return new ConsumerGoodsResource(consumerGoods.getTitle());
     	return new FoodShelfResource(foodShelf.getId(), foodShelf.getDescription(), foodShelf.getClass().getSimpleName());
     }
 

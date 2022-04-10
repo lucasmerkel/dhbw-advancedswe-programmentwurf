@@ -1,13 +1,10 @@
 package de.dhbw.cip.plugins.persistence.hibernate;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import de.dhbw.cip.domain.FoodShelf;
 import de.dhbw.cip.domain.FoodShelfRepository;
-import de.dhbw.cip.domain.Fridge;
 
 @Repository
 public class FoodShelfRepositoryBridge implements FoodShelfRepository {
@@ -20,7 +17,7 @@ public class FoodShelfRepositoryBridge implements FoodShelfRepository {
     }
 
 	@Override
-	public List<FoodShelf> getAllOccupiedFoodShelfStorageBins() {
+	public Iterable<FoodShelf> getAllOccupiedFoodShelfStorageBins() {
 		return this.springDataFoodShelfRepository.findAll();
 	}
 

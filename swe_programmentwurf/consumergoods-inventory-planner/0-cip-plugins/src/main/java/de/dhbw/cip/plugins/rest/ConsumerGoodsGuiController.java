@@ -57,13 +57,9 @@ public class ConsumerGoodsGuiController {
     	return StreamSupport.stream(this.consumerGoodsApplicationService.findAllConsumerGoods().spliterator(), false)
     			.map(consumerGoodsToConsumerGoodsResourceMapper)
     			.collect(Collectors.toList());
-        //return this.consumerGoodsApplicationService.findAllConsumerGoods().stream()
-          //      .map(consumerGoodsToConsumerGoodsResourceMapper)
-            //    .collect(Collectors.toList());
     }
 
     @RequestMapping(value="/add" ,method = RequestMethod.POST)
-    //@ResponseBody
     public HttpStatus postConsumerGood(@RequestParam("eancode") long eanCode, @RequestParam("description") String description, @RequestParam("bestbeforedateday") int bestBeforeDateDay,
     		@RequestParam("bestbeforedatemonth") int bestBeforeDateMonth, @RequestParam("bestbeforedateyear") int bestBeforeDateYear, 
     		@RequestParam("quantityvalue") int quantityValue, @RequestParam("quantity") String quantity, @RequestParam("storage") String storage, @RequestParam("storagetype") String storageType) {
@@ -76,25 +72,16 @@ public class ConsumerGoodsGuiController {
     	if(consumerGoodsBuilder.validate() && consumerGoodsApplicationService.storeNew(eanCode, consumerGoodsBuilder.build())) return HttpStatus.OK;
     	//return HttpStatus.INTERNAL_SERVER_ERROR;
     	throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error while add new consumer goods");
-    	
-    	//consumerGoodsApplicationService.addConsumerGoods(new ConsumerGoods(new Food(description, new BestBeforeDate( new DayOfYear(new Day(bestBeforeDateDay), new Month(bestBeforeDateMonth)), new Year(bestBeforeDateYear))), new Volume(new Value(quantityValue)), new Fridge("fridge")));
-    	//System.out.println("Result: "+description+", "+bestBeforeDateDay+"."+bestBeforeDateMonth+"."+bestBeforeDateYear+"; "
-    	//			+quantityValue+quantity+"; "+storage);	
-    	//return "Result: "+description+", "+bestBeforeDateDay+"."+bestBeforeDateMonth+"."+bestBeforeDateYear+"; "
-    	//			+quantityValue+quantity+"; "+storage;
     }
 
     @RequestMapping(value="/delete", method = RequestMethod.DELETE)
-    @ResponseBody
     public HttpStatus deleteConsumerGood(@RequestParam(name = "eancode") long eanCode) {
-    	//send error if something goes wrong
     	if(consumerGoodsApplicationService.outsourceConsumerGoodsWith(eanCode)) return HttpStatus.OK;
     	//return HttpStatus.NOT_FOUND;
     	throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Error while delete consumer goods");
     }
 
     @RequestMapping(value="/update", method = RequestMethod.PUT)
-    @ResponseBody
     public HttpStatus updateConsumerGood(@RequestParam("eancode") long eanCode, @RequestParam("description") String description, @RequestParam("bestbeforedateday") int bestBeforeDateDay,
     		@RequestParam("bestbeforedatemonth") int bestBeforeDateMonth, @RequestParam("bestbeforedateyear") int bestBeforeDateYear, 
     		@RequestParam("quantityvalue") int quantityValue, @RequestParam("quantity") String quantity, @RequestParam("storage") String storage, @RequestParam("storagetype") String storageType) {
@@ -104,12 +91,5 @@ public class ConsumerGoodsGuiController {
     	if(consumerGoodsBuilder.validate() && consumerGoodsApplicationService.updateConsumerGoodsWith(eanCode, consumerGoodsBuilder.build())) return HttpStatus.OK;
     	//return HttpStatus.INTERNAL_SERVER_ERROR;
     	throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error while update consumer goods");
-    	
-    	//boolean test = consumerGoodsApplicationService.updateConsumerGoods(id, new ConsumerGoods(new Food(description, new BestBeforeDate( new DayOfYear(new Day(bestBeforeDateDay), new Month(bestBeforeDateMonth)), new Year(bestBeforeDateYear))), new Volume(new Value(quantityValue)), new Fridge("fridge")));
-    	//System.out.println(test);
-    	//System.out.println("Result: "+eanCode+","+description+", "+bestBeforeDateDay+"."+bestBeforeDateMonth+"."+bestBeforeDateYear+"; "
-    	//			+quantityValue+quantity+"; "+storage);
-    	//return "Result: "+description+", "+bestBeforeDateDay+"."+bestBeforeDateMonth+"."+bestBeforeDateYear+"; "
-    	//			+quantityValue+quantity+"; "+storage;
     }
 }
