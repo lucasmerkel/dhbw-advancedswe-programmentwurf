@@ -19,7 +19,7 @@ public class ConsumerGoodsManager {
         this.consumerGoodsRepository = consumerGoodsRepository;
     }
 
-    public List<ConsumerGoods> findAllConsumerGoods() {
+    public Iterable<ConsumerGoods> findAllConsumerGoods() {
         return this.consumerGoodsRepository.findAllStoredConsumerGoods();
     }
     

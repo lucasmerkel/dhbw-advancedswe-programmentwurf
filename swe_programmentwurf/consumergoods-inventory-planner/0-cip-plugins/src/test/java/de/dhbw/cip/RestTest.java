@@ -135,7 +135,7 @@ public class RestTest {
 		long id = 5;
 		
 		final ConsumerGoodsRepository consumerGoodsRepositoryMock = Mockito.mock(ConsumerGoodsRepository.class);
-		Mockito.when(consumerGoodsRepositoryMock.outsourceConsumerGoods(id)).thenReturn(false);
+		Mockito.when(consumerGoodsRepositoryMock.outsourceConsumerGoodsWith(id)).thenReturn(false);
 		
 		String idParameter = "id=5";
 		

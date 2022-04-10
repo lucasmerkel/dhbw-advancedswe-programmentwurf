@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public interface ConsumerGoodsRepository {
 
-    List<ConsumerGoods> findAllStoredConsumerGoods();
+    Iterable<ConsumerGoods> findAllStoredConsumerGoods();
     
     Optional<ConsumerGoods> findStoredConsumerGoodsWith(long eanCode);
     

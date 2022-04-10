@@ -2,6 +2,7 @@ package de.dhbw.cip.plugins.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,7 +27,12 @@ import de.dhbw.cip.domain.Food;
 import de.dhbw.cip.domain.Fridge;
 
 import java.util.List;
+import java.util.Spliterator;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping(value = "/api/consumergoods")
@@ -44,21 +50,25 @@ public class ConsumerGoodsGuiController {
         this.consumerGoodsToConsumerGoodsResourceMapper = consumerGoodsToConsumerGoodsResourceMapper;
     }
 
-    //GET
     @RequestMapping(value="/getAll", method = RequestMethod.GET)
-    public List<ConsumerGoodsResource> getConsumerGoods() {
-        return this.consumerGoodsApplicationService.findAllConsumerGoods().stream()
-                .map(consumerGoodsToConsumerGoodsResourceMapper)
-                .collect(Collectors.toList());
+    public Iterable<ConsumerGoodsResource> getConsumerGoods() {
+    	return StreamSupport.stream(this.consumerGoodsApplicationService.findAllConsumerGoods().spliterator(), false)
+    			.map(consumerGoodsToConsumerGoodsResourceMapper)
+    			.collect(Collectors.toList());
+        //return this.consumerGoodsApplicationService.findAllConsumerGoods().stream()
+          //      .map(consumerGoodsToConsumerGoodsResourceMapper)
+            //    .collect(Collectors.toList());
     }
 
-    //POST
     @RequestMapping(value="/add" ,method = RequestMethod.POST)
-    @ResponseBody
+    //@ResponseBody
     public HttpStatus postConsumerGood(@RequestParam("description") String description, @RequestParam("bestbeforedateday") int bestBeforeDateDay,
     		@RequestParam("bestbeforedatemonth") int bestBeforeDateMonth, @RequestParam("bestbeforedateyear") int bestBeforeDateYear, 
     		@RequestParam("quantityvalue") int quantityValue, @RequestParam("quantity") String quantity, @RequestParam("storage") String storage, @RequestParam("storageType") String storageType) {
-    		
+    	//Parameters for DTO
+    	//HttpServletRequest request, @RequestBody ConsumerGoodsResource consumerGoodsResource
+
+    	
     	ConsumerGoodsBuilder consumerGoodsBuilder = new ConsumerGoodsBuilder(description, bestBeforeDateDay, bestBeforeDateMonth, bestBeforeDateYear, quantity, quantityValue, storageType, storage);
     	System.out.println(consumerGoodsBuilder.validate());
     	if(consumerGoodsBuilder.validate() && consumerGoodsApplicationService.storeNew(consumerGoodsBuilder.build())) return HttpStatus.OK;
@@ -72,8 +82,6 @@ public class ConsumerGoodsGuiController {
     	//			+quantityValue+quantity+"; "+storage;
     }
 
-    //DELETE
-    //Update Repository and ApplicationService
     @RequestMapping(value="/delete", method = RequestMethod.DELETE)
     @ResponseBody
     public HttpStatus deleteConsumerGood(@RequestParam(name = "id") long id) {
@@ -82,10 +90,7 @@ public class ConsumerGoodsGuiController {
     	//return HttpStatus.NOT_FOUND;
     	throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Error while delete consumer goods");
     }
-    
-    //PATCH
-    //Update Repository and ApplicationService
-    //Alternative is DELETE and POST    
+
     @RequestMapping(value="/update", method = RequestMethod.PUT)
     @ResponseBody
     public HttpStatus updateConsumerGood(@RequestParam("id") long eanCode, @RequestParam("description") String description, @RequestParam("bestbeforedateday") int bestBeforeDateDay,
