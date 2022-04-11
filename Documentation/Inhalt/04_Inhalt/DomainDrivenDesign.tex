@@ -60,7 +60,7 @@ Die Abbildung \ref{fig:wordcloud} des geschriebenen Codes in einer Wordcloud ver
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\textwidth]{Bilder/wordcloud.PNG}
-	\caption[Wordcloud in Bezug zu Domain Driven Design.]{Die Wordcloud visualisiert die verwendeten Bezeichnungen im Programentwurf in Bezug auf die \textit{Ubiquitous Language}.}
+	\caption[Wordcloud in Bezug zur Verdeutlichung der Umsetzung Ubiquitous Language.]{Die Wordcloud visualisiert die verwendeten Bezeichnungen im Programentwurf in Bezug auf die \textit{Ubiquitous Language}. Die Wordcloud verdeutlicht, dass die \textit{Ubiquitous Language} umgesetzt wurde, indem statt rein technischen Begriffen hauptsächlich Bezeichnungen mit Domänenbezug benannt wurde.}
 	\label{fig:wordcloud}
 \end{figure}
 
@@ -95,8 +95,64 @@ Die Bezeichnung \textit{Persistence-} wurde gewählt, da die Interfaces zur Impl
 \todo[]{Stufe 2, Stufe 2+ und Stufe 3}
 \todo[]{Methoden, Variablen Stufe 1}
 
-\todo[]{Auch Bezug zur GUI}
+\subsection*{Umsetzung der Ubiquitos Language auf der grafischen Oberfläche}
 In der GUI wurde ebenfalls die \textit{Ubiquitos Language} angewandt.
+Beim Anlegen eines Konsumguts wurde die Bezeichnung der Domäne, das Einlagern, sowie beim Löschen, das Auslagern, verwendet und in der Oberfläche beschriftet.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\textwidth]{Bilder/gui/Ubiquitous Language/store-text.PNG}
+	\caption[Überschrift Eingabemaske zum Einlagern eines Konsumguts.]{Statt der technischen Bezeichnung, dem Speichern eines Konsumguts, wird die domänenspezifische Bezeichnung des Einlagerns verwendet.}
+	\label{fig:gui-titel-einlagern}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{Bilder/gui/Ubiquitous Language/outsource-text.PNG}
+	\caption[Bezeichnung eines Auslagerungsvorgangs.]{.}
+	\label{fig:gui-titel-auslagern}
+\end{figure}
+
+Auch die Identifikationsnummer wurde anstatt \textit{id} der Domäne angepasst und \textit{EAN} bezeichnet. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\textwidth]{Bilder/gui/Ubiquitous Language/ean.PNG}
+	\caption[Darstellung EAN-Code.]{Der natürliche Schlüssel der Domäne wird zur eindeutigen Identifikation genutzt und dargestellt.}
+	\label{fig:gui-darstellung-ean}
+\end{figure}
+
+Ebenfalls wurden Buttons anstatt den technischen Eigenschaften Einfügen und Löschen passend zur Domäne beschriftet.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\textwidth]{Bilder/gui/Ubiquitous Language/Store new consumer good.PNG}
+	\caption[Button zum Öffnen der Eingabemaske zum Einlagern eines Konsumguts.]{.}
+	\label{fig:gui-button-eingabemaske-einlagern}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{Bilder/gui/Ubiquitous Language/store-buttons.PNG}
+	\caption[Buttons zum Bestätigen des Einlagerns eines Konsumguts.]{.}
+	\label{fig:gui-button-einlagern}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{Bilder/gui/Ubiquitous Language/edit-buttons.PNG}
+	\caption[Buttons zum Bestätigen von Änderungen der Attribute eines Konsumguts.]{.}
+	\label{fig:gui-button-aendern}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{Bilder/gui/Ubiquitous Language/outsource-buttons.PNG}
+	\caption[Buttons zum Bestätigen des Auslagern eines Konsumguts.]{.}
+	\label{fig:gui-button-auslagern}
+\end{figure}
+
+Das Anwenden der \textit{Ubiquitos Language} auf der grafischen Oberfläche hat den allgemeinen Vorteil, dass Abläufe und Funktionen für den Anwender, der mit der Domäne vertraut ist, bei der Anwendung der Software verständlicher sind und Missverständnisse reduziert werden.
 
 Grundsätzlich handelt es sich bei diesem Softwareentwurf um eine \ac{CRUD}-Anwendung.
 Die Anwendung dient dem Verwalten Konsumgütern an Lagerorten.

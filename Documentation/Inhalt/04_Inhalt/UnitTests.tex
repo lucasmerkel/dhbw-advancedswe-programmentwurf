@@ -2,7 +2,7 @@
 Während eines Entwicklungsprozesses einer Software entstehen Fehler.
 Fehler kosten jedoch unterschiedliche Ressourcen und steigen mit der Zeit, seit der Fehler existiert.
 Daher sind Tests ein wichtiges Mittel in der Softwareentwicklung.
-\todo[]{Test first und TDD erwähnen?}
+
 Hierfür gibt es folgende Testklassifikationen:
 \begin{itemize}
     \item \textit{Akzeptanztests},
@@ -42,7 +42,7 @@ Mögliche Testergebnisse können wie folgt sein:
 \textit{Failure} bedeutet, dass der Test aufgrund einer oder mehrerer Assertions nicht bestanden wurde.
 \textit{Error} bedeutet, dass der Test aufgrund eines Fehlers nicht bestanden wurde.
 
-\todo[]{ATRIP}
+\section{ATRIP}
 Bei \textit{Unit Tests} orientiert man sich zudem an den folgenden \textit{ATRIP-Regeln}:
 \begin{itemize}
     \item \textit{Automatic},
@@ -59,12 +59,12 @@ Bei \textit{Unit Tests} orientiert man sich zudem an den folgenden \textit{ATRIP
 Somit müssen die Tests gewährleisten, dass sie in beliebiger Zusammenstellung und Reihenfolge funktionsfähig sind.
 \textit{Professional} besagt, dass Testcode auch produktionsrelevanter Code ist und somit leicht verständlich sein sollte.
 
-\todo[]{Testabdeckung}
+\section{Testabdeckung}
 Eine Möglichkeit zur Messung der Testabdeckung ist die \textit{Code Coverage}.
 Eine Variante ist das Messen der \textit{Line Coverage}, indem die Anzahl der abgedeckten Code-Zeilen bestimmt wird.
 Eine weitere Variante ist das Messen der \textit{Branch Coverage}, indem die Anzahl der abgedeckten Pfade im Code bestimmt werden.
 
-\todo[]{Testen mit Mocks}
+\section{Testen mit Mocks}
 Das Testen mit Mocks erweitert die AAA-Regel beim Durchführen von \textit{Unit Tests}.
 Der Test wird zu Beginn um \textit{Capture} und am Ende um \textit{Verify} erweitert.
 \todo{erläutern}
@@ -97,7 +97,7 @@ Neben \textit{Professional} wurde auf die weiteren ATRIP-Regeln geachtet.
     \item die Tests sind unabhängig zueinander und testen jeweils eine Komponente \textit{Independent}.
 \end{itemize}
 
-\todo[]{Einsatz von Mocks}
+\subsection*{Unit-Tests mit Einsatz von Mocks}
 \todo[]{ConsumerGoods}
 Zuzüglich zu den erläuterten Unit Tests testet Die Testklasse \code{UpdateConsumerGoodsTest} das Ändern von Attributen einer Instanz der Klasse \code{ConsumerGoods} mit Hilfe eines Mocking-Werkzeugs.
 Der Test bildet den Ablauf der Methode \code{updateConsumerGoods()} in der Klasse \code{ConsumerGoodsManager} ab.
@@ -108,8 +108,7 @@ Dabei wird eine im Test erzeugte Instanz der Klasse \code{ConsumerGoods} mit den
 \todo[]{ATRIP-Regeln}
 \todo[]{in Bezug auf den jeweiligen Unit-Test}
 
-\todo[]{Code Coverage (mindestens 1, mehr gibt Bonus) der gesammten Schichten}
-\todo[]{Über alle Unit-Tests, Line und Branch Coverage}
+\subsection*{Code Coverage}
 Bei Betrachtung der Code Coverage-Ergebnisse in Tabelle \ref{tab:code-coverage-full} wird der Schwerpunkt auf das Testen der Validierungsklassen sowie dem \code{ConsumerGoodsBuilder} verdeutlicht.
 
 \begin{table}[ht]

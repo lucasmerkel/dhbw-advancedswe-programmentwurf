@@ -154,7 +154,6 @@ Eine Verletzung des \textit{Open-Closed-Principle} stellen die Klassen \code{Con
 Eine Erweiterung einer Anwendung um ein weiteres zu verwaltendes Gut hätte hierbei zur Folge, dass die Einbindung eines neuen Guts zu einer Veränderung der Schnittstelle für die \ac{GUI} führt, um das neue Gut in der \ac{GUI} zu repräsentieren.
 
 \subsubsection*{Liskov Substitution Principle}
-\todo[]{oder alte Version von UnitOfMeasure und Storage}
 \todo[]{aktuell keine Klassen, eventuell nur durch z.B. Exceptions}
 
 Die Analyse des Liskov Substitution Principles ist nur in einem älteren Stand des Softwareentwurfs zu analysieren, da zum aktuellen Stand keine Vererbung implementiert ist.
@@ -207,15 +206,6 @@ Ein Beispiel mit einer starken Kopplung ist der statische Methodenaufruf \code{v
 Auch in diesem Fall entsteht durch den statischen Methodenaufruf eine starke Kopplung an die Klasse \code{DateValidator}.
 
 \subsubsection*{Hohe Kohäsion}
-\todo[]{High Cohesion}
-\todo[]{Wie „eng“ arbeiten Methoden und Attribute einer Klasse zusammen (semantische Nähe!)}
-\todo[]{ConsumerGoods => Food, UnitOfMeasure, Storage}
-\todo[]{Weight, Volume, Quantity und Value}
-\todo[]{Gleiches bei mapped Resources}
-\todo[]{BBD und DayOfYear, Day, Month, Year}
-\todo[]{DateValidator}
-\todo[]{semantisches Maß, Überprüfung, welche Felder nie gelesen werden}
-
 Ein Beispiel für eine hohe Kohäsion ist in der Klasse \code{ConsumerGoods} zu sehen.
 Die Bestandteile eines Konsumguts sind das Lebensmittel und die dazugehörige Menge samt Maßeinheit.
 Das Lebensmittel wird dazu in der Klasse \code{Food} verwaltet, während die Menge in einem Objekt des implementierten Interface-Typs \code{UnitOfMeasure} verwaltet ist.
@@ -235,7 +225,6 @@ Darüber hinaus ist nicht die Klasse \code{BestBeforeDate} für eine genaue Spez
 
 \subsection{\ac{DRY}}
 \todo[]{Wissen sollte sich nur an einem Ort befinden, z.B. Window-Sizes}
-
 \todo[]{Positivbeispiel}
 
 Eine Nichteinhaltung des \ac{DRY}-Prinzip findet sich in der Resourcen-Klassen \code{ConsumerGoodsReource}, \code{FridgeResource}, \code{FoodShelfResource}, \code{FoodResource} und \code{BestBeforeDateResource} vor.

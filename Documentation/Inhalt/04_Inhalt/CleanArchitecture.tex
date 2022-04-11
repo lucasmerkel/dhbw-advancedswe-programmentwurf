@@ -50,11 +50,10 @@ Dieser Eingrenzung muss man sich bei der Planung der Software-Architektur im Kla
 
 \section{Anwendung der Schichten}
 Im Folgenden wird die Umsetzung der \textit{Clean Architecture} innerhalb dieses Softwareentwurfs beschrieben.
-Zunächst ist die Projektstruktur entsprechend realisiert worden.
 
-Die Projektstruktur ist ebenfalls angepasst.
+Zunächst ist die Projektstruktur entsprechend realisiert worden.
 Anstatt alle nötigen Klassen in einem Projekt zu erzeugen, ist zur Übersichtlichkeit eine Strukturierung entsprechend der Schichten vorgenommen worden.
-Dabei ist keine Strukturierung der einzelnen Schichten über Packages gemacht worden.
+Die Strukturierung der einzelnen Schichten ist nicht über Packages gemacht worden.
 Diese Variante ist grundsätzlich möglich, jedoch findet dabei keine Überprüfung durch den Compiler statt und es ist somit schwieriger möglich, einzelne Abhängigkeiten von innen nach außen zu erkennen.
 Stattdessen bietet sich die Form mehrerer Projekte an.
 Jedes Projekt bildet dabei eine Schicht ab.
@@ -79,7 +78,7 @@ Die einzelnen Projekte, die jeweils eine Schicht der \textit{Clean Architecture}
 \end{figure}
 
 Die Realisierung der einzelnen Schichten bezieht sich auf den Anwendungsbezug und die Anforderungen der Anwendung.
-Das zum Programmentwurf dazugehörige UML-Diagramm in \todo[]{Perma-Link UML} verdeutlicht farblich die Zugehörigkeit der Klasen entsprechend der Clean-Architecture.
+Das zum Programmentwurf dazugehörige \href{http://localhost:4200}{\code{Klassendiagramm}} verdeutlicht farblich die Zugehörigkeit der Klasen entsprechend der \textit{Clean-Architecture}.
 Die farbliche Zuordnung ist wie folgt:
 \begin{itemize}
     \item weiß entspricht der \textit{Abstraction Code}-Schicht,
