@@ -53,10 +53,11 @@ Darauf folgend soll mindestens zwei mal Refactoring unter Begründung angewandt 
 
 \section{Anforderungen an die zu entwickelnde Software}
 Bei der entwickelten Software handelt es sich um einen Lebensmittel-Inventurplaner.
+Die Bezeichnung des Softwareprojekts lautet \code{consumergoods-inventory-planner}.
 Die Anwendung entspricht einer digitalen Auflistung aller im System gepflegten Lebensmittel. 
 Der Nutzer muss diese Angaben selbstständig anpassen. 
 Es soll die Grundlage gegeben sein, die Daten werden auf einer Datenbank zu speichern.
-Die Realisierung der Speicherung muss zum Zeitpunkt der Abgabe nicht vollständig funktionieren. 
+Die Realisierung der Speicherung muss zum Zeitpunkt der Abgabe nicht realisiert sein. 
 Die Erreichbarkeit der Anwendung soll als Webapplikation realisiert werden.
 Die Daten werden durch einen \ac{REST}-Service bereitgestellt und dient der Interaktion mit der Webapplikation.
 Der Nutzen für den Kunden bei dieser Anwendung ist, dass der Lebensmittel-Inventurplaner einen Überblick über alle derzeit verfügbaren beziehungsweise im System gepflegten Lebensmittel gibt, die der Kunde aktuell Zuhause hat. 
@@ -64,5 +65,25 @@ Diese digitale Auflistung kann beim Einkaufen oder der Kochplanung unterstützen
 Des Weiteren kann als Attribut der einzelnen Lebensmittel-Objekte ein Mindesthaltbarkeitsdatum angegeben werden. 
 Hierdurch erhält der Kunde einen Überblick über demnächst ablaufende Lebensmittel und kann seine Kochplanung dementsprechend anpassen und letztendlich die Lebensmittelverschwendung reduzieren.
 Zur Softwarerealisierung verwendete Technologien sind Java sowie SpringBoot für die Realisierung der \ac{REST}-Schnittstelle. Hibernate für die Interaktionen zwischen Java Anwendung und der Datenbank und MariaDB als Datenbanktechnologie. 
-Angular wird für die Realisierung der Bedienungsoberfläche angewandt.
+Angular in der Version \textit{9.1.12} wird für die Realisierung der Bedienungsoberfläche angewandt.
+Als Java-Version wird \textit{Java SE 8} verwendet.
+Maven wird in der Version \textit{3.1.0} verwendet.
+Die Software wurde auf einem Rechner mit \textit{Windows 10} als Betriebssystem getestet.
+Der Webservice ist über den \textit{localhost} erreichbar.
+Also Port wurde der Port \textit{8083} angewandt.
+\ac{HTTPS} sollte grundsätzlich für Webanwendungen als Standard angesehen werden, jedoch wird in diesem Umfang zu Demonstrationszwecken zunächst darauf verzichtet.
+Somit ist die \ac{URL} des Webservices \code{http://localhost:8083}.
 \todo[]{Maven-Version, Java-Version, Betriebssystem, Port des Services usw.}
+
+\subsection*{Abweichung des \ac{REST}-Paradigmas}
+Die im Softwareentwurf umgesetzte \ac{REST}-Schnittstelle hat im Gegensatz zur dem von Roy Fielding definierte \c{REST}-Paradigma Abweichungen, die erläutert werden.
+Zum einen weicht die Umsetzung der Repräsentation zur Veränderung von Ressourcen im Softwareentwurf von der Vorgehensweise im Paradigma ab.
+Die Ressourcen werden zum Einlagern oder Verändern über die \ac{URI} in Form von Attributen übertragen.
+Das Paradigma sieht hierfür jedoch die Übermittlung über den \ac{HTTP}-Body in einer einheitlichen Sprache vor.
+Beispiel der Umsetzung
+Der Vorteil ist, dass das Einlagern eines Konsumguts direkt über die \ac{URI} erfolgen kann, für die Anbindung weiterer Module an die bestehende Software.
+Der Nachteil ist, dass die Daten in der \ac{URI}, selbst bei Nutzung von \ac{HTTPS} nicht verschlüsselt sind und die \ac{URI} ab einer bestimmten Länge zu Problemen bei der Verarbeitung durch den Server führen kann.
+Im Standard RFC 2616, RFC7230 (HTTP/1.1) sowie RFC 7540 (HTTP/2) werden jedoch keine maximalen Zeichenwerte genannt.
+Des Weiteren ist in \ac{REST} empfohlen, Ressourcen für den Client durch Verwendung von Hypermedia auffindbar und erkennbar zu machen.
+Man spricht hierbei auch von \ac{HATEOAS}. Darauf wurde in diesem Softwareentwurf ebenfalls verzichtet.
+Die durch die Anpassungen resultierende Kommunikation wird auch als Home-Made-Messaging bezeichnet.

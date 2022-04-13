@@ -49,6 +49,12 @@ Frameworks können diese Grenzen ebenfalls einschränken, wenn eine zu starke Bi
 Dieser Eingrenzung muss man sich bei der Planung der Software-Architektur im Klaren sein und daraus mögliche Folgen erkennen beziehungsweise abwägen.
 
 \section{Anwendung der Schichten}
+\todo[]{Neues Naming der Klassen}
+\todo[]{Annotations in Domain-Schicht}
+\todo[]{Dependency Inversion Code Links}
+\todo[]{StorableGoods als Interface einbauen}
+\todo[]{Bezug zu RenderModel}
+
 Im Folgenden wird die Umsetzung der \textit{Clean Architecture} innerhalb dieses Softwareentwurfs beschrieben.
 
 Zunächst ist die Projektstruktur entsprechend realisiert worden.
@@ -78,7 +84,7 @@ Die einzelnen Projekte, die jeweils eine Schicht der \textit{Clean Architecture}
 \end{figure}
 
 Die Realisierung der einzelnen Schichten bezieht sich auf den Anwendungsbezug und die Anforderungen der Anwendung.
-Das zum Programmentwurf dazugehörige \href{http://localhost:4200}{\code{Klassendiagramm}} verdeutlicht farblich die Zugehörigkeit der Klasen entsprechend der \textit{Clean-Architecture}.
+Das zum Programmentwurf dazugehörige \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/Documentation/Bilder/uml-diagramme/klassendiagramm.svg}{\code{Klassendiagramm}} verdeutlicht farblich die Zugehörigkeit der Klasen entsprechend der \textit{Clean-Architecture}.
 Die farbliche Zuordnung ist wie folgt:
 \begin{itemize}
     \item weiß entspricht der \textit{Abstraction Code}-Schicht,
@@ -104,89 +110,111 @@ Verbrauchte Lebensmittel können gelöscht werden.
 Dementsprechend sieht eine Umsetzung der einzelnen Schichten wie folgt aus:
 
 \subsection*{\textit{Abstraction Code}-Schicht}
-In der \textit{Abstraction Code}-Schicht befinden sich Klassen für die Verwaltung der Maßeinheit der Lebensmittel.
-Die Klasse \textit{UnitOfMeasure} ist die Superklasse der Subklassen \textit{Quantity}, \textit{Volume} sowie \textit{Weight}.
-Innerhalb dieser Klassen wird die zugehörige Maßeinheit sowie der entsprechende Wert gespeichert.
-In dieser Schicht befindet sich zudem die Klasse \textit{DateValidator}.
-Die Klasse dient der Prüfung der Gültigkeit des Mindesthaltbarkeitsdatums als ein grundsätzlich gültiges Format.
-Sowohl die Klassen für die Maßeinheit als auch die Klasse zur Gültigkeitsprüfung des Mindesthaltbarkeitsdatums sind in dieser Schicht festgelegt, da sowohl die Maßeinheiten als auch die Gültigkeit des Datums auf domänenübergreifendes Wissen zurückzuführen sind, dessen Änderung und somit auch das der Klassen ausgeschlossen.
+In der \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/tree/main/swe_programmentwurf/consumergoods-inventory-planner/4-cip-abstractioncode}{\code{Abstraction Code}}-Schicht befinden sich Klassen für die Verwaltung der Maßeinheit der Lebensmittel.
+Die Klasse \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/4-cip-abstractioncode/src/main/java/de/dhbw/cip/abstractioncode/UnitOfMeasure.java}{\code{UnitOfMeasure}} ist die Superklasse der Subklassen \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/4-cip-abstractioncode/src/main/java/de/dhbw/cip/abstractioncode/Quantity.java}{\code{Quantity}}, \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/4-cip-abstractioncode/src/main/java/de/dhbw/cip/abstractioncode/Volume.java}{\code{Volume}} sowie \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/4-cip-abstractioncode/src/main/java/de/dhbw/cip/abstractioncode/Weight.java}{\code{Weight}}.
+Diese Klassen repräsentieren die zugehörige Maßeinheit. Der entsprechende Wert wird durch eine Referenz auf ein Objekt der Klasse \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/4-cip-abstractioncode/src/main/java/de/dhbw/cip/abstractioncode/Value.java}{\code{Value}} gespeichert.
+Gleiches gilt für die Repräsentation des Datums eines Tages, Monats und Jahres.
+Dafür dienen die Klassen \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/4-cip-abstractioncode/src/main/java/de/dhbw/cip/abstractioncode/Day.java}{\code{Day}}, \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/4-cip-abstractioncode/src/main/java/de/dhbw/cip/abstractioncode/Month.java}{\code{Month}} sowie \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/4-cip-abstractioncode/src/main/java/de/dhbw/cip/abstractioncode/Year.java}{\code{Year}}.
+Die Klassen für die Maßeinheit und die Repräsentation eines Tages, eines Monats sowie eines Jahres sind in dieser Schicht festgelegt, da die Informationsrepräsentation der Klassen auf domänenübergreifendes Wissen zurückzuführen ist, dessen Änderung und somit auch das der Klassen ausgeschlossen.
 Die Klassen benötigen zudem keine Abhängigkeit zu Klassen der äußeren Schichten.
 
 \subsection*{\textit{Domain Code}-Schicht}
-Die \textit{Domain Code}-Schicht enthält die für den Anwendungsfall der Software relevanten Domänen.
-Dazu zählt zum einen die Klasse \textit{ConsumerGoods}.
+Die \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/tree/main/swe_programmentwurf/consumergoods-inventory-planner/3-cip-domain}{\code{Domain Code}}-Schicht enthält die für den Anwendungsfall der Software relevanten Domänen.
+Dazu zählt zum einen die Klasse \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/main/swe_programmentwurf/consumergoods-inventory-planner/3-cip-domain/src/main/java/de/dhbw/cip/domain/ConsumerGoods.java}{\code{ConsumerGoods}}.
 Diese Klasse dient der Repräsentation der Lebensmittel als einer der Domänen.
-Innerhalb der Klasse \textit{ConsumerGoods} werden dabei die weiteren Klassen \textit{Food} als eigentliches Lebensmittel, \textit{UnitOfMeasure} als Klasse für die Maßeinheit sowie \textit{Storage} als Klasse für den Lagerort verwaltet.
-Die Klasse \textit{UnitOfMeasure} ist wie bereits erläutert Teil der \textit{Abstraction Code}-Schicht und somit ist die Abhängigkeit möglich.
-Die Klasse \textit{Storage} ist die Superklasse für die Lagerortsklassen \textit{Fridge} sowie \textit{FoodShelf} und speichern lediglich die Beschreibung des Lagerorts.
-\todo[]{Gefrierschrank nicht vergessen}
-Eine weitere Klasse ist\textit{Food}. Diese repräsentiert die Bezeichnung des zu speichernden Lebensmittels sowie das dazugehörige Mindesthaltbarkeitsdatum.
-Das Mindesthaltbarkeitsdatum wird in der Klasse \textit{BestBeforeDate} verwaltet.
+Innerhalb der Klasse \code{ConsumerGoods} werden dabei die weiteren Klassen \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/3-cip-domain/src/main/java/de/dhbw/cip/domain/Food.java}{\code{Food}} als eigentliches Lebensmittel, \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/3-cip-domain/src/main/java/de/dhbw/cip/domain/UnitOfMeasure.java}{\code{UnitOfMeasure}} als Klasse für die Maßeinheit sowie \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/3-cip-domain/src/main/java/de/dhbw/cip/domain/Storage.java}{\code{Storage}} als Klasse für den Lagerort verwaltet.
+Die Klasse \code{UnitOfMeasure} ist wie bereits erläutert Teil der \textit{Abstraction Code}-Schicht und somit ist die Abhängigkeit möglich.
+Die Klasse \textit{Storage} ist die Superklasse für die Lagerortsklassen \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/3-cip-domain/src/main/java/de/dhbw/cip/domain/Fridge.java}{\code{Fridge}} sowie \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/3-cip-domain/src/main/java/de/dhbw/cip/domain/FoodShelf.java}{\code{FoodShelf}} und speichern die Beschreibung des Lagerorts.
+Eine weitere Klasse ist \textit{Food}. Diese Klasse repräsentiert die Bezeichnung des zu speichernden Lebensmittels sowie das dazugehörige Mindesthaltbarkeitsdatum.
+Das Mindesthaltbarkeitsdatum wird in der Klasse \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/3-cip-domain/src/main/java/de/dhbw/cip/domain/BestBeforeDate.java}{\code{BestBeforeDate}} verwaltet.
 
-Darüber hinaus befinden sich in der \textit{Domain Code}-Schicht die Interfaces \textit{ConsumerGoodsRepository}, \textit{FridgeRepository} und \textit{FoodShelfRepository}.
+Darüber hinaus befinden sich in der \textit{Domain Code}-Schicht die Interfaces \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/3-cip-domain/src/main/java/de/dhbw/cip/domain/ConsumerGoodsRepository.java}{\code{ConsumerGoodsRepository}}, \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/3-cip-domain/src/main/java/de/dhbw/cip/domain/FridgeRepository.java}{\code{FridgeRepository}} und \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/3-cip-domain/src/main/java/de/dhbw/cip/domain/FoodShelfRepository.java}{\code{FoodShelfRepository}}.
 Diese Interfaces dienen im folgenden Verlauf der Anwendung einer \textit{Dependency Inversion}.
 Die Interfaces beinhalten die abstrakten Methoden zum Finden gezielter oder aller jeweiligen Entitäten sowie dem Löschen und Hinzufügen.
-\todo{Codeausschnit eines Interfaces als Beispiel}
+
+Die Klassen \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/3-cip-domain/src/main/java/de/dhbw/cip/domain/DateValidator.java}{\code{DayValidator}}, \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/3-cip-domain/src/main/java/de/dhbw/cip/domain/DateValidator.java}{\code{MonthValidator}}, \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/3-cip-domain/src/main/java/de/dhbw/cip/domain/DateValidator.java}{\code{YearValidator}} und \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/3-cip-domain/src/main/java/de/dhbw/cip/domain/DateValidator.java}{\code{ValueValidator}}.
+Diese Klassen dienen der Validierung der Werte für das Tagdatum, Monatsdatum, Jahresdatum und den Wert für die Menge.
+Die Validierung liegt hierbei nur auf den grundlegenden Kriterien.
+Dazu zählt, dass die jeweiligen Werte nicht negativ sein dürfen sowie der Wert für ein Tagdatum größer als 31 beziehungsweise das Monatsdatum über 12 ungültig ist.
+Für die der Gültigkeit des Mindesthaltbarkeitsdatums als ein grundsätzlich gültiges Datum dient die Klasse \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/3-cip-domain/src/main/java/de/dhbw/cip/domain/DateValidator.java}{\code{DateValidator}}.
 
 \subsection*{\textit{Application Code}-Schicht}
-Eine weitere Schicht ist die \textit{Application Code}-Schicht.
-Darin befinden sich die Klassen \textit{ConsumerGoodsApplicationService} sowie \textit{StorageApplicationService}.
+Eine weitere Schicht ist die \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/tree/main/swe_programmentwurf/consumergoods-inventory-planner/2-cip-application}{\code{Application Code}}-Schicht.
+Darin befinden sich die Klassen \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/2-cip-application/src/main/java/de/dhbw/cip/application/ConsumerGoodsManager.java}{\code{ConsumerGoodsManager}} sowie \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/2-cip-application/src/main/java/de/dhbw/cip/application/StorageManager.java}{\code{StorageManager}}.
 In diesen Klassen findet die Applikationslogik statt.
-Innerhalb des \textit{ConsumerGoodsApplicationService} bedeutet das konkret, das Anlegen neuer \textit{ConsumerGoods}-Objekten, das Ausgeben aller aktuell gespeicherter \textit{ConsumerGoods}-Objekten, Verändern eines \textit{ConsumerGoods}-Objekts sowie das Löschen von \textit{ConsumerGoods}-Objekten.
-\todo[]{Code-Ausschnitt}
-Es findet hierbei eine \textit{Dependency Inversion} statt.
-Die Klasse \textit{ConsumerGoodsRepositoryBridge} fungiert als Repository-Klasse für die \textit{ConsumerGoods}-Objekte. Die beiden Klassen haben das Interface \textit{ConsumerGoodsRepository} implementiert.
+Innerhalb der Klasse \textit{ConsumerGoodsManager} bedeutet das konkret, das Anlegen neuer \textit{ConsumerGoods}-Objekten, das Ausgeben aller aktuell gespeicherter \textit{ConsumerGoods}-Objekten, Verändern eines \textit{ConsumerGoods}-Objekts sowie das Löschen von \textit{ConsumerGoods}-Objekten.
+
+Die Klasse \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/0-cip-plugins/src/main/java/de/dhbw/cip/plugins/persistence/hibernate/ConsumerGoodsRepositoryBridge.java}{\code{ConsumerGoodsRepositoryBridge}} aus der \textit{Plugin}-Schicht fungiert als Repository-Klasse für die \textit{ConsumerGoods}-Objekte. Die beiden Klassen haben das Interface \textit{ConsumerGoodsRepository} implementiert.
 Zum Ausführen der Applikationslogik eine Abhängigkeit in eine äußere Schicht nötig. 
 Um dies zu umgehen, wird als Übergabeparameter des Konstruktors ein Objekt, welches das Interface \textit{ConsumerGoodsRepository} implementiert hat, übergeben.
 Somit ist zur Kompilierungszeit keine Abhängigkeit vorhanden und ein Verwenden der äußeren Klasse zur Laufzeit möglich.
+Durch das Anwenden der \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/2bab7b1c200507e4550ce7025485261d0e95ce07/swe_programmentwurf/consumergoods-inventory-planner/2-cip-application/src/main/java/de/dhbw/cip/application/ConsumerGoodsManager.java#L18}{\code{Dependency Injection}} in der Klasse \textit{ConsumerGoodsManager} kann daraus eine \textit{Dependency Inversion} angewandt werden, die das Problem der Abhängigkeit zur Kompilierungszeit in eine äußere Schicht löst.
 Sollte nun die Klasse \textit{ConsumerGoodsRepositoryBridge} in der \textit{Plugin}-Schicht aufgrund eines Technologiewechsel verändert werden, kann bei Implementierung des Interfaces \textit{ConsumerGoodsRepository} unberührt weiterverwendet werden.
-\todo[]{Code-Ausschnitt zu Dependency Inversion}
 
-Die Klasse \textit{StorageApplicationService} hat die gleiche Applikationslogik wie der \textit{ConsumerGoodsApplicationService}, jedoch mit dem Unterschied, dass es sich auf \textit{Fridge}-Objekte sowie \textit{FoodShelf}-Objekte bezieht.
-\todo[]{Gefriertruhe}
+Die Klasse \textit{StorageManager} hat die gleiche Applikationslogik wie die Klasse \textit{ConsumerGoodsManager}, jedoch mit dem Unterschied, dass es sich auf \textit{Fridge}-Objekte sowie \textit{FoodShelf}-Objekte bezieht.
 Analog hier ist ebenfalls ein Anlegen, Ausgeben, Verändern und Löschen eines \textit{Fridge}-Objekte oder \textit{FoodShelf}-Objektes möglich.
 \todo[]{Code-Ausschnitt}
-Auch in der Klasse \textit{StorageApplicationService} findet eine \textit{Dependency Inversion} für die Klassen der Repositories für die einzelnen Storage-Ausprägungen statt.
+Auch in der Klasse \textit{StorageManager} findet eine \textit{Dependency Inversion} durch eine \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/2bab7b1c200507e4550ce7025485261d0e95ce07/swe_programmentwurf/consumergoods-inventory-planner/2-cip-application/src/main/java/de/dhbw/cip/application/StorageManager.java#L21}{\code{Dependency Inversion}} für die Klassen der Repositories für die einzelnen Storage-Ausprägungen statt.
 Die Klassen \textit{FridgeRepositoryBridge} und \textit{FoodShelfRepositoryBridge} dienen als Repository-Klassen für die jeweiligen \textit{Fridge}-Objekte und \textit{FoodShelf}-Objekte. Die beiden Klassen haben das Interface \textit{FridgeRepository} beziehungsweise \textit{FoodShelfRepository} implementiert.
 Auch hier wäre zum Ausführen der Applikationslogik eine Abhängigkeit in eine äußere Schicht nötig. Um dies zu umgehen, wird auch hierbei als Übergabeparameter des Konstruktors ein Objekt, welches das Interface \textit{FridgeRepository} beziehungsweise \textit{FoodShelfRepository} implementiert hat, übergeben.
 Somit ist zur Kompilierungszeit keine Abhängigkeit vorhanden und ein Verwenden der äußeren Klasse möglich.
-\todo[]{Code-Ausschnitt zu Dependency Inversion}
 
-\todo[]{eventuell RenderModell umsetzen, auch in Richtung des ApplicationCodes}
+%\todo[]{eventuell RenderModell umsetzen, auch in Richtung des ApplicationCodes}
 
 \subsection*{\textit{Adapters}-Schicht}
-Eine weitere Schicht ist die \textit{Adapters}-Schicht.
+Eine weitere Schicht ist die \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/tree/main/swe_programmentwurf/consumergoods-inventory-planner/1-cip-adapters}{\code{Adapters}}-Schicht.
 Diese Schicht dient als \textit{Anti Corruption Layer}, indem sie die inneren Schichten von den äußeren Schichten trennt.
 Dementsprechend sind die Domänen-Klassen aus der \textit{Domain}-Schicht, die zur Kommunikation mit den äußeren Schichten benötigt werden, in dieser Schicht repliziert.
-Dazu zählen die folgenden Klassen:
-\todo[]{Tabelle mit Gegenüberstellungen}
+Dazu zählen die in Tabelle \ref{clean-architecture>klassen-adapters} mit den in der \textit{Domain}-Schicht gegenübergestellten Klassen:
 
-Durchgeführt wird diese Trennung der inneren und äußeren Schichten durch die Klassen \textit{ConsumerGoodsToConsumerGoodsRessourceMapper}, \textit{FridgeToFridgeRessourceMapper} sowie \textit{FoodShelfToFoodShelfMapper}.
-Die Abläufe sind sehr identisch und werden beispielhaft durch einen Ausschnitt der Klasse \textit{ConsumerGoodsToConsumerGoodsRessourceMapper} dargestellt.
-\todo[]{Code-Ausschnitt}
-Der Code-Ausschnitt verdeutlicht die Trennung durch die Erstellung neuer Resource-Objekte entsprechend den Daten der Domänen-Objekte.
+\begin{table}[H]
+    \centering
+\begin{tabular}[h]{|c|c|}
+	\hline
+	\textbf{Domain-Schicht} & \textbf{Adapters-Schicht} \\
+	\hline
+	ConsumerGoods & ConsumerGoodsResource \\
+	Food & FoodResource \\
+	BestBeforeDate & BestBeforeDateResource \\
+	Food & FoodResource \\
+	Storage & StorageResource \\
+	Fridge & FridgeResource \\
+	FoodShelf & FoodShelfResource \\
+    \hline
+\end{tabular}
+    \caption{Gegenüberstellung der in der \textit{Adapters}-Schicht abgebildeten Klassen aus der \textit{Domain}-Schicht.}
+    \label{clean-architecture>klassen-adapters}
+\end{table}
+
+Durchgeführt wird diese Trennung der inneren und äußeren Schichten durch die Klassen \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/1-cip-adapters/src/main/java/de/dhbw/cip/adapters/ConsumerGoodsToConsumerGoodsResourceMapper.java}{\code{ConsumerGoodsToConsumerGoodsRessourceMapper}}, \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/1-cip-adapters/src/main/java/de/dhbw/cip/adapters/FridgeToFridgeResourceMapper.java}{\code{FridgeToFridgeRessourceMapper}} sowie \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/1-cip-adapters/src/main/java/de/dhbw/cip/adapters/FoodShelfToFoodShelfRessourceMapper.java}{\code{FoodShelfToFoodShelfMapper}}.
+Die Erstellung neuer Resource-Objekte beruht auf den Daten der Domänen-Objekte.
 Die dadurch erzeugten Resource-Objekte können nun von Objekten der Klassen in der \textit{Plugin}-Schicht verwendet werden.
 
 \subsection*{\textit{Plugin}-Schicht}
-Die äußerste Schicht bildet die \textit{Plugin}-Schicht.
+Die äußerste Schicht bildet die \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/tree/main/swe_programmentwurf/consumergoods-inventory-planner/0-cip-plugins}{\code{Plugin}}-Schicht.
+
+\subsubsection*{Main}
 Zum einen enthält die Plugin-Schicht die Main-Methode zum Starten des Projekts.
 Aufgrund der Tatsache, dass die Main-Methode technisch bedingt und somit keinerlei Bezug zur Anwendung und deren Geschäftsprozesse hat, ist sie in der äußersten Schicht anzusetzen.
-Dementsprechend befindet sich die Main-Methode in der Klasse \textit{ConsumerInventoryPlannerApplication}, die sich im Package \textit{de.dhbw.cip.main} befindet.
-\todo[]{Code-Ausschnitt der Main-Methode}
-Daneben gibt es in der \textit{Plugin}-Schicht das Package \textit{de.dhbw.cip.plugins.persistence.hibernate}.
-Es enthält die Klassen \textit{ConsumerGoodsRepositoryBridge}, \textit{FridgeRepositoryBridge} sowie \textit{FoodShelfRepositoryBridge}.
+Dementsprechend befindet sich die Main-Methode in der Klasse \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/0-cip-plugins/src/main/java/de/dhbw/cip/ConsumerInventoryPlannerApplication.java}{\code{ConsumerInventoryPlannerApplication}}, die sich im Package \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/tree/main/swe_programmentwurf/consumergoods-inventory-planner/0-cip-plugins/src/main/java/de/dhbw/cip}{\code{de.dhbw.cip.main}} befindet.
+
+\subsubsection*{JPA}
+Daneben gibt es in der \textit{Plugin}-Schicht das Package \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/tree/main/swe_programmentwurf/consumergoods-inventory-planner/0-cip-plugins/src/main/java/de/dhbw/cip/plugins/persistence/hibernate}{\code{de.dhbw.cip.plugins.persistence.hibernate}}.
+Es enthält die Klassen \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/0-cip-plugins/src/main/java/de/dhbw/cip/plugins/persistence/hibernate/ConsumerGoodsRepositoryBridge.java}{\code{ConsumerGoodsRepositoryBridge}}, \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/0-cip-plugins/src/main/java/de/dhbw/cip/plugins/persistence/hibernate/FridgeRepositoryBridge.java}{\code{FridgeRepositoryBridge}} sowie \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/0-cip-plugins/src/main/java/de/dhbw/cip/plugins/persistence/hibernate/FoodShelfRepositoryBridge.java}{\code{FoodShelfRepositoryBridge}}.
 Diese Klassen dienen als Repository-Klassen für die Objekte der jeweiligen Klassen \textit{ConsumerGoods}, \textit{Fridge} sowie \textit{FoodShelf}.
 Die Klassen haben jeweils das aus der \textit{Domain}-Schicht dazugehörige Interface implementiert.
-Die Bridge dient dabei als Bindeglied zwischen dem internen Repository sowie dem durch das Spring Framework bereitgestellte \ac{JPA}-Repository, dass für die spätere Anbindung an eine Datenbank zur Persistierung benötigt wird.
+Die Bridge dient dabei als Bindeglied zwischen dem internen Repository sowie der durch das Spring Framework bereitgestellten Oberklasse \textit{JpaRepository}, welche für die spätere Anbindung an eine Datenbank zur Persistierung benötigt wird.
 Dadurch kann eine Trennung zwischen der Geschäftslogik und der Persistierung durch das Spring Framework durchgeführt werden.
 Die Bridge entspricht zudem einem Entwurfsmuster und wird im Kapitel \ref{entwurfsmuster} ebenfalls analysiert.
-Des Weiteren sind in dem Package die Klassen \textit{SpringDataConsumerGoodsRepository}, \textit{SpringDataFridgeRepository} sowie \textit{SpringDataFoodShelfRepository} enthalten.
+Des Weiteren sind in dem Package die Klassen \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/0-cip-plugins/src/main/java/de/dhbw/cip/plugins/persistence/hibernate/PersistenceConsumerGoodsRepository.java}{\code{PersistenceConsumerGoodsRepository}}, \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/0-cip-plugins/src/main/java/de/dhbw/cip/plugins/persistence/hibernate/PersistenceFridgeRepository.java}{\code{PersistenceFridgeRepository}} sowie \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/0-cip-plugins/src/main/java/de/dhbw/cip/plugins/persistence/hibernate/PersistenceFoodShelfRepository.java}{\code{PersistenceFoodShelfRepository}} enthalten.
 Wie bereits erwähnt, erben diese Klassen von der Oberklasse \textit{JpaRepository}.
 Diese Klassen wird durch das Spring-Framework bereitgestellt und dient der Persistierung auf einer Datenbank.
 Diese Klassen stellen somit die Möglichkeit bereit, die Anbindung an eine Datenbank zu ermöglichen.
 Die Implementierung ist jedoch nicht in den Anforderungen festgelegt, weshalb ausschließlich die geforderten Grundlagen zur Umsetzung bereitgestellt sind.
-Zuletzt findet sich in der \textit{Plugin}-Schicht das Package \textit{de.dhbw.cip.plugins.rest}.
-Darin befinden sich die Klassen \textit{ConsumerGoodsController} sowie \textit{StorageController}.
+
+\subsubsection*{REST-Controller}
+Zuletzt findet sich in der \textit{Plugin}-Schicht das Package \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/tree/main/swe_programmentwurf/consumergoods-inventory-planner/0-cip-plugins/src/main/java/de/dhbw/cip/plugins/rest}{\code{de.dhbw.cip.plugins.rest}}.
+Darin befinden sich die Klassen \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/0-cip-plugins/src/main/java/de/dhbw/cip/plugins/rest/ConsumerGoodsGuiController.java}{\code{ConsumerGoodsController}} sowie \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/0-cip-plugins/src/main/java/de/dhbw/cip/plugins/rest/StorageGuiController.java}{\code{StorageController}}.
 Bei diesen Klassen handelt es sich um den \ac{REST}-Controller zur Interaktion über das HTTP-Protokoll mit der \ac{GUI}.
 Die GUI ist mit der Technologie \textit{Angular} erstellt worden.
 Sie dient lediglich der Repräsentation der Funktionalität des \ac{REST}-Services und wird daher innerhalb des Softwareentwurfs nicht tiefer analysiert.
@@ -195,11 +223,54 @@ Zum Erhalt der darzustellenden Daten werden Instanzen des jeweiligen Application
 Dadurch können zum Senden der Entitäten die in der \textit{Adapter}-Schicht erzeugten Resource-Entitäten gestreamt und als Liste gesendet werden.
 Gleichzeitig können über eine Abhängkeit zum entsprechenden Application Service Entitäten entsprechend der über die \ac{GUI} übermittelnden Daten erzeugt, verändert oder gelöscht werden.
 Die Code-Ausschnitte verdeutlichen die Interaktionen des \ac{REST}-Controllers am Beispiel der Klasse \textit{ConsumerGoodsController}.
-\todo[]{Code-Ausschnitt Get-Stream}
-\todo[]{Code-Ausschnitt put, post, delete}
 
-\todo[]{Bezug zu RenderModel}
+\subsubsection*{Testklassen}
+In der Plugin-Schicht befinden sich ebenfalls die Klassen \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/0-cip-plugins/src/test/java/de/dhbw/cip/AddConsumerGoodsTest.java}{\code{AddConsumerGoodsTest}}, 
+\href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/0-cip-plugins/src/test/java/de/dhbw/cip/DateValidatorTest.java}{\code{DateValidatorTest}} 
+\href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/0-cip-plugins/src/test/java/de/dhbw/cip/DayDateTest.java}{\code{DayDateTest}} 
+\href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/0-cip-plugins/src/test/java/de/dhbw/cip/MonthDateTest.java}{\code{MonthDateTest}}
+\href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/0-cip-plugins/src/test/java/de/dhbw/cip/RestTest.java}{\code{RestTest}}
+\href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/0-cip-plugins/src/test/java/de/dhbw/cip/UnitOfMeasureValueTest.java}{\code{UnitOfMeasureValueTest}}
+\href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/0-cip-plugins/src/test/java/de/dhbw/cip/UpdateConsumerGoodsTest.java}{\code{UpdateConsumerGoodsTest}} und 
+\href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/0-cip-plugins/src/test/java/de/dhbw/cip/YearDateTest.java}{\code{YearDateTest}}.
+Diese Klassen dienen für Unit-Tests und werden im Kapitel \ref{unit-tests} ausführlicher beschrieben.
 
 \subsection*{Frameworks}
-\todo[]{Besonderheiten durch Verwendung von Spring in Bezug auf Clean Architecture?}
-\todo[]{Framework nach außen, wird jedoch aufgrund des erhelblichen Mehraufwands auf den Teller genommen}
+Während die Verwendung von Bibliotheken Funktionalitäten einer Klasse innerhalb einer Schicht erweitern, versuchen Frameworks Einfluss auf die gesammte Struktur und somit auch schichtübergreifend zu nehmen.
+Neben der Wahl der Programmiersprache ist das eine weitere grundlegende Entscheidung, die zu Beginn getroffen wird und zu grundlegenden Abhängigkeiten der Software führen kann.
+Der Nachteil ist, dass die Entwicklung des Frameworks nicht beeinflusst werden kann.
+Somit können Weiterentwicklungen nicht mehr mit der Konzeption des Softwareentwurfs übereinstimmen und das hätte zur große Wirkungen in Form von Änderungen oder einer Neuentwicklung zur Folge.
+Deshalb wird die Wahl eines Frameworks als grundlegende Abhängigkeit gesehen und sollte bedacht gewählt werden.
+Es bietet sich an, soweit das Framework dies zulässt, die Funktionalitäten bestenfalls an die \textit{Plugin}-Schicht zu drängen.
+
+Bei diesem Softwareentwurf wurde das Framework SpringBoot gewählt.
+SpringBoot vereinfacht die Anwendung von Webanwendeungen, wie in diesem Softwareentwurf in Form eines Webservices.
+Das Framework stellt nötige Webserver bereit und vereinfacht die Anbindung mit Frameworks zur Persistierung wie beispielsweise Hibernate.
+Das unterstützt bei der Entwicklung eines Webservices.
+
+\subsubsection*{Strukturierung}
+Ein Vorteil ist die Struktur, die SpringBoot vorgibt.
+Dadurch kann es bei der Umsetzung der definierten Schichten der \textit{Clean Architecture} für die Controller-Klassen und Service-Klassen unterstützen.
+Es findet jedoch durch die Annotation des Frameworks zugleich eine Abhängigkeit ab.
+Beispiele sind die Kennzeichnung des Controllers mittels \textit{@RestController} in der Klasse \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/0-cip-plugins/src/main/java/de/dhbw/cip/plugins/rest/ConsumerGoodsGuiController.java#L38}{\code{ConsumerGoodsGuiController}} und \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/0-cip-plugins/src/main/java/de/dhbw/cip/plugins/rest/StorageGuiController.java#L17}{\code{StorageGuiController}} sowie die Kennzeichnung einer Service-Klasse mit der \textit{@Service} Annotation in den Klassen \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/2-cip-application/src/main/java/de/dhbw/cip/application/ConsumerGoodsManager.java#L12}{\code{ConsumerGoodsManager}} und \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/2-cip-application/src/main/java/de/dhbw/cip/application/StorageManager.java#L14}{\code{StroageManager}}.
+%Convention over Configuration => KISS und Don't repeat yourself
+
+\subsubsection*{Dependency Injection durch Inversion of Control}
+Ein weiterer Vorteil von Spring Boot ist der Spring Inversion of Control Container. Der Inversion of Control Container verwaltet zur Laufzeit die erzeugten Beans und ermöglicht sehr einfach Dependency Injection, indem der Container die Zuweisung übernimmt, wie es beispielsweise in den Klassen \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/2-cip-application/src/main/java/de/dhbw/cip/application/ConsumerGoodsManager.java#L18}{\code{ConsumerGoodsManager}} oder \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/0-cip-plugins/src/main/java/de/dhbw/cip/plugins/rest/ConsumerGoodsGuiController.java#L47}{\code{ConsumerGoodsGuiController}} der Fall ist.
+
+Auch hierbei ist zu beachten, dass durch die nötige Annotation \textit{@Autowired} des Frameworks eine gewisse Abhängigkeit stattfindet, wie es beispielsweise in den Klassen \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/2-cip-application/src/main/java/de/dhbw/cip/application/ConsumerGoodsManager.java#L17}{\code{ConsumerGoodsManager}} oder \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/0-cip-plugins/src/main/java/de/dhbw/cip/plugins/rest/ConsumerGoodsGuiController.java#L46}{\code{ConsumerGoodsGuiController}} der Fall ist.
+
+\subsubsection*{Persistierung}
+Eine weitere Unterstützung bietet Spring Boot bei der Persistierung.
+Hierbei wurde die Persistierung jedoch mithilfe des \textit{Bridge}-Entwurfmusters, wie in Kapitel \ref{entwurfsmuster} genauer erläutert, in die Plugin-Schicht gedrängt.
+Beispielklassen ConsumerGoodsBridge und PersistenceConsumerGoodsRepository
+
+Jedoch befinden sich die nötigen Annotationen in der Domäne, was sehr abhängig ist und im Gegensatz zu den bereits erwähnten Annotationen gewissermaßen stärker in das Gewicht fällt, weil es sich hierbei um die Domänenklassen handelt und diese unabhängig von verwendeten Technologien sein sollten.
+Ein nichtauszuschließender Technologiewechsel führt somit zu einer Anpassung der Klassen in der \textit{Domain}-Schicht, was die Umsetzung der \textit{Clean Architecture} verletzt.
+Als Beispiel zählen die nötigen Annotierungen die Kennzeichnung als Entität, zur späteren Bezeichnung von Tabellen, in denen die Attributwerte persistiert werden oder nötige Metainformationen wie beispielsweise die Zuweisung der Funktion eines Attributs als Id. Ein Beispiel sind die Annotationen \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/3-cip-domain/src/main/java/de/dhbw/cip/domain/ConsumerGoods.java#L16}{\textit{@Entity}}, \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/3-cip-domain/src/main/java/de/dhbw/cip/domain/ConsumerGoods.java#L20}{\textit{@Id}}, \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/3-cip-domain/src/main/java/de/dhbw/cip/domain/ConsumerGoods.java#L21}{\textit{@Column}} und \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/3-cip-domain/src/main/java/de/dhbw/cip/domain/ConsumerGoods.java#L24}{\textit{@OneToOne}} in der Klasse \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/3-cip-domain/src/main/java/de/dhbw/cip/domain/ConsumerGoods.java}{\code{ConsumerGoods}}.
+
+Ein weiterer Nachteil ist, dass zur Persistierung Attributtypen eindeutig zuweisbar sein müssen.
+Das bedeutet, dass Attribute, die mit einem Interface als Typ deklariert werden, nicht möglich sind.
+Stattdessen muss eine Deklarierung einer konkreten Klasse oder Superklasse erfolgen.
+Ein Beispiel ist die Deklaration zur Zuweisung der \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/2bab7b1c200507e4550ce7025485261d0e95ce07/swe_programmentwurf/consumergoods-inventory-planner/3-cip-domain/src/main/java/de/dhbw/cip/domain/ConsumerGoods.java#L28}{Menge} und des \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/2bab7b1c200507e4550ce7025485261d0e95ce07/swe_programmentwurf/consumergoods-inventory-planner/3-cip-domain/src/main/java/de/dhbw/cip/domain/ConsumerGoods.java#L31}{Lagerplatzes} in der Klasse \href{}{\code{ConsumerGoods}} mit den Superklassen \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/2bab7b1c200507e4550ce7025485261d0e95ce07/swe_programmentwurf/consumergoods-inventory-planner/4-cip-abstractioncode/src/main/java/de/dhbw/cip/abstractioncode/UnitOfMeasure.java}{\code{UnitOfMeasure}} sowie \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/2bab7b1c200507e4550ce7025485261d0e95ce07/swe_programmentwurf/consumergoods-inventory-planner/3-cip-domain/src/main/java/de/dhbw/cip/domain/Storage.java}{\code{Storage}} realisiert.
+Wäre diese Einschränkung für das Persistieren nicht gegeben, könnten \code{UnitOfMeasure} und \code{Storage} auch als Interface realisiert werden.
