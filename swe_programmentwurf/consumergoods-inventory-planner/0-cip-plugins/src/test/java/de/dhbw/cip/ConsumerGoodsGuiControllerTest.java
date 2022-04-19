@@ -1,7 +1,6 @@
 package de.dhbw.cip;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.verify;
 
 import java.io.IOException;
@@ -27,17 +26,19 @@ public class ConsumerGoodsGuiControllerTest {
 	@Test
 	public void storeNewConsumerGoodTest() {
 	    //Arange
+		String eanCodeParameter = "eancode=12345678901";
 		String foodDescriptionParameter = "description=Tomatoes";
 		String bestBeforeDateDayParameter = "bestbeforedateday=02";
 		String bestBeforeDateMonthParameter = "bestbeforedatemonth=04";
 		String bestBeforeDateYearParameter = "bestbeforedateyear=2022";
 		String quantityValueParameter = "quantityvalue=1";
 		String quantityParameter = "quantity=Stk.";
-		String storageParameter = "storage=Fridge";
+		String storageParameter = "storage=FridgeInTheBasement";
+		String storageTypeParameter = "storagetype=Fridge";
 		
-	    HttpUriRequest request = new HttpPost( "http://localhost:8083/api/consumergoods/add?" + foodDescriptionParameter + "&"
+	    HttpUriRequest request = new HttpPost( "http://localhost:8083/api/consumergoods/add?" + eanCodeParameter + "&" + foodDescriptionParameter + "&"
 	    		+ bestBeforeDateDayParameter + "&" + bestBeforeDateMonthParameter + "&" + bestBeforeDateYearParameter 
-	    		+ "&" + quantityValueParameter + "&" + quantityParameter + "&" + storageParameter);
+	    		+ "&" + quantityValueParameter + "&" + quantityParameter + "&" + storageParameter + "&" + storageTypeParameter);
 
 	    //Act
 	    Optional<CloseableHttpResponse> httpResponse = Optional.empty();
@@ -58,6 +59,7 @@ public class ConsumerGoodsGuiControllerTest {
 	@Test
 	public void checkBadRequestWhileStoreNewConsumerGood() {
 	    //Arange
+		String eanCodeParameter = "eancode=12345678901";
 		String foodDescriptionParameter = "description=Tomatoes";
 		String bestBeforeDateDayParameter = "bestbeforedateday=02";
 		String bestBeforeDateMonthParameter = "bestbeforedatemonth=04";
@@ -65,10 +67,11 @@ public class ConsumerGoodsGuiControllerTest {
 		String quantityValueParameter = "quantityvalue=1";
 		String quantityParameter = "quantity=";
 		String storageParameter = "storage=Fridge";
+		String storageTypeParameter = "storagetype=Fridge";
 		
-	    HttpUriRequest request = new HttpPost( "http://localhost:8083/api/consumergoods/add?" + foodDescriptionParameter + "&"
+	    HttpUriRequest request = new HttpPost( "http://localhost:8083/api/consumergoods/add?" + eanCodeParameter + "&" + foodDescriptionParameter + "&"
 	    		+ bestBeforeDateDayParameter + "&" + bestBeforeDateMonthParameter + "&" + bestBeforeDateYearParameter 
-	    		+ "&" + quantityValueParameter + "&" + quantityParameter + "&" + storageParameter);
+	    		+ "&" + quantityValueParameter + "&" + quantityParameter + "&" + storageParameter + "&" + storageTypeParameter);
 
 	    //Act
 	    Optional<CloseableHttpResponse> httpResponse = Optional.empty();
@@ -89,7 +92,7 @@ public class ConsumerGoodsGuiControllerTest {
 	@Test
 	public void checkBadRequestWhileUpdateNewConsumerGood() {
 	    //Arange
-		String idParameter = "id=";
+		String eanCodeParameter = "eancode=";
 		String foodDescriptionParameter = "description=Tomatoes";
 		String bestBeforeDateDayParameter = "bestbeforedateday=02";
 		String bestBeforeDateMonthParameter = "bestbeforedatemonth=04";
@@ -97,10 +100,11 @@ public class ConsumerGoodsGuiControllerTest {
 		String quantityValueParameter = "quantityvalue=1";
 		String quantityParameter = "quantity=Stk.";
 		String storageParameter = "storage=Fridge";
+		String storageTypeParameter = "storagetype=Fridge";
 		
-	    HttpUriRequest request = new HttpPut( "http://localhost:8083/api/consumergoods/update?" + idParameter + "&" + foodDescriptionParameter + "&"
+	    HttpUriRequest request = new HttpPut( "http://localhost:8083/api/consumergoods/update?" + eanCodeParameter + "&" + foodDescriptionParameter + "&"
 	    		+ bestBeforeDateDayParameter + "&" + bestBeforeDateMonthParameter + "&" + bestBeforeDateYearParameter 
-	    		+ "&" + quantityValueParameter + "&" + quantityParameter + "&" + storageParameter);
+	    		+ "&" + quantityValueParameter + "&" + quantityParameter + "&" + storageParameter + "&" + storageTypeParameter);
 
 	    //Act
 	    Optional<CloseableHttpResponse> httpResponse = Optional.empty();
@@ -126,9 +130,9 @@ public class ConsumerGoodsGuiControllerTest {
 		Mockito.when(consumerGoodsRepositoryMock.outsourceConsumerGoodsWith(id)).thenReturn(false);
 		
 		//Arange
-		String idParameter = "id=5";
+		String eanCodeParameter = "eancode=5";
 		
-	    HttpUriRequest request = new HttpDelete( "http://localhost:8083/api/consumergoods/delete?" + idParameter);
+	    HttpUriRequest request = new HttpDelete( "http://localhost:8083/api/consumergoods/delete?" + eanCodeParameter);
 
 	    //Act
 	    Optional<CloseableHttpResponse> httpResponse = Optional.empty();
@@ -146,7 +150,7 @@ public class ConsumerGoodsGuiControllerTest {
 		if(!httpResponse.isEmpty()) assertEquals(HttpStatus.NOT_FOUND.value(), httpResponse.get().getStatusLine().getStatusCode());
 		
 		//Verify
-		verify(consumerGoodsRepositoryMock, Mockito.times(1)).findStoredConsumerGoodsWith(anyLong());
+		verify(consumerGoodsRepositoryMock, Mockito.times(1));
 	}
 	
 	@Test

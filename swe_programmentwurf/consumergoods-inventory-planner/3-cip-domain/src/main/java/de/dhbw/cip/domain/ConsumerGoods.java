@@ -75,13 +75,11 @@ public class ConsumerGoods {
         private final Food food;
 		private final UnitOfMeasure quantity;
 		private final Storage storage;
-		private ConsumerGoodsRepository consumerGoodsRepository;
 
-		public ConsumerGoodsBuilder(ConsumerGoodsRepository consumerGoodsrepo, long eanCode, String foodDescription, 
+		public ConsumerGoodsBuilder(long eanCode, String foodDescription, 
 				int day, int month, int year, 
 				String measureShortcut, int measureValue, String storageTitle, String storageDescription) {
 			
-			this.consumerGoodsRepository = consumerGoodsrepo;
 			this.eanCode = eanCode;
 			this.food = new Food(foodDescription, new BestBeforeDate(new DayOfYear(new Day(day), new Month(month)), new Year(year)));
 			this.quantity = findMeasureWith(measureShortcut, measureValue);

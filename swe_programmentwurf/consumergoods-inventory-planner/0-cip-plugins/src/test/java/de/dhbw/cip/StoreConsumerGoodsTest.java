@@ -2,27 +2,17 @@ package de.dhbw.cip;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.verify;
-
-import java.util.Optional;
 
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import de.dhbw.cip.domain.ConsumerGoods.ConsumerGoodsBuilder;
-import de.dhbw.cip.domain.ConsumerGoodsRepository;
 
 public class StoreConsumerGoodsTest {
 
 	@Test
 	public void checkStoreValidConsumerGood() {
-		//Capture
-		final ConsumerGoodsRepository consumerGoodsRepositoryMock = Mockito.mock(ConsumerGoodsRepository.class);
-		Mockito.when(consumerGoodsRepositoryMock.findStoredConsumerGoodsWith(12345678901l)).thenReturn(Optional.empty());
-		
 		//Arange
-		ConsumerGoodsBuilder consumerGoodsBuilder = new ConsumerGoodsBuilder(consumerGoodsRepositoryMock, 12345678901l, "Tomatoes", 1, 1, 2022, "Stk.", 3, "Fridge", "fridge in the kitchen");
+		ConsumerGoodsBuilder consumerGoodsBuilder = new ConsumerGoodsBuilder(12345678901l, "Tomatoes", 1, 1, 2022, "Stk.", 3, "Fridge", "fridge in the kitchen");
     	
 		//Act
     	boolean consumerGuidsBuilderValidationWithoutFoodDescprition = consumerGoodsBuilder.validate();
@@ -30,18 +20,12 @@ public class StoreConsumerGoodsTest {
     	//Assert
 		assertTrue(consumerGuidsBuilderValidationWithoutFoodDescprition);
 		
-		//Verify
-		verify(consumerGoodsRepositoryMock, Mockito.times(1));
 	}
 	
 	@Test
-	public void checkStoreConsumerGoodWithoutFoodDescription() {
-		//Capture
-		final ConsumerGoodsRepository consumerGoodsRepositoryMock = Mockito.mock(ConsumerGoodsRepository.class);
-		Mockito.when(consumerGoodsRepositoryMock.findStoredConsumerGoodsWith(12345678901l)).thenReturn(Optional.empty());
-		
+	public void checkStoreConsumerGoodWithoutFoodDescription() {		
 		//Arange
-		ConsumerGoodsBuilder consumerGoodsBuilder = new ConsumerGoodsBuilder(consumerGoodsRepositoryMock, 12345678901l, null, 1, 1, 2022, "Stk.", 3, "Fridge", "fridge in the kitchen");
+		ConsumerGoodsBuilder consumerGoodsBuilder = new ConsumerGoodsBuilder(12345678901l, null, 1, 1, 2022, "Stk.", 3, "Fridge", "fridge in the kitchen");
     	
 		
 		//Act
@@ -50,18 +34,12 @@ public class StoreConsumerGoodsTest {
     	//Assert
 		assertFalse(consumerGuidsBuilderValidationWithoutFoodDescprition);
 		
-		//Verify
-		verify(consumerGoodsRepositoryMock, Mockito.times(1)).findStoredConsumerGoodsWith(anyLong());
 	}
 	
 	@Test
-	public void checkStoreConsumerGoodWithoutMeasure() {
-		//Capture
-		final ConsumerGoodsRepository consumerGoodsRepositoryMock = Mockito.mock(ConsumerGoodsRepository.class);
-		Mockito.when(consumerGoodsRepositoryMock.findStoredConsumerGoodsWith(12345678901l)).thenReturn(Optional.empty());
-		
+	public void checkStoreConsumerGoodWithoutMeasure() {		
 		//Arange
-		ConsumerGoodsBuilder consumerGoodsBuilder = new ConsumerGoodsBuilder(consumerGoodsRepositoryMock, 12345678901l, "Tomatoe", 1, 1, 2022, null, 3, "Fridge", "fridge in the kitchen");
+		ConsumerGoodsBuilder consumerGoodsBuilder = new ConsumerGoodsBuilder(12345678901l, "Tomatoe", 1, 1, 2022, null, 3, "Fridge", "fridge in the kitchen");
 		
 		//Act
 		boolean consumerGoodsBuilderValidationWithoutMeasure = consumerGoodsBuilder.validate();
@@ -69,26 +47,18 @@ public class StoreConsumerGoodsTest {
 		//Assert
 		assertFalse(consumerGoodsBuilderValidationWithoutMeasure);
 		
-		//Verify
-		verify(consumerGoodsRepositoryMock, Mockito.times(1)).findStoredConsumerGoodsWith(anyLong());
 	}
 	
 	@Test
-	public void checkStoreConsumerGoodWithoutStorage() {
-		//Capture
-		final ConsumerGoodsRepository consumerGoodsRepositoryMock = Mockito.mock(ConsumerGoodsRepository.class);
-		Mockito.when(consumerGoodsRepositoryMock.findStoredConsumerGoodsWith(12345678901l)).thenReturn(Optional.empty());
-		
+	public void checkStoreConsumerGoodWithoutStorage() {		
 		//Arange
-		ConsumerGoodsBuilder consumerGoodsBuilder = new ConsumerGoodsBuilder(consumerGoodsRepositoryMock, 12345678901l, "Tomatoe", 1, 1, 2022, "Stk.", 3, null, "fridge in the kitchen");
+		ConsumerGoodsBuilder consumerGoodsBuilder = new ConsumerGoodsBuilder(12345678901l, "Tomatoe", 1, 1, 2022, "Stk.", 3, null, "fridge in the kitchen");
 		
 		//Act
 		boolean consumerGuidsBuilderValidationWithoutStorage = consumerGoodsBuilder.validate();
 		
 		//Assert
 		assertFalse(consumerGuidsBuilderValidationWithoutStorage);
-		
-		//Verify
-		verify(consumerGoodsRepositoryMock, Mockito.times(1)).findStoredConsumerGoodsWith(anyLong());
+
 	}
 }
