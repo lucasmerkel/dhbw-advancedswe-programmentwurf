@@ -119,13 +119,13 @@ public class ConsumerGoods {
 		public boolean validate() {
 			try {
 				checkNonNull();
-				boolean dateValidationResult = DateValidator.validate(new DayOfYear(new Day(food.getBbd().getDay()), 
-																						new Month(food.getBbd().getMonth())), 
-																							new Year(food.getBbd().getYear()));
+				boolean dateValidationResult = DateValidator.validate(new DayOfYear(new Day(food.getBestBeforeDate().getDay()), 
+																						new Month(food.getBestBeforeDate().getMonth())), 
+																							new Year(food.getBestBeforeDate().getYear()));
 
-				if(DayValidator.checkValidyOf( food.getBbd().getDay()) 
-						&& MonthValidator.checkValidyOf(food.getBbd().getMonth())
-						&& YearValidator.checkValidyOf(food.getBbd().getYear()) 
+				if(DayValidator.checkValidyOf( food.getBestBeforeDate().getDay()) 
+						&& MonthValidator.checkValidyOf(food.getBestBeforeDate().getMonth())
+						&& YearValidator.checkValidyOf(food.getBestBeforeDate().getYear()) 
 						&& ValueValidator.checkValidyOf(quantity.getValue().getValue()) 
 						&& dateValidationResult ) return true;
 				
@@ -138,9 +138,9 @@ public class ConsumerGoods {
 		private void checkNonNull() {
 			Objects.requireNonNull(eanCode, "EANCode must not be null");
 			Objects.requireNonNull(food.getDescription(), "Food description must not be null");
-			Objects.requireNonNull(food.getBbd().getDay(), "Best before date day must not be null");
-			Objects.requireNonNull(food.getBbd().getMonth(), "Best before date month must not be null");
-			Objects.requireNonNull(food.getBbd().getYear(), "Best before date year must not be null");
+			Objects.requireNonNull(food.getBestBeforeDate().getDay(), "Best before date day must not be null");
+			Objects.requireNonNull(food.getBestBeforeDate().getMonth(), "Best before date month must not be null");
+			Objects.requireNonNull(food.getBestBeforeDate().getYear(), "Best before date year must not be null");
 			Objects.requireNonNull(quantity, "quantity must not be null");
 			Objects.requireNonNull(storage, "storage must not be null");
 		}

@@ -6,9 +6,5 @@ public interface StorableGoods {
 
 	public StorableGoods getInstance();
 	
-	public void setDescription(String description);
-	
-	public void setBestBeforeDate(BestBeforeDate bbd);
-	
 	public BestBeforeDate getBestBeforeDate();
 }

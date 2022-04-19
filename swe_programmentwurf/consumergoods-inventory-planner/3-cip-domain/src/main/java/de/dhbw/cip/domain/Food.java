@@ -15,7 +15,7 @@ import de.dhbw.cip.abstractioncode.Month;
 import de.dhbw.cip.abstractioncode.Year;
 
 @Entity
-public class Food {
+public class Food implements StorableGoods {
 
 	@Id
     @Column
@@ -38,11 +38,17 @@ public class Food {
 		this.bbd = bbd;
 	}
 	
-	public BestBeforeDate getBbd() {
+	public BestBeforeDate getBestBeforeDate() {
 		return this.bbd;
 	}
 	
 	public String getDescription() {
 		return this.description;
 	}
+
+	@Override
+	public StorableGoods getInstance() {
+		return this;
+	}
+
 }
