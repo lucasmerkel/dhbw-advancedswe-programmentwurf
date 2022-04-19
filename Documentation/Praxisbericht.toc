@@ -25,14 +25,14 @@
 \contentsline {section}{\numberline {5.1}Analyse und Begründung der \textit {Ubiquitous Language}}{32}{section.5.1}%
 \contentsline {section}{\numberline {5.2}Analyse angewandter Value Objects}{37}{section.5.2}%
 \contentsline {section}{\numberline {5.3}Analyse angewandter Entities}{38}{section.5.3}%
-\contentsline {section}{\numberline {5.4}Analyse angewandter Aggregates}{38}{section.5.4}%
+\contentsline {section}{\numberline {5.4}Analyse angewandter Aggregates}{39}{section.5.4}%
 \contentsline {section}{\numberline {5.5}Analyse angewandter Repositories}{40}{section.5.5}%
-\contentsline {chapter}{\numberline {6}Unit Tests}{41}{chapter.6}%
-\contentsline {section}{\numberline {6.1}ATRIP}{42}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Testabdeckung}{42}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Testen mit Mocks}{43}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Anwendung im Softwareentwurf}{43}{section.6.4}%
-\contentsline {chapter}{\numberline {7}Entwurfsmuster}{49}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Angewandte Entwurfsmuster}{49}{section.7.1}%
-\contentsline {chapter}{\numberline {8}Refactoring}{52}{chapter.8}%
+\contentsline {chapter}{\numberline {6}Unit Tests}{42}{chapter.6}%
+\contentsline {section}{\numberline {6.1}ATRIP}{43}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Testabdeckung}{43}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Testen mit Mocks}{44}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Anwendung im Softwareentwurf}{44}{section.6.4}%
+\contentsline {chapter}{\numberline {7}Entwurfsmuster}{50}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Angewandte Entwurfsmuster}{50}{section.7.1}%
+\contentsline {chapter}{\numberline {8}Refactoring}{53}{chapter.8}%
 \contentsfinish 

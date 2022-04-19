@@ -190,7 +190,7 @@ Die Objekte der Klasse dienen schließlich ausschließlich der Werterepräsentat
 \todo[]{Klasse ist final definiert}
 \todo[]{equals und getHash anpassen}
 
-\todo[]{gemacht, weil Fehler durch Manipulation reduziert werden sollen und Objekte eine klare Zuweisung haben sollen.}
+Die Implementierung dieser Value Objects wurde durchgeführt, damit Fehler durch Manipulation an mehreren Stellen des Programms reduziert werden und Objekte eine klare Wertzuweisung während ihrer Laufzeit haben sollen.
 
 Darüber hinaus lassen sich in diesem Softwareentwurf weitere \textit{Value Objects} erkennen, die sich aus den grundlegenden \textit{Value Objects} zusammensetzen.
 Eines stellt die Klasse \href{}{\code{}}\textit{DayOfYear} dar.
@@ -199,7 +199,7 @@ Auch in diesem Fall zeichnet sich die Klasse \href{}{\code{}}\textit{DayOfYear} 
 Ein weiteres \textit{Value Object} ist die Klasse \href{}{\code{BestBeforeDate}}.
 Die Klasse dient lediglich der Repräsentation eines Datums, in Bezug zur Domäne dem Mindesthaltbarkeitsdatums eines Produkts, und ist somit eine Möglichkeit, dem reinen Datum als Wert eine Semantik in der Domäne zu geben.
 
-\todo[]{gemacht, weil übersichtlicher und lesbarer}
+Die Umsetzung von \textit{Value Objects}, die auf \textit{Value Objects} basieren, wurde gewählt, da eine Gruppierung für eine bessere Übersichtlichkeit und Lesbarkeit, zum Beispiel bei Übergabeparametern, des Codes sorgt.
 %Die Klasse \textit{Food} bildet als Zusammenfassung des \textit{Value Objects} \textit{BestBeforeDate} sowie der Implementierung des Interfaces \textit{UnitOfMeasure} ein weiteres \textit{Value Object}.
 %Gewicht ist theoretisch änderbar?
 
@@ -222,7 +222,7 @@ Der Vorteil ist, dass der Schlüssel jederzeit generierbar ist, jedoch keinen Be
 Bei der \textit{Entity} \href{}{\code{}}\code{FoodShelf} ist ebenfalls kein eindeutiger Schlüssel in der Domäne enthalten, weshalb auch ein Surrogatschlüssel angewandt wird.
 Die Generierung läuft entsprechend gleich zu der in der Klasse \href{}{\code{}}\code{Fridge} ab.
 
-\todo[]{gemacht, weil Abbildungen aus der Realität}
+Die Umsetzung der Entities wurde gewählt, da sie bei Betrachtung der Domäne in der Realität wichtigen Entitäten entsprechen, die für Handlungen in der Domäne benötigt werden und somit in den Programmentwurf übernommen wurden.
 
 \section{Analyse angewandter Aggregates}
 \label{domaindrivendesign>aggregates}
@@ -235,7 +235,7 @@ Zudem zählen die \textit{Value Objects} \textit{BestBeforeDate} als auch eine I
 Bei Betrachtung der Visualisierung des \textit{Aggregates} ist zu erkennen, dass ein Zugriff auf die Objekte innerhalb des \textit{Aggregates} über das Objekt der Klasse \href{}{\code{}}\textit{ConsumerGoods} erfolgen.
 Es handelt sich somit beim Objekt der Klasse \href{}{\code{}}\textit{ConsumerGoods} um ein \textit{Aggregate Root}.
 Direkte Referenzen auf Elemente innerhalb des \textit{Aggregates} sind dabei nicht erlaubt.
-Eine Betrachtung des UML-Diagramms im Kapitel \href{}{\code{}}\todo[]{ref zu UML} zeigt jedoch, dass solch eine direkte Referenz nicht vorliegt und der Zugriff ausschließlich über den \textit{Aggregate Root} funktioniert.
+Eine Betrachtung des UML-Diagramms \href{}{\code{}}\todo[]{ref zu UML} zeigt jedoch, dass solch eine direkte Referenz nicht vorliegt und der Zugriff ausschließlich über den \textit{Aggregate Root} funktioniert.
 \todo[]{Aktuell durch Resource verletzt, entweder ändern und erläutern oder Verletzung erläutern}
 
 Ein Objekt der Klasse \href{}{\code{}}\textit{ConsumerGoods} kann somit den gesammten Zugriff auf das \textit{Aggregate} kontrollieren und die Einhaltung der Domänenregeln gewährleisten.
@@ -244,7 +244,7 @@ Durch das \textit{Aggregate Root} kann die Einhaltung der Domänenregel, nämlic
 
 Das \textit{Aggregate Root} \textit{ConsumerGoods} ist über die ID \href{}{\code{}}\textit{eanCode} eindeutig identifizierbar.
 Ein Verlust dieser ID zur Laufzeit führt dazu, dass neben dem Objekt der Klasse \href{}{\code{}}\textit{ConsumerGoods} das gesammte \textit{Aggregate} und somit das dazugehörige Objekt der Klasse \href{}{\code{}}\textit{Food}, \href{}{\code{}}\textit{BestBeforeDate} als auch das Objekt der Implementierung des Interfaces \textit{UnitOfMeasure} nicht mehr erreichbar.
-Die Herausgabe von Referenzen auf innere Objekte werden zur Gewährleistung des den Domänenregeln entsprechenden Zustands Kopien oder Immutable-Dekorierer ausgegeben, wie \href{}{\code{}}in diesem Beispiel zu erkennen \todo{Ref einfügen}.
+Die Herausgabe von Referenzen auf innere Objekte werden zur Gewährleistung des den Domänenregeln entsprechenden Zustands Kopien oder Immutable-Dekorierer ausgegeben, wie im Beispiel \href{}{\code{}} zu erkennen.
 
 Des Weiteren werden bei \ac{CRUD}-Anwendungen auf einzelne Objekte des \textit{Aggregates} das gesammte \textit{Aggregate} geladen und entsprechend gespeichert, wie in \href{}{\code{ConsumerGoodsApplicationService}} zu erkennen.
 Das Ziel ist die Minimierung des Risikos auftretender Bugs durch ungültige Zustände aufgrund teilweiser Änderungen sowie die Einhaltung der Domänenregeln durch das \textit{Aggregate Root}, über das die \ac{CRUD}-Anwendungen ausgeführt und an den entsprechenden internen Objekten angewandt werden.
@@ -255,7 +255,7 @@ Des Weiteren wird durch die Einteilung in einzelne \textit{Aggregates} Transakti
 Bei den \textit{Aggregates} \href{}{\code{}}\textit{Fridge} und \href{}{\code{}}\textit{FoodShelf} handelt es sich um Implementierung des Interfaces \href{}{\code{}}\textit{Storage}.
 Die \textit{Aggregates} haben zum aktuellen Stand keine Referenzen auf weitere Klassen und sind somit zugleich \textit{Aggregate Root}, auch in Hinblick auf ihre Funktion mit möglichen Erweiterungen.
 
-\todo[]{gemacht, weil dadurch klare Abgrenzungen und eine bessere Verwaltbarkeit vorliegt, Bearbeiten und Verändern von Attributen oder Teilen des Aggregates und daraus resultierende Fehler somit minimiert}
+Die Umsetzung der Aggregate wurde übergreifend bedacht, damit dadurch klare Abgrenzungen und eine bessere Verwaltbarkeit vorliegen, das Bearbeiten und Verändern von Attributen oder Teilen des Aggregates zentral verwaltet und validiert werden kann und daraus resultierende Fehler minimiert werden können.
 
 \section{Analyse angewandter Repositories}
 \label{domaindrivendesign>repositories}
@@ -268,4 +268,4 @@ Die konkrete Implementierung der Persistierung findet in den jeweils entsprechen
 Dies ist sowohl für das \ac{DDD}-Modell \textit{Repository} als auch entsprechend der \textit{Clean Architecture} entsprechend vorgesehen, dass die Implementierung außerhalb stattfindet. 
 Schließlich zählt die Definition des \textit{Repository} zum \textit{Domain Code}, die konkrete Umsetzung ist jedoch domänenunabhängig oder auch \textit{Pure Fabrication} genannt.
 
-\todo[]{gemacht, weil zentrale Verwaltungsmöglichkeit}
+Die Implementierung von Repositories wurde gewählt, damit neben der Zusammenarbeit zwischen den \textit{Aggregates} \href{}{\code{ConsumerGoods}}, \href{}{\code{Fridge}} als auch \href{}{\code{FoodShelf}} sowohl ein \textit{Repository}-Modell vorhanden ist als auch zugleich eine zentrale Verwaltungsmöglichkeit.
