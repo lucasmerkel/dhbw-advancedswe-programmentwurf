@@ -22,8 +22,8 @@ public class FoodShelfRepositoryBridge implements FoodShelfRepository {
 	}
 
 	@Override
-	public FoodShelf occupyFoodShelfStorageBin(FoodShelf foodShelf) {
-		return this.springDataFoodShelfRepository.save(foodShelf);
+	public FoodShelf occupyPlaceAt(FoodShelf place) {
+		return this.springDataFoodShelfRepository.save(place);
 	}
 
 }

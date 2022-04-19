@@ -5,7 +5,6 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import de.dhbw.cip.abstractioncode.Day;
 import de.dhbw.cip.domain.DayValidator;
 
 public class DayDateTest {

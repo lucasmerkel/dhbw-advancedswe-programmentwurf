@@ -5,7 +5,6 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import de.dhbw.cip.domain.MonthValidator;
 import de.dhbw.cip.domain.YearValidator;
 
 public class YearDateTest {
