@@ -1,6 +1,8 @@
 package de.dhbw.cip;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.verify;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -142,6 +144,9 @@ public class ConsumerGoodsGuiControllerTest {
 
 	    //Assert
 		if(!httpResponse.isEmpty()) assertEquals(HttpStatus.NOT_FOUND.value(), httpResponse.get().getStatusLine().getStatusCode());
+		
+		//Verify
+		verify(consumerGoodsRepositoryMock, Mockito.times(1)).findStoredConsumerGoodsWith(anyLong());
 	}
 	
 	@Test

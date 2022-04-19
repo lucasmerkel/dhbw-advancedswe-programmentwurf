@@ -2,6 +2,8 @@ package de.dhbw.cip;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.verify;
 
 import java.util.Optional;
 
@@ -27,6 +29,9 @@ public class StoreConsumerGoodsTest {
 		
     	//Assert
 		assertTrue(consumerGuidsBuilderValidationWithoutFoodDescprition);
+		
+		//Verify
+		verify(consumerGoodsRepositoryMock, Mockito.times(1));
 	}
 	
 	@Test
@@ -44,6 +49,9 @@ public class StoreConsumerGoodsTest {
 		
     	//Assert
 		assertFalse(consumerGuidsBuilderValidationWithoutFoodDescprition);
+		
+		//Verify
+		verify(consumerGoodsRepositoryMock, Mockito.times(1)).findStoredConsumerGoodsWith(anyLong());
 	}
 	
 	@Test
@@ -60,6 +68,9 @@ public class StoreConsumerGoodsTest {
 		
 		//Assert
 		assertFalse(consumerGoodsBuilderValidationWithoutMeasure);
+		
+		//Verify
+		verify(consumerGoodsRepositoryMock, Mockito.times(1)).findStoredConsumerGoodsWith(anyLong());
 	}
 	
 	@Test
@@ -76,5 +87,8 @@ public class StoreConsumerGoodsTest {
 		
 		//Assert
 		assertFalse(consumerGuidsBuilderValidationWithoutStorage);
+		
+		//Verify
+		verify(consumerGoodsRepositoryMock, Mockito.times(1)).findStoredConsumerGoodsWith(anyLong());
 	}
 }
