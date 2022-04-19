@@ -10,7 +10,7 @@ import de.dhbw.cip.abstractioncode.Month;
 import de.dhbw.cip.abstractioncode.Year;
 import de.dhbw.cip.domain.DateValidator;
 
-public class DateValidatorTest {
+public class DateValidationTest {
 
 	@Test
 	public void checkDateValidatorForValideDate() {

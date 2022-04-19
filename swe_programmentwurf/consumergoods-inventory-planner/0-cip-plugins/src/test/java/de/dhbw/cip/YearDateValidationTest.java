@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import de.dhbw.cip.domain.YearValidator;
 
-public class YearDateTest {
+public class YearDateValidationTest {
 
 	@Test
 	public void checkNotNegativeYearDate() {

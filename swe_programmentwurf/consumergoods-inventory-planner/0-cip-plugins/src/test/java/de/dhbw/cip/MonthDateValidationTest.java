@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import de.dhbw.cip.domain.MonthValidator;
 
-public class MonthDateTest {
+public class MonthDateValidationTest {
 	
 	@Test
 	public void checkNotNegativeOrZeroMonthDate() {

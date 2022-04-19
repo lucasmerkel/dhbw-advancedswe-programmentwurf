@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import de.dhbw.cip.domain.ValueValidator;
 
-public class UnitOfMeasureValueTest {
+public class UnitOfMeasureValueValidationTest {
 
 	@Test
 	public void checkNotNegativeMeasureValue() {

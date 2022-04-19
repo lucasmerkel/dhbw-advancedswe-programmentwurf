@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import de.dhbw.cip.domain.DayValidator;
 
-public class DayDateTest {
+public class DayDateValidationTest {
 
 	@Test
 	public void checkNotNegativeOrZeroDayDate() {
