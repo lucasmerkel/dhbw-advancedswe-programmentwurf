@@ -74,13 +74,13 @@ Dazu zählt eine Assoziation auf die Klasse \href{}{\code{Food}}, die Lebensmitt
 Lebensmittel haben ein Mindesthaltbarkeitsdatum, dass in der assoziierten Klasse \href{}{\code{BestBeforeDate}} verwaltet wird.
 Das Mindesthaltbarkeitsdatum wird durch die assoziierten Klassen \href{}{\code{DateOfYear}} und \href{}{\code{Year}} repräsentiert.
 Ein \textit{DateOfYear} setzt sich aus den Klassen \href{}{\code{Day}} und \href{}{\code{Month}} zusammen, die entsprechend das Datum des Tages und das Datum des Monats repräsentieren.
-Die Entscheidung für die Repräsentation eines Tages des Jahres durch die Klasse \href{}{\code{}}\code{DateOfYear} ist, dass das MHD oftmals innerhalb eines Jahres liegt und bei der Validierung des Datums nur im Monat Februar das Jahr relevant ist.
+Die Entscheidung für die Repräsentation eines Tages des Jahres durch die Klasse \href{}{\code{DateOfYear}} ist, dass das MHD oftmals innerhalb eines Jahres liegt und bei der Validierung des Datums nur im Monat Februar das Jahr relevant ist.
 Die Klasse \href{}{\code{DateValidator}} übernimmt die entsprechende Aufgabe der Datumsvalidierung.
 Hinzu kommen die Klassen \href{}{\code{DayValidator}}, \href{}{\code{MonthValidator}} und \href{}{\code{YearValidator}}.
 Diese Klassen dienen entsprechend ihrer Bezeichnung der Validierung eines Wertes für einen Tag, Monat oder eine Jahreszahl.
 Die Validierung beschränkt sich insofern auf die Domäne, dass bei sich bei den gültigen Werten an den gültigen Werten für ein Datum in Deutschland orientiert wird.
-Daneben haben Konsumgüter eine Menge, die durch die Assoziation auf die Klasse vom Typ \href{}{\code{}}\textit{UnitOfMeasure} repräsentiert wird.
-Als konkrete Maßeinheit können Gewicht, Volumen oder Stückzahl gewählt werden und werden durch die gleichnamigen Klassen \href{}{\code{}}\textit{Weight}, \href{}{\code{}}\textit{Volume} und \href{}{\code{}}\textit{Quantity} repräsentiert.
+Daneben haben Konsumgüter eine Menge, die durch die Assoziation auf die Klasse vom Typ \href{}{\code{UnitOfMeasure}} repräsentiert wird.
+Als konkrete Maßeinheit können Gewicht, Volumen oder Stückzahl gewählt werden und werden durch die gleichnamigen Klassen \href{}{\code{Weight}}, \href{}{\code{Volume}} und \href{}{\code{Quantity}} repräsentiert.
 Neben der Maßeinheit dient die Klasse \href{}{\code{Value}} zur Repräsentation der quantitaven Menge.
 Die Klasse \href{}{\code{ValueValidator}} übernimmt die in Bezug auf die Domäne bezogene Überprüfung eines gültigen Werts, der später durch ein Objekt der Klasse \href{}{\code{Value}}.
 Bezogen auf die Regeln innerhalb der Domäne darf der Wert nicht negativ sein.
@@ -88,7 +88,7 @@ Bezogen auf die Regeln innerhalb der Domäne darf der Wert nicht negativ sein.
 Ein Konsumgut hat zudem einen Lagerort, der durch die Assoziation zu einer Klasse des Typs \textit{Storage} repräsentiert wird.
 Als mögliche Typen für Lagerorte kommen in der Domäne Kühlschränke oder Lebensmittelregale in Frage, die durch die gleichnamigen Klassen \textit{Fridge} und \textit{FoodShelf} dargestellt sind.
 
-Die Interfaces \href{}{\code{ConsumerGoodsRepository}}, \href{}{\code{FridgeRepository}} sowie \href{}{\code{FoodShelfRepository}} dienen zur Implementierung von, ebenfalls in \ac{DDD} definierten, Repositories in Bezug auf die Klassen \href{}{\code{}}\textit{ConsumerGoods}, \href{}{\code{}}\textit{Fridge} und \href{}{\code{}}\textit{FoodShelf}.
+Die Interfaces \href{}{\code{ConsumerGoodsRepository}}, \href{}{\code{FridgeRepository}} sowie \href{}{\code{FoodShelfRepository}} dienen zur Implementierung von, ebenfalls in \ac{DDD} definierten, Repositories in Bezug auf die Klassen \href{}{\code{ConsumerGoods}}, \href{}{\code{Fridge}} und \href{}{\code{FoodShelf}}.
 Repositories werden im Abschnitt \ref{domaindrivendesign>repositories} analyisiert.
 Die Bezeichnung \textit{-Repository} ist in diesem Fall möglich, da es sich hierbei um das \ac{DDD}-Modell \textit{Repository} handelt und dieses somit direkt ersichtlich wird.
 
@@ -172,8 +172,8 @@ Im Folgenden werden die angewandten \ac{DDD}-Modelle \textit{Entities}, \textit{
 \label{domaindrivendesign>valueobjects}
 Innerhalb des Softwareentwurfs werden \textit{Value Objects} zur Repräsentation eines Wertes verwendet.
 Dazu zählen die Klassen \href{}{\code{Day}}, \href{}{\code{Month}}, \href{}{\code{Year}} sowie \href{}{\code{Value}}.
-Die Klassen \href{}{\code{}}\textit{Day}, \href{}{\code{}}\textit{Month} und \href{}{\code{}}\textit{Year} dienen dabei dem Speichern des gleichnamigen Teils des Datums.
-Die Klasse \href{}{\code{}}\textit{Value} speichert den Wert der dazugehörigen Einheit innerhalb der Klassen \href{}{\code{}}\textit{Volume}, \href{}{\code{}}\textit{Quantity} oder \href{}{\code{}}\textit{Weight}.
+Die Klassen \href{}{\code{Day}}, \href{}{\code{Month}} und \href{}{\code{Year}} dienen dabei dem Speichern des gleichnamigen Teils des Datums.
+Die Klasse \href{}{\code{Value}} speichert den Wert der dazugehörigen Einheit innerhalb der Klassen \href{}{\code{Volume}}, \href{}{\code{Quantity}} oder \href{}{\code{Weight}}.
 Die Werte sind insofern immutable, dass eine Zuweisung des Werts, neben der Initialisierung durch den Konstruktor, nicht möglich ist.
 Die Variablen innerhalb der Klassen zum Speichern der Methoden sind daher als \textit{final} gekennzeichnet.
 Die Klassen enthalten zudem keine \textit{setter}-Methode.
@@ -193,9 +193,9 @@ Die Objekte der Klasse dienen schließlich ausschließlich der Werterepräsentat
 Die Implementierung dieser Value Objects wurde durchgeführt, damit Fehler durch Manipulation an mehreren Stellen des Programms reduziert werden und Objekte eine klare Wertzuweisung während ihrer Laufzeit haben sollen.
 
 Darüber hinaus lassen sich in diesem Softwareentwurf weitere \textit{Value Objects} erkennen, die sich aus den grundlegenden \textit{Value Objects} zusammensetzen.
-Eines stellt die Klasse \href{}{\code{}}\textit{DayOfYear} dar.
-Die Klasse dient der Verwaltung der \textit{Value Objects} \href{}{\code{}}\textit{Day} sowie \href{}{\code{}}\textit{Month} und repräsentiert somit den Tag eines Jahres.
-Auch in diesem Fall zeichnet sich die Klasse \href{}{\code{}}\textit{DayOfYear} als \textit{Value Object} aus, da es den reinen und unveränderlichen Werten eine Semantik in der Domäne gibt und keine Identität oder Lebenszyklus aufweist.
+Eines stellt die Klasse \href{}{\code{DayOfYear}} dar.
+Die Klasse dient der Verwaltung der \textit{Value Objects} \href{}{\code{Day}} sowie \href{}{\code{Month}} und repräsentiert somit den Tag eines Jahres.
+Auch in diesem Fall zeichnet sich die Klasse \href{}{\code{DayOfYear}} als \textit{Value Object} aus, da es den reinen und unveränderlichen Werten eine Semantik in der Domäne gibt und keine Identität oder Lebenszyklus aufweist.
 Ein weiteres \textit{Value Object} ist die Klasse \href{}{\code{BestBeforeDate}}.
 Die Klasse dient lediglich der Repräsentation eines Datums, in Bezug zur Domäne dem Mindesthaltbarkeitsdatums eines Produkts, und ist somit eine Möglichkeit, dem reinen Datum als Wert eine Semantik in der Domäne zu geben.
 
@@ -207,43 +207,43 @@ Die Umsetzung von \textit{Value Objects}, die auf \textit{Value Objects} basiere
 \label{domaindrivendesign>entities}
 Bei Befassung der Domäne, in der sich der Softwareentwurf befindet, fallen die grundlegenden Elemente der Domäne \href{}{\code{ConsumerGoods}}, \href{}{\code{Fridge}} sowie \href{}{\code{FoodShelf}} auf.
 Es handelt sich bei diesen Klassen entsprechend \ac{DDD} um Entitäten.
-Die Klasse \href{}{\code{}}\code{ConsumerGoods} repräsentiert einen Gegenstand der Domäne, ein Konsumgut.
-Die Klassen \href{}{\code{}}\code{Fridge} und \href{}{\code{}}\code{FoodShelf} repräsentieren ebenfalls Gegenstände der Domäne, nämlich einen Kühlschrank und ein Lebensmittelregal.
+Die Klasse \href{}{\code{ConsumerGoods}} repräsentiert einen Gegenstand der Domäne, ein Konsumgut.
+Die Klassen \href{}{\code{Fridge}} und \href{}{\code{FoodShelf}} repräsentieren ebenfalls Gegenstände der Domäne, nämlich einen Kühlschrank und ein Lebensmittelregal.
 Eine Eigenschaft von Entitäten ist das Besitzen einer Identität in Form einer Kombination von Eigenschaften oder eines Surrogat- beziehungsweise natürlichen Schlüssels.
 Ein Konsumgut weist die Eigenschaft auf, dass es in der Domäne einen natürlichen Schlüssel hat.
 Jedes Produkt, das käuflich im Handel erwerblich ist, hat einen \ac{EAN}.
-Dementsprechend hat hat die Klasse \href{}{\code{}}\code{ConsumerGoods} den natürlichen Schlüssel \href{}{\code{}}\ac{EAN} zur eindeutigen Identifikation implementiert.
+Dementsprechend hat hat die Klasse \href{}{\code{ConsumerGoods}} den natürlichen Schlüssel \href{}{\code{EAN}} zur eindeutigen Identifikation implementiert.
 Die \ac{EAN} bezeichnet die Nummer unter dem Barcode und dient als eindeutige Produktidentifizierungsnummer.
 Dabei ist zu beachten, dass die Codezuweisung fremdbestimmt ist und somit auch keine Garantie auf Duplikatfreiheit außerhalb des Kontextes gegeben werden kann.
 Zudem können Produkte, die keinen \ac{EAN} haben, zum aktuellen Stand nicht in der Software verwaltet werden, da zunächst ausschließlich im Handel erwerbliche Konsumgüter verwaltet werden.
-Bei der \textit{Entity} \href{}{\code{}}\code{Fridge} ist jedoch kein eindeutiger Schlüssel in der Domäne enthalten, weshalb ein Surrogatschlüssel angewandt wird.
-Die Klasse \href{}{\code{}}\code{Fridge} hat hierzu eine Variable \href{}{\code{id}}, deren Wert automatisch systemseitig zur Laufzeit generiert wird.
+Bei der \textit{Entity} \href{}{\code{Fridge}} ist jedoch kein eindeutiger Schlüssel in der Domäne enthalten, weshalb ein Surrogatschlüssel angewandt wird.
+Die Klasse \href{}{\code{Fridge}} hat hierzu eine Variable \href{}{\code{id}}, deren Wert automatisch systemseitig zur Laufzeit generiert wird.
 Der Vorteil ist, dass der Schlüssel jederzeit generierbar ist, jedoch keinen Bezug zur Domäne hat.
-Bei der \textit{Entity} \href{}{\code{}}\code{FoodShelf} ist ebenfalls kein eindeutiger Schlüssel in der Domäne enthalten, weshalb auch ein Surrogatschlüssel angewandt wird.
-Die Generierung läuft entsprechend gleich zu der in der Klasse \href{}{\code{}}\code{Fridge} ab.
+Bei der \textit{Entity} \href{}{\code{FoodShelf}} ist ebenfalls kein eindeutiger Schlüssel in der Domäne enthalten, weshalb auch ein Surrogatschlüssel angewandt wird.
+Die Generierung läuft entsprechend gleich zu der in der Klasse \href{}{\code{Fridge}} ab.
 
 Die Umsetzung der Entities wurde gewählt, da sie bei Betrachtung der Domäne in der Realität wichtigen Entitäten entsprechen, die für Handlungen in der Domäne benötigt werden und somit in den Programmentwurf übernommen wurden.
 
 \section{Analyse angewandter Aggregates}
 \label{domaindrivendesign>aggregates}
 In diesem Softwareentwurf dienen die Klassen \href{}{\code{ConsumerGoods}}, \href{}{\code{Fridge}} und \href{}{\code{FoodShelf}} als \textit{Aggregates}.
-Bei Analyse des größten \textit{Aggregates} innerhalb des Softwareentwurfs ist zu erkennen, dass neben der \textit{Entity} \href{}{\code{}}\textit{ConsumerGoods} auch eine Implementierung des Interfaces \href{}{\code{}}\textit{StorableGoods}, was in dem aktuellen Stand nur auf die Klasse \href{}{\code{}}\textit{Food} zutrifft, zu diesem \textit{Aggregate} zählen. 
+Bei Analyse des größten \textit{Aggregates} innerhalb des Softwareentwurfs ist zu erkennen, dass neben der \textit{Entity} \href{}{\code{ConsumerGoods}} auch eine Implementierung des Interfaces \href{}{\code{StorableGoods}}, was in dem aktuellen Stand nur auf die Klasse \href{}{\code{Food}} zutrifft, zu diesem \textit{Aggregate} zählen. 
 Zudem zählen die \textit{Value Objects} \textit{BestBeforeDate} als auch eine Implementierung des Interfaces \textit{UnitOfMeasure} hinzu.
 
 \todo[]{Visualisierung des Aggregates}
 
-Bei Betrachtung der Visualisierung des \textit{Aggregates} ist zu erkennen, dass ein Zugriff auf die Objekte innerhalb des \textit{Aggregates} über das Objekt der Klasse \href{}{\code{}}\textit{ConsumerGoods} erfolgen.
-Es handelt sich somit beim Objekt der Klasse \href{}{\code{}}\textit{ConsumerGoods} um ein \textit{Aggregate Root}.
+Bei Betrachtung der Visualisierung des \textit{Aggregates} ist zu erkennen, dass ein Zugriff auf die Objekte innerhalb des \textit{Aggregates} über das Objekt der Klasse \href{}{\code{ConsumerGoods}} erfolgen.
+Es handelt sich somit beim Objekt der Klasse \href{}{\code{ConsumerGoods}} um ein \textit{Aggregate Root}.
 Direkte Referenzen auf Elemente innerhalb des \textit{Aggregates} sind dabei nicht erlaubt.
-Eine Betrachtung des UML-Diagramms \href{}{\code{}}\todo[]{ref zu UML} zeigt jedoch, dass solch eine direkte Referenz nicht vorliegt und der Zugriff ausschließlich über den \textit{Aggregate Root} funktioniert.
+Eine Betrachtung des \href{}{\code{UML-Diagramms}} zeigt jedoch, dass solch eine direkte Referenz nicht vorliegt und der Zugriff ausschließlich über den \textit{Aggregate Root} funktioniert.
 \todo[]{Aktuell durch Resource verletzt, entweder ändern und erläutern oder Verletzung erläutern}
 
-Ein Objekt der Klasse \href{}{\code{}}\textit{ConsumerGoods} kann somit den gesammten Zugriff auf das \textit{Aggregate} kontrollieren und die Einhaltung der Domänenregeln gewährleisten.
-Ein Beispiel ist in diesem Fall die Validierung des eingegebenen Mindesthaltbarkeitsdatums durch die Klasse \href{}{\code{}}\textit{DateValidator}.
+Ein Objekt der Klasse \href{}{\code{ConsumerGoods}} kann somit den gesammten Zugriff auf das \textit{Aggregate} kontrollieren und die Einhaltung der Domänenregeln gewährleisten.
+Ein Beispiel ist in diesem Fall die Validierung des eingegebenen Mindesthaltbarkeitsdatums durch die Klasse \href{}{\code{DateValidator}}.
 Durch das \textit{Aggregate Root} kann die Einhaltung der Domänenregel, nämlich der Angabe eines gültigen Datums, validiert und gewährleistet werden.
 
-Das \textit{Aggregate Root} \textit{ConsumerGoods} ist über die ID \href{}{\code{}}\textit{eanCode} eindeutig identifizierbar.
-Ein Verlust dieser ID zur Laufzeit führt dazu, dass neben dem Objekt der Klasse \href{}{\code{}}\textit{ConsumerGoods} das gesammte \textit{Aggregate} und somit das dazugehörige Objekt der Klasse \href{}{\code{}}\textit{Food}, \href{}{\code{}}\textit{BestBeforeDate} als auch das Objekt der Implementierung des Interfaces \textit{UnitOfMeasure} nicht mehr erreichbar.
+Das \textit{Aggregate Root} \textit{ConsumerGoods} ist über die ID \href{}{\code{eanCode}} eindeutig identifizierbar.
+Ein Verlust dieser ID zur Laufzeit führt dazu, dass neben dem Objekt der Klasse \href{}{\code{ConsumerGoods}} das gesammte \textit{Aggregate} und somit das dazugehörige Objekt der Klasse \href{}{\code{Food}}, \href{}{\code{BestBeforeDate}} als auch das Objekt der Spezialisierung der Superklasse \href{}{\code{UnitOfMeasure}} nicht mehr erreichbar.
 Die Herausgabe von Referenzen auf innere Objekte werden zur Gewährleistung des den Domänenregeln entsprechenden Zustands Kopien oder Immutable-Dekorierer ausgegeben, wie im Beispiel \href{}{\code{}} zu erkennen.
 
 Des Weiteren werden bei \ac{CRUD}-Anwendungen auf einzelne Objekte des \textit{Aggregates} das gesammte \textit{Aggregate} geladen und entsprechend gespeichert, wie in \href{}{\code{ConsumerGoodsApplicationService}} zu erkennen.
@@ -252,7 +252,7 @@ Das Ziel ist die Minimierung des Risikos auftretender Bugs durch ungültige Zust
 Der Vorteil bei der Bildung dieses \textit{Aggregates} ist, dass durch den zentralen Zugriff über das \textit{Aggregate Root} die Domänenregeln eingehalten werden können.
 Des Weiteren wird durch die Einteilung in einzelne \textit{Aggregates} Transaktionsgrenzen gebildet und übergreifende Objektbeziehungen ebenfalls durch den zentralen Zugriff entkoppelt.
 
-Bei den \textit{Aggregates} \href{}{\code{}}\textit{Fridge} und \href{}{\code{}}\textit{FoodShelf} handelt es sich um Implementierung des Interfaces \href{}{\code{}}\textit{Storage}.
+Bei den \textit{Aggregates} \href{}{\code{Fridge}} und \href{}{\code{FoodShelf}} handelt es sich um Spezialisierungen der Superklasse \href{}{\code{Storage}}.
 Die \textit{Aggregates} haben zum aktuellen Stand keine Referenzen auf weitere Klassen und sind somit zugleich \textit{Aggregate Root}, auch in Hinblick auf ihre Funktion mit möglichen Erweiterungen.
 
 Die Umsetzung der Aggregate wurde übergreifend bedacht, damit dadurch klare Abgrenzungen und eine bessere Verwaltbarkeit vorliegen, das Bearbeiten und Verändern von Attributen oder Teilen des Aggregates zentral verwaltet und validiert werden kann und daraus resultierende Fehler minimiert werden können.
@@ -262,7 +262,7 @@ Die Umsetzung der Aggregate wurde übergreifend bedacht, damit dadurch klare Abg
 Innerhalb dieses Softwareentwurfs übernehmen die Interfaces \href{}{\code{ConsumerGoodsRepository}}, \href{}{\code{FridgeRepository}} sowie \href{}{\code{FoodShelfRepository}} die Funktion des \textit{Repositories} als \ac{DDD}-Modell.
 Dabei ist laut \ac{DDD} vorgesehen, dass \textit{Repositories} direkt mit \textit{Aggregates} zusammenarbeiten und somit für jedes der im Softwareentwurf definierten \textit{Aggregates} \href{}{\code{ConsumerGoods}}, \href{}{\code{Fridge}} als auch \href{}{\code{FoodShelf}} ein \textit{Repository}-Modell vorhanden ist.
 
-Die Bezeichnung der Methoden ist ebenfalls an die Domäne angepasst, wie anhand eines Beispiels an der Klasse \href{}{\code{}}\textit{ConsumerGoodsRepository} zu sehen ist.
+Die Bezeichnung der Methoden ist ebenfalls an die Domäne angepasst, wie anhand eines Beispiels an der Klasse \href{}{\code{ConsumerGoodsRepository}} zu sehen ist.
 
 Die konkrete Implementierung der Persistierung findet in den jeweils entsprechenden Klassen \href{}{\code{ConsumerGoodsRepositoryBridge}}, \href{}{\code{FridgeRepositoryBridge}} sowie \href{}{\code{FoodShelfRepositoryBridge}} statt.
 Dies ist sowohl für das \ac{DDD}-Modell \textit{Repository} als auch entsprechend der \textit{Clean Architecture} entsprechend vorgesehen, dass die Implementierung außerhalb stattfindet. 

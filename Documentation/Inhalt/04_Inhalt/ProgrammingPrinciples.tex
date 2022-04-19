@@ -133,128 +133,146 @@ Im Folgenden werden die einzelnen Prinzipien des SOLID-Prinzips in Bezug auf den
 
 \subsubsection*{Single Responsibility Principle}
 Ein Beispiel in Bezug auf das \textit{Single Responsibility Principle} ist die Klasse \code{ConsumerGoodsToConsumerGoodsResourceMapper}.
-Die Klasse hat die einzige Aufgabe, Objekte der Klasse \href{}{\code{}}\textit{ConsumerGoods} zu Objekten der Klasse \href{}{\code{}}\code{ConsumerGoodsResource} zu mappen und somit für die Interaktion mit der \ac{GUI} zu verwenden.
-Das gleiche gilt für die Klasse \href{}{\code{}}\code{FridgeToFridgeResourceMapper} und \href{}{\code{}}\code{FoodShelfToFoodShelfResourceMapper}, deren Aufgabe das Mappen eines \href{}{\code{}}\code{Fridge}- oder \href{}{\code{}}\code{FoodShelf}-Objekt zu einer entsprechenden Resource ist.
+Die Klasse hat die einzige Aufgabe, Objekte der Klasse \href{}{\code{ConsumerGoods}} zu Objekten der Klasse \href{}{\code{ConsumerGoodsResource}} zu mappen und somit für die Interaktion mit der \ac{GUI} zu verwenden.
+Das gleiche gilt für die Klasse \href{}{\code{FridgeToFridgeResourceMapper}} und \href{}{\code{FoodShelfToFoodShelfResourceMapper}}, deren Aufgabe das Mappen eines \href{}{\code{Fridge}}- oder \href{}{\code{FoodShelf}}-Objekt zu einer entsprechenden Resource ist.
 
-Das \textit{Single Responsibility Principle}-Prinzip wurde hingegen bei den Klassen \href{}{\code{}}\code{ConsumerGoodsManager} sowie \href{}{\code{}}\code{StorageManager} verletzt. Die Klassen haben neben dem Suchen eines Objekts auch die Aufgabe der Erstellung sowie das Löschen eines Objekts.
-In diesem Zusammenhang lässt sich ebenfalls eine Verletzung des \textit{Single Responsibility Principle}-Prinzip bei der Klasse \href{}{\code{}}\code{ConsumerGoodsGuiController} erkennen.
-Die Interaktion mit der \ac{GUI} umfasst sowohl das Erstellen, als auch das Ausgeben der verfügbaren Objekte der Klasse \href{}{\code{}}\code{ConsumerGoods}.
+Das \textit{Single Responsibility Principle} wurde an dieser Stelle eingehalten, da auch die gemappten Klassen für die Kommunikation über die Schnittstellen in der Form nötig sind, wie sie in der Domäne abgebildet sind.
+
+Das \textit{Single Responsibility Principle}-Prinzip wurde hingegen bei den Klassen \href{}{\code{ConsumerGoodsManager}} sowie \href{}{\code{StorageManager}} verletzt. Die Klassen haben neben dem Suchen eines Objekts auch die Aufgabe der Erstellung sowie das Löschen eines Objekts.
+In diesem Zusammenhang lässt sich ebenfalls eine Verletzung des \textit{Single Responsibility Principle}-Prinzip bei der Klasse \href{}{\code{ConsumerGoodsGuiController}} erkennen.
+Die Interaktion mit der \ac{GUI} umfasst sowohl das Erstellen, als auch das Ausgeben der verfügbaren Objekte der Klasse \href{}{\code{ConsumerGoods}}.
 Gleiches gilt für das Löschen eines Objektes.
-Hierzu findet die gesamte Interaktion, die verschiedene Aufgaben enthält, in der Klasse \href{}{\code{}}\code{ConsumerGoodsGuiController} statt.
-Die Verletzung des \textit{Single Responsibility Principle}-Prinzip trifft auch auf die Klasse \href{}{\code{}}\code{StorageGuiInterface} zu.
-Auch hier findet die gesamte Interaktion mit der Schnittstelle, worunter das Ausgeben, Erstellen und Löschen von Objekten des implementierten Interfaces \href{}{\code{}}\code{Storage} zählt, in der einen Klasse statt.
+Hierzu findet die gesamte Interaktion, die verschiedene Aufgaben enthält, in der Klasse \href{}{\code{ConsumerGoodsGuiController}} statt.
+Die Verletzung des \textit{Single Responsibility Principle}-Prinzip trifft auch auf die Klasse \href{}{\code{StorageGuiInterface}} zu.
+Auch hier findet die gesamte Interaktion mit der Schnittstelle, worunter das Ausgeben, Erstellen und Löschen von Objekten des implementierten Interfaces \href{}{\code{Storage}} zählt, in der einen Klasse statt.
 
-\todo[]{erklären, warum das eingehalten und warum es verletzt wurde}
-\todo[]{eingehalten, weil }
-\todo[]{verletzt, weil }
+Die Verletzung des \textit{Single Responsibility Principle} wurde hierbei in Betracht gezogen, die Klassen die zentrale Möglichkeit des Verwalten der Konsumgüter und Lagerplätze übernehmen und hierbei zum einen übergreifend Lösch- oder Anlegeoperationen beim Aktualisieren eines Konsumguts gemacht werden können und zugleich die zentrale Klasse die Möglichkeit der Integration zukünftiger Business-Logik bietet.
 
 \subsubsection*{Open-Closed-Principle}
-Das \textit{Open-Closed-Principle} wurde bei den Klassen \href{}{\code{}}\code{ConsumerGoodsResource}, \href{}{\code{}}\textit{FridgeResource} und \href{}{\code{}}\textit{FoodShelfResource} sowie bei den weiteren Resourcen-Klassen eingehalten.
+Das \textit{Open-Closed-Principle} wurde bei den Klassen \href{}{\code{ConsumerGoodsResource}}, \href{}{\code{FridgeResource}} und \href{}{\code{FoodShelfResource}} sowie bei den weiteren Resourcen-Klassen eingehalten.
 Das Einfügen neuer Funktionen wie beispielsweise weitere abspeichbare Güter oder weitere Lagermöglichkeiten können umgesetzt werden, indem neue Resourcen-Klassen hinzugefügt werden.
-Ein Verändern des bestehenden Codes ist hierzu nicht möglich.
+Ein Verändern des bestehenden Codes ist hierzu nicht nötig.
 
-Eine Verletzung des \textit{Open-Closed-Principle} stellen die Klassen \href{}{\code{}}\code{ConsumerGoodsGuiInterface} und \href{}{\code{}}\code{StorageGuiInterface} dar.
-Eine Erweiterung einer Anwendung um ein weiteres zu verwaltendes Gut hätte hierbei zur Folge, dass die Einbindung eines neuen Guts zu einer Veränderung der Schnittstelle für die \ac{GUI} führt, um das neue Gut in der \ac{GUI} zu repräsentieren.
+Die Einhaltung des \textit{Open-Closed-Principle} ist an dieser Stelle dadurch gegeben, da die Resourcen-Klassen Klassen aus der Domäne abbilden und somit eine Erweiterung in der Domäne eben zu einer Erweiterung durch Hinzufügen einer neuen Resourcen-Klasse führt. 
 
-\todo[]{erklären, warum das eingehalten und warum es verletzt wurde}
-\todo[]{eingehalten, weil }
-\todo[]{verletzt, weil }
+Eine Verletzung des \textit{Open-Closed-Principle} stellen die Klassen \href{}{\code{ConsumerGoodsGuiController}} und \href{}{\code{StorageGuiController}} dar.
+Eine Erweiterung der Anwendung um ein weiteres zu verwaltendes Gut hätte hierbei zur Folge, dass die Einbindung eines neuen Guts zu einer Veränderung der Schnittstelle für die \ac{GUI} führt, um das neue Gut in der \ac{GUI} zu repräsentieren.
+
+Das \textit{Open-Closed-Principle} ist an dieser Stelle verletzt worden, weil eine Abweichung vom \ac{REST}-Paradigma vorgenommen wurde und stattdessen Home-Made-Messaging umgesetzt wurde.
+Daraus resultiert diese Verletzung und führt dazu, dass das \ac{GUI}-Plugin aktuell sehr stark an die Schnittstelle angepasst ist.
 
 \subsubsection*{Liskov Substitution Principle}
 %Die Analyse des Liskov Substitution Principles ist nur in einem älteren Stand des Softwareentwurfs zu analysieren, da zum aktuellen Stand keine Vererbung implementiert ist.
-Es ist eine Vererbung der Superklasse \href{}{\code{}}\code{UnitOfMeasure} und den Subklassen \href{}{\code{}}\code{Volume}, \href{}{\code{}}\code{Weight} und \href{}{\code{}}\code{Quantity} implementiert.
-Bei \href{}{\code{}}\code{UnitOfMeasure} handelt es sich um eine abstrakte Klasse.
+Es ist eine Vererbung der Superklasse \href{}{\code{UnitOfMeasure}} und den Subklassen \href{}{\code{Volume}}, \href{}{\code{Weight}} und \href{}{\code{Quantity}} implementiert.
+Bei \href{}{\code{UnitOfMeasure}} handelt es sich um eine abstrakte Klasse.
 Die Subklassen überschreiben jedoch keine Funktionalität der Superklasse, weshalb das \textit{Liskov Substitution Principle} an dieser Stelle eingehalten wird.
 
-Das Gleiche gilt für die Implementierung der Vererbung der Superklasse \href{}{\code{}}\code{Storage} und den Subklassen \href{}{\code{}}\code{Fridge} und \href{}{\code{}}\code{FoodShelf}.
-Auch in diesem Fall ist die Klasse \href{}{\code{}}\code{Storage} abstrakt und die Subklassen überschreiben keine Funktionalität der Superklasse, wodurch das \textit{Liskov Substitution Principle} eingehalten wird.
+Das Gleiche gilt für die Implementierung der Vererbung der Superklasse \href{}{\code{Storage}} und den Subklassen \href{}{\code{Fridge}} und \href{}{\code{FoodShelf}}.
+Auch in diesem Fall ist die Klasse \href{}{\code{Storage}} abstrakt und die Subklassen überschreiben keine Funktionalität der Superklasse, wodurch das \textit{Liskov Substitution Principle} eingehalten wird.
 
-\todo[]{erklären, warum das eingehalten und warum es verletzt wurde}
-\todo[]{eingehalten, weil }
-\todo[]{verletzt, weil }
+Das \textit{Liskov Substitution Principle} wurde hierbei eingehalten, weil sich die Vererbung stark an der Nutzung von Interfaces orientiert.
+Diese sind auch an dieser Stelle für die Superklassen \href{}{\code{UnitOfMeasure}} und \href{}{\code{Storage}} vorgesehen gewesen, allerdings führt das bei der Persistierung durch Hibernate zu Fehlern, da Hibernate die Referenz auf den direkten Typen benötigt und dieser bei Interfaces für Hibernate nicht ermittelbar ist.
 
 \subsubsection*{Interface Segregation Principle}
-Ein Positivbeispiel der Umsetzung des \textit{Interface Segregation Principle} zeigt sich in den Interfaces \href{}{\code{}}\code{FridgeRepository} und \href{}{\code{}}\code{FoodShelfRepositoy}.
-Hierbei wurde bedacht, dass unterschiedliche Lagermöglichkeiten unterschiedliche Eigenschaften und Funktionalitäten bieten können, die in einem gemeinsamen Repository-Interface nicht abbildbar wären.
+Ein Positivbeispiel der Umsetzung des \textit{Interface Segregation Principle} zeigt sich in den Interfaces \href{}{\code{FridgeRepository}} und \href{}{\code{FoodShelfRepositoy}}.
+
+Hierbei wurde in Hinblick auf das \textit{Interface Segregation Principle} bedacht, dass unterschiedliche Lagermöglichkeiten unterschiedliche Eigenschaften und Funktionalitäten bieten können, die in einem gemeinsamen Repository-Interface nicht abbildbar wären.
 Diese Entscheidung ist auch im Hinblick der Erweiterbarkeit in Form zukünftiger weiterer Lagermöglichkeiten konzipiert.
 
 Die Interfaces können jedoch zugleich als Negativbeispiel betrachtet werden.
 Die Repository-Interfaces übernehmen sowohl Lesezugriff als auch die Möglichkeit der Übergabe zur späteren Persistierung.
-Nach dem Interface Segregation Principle wäre eine Trennung nach Leseoperationen und Schreiboperationen in separate Interfaces geeigneter.
+Nach dem \textit{Interface Segregation Principle} wäre eine Trennung nach Leseoperationen und Schreiboperationen in separate Interfaces geeigneter.
 Im Hinblick auf mögliche Erweiterungen könnte es sonst zu Problemen oder Umständen bei der Implementierung einer Berechtigungskontrolle auf die verwalteten Ressourcen kommen.
-Diesen Negativpunkt betrifft ebenfalls das Interface \href{}{\code{}}\code{ConsumerGoodsRepository}.
-
-\todo[]{erklären, warum das eingehalten und warum es verletzt wurde}
-\todo[]{eingehalten, weil }
-\todo[]{verletzt, weil }
+Diesen Negativpunkt betrifft ebenfalls das Interface \href{}{\code{ConsumerGoodsRepository}}.
 
 \subsubsection*{Dependency Inversion Principle}
-Das \textit{Dependency Inversion Principle} wurde bei den Klassen \href{}{\code{}}\code{ConsumerGoods} sowie \href{}{\code{}}\code{Food} umgesetzt.
-%und dem Interface \href{}{\code{}}\code{StorableGood} umgesetzt.
-Die Klasse \href{}{\code{}}\code{ConsumerGoods} referenziert dabei auf ein Objekt des Typs \href{}{\code{}}\code{StorableGood}. 
-Das hat zur Folge, dass unter Anwendung der Dependency Injection eine Erweiterung weiterer lagerbarer Objekte neben Essen möglich ist, ohne die Klasse \href{}{\code{}}\code{ConsumerGoods} hierzu anpassen zu müssen.Die Klasse \href{}{\code{}}\code{ConsumerGoods} referenziert dabei auf ein Objekt des Typs \href{}{\code{}}\code{StorableGood}.
+Die Einhaltung des \textit{Dependency Inversion Principle} war bei den Klassen \href{}{\code{ConsumerGoods}} sowie \href{}{\code{Food}} und dem Interface \href{}{\code{StorableGood}} geplant.
+Die Klasse \href{}{\code{ConsumerGoods}} referenziert dabei auf ein Objekt des Typs \href{}{\code{StorableGood}}. 
+Das hätte zur Folge, dass unter Anwendung der Dependency Injection eine Erweiterung weiterer lagerbarer Objekte neben Essen möglich ist, ohne die Klasse \href{}{\code{ConsumerGoods}} hierzu anpassen zu müssen. 
+Die Klasse \href{}{\code{ConsumerGoods}} referenziert dabei auf ein Objekt des Typs \href{}{\code{StorableGood}}.
 
-Gleiches gilt für die Interfaces \textit{Storage} und \textit{UnitOfMeasure} in Bezug auf die Klasse \code{ConsumerGoods}.
-Auch hierbei können neue Lagermöglichkeiten oder Maßeinheiten hinzugefügt werden, ohne dass die Klasse \code{ConsumerGoods} dafür angepasst werden muss.
+Gleiches gilt für die Umsetzung der Superklassen \href{}{\code{Storage}} und \href{}{\code{UnitOfMeasure}} als Interfaces in Bezug auf die Klasse \href{}{\code{ConsumerGoods}}.
+Auch hierbei könnten neue Lagermöglichkeiten oder Maßeinheiten hinzugefügt werden, ohne dass die Klasse \href{}{\code{ConsumerGoods}} dafür angepasst werden muss.
 
-Darüber hinaus sind die Interfaces \href{}{\code{}}\code{ConsumerGoodsRepository}, \href{}{\code{}}\code{FridgeRepository} und \href{}{\code{}}\code{FoodShelfRepository} ein weiteres positives Beispiel.
-Die Interfaces definieren alle nötigen Methoden und die Services \href{}{\code{}}\code{ConsumerGoodsManager} und \href{}{\code{}}\code{StorageManager} haben zur Laufzeit eine Abhängigkeit auf ein Objekt, welches das entsprechende Interface implementiert hat.
-Der daraus resultierende Vorteil ist, dass die tatsächlichen Objekte problemlos ausgetauscht werden können und das Einsetzen von Mocks zum Testen vereinfacht wird, indem die entsprechenden Methoden des Interfaces gemockt werden.
-Eine Verletzung des \textit{Dependency Inversion Principle} ist in den Mapper Klassen der Ressourcen-Mapper-Klassen zu finden. Die Verwendung der Klassen \href{}{\code{}}\code{ConsumerGoodsToConsumerGoodsResourceMapper}, \href{}{\code{}}\code{FridgeToFridgeResourceMapper} sowie \href{}{\code{}}\code{FoodShelfToFoodShelfResourceMapper} hängt direkt von den jeweiligen Instanzen der Mapper-Klassen ab.
+Es ist zu erwähnen, dass es sich in beiden Betrachtungen um Planungen handelt, deren resultierender Vorteil beschrieben wurde.
+Aufgrund der Tatsache, dass die Persistierung mit Hibernate in den Domain-Klassen umgesetzt wurde, kommt es hierbei zu dem Problem, dass Hibernate über den Typen des Interfaces die Referenz nicht auflösen kann.
+Daher ist zum aktuellen Zeitpunkt noch das referenzierte Gut vom Typ \href{}{\code{Food}} sowie \href{}{\code{Storage}} und \href{}{\code{UnitOfMeasure}} als Superklassen implementiert.
+
+Darüber hinaus sind die Interfaces \href{}{\code{ConsumerGoodsRepository}}, \href{}{\code{FridgeRepository}} und \href{}{\code{FoodShelfRepository}} ein weiteres und implementiertes Beispiel des \textit{Dependency Inversion Principle}.
+Die Interfaces definieren alle nötigen Methoden und die Services \href{}{\code{ConsumerGoodsManager}} und \href{}{\code{StorageManager}} haben zur Laufzeit eine Abhängigkeit auf ein Objekt, welches das entsprechende Interface implementiert hat.
+Durch die Einhaltung des \textit{Dependency Inversion Principle} resultiert der Vorteil, dass die tatsächlichen Objekte problemlos ausgetauscht werden können und das Einsetzen von Mocks zum Testen vereinfacht wird, indem die entsprechenden Methoden des Interfaces gemockt werden.
+
+Eine Verletzung des \textit{Dependency Inversion Principle} ist in den Mapper Klassen der Ressourcen-Mapper-Klassen zu finden. Die Verwendung der Klassen \href{}{\code{ConsumerGoodsToConsumerGoodsResourceMapper}}, \href{}{\code{FridgeToFridgeResourceMapper}} sowie \href{}{\code{FoodShelfToFoodShelfResourceMapper}} hängt direkt von den jeweiligen Instanzen der Mapper-Klassen ab.
 Eine Lösung zum Beheben der Verletzung wäre das nutzen eines Interfaces, das die Resourcen-Mapper-Klassen implementieren.
 Dadurch wäre eine stärkere Entkopplung möglich.
-
-\todo[]{erklären, warum das eingehalten und warum es verletzt wurde}
-\todo[]{eingehalten, weil }
-\todo[]{verletzt, weil }
+Dennoch wurde hierbei die Verletzung des \textit{Dependency Inversion Principle} zum besseren Verständnis und einer besseren Lesbarkeit durch eine klarere Zuordnung innerhalb des Programmcodes gemacht.
 
 \subsection{\ac{GRASP}}
 
 \subsubsection*{Geringe Kopplung}
 Eine geringe Kopplung findet sich zwischen der \ac{GUI} und der Applikationsschicht der Anwendung.
-Die Interaktion findet über die Klasse \href{}{\code{}}\code{ConsumerGoodsGuiInterface} und \href{}{\code{}}\code{StorageGuiInterface} statt.
+Die Interaktion findet über die Klasse \href{}{\code{ConsumerGoodsGuiController}} und \href{}{\code{StorageGuiController}} statt.
 Beide Klassen dienen als \ac{HTTP}-Interface.
 Durch die Kommunikation über \ac{HTTP} kennen sich die Anwendung und die \ac{GUI} nicht und sind somit entkoppelt.
-\todo[]{gemacht, weil}
 
-Eine geringe Kopplung wurde bei der Implementierung ebenfalls erzielt, indem die Repository-Klassen \href{}{\code{}}\code{ConsumerGoodsRepository}, \href{}{\code{}}\code{FridgeRepository} und \href{}{\code{}}\code{FoodShelfRepositoy} bei der Rückgabe der instanziierten Objekte diese nicht als Liste vom Typ \textit{List} zurückgeben sondern als \textit{Iterable}.
-Hierdurch wird die Kopplung, welche die Repository-Interfaces sonst dadurch erzeugen, reduziert.
+Hierbei wurde auf eine geringe Kopplung geachtet, da \ac{GUI}-Plugins und die dafür verwendete Technologie tendenziell zu kürzeren Lebenszyklen neigen.
+Durch die geringe Kopplung ist ein Austausch durch eine andere Technologie für die grafische Oberfläche, die eine Kommunikation über das \ac{HTTP}-Protokoll ermöglicht, umsetzbar ohne Änderungen an dem Service vornehmen zu müssen.
+Zudem ist dadurch eine Kommunikation mit weiteren Plugins über das \ac{HTTP}-Protokoll möglich.
+
+Eine geringe Kopplung wurde bei der Implementierung ebenfalls erzielt, indem die Repository-Klassen \href{}{\code{ConsumerGoodsRepository}}, \href{}{\code{FridgeRepository}} und \href{}{\code{FoodShelfRepository}} bei der Rückgabe der instanziierten Objekte diese nicht als Liste vom Typ \textit{List} zurückgeben sondern als \textit{Iterable}.
+Hierdurch wird die Kopplung, welche die Repository-Interfaces sonst durch den Rückgabetyp erzeugen, reduziert.
 Einzelne Objekte werden zudem als \textit{Optional} zurückgegeben, was vor allem entkoppelt, da keine Regelungen getroffen werden müssen, falls kein den übergebenen Kriterien entsprechendes Objekt vorhanden ist, das zurückgegeben werden kann.
-\todo[]{gemacht, weil}
 
-Eine stärkere Kopplung ist in den Serviceklassen \href{}{\code{}}\code{ConsumerGoodsManager} und \href{}{\code{}}\code{StorageManager} zu finden.
-Zum Löschen, Persistieren oder der Rückgabe initialisierter Objekte der Klassen \href{}{\code{}}\code{ConsumerGoods}, \href{}{\code{}}\code{Fridge} oder \href{}{\code{}}\code{FoodShelf} werden ausschließlich die in den entsprechenden Repository-Interfaces definierten Klassen verwendet.
-Zur Zugriff auf eine Referenz des jeweiligen implementierten Repository-Types wird durch eine \href{}{\code{}}Dependency Injection an dieser Stelle ermöglicht.
+Es wurde hierbei auf eine geringe Kopplung geachtet, da es die Möglichkeit bietet, in Zukunft fortschrittlichere konkrete Implementierung des Typs \textit{Iterable} zu verwenden und nicht an einen konkreten Typ, der gegenwärtig aktuell ist, gebunden zu sein.
+
+Eine stärkere Kopplung ist in den Serviceklassen \href{}{\code{ConsumerGoodsManager}} und \href{}{\code{StorageManager}} zu finden.
+Zum Löschen, Persistieren oder der Rückgabe initialisierter Objekte der Klassen \href{}{\code{ConsumerGoods}}, \href{}{\code{Fridge}} oder \href{}{\code{FoodShelf}} werden ausschließlich die in den entsprechenden Repository-Interfaces definierten Klassen verwendet.
+Für den Zugriff auf eine Referenz des jeweiligen implementierten Repository-Types wird durch eine \href{}{\code{Dependency Injection}} an dieser Stelle ermöglicht.
 Somit ist hierbei keine direkte Kopplung an eine konkrete Implementierung eines Repository-Objekts vorhanden.
-\todo[]{gemacht, weil}
 
-Ein Beispiel mit einer starken Kopplung ist der statische Methodenaufruf \href{}{\code{}}\code{validate()} der Klasse \code{DateValidator}.
-Auch in diesem Fall entsteht durch den statischen Methodenaufruf eine starke Kopplung an die Klasse \href{}{\code{}}\code{DateValidator}.
-\todo[]{gemacht, weil}
+Es wurde hierbei auf eine ebenfalls geringe, wenn auch stärkere als zuvor, Kopplung geachtet, da somit ein Austausch des konkreten Typs des entsprechenden Repositories möglich ist.
+Das ist gerade in Hinblick auf den Austausch der Technologie zur Persistierung relevant und entkoppelt die Business-Logik von der konkreten Umsetzung der Persistierung.
+
+Ein Beispiel mit einer starken Kopplung ist der statische Methodenaufruf \href{}{\code{validate()}} der Klasse \code{DateValidator}.
+Auch in diesem Fall entsteht durch den statischen Methodenaufruf eine starke Kopplung an die Klasse \href{}{\code{DateValidator}}.
+
+Diese starke Kopplung wurde gemacht, da davon auszugehen ist, dass sich die Validierungen an Grundlagen und Rechtmäßigkeiten innerhalb der Domäne orientieren und somit der Eintritt einer Änderung als eher weniger wahrscheinlich erscheint.
 
 \subsubsection*{Hohe Kohäsion}
-Ein Beispiel für eine hohe Kohäsion ist in der Klasse \href{}{\code{}}\code{ConsumerGoods} zu sehen.
+Ein Beispiel für eine hohe Kohäsion ist in der Klasse \href{}{\code{ConsumerGoods}} zu sehen.
 Die Bestandteile eines Konsumguts sind das Lebensmittel und die dazugehörige Menge samt Maßeinheit.
-Das Lebensmittel wird dazu in der Klasse \href{}{\code{}}\code{Food} verwaltet, während die Menge in einem Objekt des implementierten Interface-Typs \href{}{\code{}}\code{UnitOfMeasure} verwaltet ist.
-Die Klasse \href{}{\code{}}\code{Food} hat als Attribut eine Instanz der Klasse \href{}{\code{}}\code{BestBeforeDate} zur Repräsentation des Mindesthaltbarkeitsdatums.
-In der Klasse \href{}{\code{}}\code{BestBeforeDate} werden auch datumsspezifische Operationen wie zum Beispiel die Datumsüberprüfung mithilfe des \href{}{\code{}}\code{DateValidators} übernommen.
-Das Objekt des implementierten Interfaces-Typs \href{}{\code{}}\code{UnitOfMeasure} repräsentiert die Menge in Form der Klassen \href{}{\code{}}\code{Weight}, \href{}{\code{}}\code{Volume} oder \href{}{\code{}}\code{Quantity}.
-Der Wert der Menge wird in den Klassen durch das Attribut vom Typ \href{}{\code{}}\code{Value} verwaltet.
-Das Ziel ist hierdurch, dass die jeweiligen Bestandteile des \href{}{\code{}}\code{ConsumerGoods} in einzelnen Klassen verwaltet werden, dadurch teilt sich der Code auf die entsprechenden Schwerpunkte auf und wird, gerade in Bezug auf Übergabe- und Rückgabeparameter, lesbarer.
+Das Lebensmittel wird dazu in der Klasse \href{}{\code{Food}} verwaltet, während die Menge in einem Objekt des implementierten Interface-Typs \href{}{\code{UnitOfMeasure}} verwaltet ist.
+Die Klasse \href{}{\code{Food}} hat als Attribut eine Instanz der Klasse \href{}{\code{BestBeforeDate}} zur Repräsentation des Mindesthaltbarkeitsdatums.
+In der Klasse \href{}{\code{BestBeforeDate}} werden auch datumsspezifische Operationen wie zum Beispiel die Datumsüberprüfung mithilfe des \href{}{\code{DateValidators}} übernommen.
+Das Objekt der Superklasse \href{}{\code{UnitOfMeasure}} repräsentiert die Menge in Form der spezialisierte Klassen \href{}{\code{Weight}}, \href{}{\code{Volume}} oder \href{}{\code{Quantity}}.
+Der Wert der Menge wird in den Klassen durch das Attribut vom Typ \href{}{\code{Value}} verwaltet.
 
-Ein weiteres Beispiel für hohe Kohäsion ist die Klasse \href{}{\code{}}\code{BestBeforeDate}.
-Das Mindesthaltbarkeitsdatum wird durch die Variablen des Typs \href{}{\code{}}\code{DateOfYear} und \href{}{\code{}}\code{Year} repräsentiert.
-\href{}{\code{}}\code{DateOfYear} verwaltet das Datum eines Jahres durch die Attribute vom Typ \code{Day} und \code{Month}.
-Der Vorteil ist auch hierbei, dass die Lesbarkeit bei geforderten Übergabe- und Rückgabeparametern über die genaue Typen-Bezeichnung deutlich lesbarer und verständlicher ist als ein primitiver Datentyp.
-Darüber hinaus ist nicht die Klasse \href{}{\code{}}\code{BestBeforeDate} für eine genaue Spezifizierung oder Anpassung der einzelnen Attribute verantwortlich sondern die jeweiligen spezifischen Klassen.
+Das Ziel durch Schaffung einer hohen Kohäsion ist hierdurch, dass die jeweiligen Bestandteile des \href{}{\code{ConsumerGoods}} in einzelnen Klassen verwaltet werden, dadurch teilt sich der Code auf die entsprechenden Schwerpunkte auf und wird, gerade in Bezug auf Übergabe- und Rückgabeparameter, lesbarer.
+
+Ein weiteres Beispiel für hohe Kohäsion ist die Klasse \href{}{\code{BestBeforeDate}}.
+Das Mindesthaltbarkeitsdatum wird durch die Variablen des Typs \href{}{\code{DateOfYear}} und \href{}{\code{Year}} repräsentiert.
+\href{}{\code{DateOfYear}} verwaltet das Datum eines Jahres durch die Attribute vom Typ \href{}{\code{Day}} und \href{}{\code{Month}}.
+
+Der Vorteil durch die Umsetzung der hohen Kohäsion ist auch hierbei, dass die Lesbarkeit bei geforderten Übergabe- und Rückgabeparametern über die genaue Typen-Bezeichnung deutlich lesbarer und verständlicher ist als ein primitiver Datentyp.
+Darüber hinaus ist nicht die Klasse \href{}{\code{BestBeforeDate}} für eine genaue Spezifizierung oder Anpassung der einzelnen Attribute verantwortlich sondern die jeweiligen spezifischen Klassen.
 
 \subsection{\ac{DRY}}
-\todo[]{Positivbeispiel}
+Das verwendete Framework Spring Boot bietet den Ansatz \textit{Convention over Configuration}.
+Dadurch müssen bei Einhaltung von Konventionen keine zusätzlichen Konfigurationen durchgeführt werden.
+Ein anschauliches Beispiel des \textit{Convention over Configuration}-Ansatzes ist das Erzeugen von Tabellennamen entsprechend der Bezeichnung der Entität.
+Hierzu muss die Tabellenbezeichnung nicht zusätzlich konfiguriert werden sondern es wird direkt die Bezeichnung der Entitätsklasse verwendet.
+Wie im Beispiel \href{}{\code{ConsumerGoods}} zu erkennen, reicht die Deklarierung \textit{@Table} aus.
 
-Eine Nichteinhaltung des \ac{DRY}-Prinzip findet sich in der Resourcen-Klassen \href{}{\code{}}\code{ConsumerGoodsReource}, \href{}{\code{}}\code{FridgeResource}, \href{}{\code{}}\code{FoodShelfResource}, \href{}{\code{}}\code{FoodResource} und \href{}{\code{}}\code{BestBeforeDateResource} vor.
+Das gleiche betrifft die Bezeichnung der Spalten entsprechend der Attributbezeichnung.
+Ebenfalls im Beispiel \href{}{\code{ConsumerGoods}} zu erkennen, reicht die Deklarierung \textit{@Column} aus.
+
+Der Vorteil ist, dass bei dieser Einhaltung des \ac{DRY}-Prinzips der Zusammenhang zwischen dem Programmcode und den Tabellen zur Persistierung für den Entwickler leicht zu erkennen ist und Umbennenungen der Klassen direkt zu einer Anpassung der Tabellenbezeichnung sorgt und somit Inkonsistenzen vermieden werden können.
+
+Eine Nichteinhaltung des \ac{DRY}-Prinzip findet sich in der Resourcen-Klassen \href{}{\code{ConsumerGoodsReource}}, \href{}{\code{FridgeResource}}, \href{}{\code{FoodShelfResource}}, \href{}{\code{FoodResource}} und \href{}{\code{BestBeforeDateResource}} vor.
 Die Klassen dienen der Repräsentation der gleichnamigen Entitäten für die Kommunikation mit äußeren Anwendungen wie beispielsweise der \ac{GUI}.
 Dementsprechend sind sowohl Variablen als auch Methoden dupliziert.
 Dadurch ist das \ac{DRY}-Prinzip verletzt und hat den Nachteil, dass eine Anpassung der Domänen dazu führt, dass die entsprechende Ressourcen-Klasse ebenfalls angepasst werden müsste.
+
+Das \ac{DRY}-Prinzip wurde hierbei bewusst verletzt, weil eine Duplizierung zur Trennung des Domänencodes im Inneren zu einer Repräsentation Interaktion mit äußeren Plugins entsprechend der \textit{Clean Architecture} gewollt ist.
 Hierbei ist anzumerken, dass Domänen in der \textit{Domain}-Schicht entsprechend der \textit{Clean Architecture} eher seltener verändert werden sollten.
 Dennoch würde müsste die Änderung auch in den Ressourcen-Klassen berücksichtigt werden und kann somit zu einem Fehlerrisiko durch Nichtberücksichtigung führen.
-\todo[]{gemacht, weil}

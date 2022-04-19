@@ -75,21 +75,21 @@ Zudem sind tiefe Abhängigkeitsstrukturen nur aufwendig nachzubilden.
 Hierbei sollte sich bei der Entwicklung an das \textit{Law of Demeter} gehalten werden.
 
 \section{Anwendung im Softwareentwurf}
-Bei den Unit-Tests wurde ein besonderer Fokus auf die Validierungs-Klassen in der \textit{Abstraktions}-Schicht sowie das Erzeugen und Ändern einzelner Attribute eines \href{}{\code{}}\code{ConsumerGoods} gelegt.
+Bei den Unit-Tests wurde ein besonderer Fokus auf die Validierungs-Klassen in der \textit{Abstraktions}-Schicht sowie das Erzeugen und Ändern einzelner Attribute eines \href{}{\code{ConsumerGoods}} gelegt.
 Die Testklassen sind innerhalb des Projekts \textit{0-cleanproject-plugins} im Verzeichnis \textit{src.test.java} gelistet.
 Bei der Erstellung der Tests wurde eine Einteilung entsprechend \href{}{\textit{Arrange}}, \href{}{\textit{Act}} sowie \href{}{\textit{Assert}} vorgenommen.
-Die Testklasse \href{}{\code{}}\code{DayDateTest} überprüft die Funktionalität der Klasse \href{}{\code{}}\code{DayValidator}, indem eine Validierung eines gültigen als auch eines negativen oder eines über 31 liegenden Wertes gestestet wird.
-Die Testklasse \href{}{\code{}}\code{MonthDateTest} überprüft die Funktion der Klasse \href{}{\code{}}\code{MonthValidator}, indem eine Validierung eines gültigen als auch eines negativen oder eines über 12 liegenden Wertes gestestet wird.
-Die Testklasse \href{}{\code{}}\code{YearDateTest} überprüft die Funktion der Klasse \href{}{\code{}}\code{YearValidator}, indem eine Validierung eines gültigen als auch eines negativen Wertes gestestet wird.
-Die Testklasse \href{}{\code{}}\code{DateValidatorTest} überprüft die Funktion der Klasse \code{DateValidator}, indem eine Validierung eines gültigen als auch eines ungültigen Datums im Februar und an einem Monat mit 30 statt 31 Tagen gestestet wird.
+Die Testklasse \href{}{\code{DayDateValidationTest}} überprüft die Funktionalität der Klasse \href{}{\code{DayValidator}}, indem eine Validierung eines gültigen als auch eines negativen oder eines über 31 liegenden Wertes gestestet wird.
+Die Testklasse \href{}{\code{MonthDateValidationTest}} überprüft die Funktion der Klasse \href{}{\code{MonthValidator}}, indem eine Validierung eines gültigen als auch eines negativen oder eines über 12 liegenden Wertes gestestet wird.
+Die Testklasse \href{}{\code{YearDateValidationTest}} überprüft die Funktion der Klasse \href{}{\code{YearValidator}}, indem eine Validierung eines gültigen als auch eines negativen Wertes gestestet wird.
+Die Testklasse \href{}{\code{DateValidationTest}} überprüft die Funktion der Klasse \code{DateValidator}, indem eine Validierung eines gültigen als auch eines ungültigen Datums im Februar und an einem Monat mit 30 statt 31 Tagen gestestet wird.
 Die Test liegen sehr nahe beieinander, jedoch wurde eine Aufteilung aufgrund der Verständlichkeit (entsprechend der \textit{Professional}-Regel) vorgenommen.
-Die Testklasse \href{}{\code{}}\code{UnitOfMeasureValueTest} überprüft die Funktion der Klasse \href{}{\code{}}\code{ValueValidator}, indem eine Validierung eines gültigen als auch eines negativen Wertes gestestet wird.
+Die Testklasse \href{}{\code{UnitOfMeasureValueValidationTest}} überprüft die Funktion der Klasse \href{}{\code{ValueValidator}}, indem eine Validierung eines gültigen als auch eines negativen Wertes gestestet wird.
 
-Die Testklasse \href{}{\code{}}\code{StoreConsumerGoodsTest} überprüft die Klasse \href{}{\code{}}\code{ConsumerGoodsBuilder} sowie dessen Validierungsmethode, indem unterschiedliche Kombinationen mit invaliden Übergabeparametern getestet werden.
+Die Testklasse \href{}{\code{StoreConsumerGoodsTest}} überprüft die Klasse \href{}{\code{ConsumerGoodsBuilder}} sowie dessen Validierungsmethode, indem unterschiedliche Kombinationen mit invaliden Übergabeparametern getestet werden.
 
-Die Testklasse \href{}{\code{}}\code{ConsumerGoodsGuiControllerTest} dient der Überprüfung der \href{}{\code{}}\ac{HTTP}-Statuscodes für erfolgreiche als auch fehlerhafte Anfragen zum Erhalt, der Erzeugung dem Aktualisieren oder Löschen von ConsumerGoods.
+Die Testklasse \href{}{\code{ConsumerGoodsGuiControllerTest}} dient der Überprüfung der \href{}{\code{\ac{HTTP}-Statuscodes}} für erfolgreiche als auch fehlerhafte Anfragen zum Erhalt, der Erzeugung dem Aktualisieren oder Löschen von ConsumerGoods.
 
-Der Schwerpunkt der genannten Klassen, mit Ausnahme von \href{}{\code{}}\code{ConsumerGoodsGuiControllerTest}, liegt auf der Wertevalidierung als Grundlage zur Vermeidung von auftretenden Fehlern, die zu einem Fehlverhalten der Software führen können, das unter Umständen nicht direkt bemerkt wird oder auch durch den Tausch verschiedener Peripherie auftreten könnte.
+Der Schwerpunkt der genannten Klassen, mit Ausnahme von \href{}{\code{ConsumerGoodsGuiControllerTest}}, liegt auf der Wertevalidierung als Grundlage zur Vermeidung von auftretenden Fehlern, die zu einem Fehlverhalten der Software führen können, das unter Umständen nicht direkt bemerkt wird oder auch durch den Tausch verschiedener Peripherie auftreten könnte.
 Neben der \textit{Professional}-Regel wurde auf die weiteren ATRIP-Regeln geachtet.
 \begin{itemize}
     \item Die Tests laufen selbstständig und überprüfen ihr Ergebnis selbst (\textit{Automatic}),
@@ -98,56 +98,56 @@ Neben der \textit{Professional}-Regel wurde auf die weiteren ATRIP-Regeln geacht
     \item die Tests sind unabhängig zueinander und testen jeweils eine Komponente \textit{Independent}.
 \end{itemize}
 
-Als Beispiel für die Erfüllung der \textit{Automic}-Regel dient das Nutzen von Assertions wie in \href{}{\code{}}\code{DateValidatorTest} zu erkennen.
+Als Beispiel für die Erfüllung der \textit{Automic}-Regel dient das Nutzen von Assertions wie in \href{}{\code{DateValidatorTest}} zu erkennen.
 Dieses Mittel wurde auch bei den anderen Tests angewandt, indem das erwartete Ergebnis fest im \textit{Assert}-Teil des Tests programmiert ist und der Test daraufhin die Erfüllung selbst überprüft.
 Es werden auch keine Informationen zur Laufzeit über den Nutzer abgefragt, um die \textit{Atomic}-Regel zu erfüllen.
-Die \textit{Thorough}-Regel wurde insofern eingehalten, dass der Schwerpunkt der Tests auf den Validierungsklassen, wie dem \href{}{\code{}}\code{DateValidatorTest} oder dem \href{}{\code{}}\code{UnitOfMeasureValueTest} gelegt wurde.
-Gleiches gilt für \href{}{\code{}}\code{StoreConsumerGoodsTest}, indem der Schwerpunkt auf die Validierung der Attribute zum Erzeugen eines Konsumguts liegt.
+Die \textit{Thorough}-Regel wurde insofern eingehalten, dass der Schwerpunkt der Tests auf den Validierungsklassen, wie dem \href{}{\code{DateValidatorTest}} oder dem \href{}{\code{UnitOfMeasureValueTest}} gelegt wurde.
+Gleiches gilt für \href{}{\code{StoreConsumerGoodsTest}}, indem der Schwerpunkt auf die Validierung der Attribute zum Erzeugen eines Konsumguts liegt.
 Dadurch können Fehler, die aufgrund ungültiger Wertangaben, wie zum Beispiel negativen Werten oder einem falschen Datum auftreten können und für Bugs oder darauf aufbauenden Fehlern führen können, vermieden werden.
-Ein weiteres Beispiel für das Einhalten der \textit{Repeatable}-Regel ist ebenfalls im \textit{Arrange}-Teil des Tests \href{}{\code{}}\code{DateValidatorTest} dargestellt.
+Ein weiteres Beispiel für das Einhalten der \textit{Repeatable}-Regel ist ebenfalls im \textit{Arrange}-Teil des Tests \href{}{\code{DateValidatorTest}} dargestellt.
 Zur Erfüllung dieser Regel wurden zu prüfende Daten statisch festgelegt und werden nicht zur Laufzeit, wie beispielsweise die Wahl des aktuellen Datum, bestimmt.
 Die \textit{Independent}-Regel wurde eingehalten. Dazu wurde darauf geachtet, dass jede Testklasse nur eine Komponente testet.
 Das wurde erfüllt, indem jede Testklasse eine der implementierten Validierungsklassen testet.
 Durch die Entkopplung zueinander können die Tests unabhängig und in beliebiger Reihenfolge ausgeführt werden.
-Alle nötigen Informationen zum unabhängigen Durchführen des Tests sind im \textit{Assert}-Teil des Tests definiert, wie in \href{}{\code{}}\code{DateValidatorTest} beispielhaft dargestellt.
-Zur Erfüllung der \textit{Professional}-Regel wurde sich an der \textit{Ubiquitous Language} aus \ac{DDD} orientiert. Ein Beispiel hierzu ist die Bezeichnung der Testklassen, indem domänenspezifische Titel wie \href{}{\code{}}\textit{DateValidationTest} oder \href{}{\code{}}\textit{UnitOfMeasureValueValidationTest} genutzt wurden.
+Alle nötigen Informationen zum unabhängigen Durchführen des Tests sind im \textit{Assert}-Teil des Tests definiert, wie in \href{}{\code{DateValidatorTest}} beispielhaft dargestellt.
+Zur Erfüllung der \textit{Professional}-Regel wurde sich an der \textit{Ubiquitous Language} aus \ac{DDD} orientiert. Ein Beispiel hierzu ist die Bezeichnung der Testklassen, indem domänenspezifische Titel wie \href{}{\code{DateValidationTest}} oder \href{}{\code{UnitOfMeasureValueValidationTest}} genutzt wurden.
 Bei den Testmethoden wurde ebenfalls eine klare Bezeichnung gewählt, die das darauf folgende Testergebnis verständlich macht.
-Ein Beispiel hierfür ist in \href{}{\code{}}\textit{DateValidationTest}, indem die Methoden wie beispielsweise \href{}{\code{}}\textit{ checkValidatorForInvalideFebruaryDate()} oder \href{}{\code{}}\textit{ checkValidatorForFebruaryDateInLeapYear()} den gezielten Test beschreiben.
+Ein Beispiel hierfür ist in \href{}{\code{DateValidationTest}}, indem die Methoden wie beispielsweise \href{}{\code{checkValidatorForInvalideFebruaryDate()}} oder \href{}{\code{checkValidatorForFebruaryDateInLeapYear()}} den gezielten Test beschreiben.
 
 \subsection*{Unit-Tests mit Einsatz von Mocks}
-Zuzüglich zu den erläuterten Unit Tests testet die Testklasse \href{}{\code{}}\code{UpdateConsumerGoodsTest} das Ändern von Attributen einer Instanz der Klasse \href{}{\code{}}\code{ConsumerGoods} mit Hilfe eines Mocking-Werkzeugs.
-Der Test bildet den Ablauf der Methode \href{}{\code{}}\code{updateConsumerGoods()} in der Klasse \href{}{\code{}}\code{ConsumerGoodsManager} ab.
-Dabei wird eine im Test erzeugte Instanz der Klasse \href{}{\code{}}\code{ConsumerGoods} mit den Attributen eines neuen, im Test gemockten, Objekts der Klasse \href{}{\code{}}\code{ConsumerGoods} aktualisiert.
+Zuzüglich zu den erläuterten Unit Tests testet die Testklasse \href{}{\code{UpdateConsumerGoodsTest}} das Ändern von Attributen einer Instanz der Klasse \href{}{\code{ConsumerGoods}} mit Hilfe eines Mocking-Werkzeugs.
+Der Test bildet den Ablauf der Methode \href{}{\code{updateConsumerGoods()}} in der Klasse \href{}{\code{ConsumerGoodsManager}} ab.
+Dabei wird eine im Test erzeugte Instanz der Klasse \href{}{\code{ConsumerGoods}} mit den Attributen eines neuen, im Test gemockten, Objekts der Klasse \href{}{\code{ConsumerGoods}} aktualisiert.
 
 Darüber hinaus wird in der bereits erläuterten Testklasse \href{}{\code{ConsumerGoodsGuiControllerTest}} innerhalb der Testmethode \href{}{\code{deleteFailureTest()}} ebenfalls ein Mock zur Simulation der Reaktion des \href{}{\code{ConsumerGoodsRepository}} erzeugt.
 
-Zu einem älteren Entwicklungsstand wurde in der Testklasse \href{}{\code{}}\code{StoreConsumerGoodsTest} ebenfalls Mocks zum Testen angewandt, da die Überprüfung des \ac{EAN}-Codes zu dem Zeitpunkt in \href{}{\code{}}\code{ConsumerGoodsBuilder} stattfand und somit ein eine Instanz des \href{}{\code{}}\code{ConsumerGoodsRepository} übergeben werden musste.
+Zu einem älteren Entwicklungsstand wurde in der Testklasse \href{}{\code{StoreConsumerGoodsTest}} ebenfalls Mocks zum Testen angewandt, da die Überprüfung des \ac{EAN}-Codes zu dem Zeitpunkt in \href{}{\code{ConsumerGoodsBuilder}} stattfand und somit ein eine Instanz des \href{}{\code{ConsumerGoodsRepository}} übergeben werden musste.
 
 Auch die Unit-Tests mit dem Einsatz von Mocks erfüllen die \textit{ATRIP}-Regeln und erzielen das Testergebnis \textit{Success}.
 
-Als Beispiel für die Erfüllung der \textit{Automic}-Regel dient ebenfalls der Einsatz von Assertions und das statische Programmieren von Ergebnissen, wie in \href{}{\code{}}\code{UpdateConsumerGoodsTest} dargestellt.
+Als Beispiel für die Erfüllung der \textit{Automic}-Regel dient ebenfalls der Einsatz von Assertions und das statische Programmieren von Ergebnissen, wie in \href{}{\code{UpdateConsumerGoodsTest}} dargestellt.
 Auch bei diesen Tests werden alle Informationen im \textit{Arange}-Teil des Tests hinterlegt und somit keine Abfragen während der Laufzeit des Tests abgefragt.
-Die \textit{Thorough}-Regel wurde an diesem Beispiel eingehalten, indem die Tests die Grundfunktionalitäten der Anwendung, wie durch den Test \href{}{\code{}}\code{UpdateConsumerGoodsTest} das Aktualisieren eines Konsumguts, mit \href{}{\code{}}\code{StoreConsumerGoodsTest} das Einlagern eines Konsumguts und mit \href{}{\code{}}\code{ConsumerGoodsGuiControllerTest} die Interaktionsschnittstelle zur \ac{GUI} testen.
-Ein weiteres Beispiel für das Einhalten der \textit{Repeatable}-Regel ist ebenfalls im \textit{Arrange}-Teil des Tests \href{}{\code{}}\code{ConsumerGoodsGuiControllerTest} dargestellt.
+Die \textit{Thorough}-Regel wurde an diesem Beispiel eingehalten, indem die Tests die Grundfunktionalitäten der Anwendung, wie durch den Test \href{}{\code{UpdateConsumerGoodsTest}} das Aktualisieren eines Konsumguts, mit \href{}{\code{StoreConsumerGoodsTest}} das Einlagern eines Konsumguts und mit \href{}{\code{ConsumerGoodsGuiControllerTest}} die Interaktionsschnittstelle zur \ac{GUI} testen.
+Ein weiteres Beispiel für das Einhalten der \textit{Repeatable}-Regel ist ebenfalls im \textit{Arrange}-Teil des Tests \href{}{\code{ConsumerGoodsGuiControllerTest}} dargestellt.
 Zur Erfüllung dieser Regel wurden zu prüfende Daten statisch festgelegt und werden nicht zur Laufzeit, wie beispielsweise die Wahl die Zusammenstellung der \ac{URI} zur Kommunikation mit der Schnittstelle über \ac{HTTP}, bestimmt.
 Die \textit{Independent}-Regel wurde eingehalten.
 Es wurde darauf geachtet, dass jede Testklasse ebenfalls nur eine Komponente testet.
-Ein Beispiel ist die Testklasse \href{}{\code{}}\code{StoreConsumerGoodsTest}, welche die Validierung der Attribute zum Anlegen eines Konsumguts testet.
+Ein Beispiel ist die Testklasse \href{}{\code{StoreConsumerGoodsTest}}, welche die Validierung der Attribute zum Anlegen eines Konsumguts testet.
 Durch die Entkopplung zueinander können die Tests ebenfalls unabhängig und in beliebiger Reihenfolge ausgeführt werden.
-Alle nötigen Informationen zum unabhängigen Durchführen des Tests sind im \textit{Assert}-Teil des Tests definiert, wie in \href{}{\code{}}\code{ConsumerGoodsGuiControllerTest} beispielhaft dargestellt.
+Alle nötigen Informationen zum unabhängigen Durchführen des Tests sind im \textit{Assert}-Teil des Tests definiert, wie in \href{}{\code{ConsumerGoodsGuiControllerTest}} beispielhaft dargestellt.
 Zur Erfüllung der \textit{Professional}-Regel wurde sich an der \textit{Ubiquitous Language} aus \ac{DDD} orientiert. Ein Beispiel hierzu ist die Bezeichnung der Testklassen, indem anstatt der technischen Begriffe \textit{AddConsumerGood} domänenspezifische Titel wie \textit{StoreConsumerGoods} genutzt wurden.
 Bei den Testmethoden wurde ebenfalls eine klare Bezeichnung gewählt, die das darauf folgende Testergebnis verständlich macht.
-Ein Beispiel hierzu findet sich in \href{}{\code{}}\code{StoreConsumerGoodsTest}, indem die Methoden \href{}{\code{}}\textit{ checkStoreValidConsumerGood()} oder \href{}{\code{}}\textit{ checkStoreConsumerGoodWithoutFoodDescription()} die domänenspezifische Bezeichnung verwenden und somit für Domänenexperten verständlich wird, was der Test überprüft, ohne den Testablauf im Detail zu verstehen.
+Ein Beispiel hierzu findet sich in \href{}{\code{StoreConsumerGoodsTest}}, indem die Methoden \href{}{\code{checkStoreValidConsumerGood()}} oder \href{}{\code{checkStoreConsumerGoodWithoutFoodDescription()}} die domänenspezifische Bezeichnung verwenden und somit für Domänenexperten verständlich wird, was der Test überprüft, ohne den Testablauf im Detail zu verstehen.
 
 \subsection*{Code Coverage}
 Die Code Coverage-Ergebnisse nach Durchführen der Unit-Tests sind in Tabelle \ref{tab:code-coverage-full} dargestellt.
-Bei Betrachtung der Testabdeckung ist zu erkennen, dass der Schwerpunkt der Tests auf den Klassen in der \textit{Domain}- sowie in der \textit{Abstraction}-Schicht auf den Validierungsklassen sowie der Erzeugung eines Konsumguts durch den \href{}{\code{}}\code{ConsumerGoodsBuilder} befindet.
-Das ist entspricht auch den Testbereichen der Testklassen \href{}{\code{}}\code{DateValidatorTest}, \href{}{\code{}}\code{DayDateTest}, \href{}{\code{}}\code{MonthDateTest}, \href{}{\code{}}\code{YearDateTest} sowie \href{}{\code{}}\code{UnitOfMeasureValueTest}, die den dazugehörigen Validator testen.
+Bei Betrachtung der Testabdeckung ist zu erkennen, dass der Schwerpunkt der Tests auf den Klassen in der \textit{Domain}- sowie in der \textit{Abstraction}-Schicht auf den Validierungsklassen sowie der Erzeugung eines Konsumguts durch den \href{}{\code{ConsumerGoodsBuilder}} befindet.
+Das ist entspricht auch den Testbereichen der Testklassen \href{}{\code{DateValidatorTest}}, \href{}{\code{DayDateTest}}, \href{}{\code{MonthDateTest}}, \href{}{\code{YearDateTest}} sowie \href{}{\code{UnitOfMeasureValueTest}}, die den dazugehörigen Validator testen.
 
 Die Code Coverage verdeutlicht, dass der Fokus auf die Validierungsklassen im Package \textbf{de.dhbw.cip.domain} sowie den dazugehörigen domänenspezifischen Klassen in dem sowie im Package \textbf{de.dhbw.cip.abstractioncode} liegt. 
-Hinzu kommt das Testen der Attributvalidierung des \href{}{\code{}}\code{ConsumerGoodsBuilder}.
+Hinzu kommt das Testen der Attributvalidierung des \href{}{\code{ConsumerGoodsBuilder}}.
 Da eine Persistierung noch nicht vorgesehen ist, sind die Klassen im Package \textbf{de.dhbw.cip.application} ebenfalls noch nicht in Tests berücksichtigt.
-Eine Ausnahme stellt die Testklasse \href{}{\code{}}\code{ConsumerGoodsGuiControllerTest}, diese überprüft die \ac{HTTP}-Schnittstelle und die entsprechenden Rückmeldungen des Servers an die GUI. 
+Eine Ausnahme stellt die Testklasse \href{}{\code{ConsumerGoodsGuiControllerTest}}, diese überprüft die \ac{HTTP}-Schnittstelle und die entsprechenden Rückmeldungen des Servers an die GUI. 
 Hierzu muss der Service jedoch in Betrieb sein und somit ist zu beachten, dass die die getestete Code Coverage nicht zur Testinstanz zählt.
 Gleiches gilt für die Klassen im Package \textbf{de.dhbw.cip.adapters}, schließlich handelt es sich hierbei um Klassen zum Trennen der inneren domänenspezifischen Klassen in äußere, für die Schnittstellen relevante Klassen.
 
