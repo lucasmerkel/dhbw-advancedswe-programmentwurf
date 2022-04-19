@@ -1,9 +1,9 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \babel@toc {ngerman}{}
-\contentsline {chapter}{Abkürzungsverzeichnis}{III}{chapter*.4}%
-\contentsline {chapter}{\nonumberline Abbildungsverzeichnis}{IV}{chapter*.5}%
-\contentsline {chapter}{\nonumberline Tabellenverzeichnis}{V}{chapter*.6}%
-\contentsline {chapter}{\nonumberline Quellcodeverzeichnis}{VI}{chapter*.7}%
+\contentsline {chapter}{Abkürzungsverzeichnis}{IV}{chapter*.4}%
+\contentsline {chapter}{\nonumberline Abbildungsverzeichnis}{V}{chapter*.5}%
+\contentsline {chapter}{\nonumberline Tabellenverzeichnis}{VI}{chapter*.6}%
+\contentsline {chapter}{\nonumberline Quellcodeverzeichnis}{VII}{chapter*.7}%
 \contentsline {chapter}{\numberline {1}Einleitung}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Anforderungen an den Softwareentwurf}{1}{section.1.1}%
 \contentsline {section}{\numberline {1.2}Anforderungen an die zu entwickelnde Software}{3}{section.1.2}%
@@ -14,21 +14,25 @@
 \contentsline {section}{\numberline {2.4}Konsumgut löschen}{8}{section.2.4}%
 \contentsline {chapter}{\numberline {3}Clean Architecture}{10}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Planung der Schichten}{10}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Anwendung der Schichten}{11}{section.3.2}%
+\contentsline {section}{\numberline {3.2}Anwendung der Schichten}{12}{section.3.2}%
 \contentsline {chapter}{\numberline {4}Programming Principles}{21}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Zu betrachtende Programming Principles}{21}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Analyse und Begründung}{25}{section.4.2}%
 \contentsline {subsection}{\numberline {4.2.1}SOLID}{25}{subsection.4.2.1}%
 \contentsline {subsection}{\numberline {4.2.2}\ac {GRASP}}{28}{subsection.4.2.2}%
-\contentsline {subsection}{\numberline {4.2.3}\ac {DRY}}{29}{subsection.4.2.3}%
-\contentsline {chapter}{\numberline {5}Domain Driven Design}{30}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Analyse und Begründung der \textit {Ubiquitous Language}}{31}{section.5.1}%
-\contentsline {chapter}{\numberline {6}Unit Tests}{39}{chapter.6}%
-\contentsline {section}{\numberline {6.1}ATRIP}{40}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Testabdeckung}{40}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Testen mit Mocks}{41}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Anwendung im Softwareentwurf}{41}{section.6.4}%
-\contentsline {chapter}{\numberline {7}Entwurfsmuster}{45}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Angewandte Entwurfsmuster}{45}{section.7.1}%
-\contentsline {chapter}{\numberline {8}Refactoring}{47}{chapter.8}%
+\contentsline {subsection}{\numberline {4.2.3}\ac {DRY}}{30}{subsection.4.2.3}%
+\contentsline {chapter}{\numberline {5}Domain Driven Design}{31}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Analyse und Begründung der \textit {Ubiquitous Language}}{32}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Analyse angewandter Value Objects}{37}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Analyse angewandter Entities}{38}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Analyse angewandter Aggregates}{38}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Analyse angewandter Repositories}{40}{section.5.5}%
+\contentsline {chapter}{\numberline {6}Unit Tests}{41}{chapter.6}%
+\contentsline {section}{\numberline {6.1}ATRIP}{42}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Testabdeckung}{42}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Testen mit Mocks}{43}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Anwendung im Softwareentwurf}{43}{section.6.4}%
+\contentsline {chapter}{\numberline {7}Entwurfsmuster}{49}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Angewandte Entwurfsmuster}{49}{section.7.1}%
+\contentsline {chapter}{\numberline {8}Refactoring}{52}{chapter.8}%
 \contentsfinish 

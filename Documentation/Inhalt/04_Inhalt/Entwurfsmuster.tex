@@ -9,21 +9,21 @@ Innerhalb dieses Kapitels werden die Umsetzung von \textit{Entwurfsmustern} inne
 %\todo[]{Observer - es muss kein neuer Observer programmiert werden, es reicht aus, wenn er verwendet wird und das entsprechend durch UML-Diagramm gezeigt wird}
 
 \section{Angewandte Entwurfsmuster}
-Bei Betrachtung der Ausschnitte UML-Diagramms ist der \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/2bab7b1c200507e4550ce7025485261d0e95ce07/Documentation/Bilder/uml-diagramme/uml-entwurfsmuster-builder.svg}{\textit{Builder}} sowie die \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/Documentation/Bilder/uml-diagramme/uml-entwurfsmuster-bridge.svg}{\code{Bridge}} als Entwurfsmuster zu erkennen, die in diesem Softwareentwurf angewandt wurden.
+Bei Betrachtung der Ausschnitte UML-Diagramms ist der \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/2bab7b1c200507e4550ce7025485261d0e95ce07/Documentation/Bilder/uml-diagramme/uml-entwurfsmuster-builder.svg}{\textit{Builder}} \ref{fig:uml-builder-pattern} sowie die \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/Documentation/Bilder/uml-diagramme/uml-entwurfsmuster-bridge.svg}{\code{Bridge}} \ref{fig:uml-bridge-pattern} als Entwurfsmuster zu erkennen, die in diesem Softwareentwurf angewandt wurden.
 
-% \begin{figure}[H]
-% 	\centering
-% 	\includegraphics[width=1.0\textwidth]{Bilder/entwurfsmuster-bridge.pdf}
-% 	\caption[Ausschnitt des UML-Diagramms zur Darstellung des \textit{Bridge}-Entwurfmusters.]{Der Ausschnitt des UML-Diagramms verdeutlicht die Verwendung des \textit{Bridge}-Entwurfmusters.}
-% 	\label{fig:uml-bridge-pattern}
-% \end{figure}
+\begin{figure}[H]
+ 	\centering
+ 	\includegraphics[width=1.0\textwidth]{Bilder/uml-diagramme/entwurfsmuster-bridge.png}
+ 	\caption[Ausschnitt des UML-Diagramms zur Darstellung des \textit{Bridge}-Entwurfmusters.]{Der Ausschnitt des UML-Diagramms verdeutlicht die Verwendung des \textit{Bridge}-Entwurfmusters.}
+ 	\label{fig:uml-bridge-pattern}
+ \end{figure}
 
-% \begin{figure}[H]
-% 	\centering
-% 	\includegraphics[width=1.0\textwidth]{Bilder/entwurfsmuster-factory.pdf}
-% 	\caption[Ausschnitt des UML-Diagramms zur Darstellung des \textit{Builder}-Entwurfmusters.]{Der Ausschnitt des UML-Diagramms verdeutlicht die Verwendung des \textit{Builder}-Entwurfmusters.}
-% 	\label{fig:uml-builder-pattern}
-% \end{figure}
+ \begin{figure}[H]
+ 	\centering
+ 	\includegraphics[width=1.0\textwidth]{Bilder/uml-diagramme/entwurfsmuster-builder.png}
+ 	\caption[Ausschnitt des UML-Diagramms zur Darstellung des \textit{Builder}-Entwurfmusters.]{Der Ausschnitt des UML-Diagramms verdeutlicht die Verwendung des \textit{Builder}-Entwurfmusters.}
+ 	\label{fig:uml-builder-pattern}
+ \end{figure}
 
 \subsection*{\code{Builder}-Entwurfsmuster}
 Das \code{Builder}-Entwurfsmuster zählt zu den \textit{Erzeugungsmustern} und ist in der Klasse \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/blob/d5c89113d12c3b877ddc4d6a99225b277ddd468f/swe_programmentwurf/consumergoods-inventory-planner/3-cip-domain/src/main/java/de/dhbw/cip/domain/ConsumerGoods.java#L72}{\code{ConsumerGoodsBuilder}} umgesetzt.

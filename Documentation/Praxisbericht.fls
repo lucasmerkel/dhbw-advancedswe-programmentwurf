@@ -516,7 +516,6 @@ INPUT C:\Users\i518310\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\public\lm\ec-
 INPUT C:\Users\i518310\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\t1pcr.fd
 INPUT C:\Users\i518310\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\t1pcr.fd
 INPUT C:\Users\i518310\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\adobe\courier\pcrr8t.tfm
-INPUT C:\Users\i518310\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmbx12.tfm
 INPUT C:\Users\i518310\AppData\Local\Programs\MiKTeX 2.9\fonts\vf\adobe\courier\pcrr8t.vf
 INPUT C:\Users\i518310\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\adobe\courier\pcrr8r.tfm
 INPUT C:\Users\i518310\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmssbx10.tfm
@@ -576,6 +575,7 @@ INPUT C:\Users\i518310\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\ts1lmr.fd
 INPUT C:\Users\i518310\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\ts1lmr.fd
 INPUT C:\Users\i518310\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\public\lm\ts1-lmr12.tfm
 INPUT C:\Users\i518310\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmssbo10.tfm
+INPUT C:\Users\i518310\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\public\lm\ec-lmbx12.tfm
 OUTPUT c:\reposp\dhbw-advancedswe-programmentwurf\Documentation\Inhalt\04_Inhalt\ProgrammingPrinciples.aux
 INPUT c:\reposp\dhbw-advancedswe-programmentwurf\Documentation\Inhalt\04_Inhalt\ProgrammingPrinciples.tex
 INPUT c:\reposp\dhbw-advancedswe-programmentwurf\Documentation\Inhalt\04_Inhalt\ProgrammingPrinciples.tex
@@ -629,6 +629,16 @@ INPUT c:\reposp\dhbw-advancedswe-programmentwurf\Documentation\Inhalt\04_Inhalt\
 OUTPUT c:\reposp\dhbw-advancedswe-programmentwurf\Documentation\Inhalt\04_Inhalt\Entwurfsmuster.aux
 INPUT c:\reposp\dhbw-advancedswe-programmentwurf\Documentation\Inhalt\04_Inhalt\Entwurfsmuster.tex
 INPUT c:\reposp\dhbw-advancedswe-programmentwurf\Documentation\Inhalt\04_Inhalt\Entwurfsmuster.tex
+INPUT c:\reposp\dhbw-advancedswe-programmentwurf\Documentation\Bilder\uml-diagramme\entwurfsmuster-bridge.png
+INPUT c:\reposp\dhbw-advancedswe-programmentwurf\Documentation\Bilder\uml-diagramme\entwurfsmuster-bridge.png
+INPUT c:\reposp\dhbw-advancedswe-programmentwurf\Documentation\Bilder\uml-diagramme\entwurfsmuster-bridge.png
+INPUT c:\reposp\dhbw-advancedswe-programmentwurf\Documentation\Bilder\uml-diagramme\entwurfsmuster-bridge.png
+INPUT c:\reposp\dhbw-advancedswe-programmentwurf\Documentation\Bilder\uml-diagramme\entwurfsmuster-bridge.png
+INPUT c:\reposp\dhbw-advancedswe-programmentwurf\Documentation\Bilder\uml-diagramme\entwurfsmuster-builder.png
+INPUT c:\reposp\dhbw-advancedswe-programmentwurf\Documentation\Bilder\uml-diagramme\entwurfsmuster-builder.png
+INPUT c:\reposp\dhbw-advancedswe-programmentwurf\Documentation\Bilder\uml-diagramme\entwurfsmuster-builder.png
+INPUT c:\reposp\dhbw-advancedswe-programmentwurf\Documentation\Bilder\uml-diagramme\entwurfsmuster-builder.png
+INPUT c:\reposp\dhbw-advancedswe-programmentwurf\Documentation\Bilder\uml-diagramme\entwurfsmuster-builder.png
 INPUT C:\Users\i518310\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\adobe\courier\pcrb8t.tfm
 INPUT C:\Users\i518310\AppData\Local\Programs\MiKTeX 2.9\fonts\vf\adobe\courier\pcrb8t.vf
 INPUT C:\Users\i518310\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\adobe\courier\pcrb8r.tfm
