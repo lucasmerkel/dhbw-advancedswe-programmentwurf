@@ -10,7 +10,7 @@ import javax.persistence.Id;
 public class Day {
 	
 	@Id
-    @Column(name = "id")
+    @Column
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	

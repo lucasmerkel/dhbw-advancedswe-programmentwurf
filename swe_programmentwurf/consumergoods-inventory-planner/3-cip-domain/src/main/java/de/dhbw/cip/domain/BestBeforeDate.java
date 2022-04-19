@@ -15,11 +15,10 @@ import de.dhbw.cip.abstractioncode.Month;
 import de.dhbw.cip.abstractioncode.Year;
 
 @Entity
-@Table(name = "BestBeforeDate")
 public class BestBeforeDate {
 	
 	@Id
-    @Column(name = "id")
+    @Column
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 	

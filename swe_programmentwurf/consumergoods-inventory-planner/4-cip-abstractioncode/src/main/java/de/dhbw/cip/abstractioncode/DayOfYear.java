@@ -12,7 +12,7 @@ import javax.persistence.OneToOne;
 public class DayOfYear {
 
 		@Id
-    	@Column(name = "id")
+    	@Column
     	@GeneratedValue(strategy = GenerationType.AUTO)
     	private Long id;
 	

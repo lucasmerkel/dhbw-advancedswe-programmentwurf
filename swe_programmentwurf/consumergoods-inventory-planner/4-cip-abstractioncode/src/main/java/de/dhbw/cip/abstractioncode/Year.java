@@ -10,7 +10,7 @@ import javax.persistence.Id;
 public class Year {
 
 	@Id
-    @Column(name = "id")
+    @Column
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 	

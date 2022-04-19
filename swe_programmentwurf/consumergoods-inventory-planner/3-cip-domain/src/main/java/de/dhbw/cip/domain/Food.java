@@ -15,15 +15,14 @@ import de.dhbw.cip.abstractioncode.Month;
 import de.dhbw.cip.abstractioncode.Year;
 
 @Entity
-@Table(name = "Food")
 public class Food {
 
 	@Id
-    @Column(name = "id")
+    @Column
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 	
-	@Column(name = "description")
+	@Column
 	private final String description;
 	
 	@OneToOne(cascade=CascadeType.ALL)

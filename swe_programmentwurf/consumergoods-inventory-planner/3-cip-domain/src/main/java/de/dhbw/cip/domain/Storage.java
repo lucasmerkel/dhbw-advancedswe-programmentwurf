@@ -13,11 +13,11 @@ import javax.persistence.InheritanceType;
 public abstract class Storage {
 
 	@Id
-    @Column(name = "id")
+    @Column
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 	
-	@Column(name = "description")
+	@Column
 	protected final String description;
 	
 	public Storage(String description) {

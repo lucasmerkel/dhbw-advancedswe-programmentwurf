@@ -14,11 +14,10 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "ConsumerGoods")
 public class ConsumerGoods {
 	
     @Id
-    @Column(name = "eanCode")
+    @Column
     private Long eanCode;
 
     @OneToOne(cascade = CascadeType.ALL)

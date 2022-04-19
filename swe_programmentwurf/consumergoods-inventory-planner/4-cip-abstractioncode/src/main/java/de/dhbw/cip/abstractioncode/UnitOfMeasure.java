@@ -15,14 +15,14 @@ import javax.persistence.OneToOne;
 public abstract class UnitOfMeasure {
 	
 	@Id
-    @Column(name = "id")
+    @Column
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 	
-	@Column(name = "description")
+	@Column
 	protected String description;
 	
-	@Column(name = "shortcut")
+	@Column
 	protected String shortcut;
 	
 	@OneToOne(cascade=CascadeType.ALL)
