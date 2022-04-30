@@ -15,8 +15,11 @@ import de.dhbw.cip.domain.Food;
 import de.dhbw.cip.domain.Fridge;
 import de.dhbw.cip.domain.ConsumerGood.ConsumerGoodsBuilder;
 
-public class UpdateConsumerGoodsTest {
+public class UpdateConsumerGoodTest {
 	
+	/*
+	 * #Requirement
+	 */
 	@Test
 	public void checkUpdateOfConsumerGoods() {
 	//Capture

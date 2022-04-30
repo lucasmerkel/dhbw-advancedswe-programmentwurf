@@ -9,6 +9,10 @@ import de.dhbw.cip.domain.YearValidator;
 
 public class YearDateValidationTest {
 
+	/*
+	 * #Requirement
+	 * #Regression
+	 */
 	@Test
 	public void checkNotNegativeYearDate() {
 		//Arange
@@ -21,6 +25,9 @@ public class YearDateValidationTest {
 		assertFalse(negativeDateValidation);
 	}
 
+	/*
+	 * #Requirement
+	 */
 	@Test
 	public void checkYearDateAllowed() {
 		//Arange

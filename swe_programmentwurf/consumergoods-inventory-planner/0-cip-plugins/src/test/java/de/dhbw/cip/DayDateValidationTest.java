@@ -9,6 +9,10 @@ import de.dhbw.cip.domain.DayValidator;
 
 public class DayDateValidationTest {
 
+	/*
+	 * #Requirement
+	 * #Regression
+	 */
 	@Test
 	public void checkNotNegativeOrZeroDayDate() {
 		//Arange
@@ -24,6 +28,10 @@ public class DayDateValidationTest {
 		assertFalse(zeroDateValidation);
 	}
 	
+	/*
+	 * #Requirement
+	 * #Bugfix
+	 */
 	@Test
 	public void checkDayDateOver31NotAllowed() {
 		//Arange
@@ -36,6 +44,9 @@ public class DayDateValidationTest {
 		assertFalse(wrongDateValidation);
 	}
 	
+	/*
+	 * #Requirement
+	 */
 	@Test
 	public void checkDayDateAllowed() {
 		//Arange

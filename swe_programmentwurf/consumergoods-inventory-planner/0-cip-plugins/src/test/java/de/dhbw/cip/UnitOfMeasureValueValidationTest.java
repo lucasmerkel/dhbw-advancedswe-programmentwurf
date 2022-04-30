@@ -9,6 +9,10 @@ import de.dhbw.cip.domain.ValueValidator;
 
 public class UnitOfMeasureValueValidationTest {
 
+	/*
+	 * #Requirement
+	 * #Regression
+	 */
 	@Test
 	public void checkNotNegativeMeasureValue() {
 		//Arange
@@ -20,6 +24,9 @@ public class UnitOfMeasureValueValidationTest {
 		assertFalse(wrongValueValidation);		
 	}
 	
+	/*
+	 * #Requirement
+	 */
 	@Test
 	public void checkMeasureValue() {
 		//Arange

@@ -23,6 +23,9 @@ import org.apache.http.impl.client.HttpClientBuilder;
 
 public class ConsumerGoodGuiControllerTest {
 
+	/*
+	 * #Requirement
+	 */
 	@Test
 	public void storeNewConsumerGoodTest() {
 	    //Arange
@@ -56,6 +59,10 @@ public class ConsumerGoodGuiControllerTest {
 		if(!httpResponse.isEmpty()) assertEquals(HttpStatus.OK.value(), httpResponse.get().getStatusLine().getStatusCode());
 	}
 	
+	/*
+	 * #Requirement
+	 * #Regression
+	 */
 	@Test
 	public void checkBadRequestWhileStoreNewConsumerGood() {
 	    //Arange
@@ -89,6 +96,10 @@ public class ConsumerGoodGuiControllerTest {
 		if(!httpResponse.isEmpty()) assertEquals(HttpStatus.BAD_REQUEST.value(), httpResponse.get().getStatusLine().getStatusCode());
 	}
 	
+	/*
+	 * #Requirement
+	 * #Regression
+	 */
 	@Test
 	public void checkBadRequestWhileUpdateNewConsumerGood() {
 	    //Arange
@@ -122,6 +133,10 @@ public class ConsumerGoodGuiControllerTest {
 		if(!httpResponse.isEmpty()) assertEquals(HttpStatus.BAD_REQUEST.value(), httpResponse.get().getStatusLine().getStatusCode());
 	}
 	
+	/*
+	 * #Requirement
+	 * #Lifesaver
+	 */
 	@Test
 	public void checkErroMessageWhileOutsourceNewConsumerGood() {
 		long id = 5;
@@ -153,6 +168,9 @@ public class ConsumerGoodGuiControllerTest {
 		verify(consumerGoodsRepositoryMock, Mockito.times(1));
 	}
 	
+	/*
+	 * #Requirement
+	 */
 	@Test
 	public void checkNoErrorMessageIfNoConsumerGoodIsStoredTest() {
 	    //Arange

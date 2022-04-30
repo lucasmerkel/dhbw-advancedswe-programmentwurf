@@ -9,6 +9,10 @@ import de.dhbw.cip.domain.MonthValidator;
 
 public class MonthDateValidationTest {
 	
+	/*
+	 * #Requirement
+	 * #Regression
+	 */
 	@Test
 	public void checkNotNegativeOrZeroMonthDate() {
 		//Arange
@@ -23,6 +27,10 @@ public class MonthDateValidationTest {
 		assertFalse(zeroDateValidation);
 	}
 	
+	/*
+	 * #Requirement
+	 * #Bugfix
+	 */
 	@Test
 	public void checkMonthDateOver12NotAllowed() {
 		//Arange
@@ -35,6 +43,9 @@ public class MonthDateValidationTest {
 		
 	}
 	
+	/*
+	 * #Requirement
+	 */
 	@Test
 	public void checkMonthDateAllowed() {
 		//Arange

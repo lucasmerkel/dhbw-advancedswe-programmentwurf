@@ -7,8 +7,11 @@ import org.junit.Test;
 
 import de.dhbw.cip.domain.ConsumerGood.ConsumerGoodsBuilder;
 
-public class StoreConsumerGoodsTest {
+public class StoreConsumerGoodTest {
 
+	/*
+	 * #Requirement
+	 */
 	@Test
 	public void checkStoreValidConsumerGood() {
 		//Arange
@@ -22,6 +25,10 @@ public class StoreConsumerGoodsTest {
 		
 	}
 	
+	/*
+	 * #Requirement
+	 * #Bugfix
+	 */
 	@Test
 	public void checkStoreConsumerGoodWithoutFoodDescription() {		
 		//Arange
@@ -36,6 +43,10 @@ public class StoreConsumerGoodsTest {
 		
 	}
 	
+	/*
+	 * #Requirement
+	 * #Bugfix
+	 */
 	@Test
 	public void checkStoreConsumerGoodWithoutMeasure() {		
 		//Arange
@@ -49,6 +60,10 @@ public class StoreConsumerGoodsTest {
 		
 	}
 	
+	/*
+	 * #Requirement
+	 * #Bugfix
+	 */
 	@Test
 	public void checkStoreConsumerGoodWithoutStorage() {		
 		//Arange
