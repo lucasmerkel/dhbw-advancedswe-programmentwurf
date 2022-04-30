@@ -1,21 +1,20 @@
 \chapter{Einleitung}
 In diesem Kapitel werden die Anforderungen an den abzugebenden Softwareentwurf sowie die Anforderungen an die zu entwickelnde Software beschrieben.
-Dazu zählt ebenfalls die Protokolierung spezieller Vereinbarungen mit dem Dozenten, der zugleich Gutachter des Softwareentwurfs ist.
 
 \section{Anforderungen an den Softwareentwurf}
-Dieser Softwareentwurf dient der Lernzielkontrolle der innerhalb der im fünsten und sechsten Semester stattfindenden Vorlesung \textit{Advanced Softwareengineering} vermittelnden Theorien.
+Dieser Softwareentwurf dient als Lernzielkontrolle der innerhalb der fünften und sechsten Semester stattfindenden Vorlesung \textit{Advanced Softwareengineering} vermittelnden Theorien.
 Dozent dieser Vorlesung ist Daniel Lindner.
 Er ist zugleich der Gutachter des Softwareentwurfs.
 Die Bearbeitung des Entwurfs startet mit der ersten Vorlesung am 04.10.2021.
 Der Abgabetermin ist der 30.04.2022.
-Eine Verlängerung der Abgabefrist ist nur unter bestimmten Voraussetzungen und Gründen möglich und bedarf der Absprache mit dem Dozenten.
-Hierbei kann die Abgabe maximal um die zum Zeitpunkt der Anfrage restliche Bearbeitungszeit verdoppelt werden.
+% Eine Verlängerung der Abgabefrist ist nur unter bestimmten Voraussetzungen und Gründen möglich und bedarf der Absprache mit dem Dozenten.
+% Hierbei kann die Abgabe maximal um die zum Zeitpunkt der Anfrage restliche Bearbeitungszeit verdoppelt werden.
 Zu den generellen Anforderungen zählen der zu entwickelnde Code einer Software sowie die schriftliche Dokumentation.
 Der Code soll dabei auf einem GitHub-Repository verwaltet werden.
 Der Code des Softwareprojekts muss dabei in einer gebräuchlichen Programmiersprache geschrieben werden.
 Die Empfehlung liegt dabei auf Java.
-Die Größe des Softwareprojekts soll über 2000 Zeilen Code liegen und circa mehr als 20 Klassen haben.
-Die Software soll einen klar definierten und sinnvollen Nutzen haben und eine Desktop- oder Webanwendung sein.
+Die Größe des Softwareprojekts soll bei 2000 Zeilen Code liegen und etwas mehr als 20 Klassen haben.
+Die Software soll einen klar definierten und sinnvollen Nutzen haben und eine Desktop-, Kommandozeilen- oder Webanwendung sein.
 In Bezug auf die vermittelten Lehrinhalte der Vorlesung sollen die sechs Schwerpunkte \textit{Clean Architecture}, \textit{Programming Principles}, \textit{Domain Driven Design}, \textit{Unit Tests}, \textit{Entwurfsmuster} sowie \textit{Refactoring} betrachtet und angewandt werden.
 Die einzelnen Schwerpunkte in Bezug auf die vermittelten Lehrinhalte werden im Folgenden erläutert.
 \subsubsection*{Clean Architecture}
@@ -26,7 +25,7 @@ Zudem müssen mindestens zwei Schichten umgesetzt und dokumentiert werden.
 Bei der Anwendung der \textit{Programming Principles} gilt es, die Anwendung der Prinzipien \textit{SOLID}, \textit{GRASP} und \textit{DRY} auf die eigene Software zu analysieren und zu begründen. 
 
 \subsubsection*{Domain Driven Design}
-In Bezug auf \textit{Domain Driven Design} ist es relevant, die Ubiquitous Language zu analysieren. 
+In Bezug auf \textit{Domain Driven Design} ist relevant, die Ubiquitous Language zu analysieren. 
 Des Weiteren sollten die Aspekte \textit{Repositories}, \textit{Aggregates}, \textit{Entities} sowie \textit{Value Objects} innerhalb des Softwareentwurfs analysiert und begründet werden.
 
 \subsubsection*{Unit Tests}
@@ -56,7 +55,7 @@ Bei der entwickelten Software handelt es sich um einen Lebensmittel-Inventurplan
 Die Bezeichnung des Softwareprojekts lautet \code{consumergoods-inventory-planner}.
 Die Anwendung entspricht einer digitalen Auflistung aller im System gepflegten Lebensmittel. 
 Der Nutzer muss diese Angaben selbstständig anpassen. 
-Es soll die Grundlage gegeben sein, die Daten werden auf einer Datenbank zu speichern.
+Es soll die Grundlage gegeben sein, die Daten auf einer Datenbank zu speichern.
 Die Realisierung der Speicherung muss zum Zeitpunkt der Abgabe nicht realisiert sein. 
 Die Erreichbarkeit der Anwendung soll als Webapplikation realisiert werden.
 Die Daten werden durch einen \ac{REST}-Service bereitgestellt und dient der Interaktion mit der Webapplikation.
@@ -86,13 +85,13 @@ Somit ist die \ac{URL} des Webservices \code{http://localhost:8083}.
 Die entwickelnde Software wird zudem auf \href{https://github.com/lucasmerkel/dhbw-advancedswe-programmentwurf/tree/main/swe_programmentwurf/consumergoods-inventory-planner}{\textit{GitHub}} versioniert.
 
 \subsection*{Abweichung des \ac{REST}-Paradigmas}
-Die im Softwareentwurf umgesetzte \ac{REST}-Schnittstelle hat im Gegensatz zur dem von Roy Fielding definierte \c{REST}-Paradigma Abweichungen, die erläutert werden.
+Die im Softwareentwurf umgesetzte \ac{REST}-Schnittstelle hat im Gegensatz zur dem von Roy Fielding definierte \ac{REST}-Paradigma Abweichungen, die erläutert werden.
 Zum einen weicht die Umsetzung der Repräsentation zur Veränderung von Ressourcen im Softwareentwurf von der Vorgehensweise im Paradigma ab.
 Die Ressourcen werden zum Einlagern oder Verändern über die \ac{URI} in Form von Attributen übertragen.
 Das Paradigma sieht hierfür jedoch die Übermittlung über den \ac{HTTP}-Body in einer einheitlichen Sprache vor.
-Beispiel der Umsetzung
+
 Der Vorteil ist, dass das Einlagern eines Konsumguts direkt über die \ac{URI} erfolgen kann, für die Anbindung weiterer Module an die bestehende Software.
-Der Nachteil ist, dass die Daten in der \ac{URI}, selbst bei Nutzung von \ac{HTTPS} nicht verschlüsselt sind und die \ac{URI} ab einer bestimmten Länge zu Problemen bei der Verarbeitung durch den Server führen kann.
+Der Nachteil ist, dass die Daten in der \ac{URI}, selbst bei Nutzung von \ac{HTTPS}, nicht verschlüsselt sind und die \ac{URI} ab einer bestimmten Länge zu Problemen bei der Verarbeitung durch den Server führen kann.
 Im Standard RFC 2616, RFC7230 (HTTP/1.1) sowie RFC 7540 (HTTP/2) werden jedoch keine maximalen Zeichenwerte genannt.
 Des Weiteren ist in \ac{REST} empfohlen, Ressourcen für den Client durch Verwendung von Hypermedia auffindbar und erkennbar zu machen.
 Man spricht hierbei auch von \ac{HATEOAS}. Darauf wurde in diesem Softwareentwurf ebenfalls verzichtet.
