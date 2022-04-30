@@ -3,33 +3,33 @@ package de.dhbw.cip.plugins.persistence.hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import de.dhbw.cip.domain.ConsumerGoods;
-import de.dhbw.cip.domain.ConsumerGoodsRepository;
+import de.dhbw.cip.domain.ConsumerGood;
+import de.dhbw.cip.domain.ConsumerGoodRepository;
 
 import java.util.Optional;
 
 @Repository
-public class ConsumerGoodsRepositoryBridge implements ConsumerGoodsRepository {
+public class ConsumerGoodRepositoryBridge implements ConsumerGoodRepository {
 
-    private PersistenceConsumerGoodsRepository springDataConsumerGoodsRepository;
+    private PersistenceConsumerGoodRepository springDataConsumerGoodsRepository;
 
     @Autowired
-    public ConsumerGoodsRepositoryBridge(PersistenceConsumerGoodsRepository springDataConsumerGoodsRepository) {
+    public ConsumerGoodRepositoryBridge(PersistenceConsumerGoodRepository springDataConsumerGoodsRepository) {
         this.springDataConsumerGoodsRepository = springDataConsumerGoodsRepository;
     }
 
     @Override
-    public Iterable<ConsumerGoods> findAllStoredConsumerGoods() {
+    public Iterable<ConsumerGood> findAllStoredConsumerGoods() {
         return this.springDataConsumerGoodsRepository.findAll();
     }
 
 	@Override
-	public ConsumerGoods storeNew(ConsumerGoods ConsumerGood) {
+	public ConsumerGood storeNew(ConsumerGood ConsumerGood) {
 		return this.springDataConsumerGoodsRepository.save(ConsumerGood);
 	}
 
 	@Override
-	public Optional<ConsumerGoods> findStoredConsumerGoodsWith(long eanCode) {
+	public Optional<ConsumerGood> findStoredConsumerGoodsWith(long eanCode) {
 		return this.springDataConsumerGoodsRepository.findById(eanCode);
 	}
 

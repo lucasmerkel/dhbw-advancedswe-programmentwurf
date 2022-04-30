@@ -14,7 +14,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class ConsumerGoods {
+public class ConsumerGood {
 	
     @Id
     @Column
@@ -29,10 +29,10 @@ public class ConsumerGoods {
     @OneToOne(cascade=CascadeType.ALL)
 	private Storage storagePlace;
 	
-    private ConsumerGoods() {
+    private ConsumerGood() {
     }
     
-    public ConsumerGoods(ConsumerGoodsBuilder consumerGoodsBuilder) {
+    public ConsumerGood(ConsumerGoodsBuilder consumerGoodsBuilder) {
     	this.eanCode = consumerGoodsBuilder.eanCode;
         this.food = consumerGoodsBuilder.food;
 		this.quantity = consumerGoodsBuilder.quantity;
@@ -145,8 +145,8 @@ public class ConsumerGoods {
 			Objects.requireNonNull(storage, "storage must not be null");
 		}
 		
-		public ConsumerGoods build() {
-			ConsumerGoods consumerGoods =  new ConsumerGoods(this);
+		public ConsumerGood build() {
+			ConsumerGood consumerGoods =  new ConsumerGood(this);
 			return consumerGoods;
 		}
 	}

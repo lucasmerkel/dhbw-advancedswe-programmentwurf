@@ -3,17 +3,17 @@ package de.dhbw.cip.adapters;
 import de.dhbw.cip.abstractioncode.UnitOfMeasure;
 
 
-public class ConsumerGoodsResource {
+public class ConsumerGoodResource {
 
 	 private long eanCode;
 	 private FoodResource food;
 	 private UnitOfMeasure quantity;
 	 private StorageResource storagePlace;
 	 
-	 private ConsumerGoodsResource() {
+	 private ConsumerGoodResource() {
 	 }
 
-	 public ConsumerGoodsResource(long eanCode, FoodResource food, UnitOfMeasure quantityValue, StorageResource storage) {
+	 public ConsumerGoodResource(long eanCode, FoodResource food, UnitOfMeasure quantityValue, StorageResource storage) {
 		this.eanCode = eanCode;
 	    this.food = food;
 	    this.quantity = quantityValue;

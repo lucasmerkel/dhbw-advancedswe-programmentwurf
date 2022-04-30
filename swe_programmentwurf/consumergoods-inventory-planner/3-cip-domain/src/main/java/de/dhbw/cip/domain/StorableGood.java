@@ -1,10 +1,10 @@
 package de.dhbw.cip.domain;
 
-public interface StorableGoods {
+public interface StorableGood {
 
 	public String getDescription();
 
-	public StorableGoods getInstance();
+	public StorableGood getInstance();
 	
 	public BestBeforeDate getBestBeforeDate();
 }

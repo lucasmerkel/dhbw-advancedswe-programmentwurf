@@ -15,7 +15,7 @@ import de.dhbw.cip.abstractioncode.Month;
 import de.dhbw.cip.abstractioncode.Year;
 
 @Entity
-public class Food implements StorableGoods {
+public class Food implements StorableGood {
 
 	@Id
     @Column
@@ -47,7 +47,7 @@ public class Food implements StorableGoods {
 	}
 
 	@Override
-	public StorableGoods getInstance() {
+	public StorableGood getInstance() {
 		return this;
 	}
 

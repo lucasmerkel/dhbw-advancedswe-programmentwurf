@@ -8,30 +8,30 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import de.dhbw.cip.adapters.ConsumerGoodsResource;
-import de.dhbw.cip.adapters.ConsumerGoodsToConsumerGoodsResourceMapper;
-import de.dhbw.cip.application.ConsumerGoodsManager;
-import de.dhbw.cip.domain.ConsumerGoods.ConsumerGoodsBuilder;
+import de.dhbw.cip.adapters.ConsumerGoodResource;
+import de.dhbw.cip.adapters.ConsumerGoodToConsumerGoodResourceMapper;
+import de.dhbw.cip.application.ConsumerGoodManager;
+import de.dhbw.cip.domain.ConsumerGood.ConsumerGoodsBuilder;
 
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @RestController
 @RequestMapping(value = "/api/consumergoods")
-public class ConsumerGoodsGuiController {
+public class ConsumerGoodGuiController {
 
-    private ConsumerGoodsManager consumerGoodsApplicationService;
-    private ConsumerGoodsToConsumerGoodsResourceMapper consumerGoodsToConsumerGoodsResourceMapper;
+    private ConsumerGoodManager consumerGoodsApplicationService;
+    private ConsumerGoodToConsumerGoodResourceMapper consumerGoodsToConsumerGoodsResourceMapper;
     
     @Autowired
-    public ConsumerGoodsGuiController(ConsumerGoodsManager consumerGoodsApplicationService, 
-    		ConsumerGoodsToConsumerGoodsResourceMapper consumerGoodsToConsumerGoodsResourceMapper) {
+    public ConsumerGoodGuiController(ConsumerGoodManager consumerGoodsApplicationService, 
+    		ConsumerGoodToConsumerGoodResourceMapper consumerGoodsToConsumerGoodsResourceMapper) {
         this.consumerGoodsApplicationService = consumerGoodsApplicationService;
         this.consumerGoodsToConsumerGoodsResourceMapper = consumerGoodsToConsumerGoodsResourceMapper;
     }
 
     @RequestMapping(value="/getAll", method = RequestMethod.GET)
-    public Iterable<ConsumerGoodsResource> getConsumerGoods() {
+    public Iterable<ConsumerGoodResource> getConsumerGoods() {
     	return StreamSupport.stream(this.consumerGoodsApplicationService.findAllConsumerGoods().spliterator(), false)
     			.map(consumerGoodsToConsumerGoodsResourceMapper)
     			.collect(Collectors.toList());

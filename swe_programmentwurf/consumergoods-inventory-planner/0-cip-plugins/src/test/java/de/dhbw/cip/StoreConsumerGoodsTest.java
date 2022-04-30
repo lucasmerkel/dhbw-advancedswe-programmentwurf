@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import de.dhbw.cip.domain.ConsumerGoods.ConsumerGoodsBuilder;
+import de.dhbw.cip.domain.ConsumerGood.ConsumerGoodsBuilder;
 
 public class StoreConsumerGoodsTest {
 

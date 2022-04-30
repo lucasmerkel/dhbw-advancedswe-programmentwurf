@@ -2,13 +2,13 @@ package de.dhbw.cip.domain;
 
 import java.util.Optional;
 
-public interface ConsumerGoodsRepository {
+public interface ConsumerGoodRepository {
 
-    Iterable<ConsumerGoods> findAllStoredConsumerGoods();
+    Iterable<ConsumerGood> findAllStoredConsumerGoods();
     
-    Optional<ConsumerGoods> findStoredConsumerGoodsWith(long eanCode);
+    Optional<ConsumerGood> findStoredConsumerGoodsWith(long eanCode);
     
     boolean outsourceConsumerGoodsWith(long eanCode);
     
-    ConsumerGoods storeNew(ConsumerGoods consumerGood);
+    ConsumerGood storeNew(ConsumerGood consumerGood);
 }

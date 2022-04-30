@@ -3,23 +3,23 @@ package de.dhbw.cip.application;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import de.dhbw.cip.domain.ConsumerGoods;
-import de.dhbw.cip.domain.ConsumerGoodsRepository;
+import de.dhbw.cip.domain.ConsumerGood;
+import de.dhbw.cip.domain.ConsumerGoodRepository;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ConsumerGoodsManager {
+public class ConsumerGoodManager {
 
-    private ConsumerGoodsRepository consumerGoodsRepository;
+    private ConsumerGoodRepository consumerGoodsRepository;
 
     @Autowired
-    public ConsumerGoodsManager(ConsumerGoodsRepository consumerGoodsRepository) {
+    public ConsumerGoodManager(ConsumerGoodRepository consumerGoodsRepository) {
         this.consumerGoodsRepository = consumerGoodsRepository;
     }
 
-    public Iterable<ConsumerGoods> findAllConsumerGoods() {
+    public Iterable<ConsumerGood> findAllConsumerGoods() {
         return this.consumerGoodsRepository.findAllStoredConsumerGoods();
     }
     
@@ -33,10 +33,10 @@ public class ConsumerGoodsManager {
 		}
     }
     
-    public boolean updateConsumerGoodsWith(long eanCode, ConsumerGoods consumerGoods) {
+    public boolean updateConsumerGoodsWith(long eanCode, ConsumerGood consumerGoods) {
     	if(this.consumerGoodsRepository.findStoredConsumerGoodsWith(eanCode).isEmpty()) return false;
     	try {
-    		ConsumerGoods newConsumerGoods = this.consumerGoodsRepository.findStoredConsumerGoodsWith(eanCode).get();
+    		ConsumerGood newConsumerGoods = this.consumerGoodsRepository.findStoredConsumerGoodsWith(eanCode).get();
     		newConsumerGoods.changeFood(consumerGoods.getFood());
     		newConsumerGoods.changeUnitOfMeasure(consumerGoods.getQuantity());
     		newConsumerGoods.changeStoragePlace(consumerGoods.getStorage());
@@ -50,7 +50,7 @@ public class ConsumerGoodsManager {
 		}
     }
     
-    public boolean storeNew(long eanCode, ConsumerGoods consumerGoods) {
+    public boolean storeNew(long eanCode, ConsumerGood consumerGoods) {
     	try {
     		if(!this.consumerGoodsRepository.findStoredConsumerGoodsWith(eanCode).isEmpty()) return false;
     		consumerGoodsRepository.storeNew(consumerGoods);

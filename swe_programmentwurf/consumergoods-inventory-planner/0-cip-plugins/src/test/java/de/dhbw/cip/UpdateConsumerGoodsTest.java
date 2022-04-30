@@ -10,23 +10,23 @@ import de.dhbw.cip.abstractioncode.DayOfYear;
 import de.dhbw.cip.abstractioncode.Month;
 import de.dhbw.cip.abstractioncode.Year;
 import de.dhbw.cip.domain.BestBeforeDate;
-import de.dhbw.cip.domain.ConsumerGoods;
+import de.dhbw.cip.domain.ConsumerGood;
 import de.dhbw.cip.domain.Food;
 import de.dhbw.cip.domain.Fridge;
-import de.dhbw.cip.domain.ConsumerGoods.ConsumerGoodsBuilder;
+import de.dhbw.cip.domain.ConsumerGood.ConsumerGoodsBuilder;
 
 public class UpdateConsumerGoodsTest {
 	
 	@Test
 	public void checkUpdateOfConsumerGoods() {
 	//Capture
-	final ConsumerGoods consumerGoodsMock = Mockito.mock(ConsumerGoods.class);
+	final ConsumerGood consumerGoodsMock = Mockito.mock(ConsumerGood.class);
 	Mockito.when(consumerGoodsMock.getFood()).thenReturn(new Food("Bananas", new BestBeforeDate(new DayOfYear(new Day(4), new Month(4)), new Year(2022))));
 	//Mockito.when(consumerGoodsMock.getQuantity()).thenReturn(new Food());
 	Mockito.when(consumerGoodsMock.getStorage()).thenReturn(new Fridge("Mocked Fridge"));
 		
 	//Arange
-	ConsumerGoods newConsumerGoods = new ConsumerGoodsBuilder(12345678901l, "Tomatoes", 3, 3, 2022, "Stk.", 1, "Fridge", "Mockup Fridge").build();
+	ConsumerGood newConsumerGoods = new ConsumerGoodsBuilder(12345678901l, "Tomatoes", 3, 3, 2022, "Stk.", 1, "Fridge", "Mockup Fridge").build();
 	
 	//Act
 	newConsumerGoods.changeFood(consumerGoodsMock.getFood());
