@@ -23,14 +23,6 @@ public class ConsumerInventoryPlannerApplication {
         app.setDefaultProperties(Collections.singletonMap("server.port", "8083"));
         app.run(args);
     }
-
-    @Bean
-    public CommandLineRunner demo(ConsumerGoodRepository repository) {
-        return (args) -> {
-        	repository.storeNew(new ConsumerGoodsBuilder(4_0001_00012l, "Tomatoe", 1, 1, 2022, "Stk.", 3, "Fridge", "fridge in the kitchen, first shelf").build());
-        	repository.storeNew(new ConsumerGoodsBuilder(4_0001_00013l, "Banana", 2, 3, 2022, "Stk.", 5, "FoodShelf", "foodshelf in the basement, second shelf").build());
-        };
-    }
     
 	@Bean
 	public CorsFilter corsFilter() {
