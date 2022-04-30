@@ -1,0 +1,188 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" style="color:white;">Consumer Goods Manager</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarColor02">
+     <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+           <a class="nav-link" (click)="onOpenModal(null, 'add')">Store New Consumer Good <span class="sr-only">(current)</span></a>
+        </li>
+     </ul>
+     <form class="form-inline my-2 my-lg-0">
+        <input type="search" (ngModelChange)="searchConsumerGoods(key.value)" #key="ngModel" ngModel
+         name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search consumer good..." required>
+     </form>
+  </div>
+</nav>
+<div class="container" id="main-container">
+<div class="row">
+  <div *ngFor="let consumerGoods of consumerGoods" class="col-md-6 col-xl-3">
+     <div class="card m-b-30">
+        <div class="card-body row">
+           <div class="col-6">
+              <a href=""><img src="{{consumerGoods?.imageUrl}}" alt="" class="img-fluid rounded-circle w-60"></a>
+           </div>
+           <div class="col-6 card-title align-self-center mb-0">
+              <h5>EAN: {{consumerGoods?.eancode}}</h5>
+              <h5>{{consumerGoods?.food.description}}</h5>
+              <p class="m-0">{{consumerGoods?.storageType}}</p>
+              <p class="m-0">{{consumerGoods?.storage}}</p>
+           </div>
+        </div>
+        <ul class="list-group list-group-flush">
+           <li class="list-group-item"><i class="fa fa-envelope float-right"></i>{{consumerGoods?.quantity.value.value}} {{consumerGoods?.quantity.shortcut}}</li>
+           <li class="list-group-item"><i class="fa fa-phone float-right"></i>Best Before Date : {{consumerGoods?.food.bbd.day}}.{{consumerGoods?.food.bbd.month}}.{{consumerGoods?.food.bbd.year}}</li>
+        </ul>
+        <div class="card-body">
+           <div class="float-right btn-group btn-group-sm">
+              <a (click)="onOpenModal(consumerGoods, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+              <a (click)="onOpenModal(consumerGoods, 'delete')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a>
+           </div>
+        </div>
+     </div>
+  </div>
+</div>
+
+<!-- Add Employee Modal -->
+<div class="modal fade" id="addConsumerGoodsModal" tabindex="-1" role="dialog" aria-labelledby="addConsumerGoodsModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+       <div class="modal-header">
+          <h5 class="modal-title" id="addConsumerGoodsModalLabel">Store New Consumer Good</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+       </div>
+       <div class="modal-body">
+          <form #addForm="ngForm" (ngSubmit)="onAddConsumerGoods(addForm)">
+          <div class="form-group">
+            <label for="name">EAN</label>
+            <input type="text" ngModel name="eancode" class="form-control" id="eancode" placeholder="4 000001 012978" required>
+          </div>
+          <div class="form-group">
+             <label for="name">Description</label>
+             <input type="text" ngModel name="description" class="form-control" id="description" placeholder="Tomatoes" required>
+          </div>
+          <div class="form-group">
+             <label for="email">Best Before Date - Day</label>
+             <input type="email" ngModel name="day" class="form-control" id="day" placeholder="22" required>
+          </div>
+          <div class="form-group">
+             <label for="phone">Best Before Date - Month</label>
+             <input type="text" ngModel name="month" class="form-control" id="month" placeholder="02" required>
+          </div>
+          <div class="form-group">
+             <label for="phone">Best Before Date - Year</label>
+             <input type="text" ngModel name="year" class="form-control" id="year" placeholder="2022" required>
+          </div>
+          <div class="form-group">
+             <label for="phone">Unit of Measure</label>
+             <input type="text" ngModel name="shortcut" class="form-control" id="shortcut" placeholder="g/Stk./ml" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Measured Value</label>
+            <input type="text" ngModel name="value" class="form-control" id="value" placeholder="0" required>
+         </div>
+         <div class="form-group">
+          <label for="phone">Storage Location</label>
+          <input type="text" ngModel name="storage" class="form-control" id="storage" placeholder="fridge in the basement" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Type of Storage</label>
+            <input type="text" ngModel name="storageType" class="form-control" id="storageType" placeholder="Fridge" required>
+            </div>
+          <div class="modal-footer">
+             <button type="button" id="add-consumerGoods-form" class="btn btn-secondary" data-dismiss="modal">Not store consumer good</button>
+             <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Store new consumer good</button>
+          </div>
+          </form>
+       </div>
+    </div>
+  </div>
+  </div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="updateConsumerGoodsModal" tabindex="-1" role="dialog" aria-labelledby="consumerGoodsEditModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+     <div class="modal-content">
+        <div class="modal-header">
+           <h5 class="modal-title" id="updateConsumerGoodsModalLabel">Edit Consumer Good {{editConsumerGoods?.food.description}} with EAN: {{editConsumerGoods?.eancode}} </h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+           </button>
+        </div>
+        <div class="modal-body">
+           <form #editForm="ngForm">
+              <div class="form-group">
+                 <label for="name">Description</label>
+                 <input type="text" ngModel="{{editConsumerGoods?.food.description}}" name="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="Description">
+              </div>
+              <input type="hidden" ngModel="{{editConsumerGoods?.eancode}}" name="eancode" class="form-control" id="eancode" placeholder="no id">
+              <div class="form-group">
+                 <label for="email">Best Before Date - Day</label>
+                 <input type="email" ngModel="{{editConsumerGoods?.food.bbd.day}}" name="day" class="form-control" id="day" placeholder="02">
+              </div>
+              <div class="form-group">
+                 <label for="phone">Best Before Date - Month</label>
+                 <input type="text" ngModel="{{editConsumerGoods?.food.bbd.month}}" name="month" class="form-control" id="month" placeholder="02">
+              </div>
+              <div class="form-group">
+                 <label for="phone">Best Before Date - Year</label>
+                 <input type="text" ngModel="{{editConsumerGoods?.food.bbd.year}}" name="year" class="form-control" id="year" placeholder="2022">
+              </div>
+              <div class="form-group">
+                 <label for="phone">Unit of Measure</label>
+                 <input type="text" ngModel="{{editConsumerGoods?.quantity.shortcut}}" name="shortcut" class="form-control" id="shortcut" placeholder="kg/Stk./l">
+              </div>
+              <div class="form-group">
+                <label for="phone">Measured Value</label>
+                <input type="text" ngModel="{{editConsumerGoods?.quantity.value.value}}" name="value" class="form-control" id="value" placeholder="0">
+             </div>
+             <div class="form-group">
+              <label for="phone">Storage Location</label>
+              <input type="text" ngModel="{{editConsumerGoods?.storage}}" name="storage" class="form-control" id="storage" placeholder="fridge in the basement">
+           </div>
+            <div class="form-group">
+              <label for="phone">Type of Storage</label>
+              <input type="text" ngModel="{{editConsumerGoods?.storageType}}" name="storageType" class="form-control" id="storageType" placeholder="Fridge">
+            </div>
+              <div class="modal-footer">
+                 <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Make no change</button>
+                 <button (click)="onUpdateConsumerGoods(editForm.value)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
+              </div>
+           </form>
+        </div>
+     </div>
+  </div>
+</div>
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteConsumerGoodsModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+     <div class="modal-content">
+        <div class="modal-header">
+           <h5 class="modal-title" id="deleteModelLabel">Outsource Consumer Good</h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+           </button>
+        </div>
+        <div class="modal-body">
+           <p>Are you sure you want to outsource this consumer good {{deleteConsumerGoods?.food.description}} with EAN: {{deleteConsumerGoods?.eancode}} ?</p>
+           <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">No, consumer good remain in storage</button>
+              <button (click)="onDeleteConsumerGoods(deleteConsumerGoods?.eancode)" class="btn btn-danger" data-dismiss="modal">Yes, outsource consumer good</button>
+           </div>
+        </div>
+     </div>
+  </div>
+</div>
+</div>
+
+<!-- Notification for no employees -->
+<div *ngIf="consumerGoods?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">No consumer good!</h4>
+  <p>No stored consumer good were found.</p>
+</div>
+</div>
