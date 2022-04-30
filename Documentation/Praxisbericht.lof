@@ -2,29 +2,29 @@
 \babel@toc {ngerman}{}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Grafische Oberfläche des Oberflächenmoduls.}}{5}{figure.caption.21}%
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Suchfunktion der Oberfläche.}}{6}{figure.caption.22}%
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Rückmeldung bei keinem Ergebnis auf Suchanfrage.}}{6}{figure.caption.23}%
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Einlagern eines Konsumguts.}}{7}{figure.caption.24}%
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Darstellung angelegtes Konsumgut.}}{7}{figure.caption.25}%
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Daten eines Konsumguts ändern.}}{8}{figure.caption.26}%
-\contentsline {figure}{\numberline {2.7}{\ignorespaces Auslagern eines Konsumguts.}}{9}{figure.caption.27}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Grafische Oberfläche des Oberflächenmoduls.}}{5}{figure.caption.20}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Suchfunktion der Oberfläche.}}{6}{figure.caption.21}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Rückmeldung bei keinem Ergebnis auf Suchanfrage.}}{6}{figure.caption.22}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Einlagern eines Konsumguts.}}{7}{figure.caption.23}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Darstellung angelegtes Konsumgut.}}{7}{figure.caption.24}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Daten eines Konsumguts ändern.}}{8}{figure.caption.25}%
+\contentsline {figure}{\numberline {2.7}{\ignorespaces Auslagern eines Konsumguts.}}{9}{figure.caption.26}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Aufteilung der Projektstruktur entsprechend \textit {Clean Architecture}.}}{12}{figure.caption.28}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Ausschnitt aus der pom.xml zur Projektstruktur.}}{13}{figure.caption.29}%
-\addvspace {10\p@ }
-\addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Wordcloud in Bezug zur Verdeutlichung der Umsetzung Ubiquitous Language.}}{35}{figure.caption.58}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Überschrift Eingabemaske zum Einlagern eines Konsumguts.}}{37}{figure.caption.60}%
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Bezeichnung eines Auslagerungsvorgangs.}}{37}{figure.caption.61}%
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Darstellung EAN-Code.}}{37}{figure.caption.62}%
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Button zum Öffnen der Eingabemaske zum Einlagern eines Konsumguts.}}{38}{figure.caption.63}%
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Buttons zum Bestätigen des Einlagerns eines Konsumguts.}}{38}{figure.caption.64}%
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Buttons zum Bestätigen von Änderungen der Attribute eines Konsumguts.}}{38}{figure.caption.65}%
-\contentsline {figure}{\numberline {5.8}{\ignorespaces Buttons zum Bestätigen des Auslagern eines Konsumguts.}}{38}{figure.caption.66}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Aufteilung der Projektstruktur entsprechend \textit {Clean Architecture}.}}{12}{figure.caption.27}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Ausschnitt aus der pom.xml zur Projektstruktur.}}{13}{figure.caption.28}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {7.1}{\ignorespaces Ausschnitt des UML-Diagramms zur Darstellung des \textit {Bridge}-Entwurfmusters.}}{52}{figure.caption.82}%
-\contentsline {figure}{\numberline {7.2}{\ignorespaces Ausschnitt des UML-Diagramms zur Darstellung des \textit {Builder}-Entwurfmusters.}}{53}{figure.caption.83}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Wordcloud in Bezug zur Verdeutlichung der Umsetzung Ubiquitous Language.}}{35}{figure.caption.56}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Überschrift Eingabemaske zum Einlagern eines Konsumguts.}}{37}{figure.caption.58}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Bezeichnung eines Auslagerungsvorgangs.}}{37}{figure.caption.59}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Darstellung EAN-Code.}}{37}{figure.caption.60}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Button zum Öffnen der Eingabemaske zum Einlagern eines Konsumguts.}}{38}{figure.caption.61}%
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Buttons zum Bestätigen des Einlagerns eines Konsumguts.}}{38}{figure.caption.62}%
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Buttons zum Bestätigen von Änderungen der Attribute eines Konsumguts.}}{38}{figure.caption.63}%
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Buttons zum Bestätigen des Auslagern eines Konsumguts.}}{38}{figure.caption.64}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Ausschnitt des UML-Diagramms zur Darstellung des \textit {Bridge}-Entwurfmusters.}}{53}{figure.caption.70}%
+\contentsline {figure}{\numberline {7.2}{\ignorespaces Ausschnitt des UML-Diagramms zur Darstellung des \textit {Builder}-Entwurfmusters.}}{54}{figure.caption.71}%
 \addvspace {10\p@ }
 \contentsfinish 

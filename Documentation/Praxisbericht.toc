@@ -3,7 +3,6 @@
 \contentsline {chapter}{Abkürzungsverzeichnis}{IV}{chapter*.4}%
 \contentsline {chapter}{\nonumberline Abbildungsverzeichnis}{V}{chapter*.5}%
 \contentsline {chapter}{\nonumberline Tabellenverzeichnis}{VI}{chapter*.6}%
-\contentsline {chapter}{\nonumberline Quellcodeverzeichnis}{VII}{chapter*.7}%
 \contentsline {chapter}{\numberline {1}Einleitung}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Anforderungen an den Softwareentwurf}{1}{section.1.1}%
 \contentsline {section}{\numberline {1.2}Anforderungen an die zu entwickelnde Software}{3}{section.1.2}%
@@ -32,7 +31,7 @@
 \contentsline {section}{\numberline {6.2}Testabdeckung}{45}{section.6.2}%
 \contentsline {section}{\numberline {6.3}Testen mit Mocks}{46}{section.6.3}%
 \contentsline {section}{\numberline {6.4}Anwendung im Softwareentwurf}{46}{section.6.4}%
-\contentsline {chapter}{\numberline {7}Entwurfsmuster}{52}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Angewandte Entwurfsmuster}{52}{section.7.1}%
-\contentsline {chapter}{\numberline {8}Refactoring}{55}{chapter.8}%
+\contentsline {chapter}{\numberline {7}Entwurfsmuster}{53}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Angewandte Entwurfsmuster}{53}{section.7.1}%
+\contentsline {chapter}{\numberline {8}Refactoring}{56}{chapter.8}%
 \contentsfinish 
